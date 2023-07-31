@@ -42,9 +42,9 @@ const Header = () => {
 					</a>
 				</div>
 				<div className='hidden lg:flex items-center gap-x-10'>
-					<a href='/home'>Home</a>
-					<a href='/illustrations'>Illustrations</a>
-					<a href='/projects'>Projects</a>
+					<a className='hover:border-b hover:border-black' href='/home'>Home</a>
+					<a className='hover:border-b hover:border-black' href='/illustrations'>Illustrations</a>
+					<a className='hover:border-b hover:border-black' href='/projects'>Projects</a>
 					<a href='/home'>
 						<img
 							className='h-20 hover:-translate-y-1 hover:scale-105 duration-300'
@@ -52,9 +52,9 @@ const Header = () => {
 							alt='logo-ilustrografia'
 						/>
 					</a>
-					<a href='/shop'>Shop</a>
-					<a href='/about-us'>About</a>
-					<a href='/contact'>Contact</a>
+					<a className='hover:border-b hover:border-black' href='/shop'>Shop</a>
+					<a className='hover:border-b hover:border-black' href='/about-us'>About</a>
+					<a className='hover:border-b hover:border-black' href='/contact'>Contact</a>
 				</div>
 				<div className='hidden lg:flex gap-x-3 w-20'>
 					<GrCart />
