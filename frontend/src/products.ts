@@ -148,6 +148,38 @@ const projects = [
 			},
 		],
 	},
+	{
+		_id: 2,
+		name: 'Ilustracje Fantasy',
+    shortName: 'ilustracje-fantasy',
+		creatures: [
+			{
+				_id: '1',
+				name: 'Nimfa Wiosenna',
+        shortName: 'nimfa-wiosenna',
+				latinName: '',
+				type: '',
+				category: '',
+				subCategory: '',
+				species: '',
+				occurrence: '',
+				properName: '',
+				blogImages: ['/images/airpods.jpg'],
+				blogSketches: ['/images/airpods.jpg'],
+				ytLink:
+					'',
+				image: '/images/airpods.jpg',
+				description: '',
+				productVariations,
+				productStatistics: [""],
+        // ??
+				artPrintImages: [],
+				printOnCanvasImages: [],
+				posterImages: [],
+				premiumPrintImages: [],
+			},
+		],
+	},
 ];
 
 export default projects;

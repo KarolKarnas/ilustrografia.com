@@ -28,13 +28,19 @@ const ProductGroup = ({
 	return (
 		<div className='flex flex-col items-center'>
 			<h2 className='text-xl'>{name}</h2>
-			<div className="flex">
-        {productVariations.map((variation) => (
-          <div key={`${name} ${variation.name}`}>
-            <Product name={name} variationName={variation.name} projShortName={projShortName} creatureShortName={creatureShortName} lowestPrice={variation.variations[0].price}/>
-          </div>
-        ))}
-      </div>
+			<div className='flex'>
+				{productVariations.map((variation) => (
+					<div key={`${name} ${variation.name}`}>
+						<Product
+							name={name}
+							variationName={variation.name}
+							projShortName={projShortName}
+							creatureShortName={creatureShortName}
+							lowestPrice={variation.variations[0].price}
+						/>
+					</div>
+				))}
+			</div>
 		</div>
 	);
 };
