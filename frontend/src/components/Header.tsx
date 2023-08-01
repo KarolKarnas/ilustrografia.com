@@ -3,6 +3,7 @@ import { GrCart, GrUser, GrFavorite } from 'react-icons/gr';
 import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa';
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 	const [isActive, setIsActive] = useState(false);
@@ -15,60 +16,60 @@ const Header = () => {
 		<header className='w-full bg-slate-100 py-2'>
 			<nav className='flex items-center justify-around'>
 				<div className='hidden lg:flex gap-x-3 items-center w-20'>
-					<a
-						href='https://www.facebook.com/ilustrografiaPL/'
+					<Link
 						className='transition ease-in-out bg-red-300 p-2 rounded-3xl hover:-translate-y-1 hover:scale-110 duration-300'
+						to={'https://www.facebook.com/ilustrografiaPL/'}
 					>
 						<FaFacebook className='text-white' />
-					</a>
-					<a
-						href='https://www.instagram.com/ilustrografia.pl/'
+					</Link>
+					<Link
+						to={'https://www.instagram.com/ilustrografia.pl/'}
 						className='transition ease-in-out bg-red-300 p-2 rounded-3xl hover:-translate-y-1 hover:scale-110 duration-300'
 					>
 						<FaInstagram className='text-white' />
-					</a>
-					<a
-						href='https://www.facebook.com/ilustrografiaPL/'
+					</Link>
+					<Link
+						to={'https://www.facebook.com/ilustrografiaPL/'}
 						className='transition ease-in-out bg-red-300 p-2 rounded-3xl hover:-translate-y-1 hover:scale-110 duration-300'
 					>
 						<FaTiktok className='text-white' />
-					</a>{' '}
-					<a
-						href='https://www.youtube.com/channel/UCH4ljdai9HnOYcKVHWnJ6ng'
+					</Link>{' '}
+					<Link
+						to='https://www.youtube.com/channel/UCH4ljdai9HnOYcKVHWnJ6ng'
 						className='transition ease-in-out bg-red-300 p-2 rounded-3xl hover:-translate-y-1 hover:scale-110 duration-300'
 					>
 						<FaYoutube className='text-white' />
-					</a>
+					</Link>
 				</div>
 				<div className='hidden lg:flex items-center gap-x-10'>
-					<a className='hover:border-b hover:border-black' href='/home'>
+					<Link className='hover:border-b hover:border-black' to='/'>
 						Home
-					</a>
-					<a
+					</Link>
+					<Link
 						className='hover:border-b hover:border-black'
-						href='/illustrations'
+						to='/illustrations'
 					>
 						Illustrations
-					</a>
-					<a className='hover:border-b hover:border-black' href='/projects'>
+					</Link>
+					<Link className='hover:border-b hover:border-black' to='/projects'>
 						Projects
-					</a>
-					<a href='/home'>
+					</Link>
+					<Link to='/'>
 						<img
 							className='h-20 hover:-translate-y-1 hover:scale-105 duration-300'
 							src='logo-ilustrografia.png'
 							alt='logo-ilustrografia'
 						/>
-					</a>
-					<a className='hover:border-b hover:border-black' href='/shop'>
+					</Link>
+					<Link className='hover:border-b hover:border-black' to='/shop'>
 						Shop
-					</a>
-					<a className='hover:border-b hover:border-black' href='/about-us'>
+					</Link>
+					<Link className='hover:border-b hover:border-black' to='/about-us'>
 						About
-					</a>
-					<a className='hover:border-b hover:border-black' href='/contact'>
+					</Link>
+					<Link className='hover:border-b hover:border-black' to='/contact'>
 						Contact
-					</a>
+					</Link>
 				</div>
 				<div className='hidden lg:flex gap-x-3 w-20'>
 					<GrCart />
@@ -104,47 +105,47 @@ const Header = () => {
 							: 'hidden'
 					}
 				>
-					<a href='/home'>
+					<Link to='/'>
 						<img
 							className='h-20 hover:-translate-y-1 hover:scale-105 duration-300'
 							src='logo-ilustrografia.png'
 							alt='logo-ilustrografia'
 						/>
-					</a>
+					</Link>
 					<div className='flex gap-x-3 items-center justify-center w-20'>
-						<a
-							href='https://www.facebook.com/ilustrografiaPL/'
+						<Link
+							to='https://www.facebook.com/ilustrografiaPL/'
 							className='transition ease-in-out bg-red-300 p-2 rounded-3xl hover:-translate-y-1 hover:scale-110 duration-300'
 						>
 							<FaFacebook className='text-white' />
-						</a>
-						<a
-							href='https://www.instagram.com/ilustrografia.pl/'
+						</Link>
+						<Link
+							to='https://www.instagram.com/ilustrografia.pl/'
 							className='transition ease-in-out bg-red-300 p-2 rounded-3xl hover:-translate-y-1 hover:scale-110 duration-300'
 						>
 							<FaInstagram className='text-white' />
-						</a>
-						<a
-							href='https://www.facebook.com/ilustrografiaPL/'
+						</Link>
+						<Link
+							to='https://www.facebook.com/ilustrografiaPL/'
 							className='transition ease-in-out bg-red-300 p-2 rounded-3xl hover:-translate-y-1 hover:scale-110 duration-300'
 						>
 							<FaTiktok className='text-white' />
-						</a>{' '}
-						<a
-							href='https://www.youtube.com/channel/UCH4ljdai9HnOYcKVHWnJ6ng'
+						</Link>{' '}
+						<Link
+							to='https://www.youtube.com/channel/UCH4ljdai9HnOYcKVHWnJ6ng'
 							className='transition ease-in-out bg-red-300 p-2 rounded-3xl hover:-translate-y-1 hover:scale-110 duration-300'
 						>
 							<FaYoutube className='text-white' />
-						</a>
+						</Link>
 					</div>
 					<div className='flex flex-col items-center gap-x-10'>
-						<a href='/home'>Home</a>
-						<a href='/illustrations'>Illustrations</a>
-						<a href='/projects'>Projects</a>
+						<Link to='/'>Home</Link>
+						<Link to='/illustrations'>Illustrations</Link>
+						<Link to='/projects'>Projects</Link>
 
-						<a href='/shop'>Shop</a>
-						<a href='/about-us'>About</a>
-						<a href='/contact'>Contact</a>
+						<Link to='/shop'>Shop</Link>
+						<Link to='/about-us'>About</Link>
+						<Link to='/contact'>Contact</Link>
 					</div>
 					<div className='flex gap-x-3 w-20'>
 						<GrCart />

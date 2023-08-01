@@ -84,7 +84,7 @@ const projects = [
 	{
 		_id: 1,
 		name: 'Nowosłowiański Spis Powszechny',
-    shortName: 'nsp',
+    shortName: 'nowoslowianski-spis-powszechny',
 		creatures: [
 			{
 				_id: '1',

@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+
+
 interface Props {
 	name: string;
 	variationName: string;
@@ -29,12 +32,16 @@ const Product = ({
 	return (
 		<div className='bg-red-200 m-2'>
 			{name} {variationName}
-			<img className="hover:cursor-pointer hover:scale-110 transition duration-300"
-				src={`/images/${projShortName}/${creatureShortName}/${toKebabCase(
-					variationName
-				)}/${creatureShortName}-${toKebabCase(variationName)}-1.jpg`}
-				alt={`${creatureShortName}`}
-			/>
+			<Link to={`shop/${projShortName}/${creatureShortName}-${toKebabCase(
+						variationName
+					)}`}>
+				<img className="hover:cursor-pointer hover:scale-110 transition duration-300"
+					src={`/images/${projShortName}/${creatureShortName}/${toKebabCase(
+						variationName
+					)}/${creatureShortName}-${toKebabCase(variationName)}-1.jpg`}
+					alt={`${creatureShortName}`}
+				/>
+			</Link>
 			<p>
 				just from <strong>{lowestPrice}zł</strong>
 			</p>
