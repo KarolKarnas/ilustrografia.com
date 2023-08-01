@@ -13,11 +13,11 @@ const Product = ({
 	creatureShortName,
 	lowestPrice,
 }: Props) => {
-	const toCamelCase = (str: string): string => {
-		return str
-			.toLowerCase()
-			.replace(/[^a-zA-Z0-9]+(.)/g, (_, letter) => letter.toUpperCase());
-	};
+	// const toCamelCase = (str: string): string => {
+	// 	return str
+	// 		.toLowerCase()
+	// 		.replace(/[^a-zA-Z0-9]+(.)/g, (_, letter) => letter.toUpperCase());
+	// };
 
 	const toKebabCase = (str: string): string => {
 		return str
@@ -29,8 +29,8 @@ const Product = ({
 	return (
 		<div className='bg-red-200 m-2'>
 			{name} {variationName}
-			<img
-				src={`/images/${projShortName}/${creatureShortName}/${toCamelCase(
+			<img className="hover:cursor-pointer hover:scale-110 transition duration-300"
+				src={`/images/${projShortName}/${creatureShortName}/${toKebabCase(
 					variationName
 				)}/${creatureShortName}-${toKebabCase(variationName)}-1.jpg`}
 				alt={`${creatureShortName}`}
