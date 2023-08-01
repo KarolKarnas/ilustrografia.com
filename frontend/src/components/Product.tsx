@@ -1,5 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import Rating from './Rating';
 
+interface RatingTs {
+  rating: number;
+  numReviews: number;
+}
+
+interface Ratings {
+  [key: string]: RatingTs;
+}
 
 interface Props {
 	name: string;
@@ -7,6 +16,7 @@ interface Props {
 	projShortName: string;
 	creatureShortName: string;
 	lowestPrice: number;
+	ratings: Ratings;
 }
 
 const Product = ({
@@ -15,6 +25,8 @@ const Product = ({
 	projShortName,
 	creatureShortName,
 	lowestPrice,
+
+	ratings,
 }: Props) => {
 	// const toCamelCase = (str: string): string => {
 	// 	return str
@@ -31,20 +43,30 @@ const Product = ({
 	};
 	return (
 		<div className='bg-red-200 m-2'>
-			{name} {variationName}
-			<Link to={`shop/${projShortName}/${creatureShortName}-${toKebabCase(
-						variationName
-					)}`}>
-				<img className="hover:cursor-pointer hover:scale-110 transition duration-300"
+			<h4 className='p-2 italic'>
+				{name} {variationName}
+			</h4>
+			<Link
+				to={`shop/${projShortName}/${creatureShortName}/${creatureShortName}-${toKebabCase(
+					variationName
+				)}`}
+			>
+				<img
+					className='hover:cursor-pointer hover:scale-110 transition duration-300'
 					src={`/images/${projShortName}/${creatureShortName}/${toKebabCase(
 						variationName
 					)}/${creatureShortName}-${toKebabCase(variationName)}-1.jpg`}
 					alt={`${creatureShortName}`}
 				/>
 			</Link>
-			<p>
+			<div className='p-2'>
 				just from <strong>{lowestPrice}zł</strong>
-			</p>
+				<Rating rating={ratings[toKebabCase(
+					variationName
+				)].rating} numReviews={ratings[toKebabCase(
+					variationName
+				)].numReviews} />
+			</div>
 		</div>
 	);
 };

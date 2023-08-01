@@ -19,6 +19,8 @@ const ProjectGroup = () => {
               creatureShortName={creature.shortName}
               productVariations={creature.productVariations}
               projShortName={proj.shortName}
+
+              ratings={creature.ratings}
             />
           );
         })}

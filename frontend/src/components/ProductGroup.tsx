@@ -1,5 +1,14 @@
 import Product from './Product';
 
+interface RatingTs {
+  rating: number;
+  numReviews: number;
+}
+
+interface Ratings {
+  [key: string]: RatingTs;
+}
+
 interface Variations {
 	size: string;
 	price: number;
@@ -17,6 +26,7 @@ interface Props {
 	productVariations: ProductVariation[];
 	projShortName: string;
 	creatureShortName: string;
+	ratings: Ratings;
 }
 
 const ProductGroup = ({
@@ -24,6 +34,7 @@ const ProductGroup = ({
 	productVariations,
 	projShortName,
 	creatureShortName,
+	ratings,
 }: Props) => {
 	return (
 		<div className='flex flex-col items-center'>
@@ -37,6 +48,8 @@ const ProductGroup = ({
 							projShortName={projShortName}
 							creatureShortName={creatureShortName}
 							lowestPrice={variation.variations[0].price}
+		
+							ratings={ratings}
 						/>
 					</div>
 				))}

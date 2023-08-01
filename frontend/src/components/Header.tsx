@@ -72,8 +72,12 @@ const Header = () => {
 					</Link>
 				</div>
 				<div className='hidden lg:flex gap-x-3 w-20'>
-					<GrCart />
-					<GrUser />
+					<Link to={'/cart'}>
+						<GrCart />
+					</Link>
+					<Link to={'/login'}>
+						<GrUser />
+					</Link>
 					<GrFavorite />
 				</div>
 
@@ -148,8 +152,12 @@ const Header = () => {
 						<Link to='/contact'>Contact</Link>
 					</div>
 					<div className='flex gap-x-3 w-20'>
-						<GrCart />
-						<GrUser />
+						<Link to={'/cart'}>
+							<GrCart />
+						</Link>
+						<Link to={'/login'}>
+							<GrUser />
+						</Link>
 						<GrFavorite />
 					</div>
 				</div>

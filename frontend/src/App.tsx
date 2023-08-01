@@ -6,7 +6,7 @@ import projects from './products';
 const App = () => {
 	console.log(projects);
 	return (
-		<div className='flex flex-col items-center justify-between min-h-screen'>
+		<div className='flex flex-col items-center justify-between min-h-screen overflow-hidden'>
 			<Header />
 			<main>
 			<Outlet />

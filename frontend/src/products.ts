@@ -1,7 +1,7 @@
 const productVariations = [
 	{
 		name: 'Art Print',
-    shortName: 'artPrint',
+		shortName: 'art-print',
 		description:
 			'Wydruki Fine Art Print (Giclée) to najwyższej jakości druk pigmentowy oparty o bazę żywiczną, który wykorzystuje materiały klasy archiwalnej. Co to oznacza? Że Twój wydruk to technologia jakiej używają muzea i domy aukcyjne; nie żółknie, nie blaknie i zachowuje swoją jakość gwarantowaną na co najmniej 100 lat. Ten najbardziej profesjonalny druk artystyczny wspomagany jest także przez użycie bezkwasowych papierów, dzięki którym widać każdy detal i kolor. Metoda Fine Art Print pozwoli Ci uzyskać wydruk o absolutnie najlepszych parametrach jakościowych dostępnych na rynku. Do tego dochodzi jego długowieczność i genialna prezencja. Ponadto, wydruki Giclée, po podpisaniu przez autora oryginału, zyskują wartość kolekcjonerską oraz traktowane są na równi z dziełami sztuki nowoczesnej.Czas zainwestować w perfekcję, nie sądzisz?',
 		characteristics: [
@@ -22,6 +22,7 @@ const productVariations = [
 	},
 	{
 		name: 'Painting on Canvas',
+		shortName: 'painting-on-canvas',
 		description:
 			'Te wyjątkowe druki powstają na tkaninie Canvas, o charakterystyce bawełny. Materiał ten ma niesamowitą fakturę, która nada Twojemu obrazowi nieprzeciętny charakter i klimat. To wszystko zwieńczy naciągnięcie druku na drewniane, sosnowe ramy, dzięki czemu uzyskasz fenomenalny efekt prawdziwej pracy malarskiej. Zwróć także uwagę, że do produkcji obrazu użyto tylko ekologicznych i bezzapachowych atramentów, które zapewnią bezpieczeństwo dla Twojego zdrowia i środowiska. Ułatwione Ci zostanie także zawieszenie obrazu na ścianie – płótno naciągane jest na naturalną, drewnianą konstrukcję z zadrukowanymi krawędziami bocznymi, więc nie musisz wkładać obrazu w ramę.Wybieraj i zawieszaj!',
 		characteristics: [
@@ -42,6 +43,7 @@ const productVariations = [
 	},
 	{
 		name: 'Poster',
+		shortName: 'poster',
 		description:
 			'Wydruk plakatowy powstaje na atramentowym ploterze, gdzie tusze wodne zastępuje się pigmentowymi atramentami eco-solwentowymi. Takie atramenty bazując na organicznych rozpuszczalnikach, są przyjazne środowisku, dzięki czemu świadomie wspierasz dobro naszej planety. Możesz mieć więc pewność co do trafnej inwestycji w plakat. Ponadto, atramenty eco-solwentowe słyną z bardzo dużej odporności druku, zwłaszcza na promienie słoneczne. Sprawi to, że zyskasz dowolność w tym, gdzie plakat zawiesisz – zarówno miejsca nasłonecznione, jak i ciemne, nie będą wpływać na jakość ilustracji. Wydruk powstaje na lekko sztywnym i trwałym papierze 200g, który pozwoli Ci cieszyć się jego dużą wytrzymałością. Wiesz już jaki plakat wybierzesz?',
 		characteristics: [
@@ -61,6 +63,7 @@ const productVariations = [
 	},
 	{
 		name: 'Premium Print',
+		shortName: 'premium-print',
 		description:
 			'Wydruk Premium używa technologii atramentowej, która we współpracy z półmatowym, grubym papierem 265g, sprawi że Twoja ilustracja będzie delikatnie i intrygująco odbijała światło. Ponadto papier ten wykazuje niezwykłą wytrzymałość, będąc dużo odporniejszym na deformacje i wilgoć w pomieszczeniu. Dodatkowo, do produkcji papieru wykorzystano specjalistyczną emulsję, która tworzy powłokę gwarantującą mocne, nasycone kolory oraz wysoką jakość i ostrość wydruku. Dzięki temu Twoja ilustracja zyska nie tylko niezwykły, wyróżniający się wygląd, ale także trwałość i solidność pozwalającą cieszyć się nim przez długie lata. Pozwól sobie na wydruk Premium!',
 		characteristics: [
@@ -84,12 +87,12 @@ const projects = [
 	{
 		_id: 1,
 		name: 'Nowosłowiański Spis Powszechny',
-    shortName: 'nowoslowianski-spis-powszechny',
+		shortName: 'nowoslowianski-spis-powszechny',
 		creatures: [
 			{
 				_id: '1',
 				name: 'Bazylica',
-        shortName: 'bazylica',
+				shortName: 'bazylica',
 				latinName: 'Reprivatus Camenisus',
 				type: 'Dawnosłowiańskie',
 				category: 'Smokowate Mniejsze',
@@ -110,7 +113,15 @@ const projects = [
 					'+25% ochrony przed zamienieniem w kamień',
 					'Akt własności nieruchomości najbezpieczniej trzymać za wydrukiem',
 				],
-        // ??
+				rating: 4.9,
+				numReviews: 1543,
+				ratings: {
+					'art-print': { rating: 4.9, numReviews: 123 },
+					'painting-on-canvas': { rating: 2.9, numReviews: 23 },
+					'poster': { rating: 1.2, numReviews: 4 },
+					'premium-print': { rating: 2.0, numReviews: 23 },
+				},
+				// ??
 				artPrintImages: [],
 				printOnCanvasImages: [],
 				posterImages: [],
@@ -119,7 +130,7 @@ const projects = [
 			{
 				_id: '2',
 				name: 'Bobo Leśne',
-        shortName: 'bobo-leśne',
+				shortName: 'bobo-lesne',
 				latinName: 'Vampus Trampus',
 				type: 'Prasłowiańskie',
 				category: 'Martwce',
@@ -140,7 +151,15 @@ const projects = [
 					'+15% dla wzrostu paprotek w salonie',
 					'Zawieszona w sypialni poprawia sprężystość materaca w łóżku',
 				],
-        // ??
+				rating: 4.2,
+				numReviews: 14,
+				ratings: {
+					'art-print': { rating: 2.9, numReviews: 13 },
+					'painting-on-canvas': { rating: 2.1, numReviews: 2 },
+					'poster': { rating: 2.2, numReviews: 42312 },
+					'premium-print': { rating: 1.0, numReviews: 1 },
+				},
+				// ??
 				artPrintImages: [],
 				printOnCanvasImages: [],
 				posterImages: [],
@@ -151,12 +170,12 @@ const projects = [
 	{
 		_id: 2,
 		name: 'Ilustracje Fantasy',
-    shortName: 'ilustracje-fantasy',
+		shortName: 'ilustracje-fantasy',
 		creatures: [
 			{
 				_id: '1',
 				name: 'Nimfa Wiosenna',
-        shortName: 'nimfa-wiosenna',
+				shortName: 'nimfa-wiosenna',
 				latinName: '',
 				type: '',
 				category: '',
@@ -166,13 +185,21 @@ const projects = [
 				properName: '',
 				blogImages: ['/images/airpods.jpg'],
 				blogSketches: ['/images/airpods.jpg'],
-				ytLink:
-					'',
+				ytLink: '',
 				image: '/images/airpods.jpg',
 				description: '',
 				productVariations,
-				productStatistics: [""],
-        // ??
+				productStatistics: [''],
+				rating: 4.5,
+				numReviews: 12,
+
+				ratings: {
+					'art-print': { rating: 1.9, numReviews: 3 },
+					'painting-on-canvas': {rating: 2.1, numReviews: 2 },
+					'poster': { rating: 5, numReviews: 456435 },
+					'premium-print': { rating: 1, numReviews: 2 },
+				},
+				// ??
 				artPrintImages: [],
 				printOnCanvasImages: [],
 				posterImages: [],
