@@ -9,13 +9,15 @@ import {
 } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import HomeScreen from './pages/Home';
+import HomeScreen from './pages/HomePage';
+import ProductPage from './pages/ProductPage';
 
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path='/' element={<App />}>
 			<Route index={true} path='/' element={<HomeScreen />}></Route>
+			<Route path='/shop/:project/:creature/:product' element={<ProductPage />}></Route>
 		</Route>
 	)
 );

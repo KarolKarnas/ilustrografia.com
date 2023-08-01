@@ -1,4 +1,4 @@
-const productVariations = [
+export const productVariations = [
 	{
 		name: 'Art Print',
 		shortName: 'art-print',
