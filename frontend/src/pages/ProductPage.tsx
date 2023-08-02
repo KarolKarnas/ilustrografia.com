@@ -3,7 +3,6 @@ import { useState } from 'react';
 import projects from '../products';
 import { productVariations } from '../products';
 import { Link } from 'react-router-dom';
-import { link } from 'fs';
 
 // interface Variations {
 // 	size: string;
