@@ -1,8 +1,11 @@
+
+
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import projects from '../products';
 import { productVariations } from '../products';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 // interface Variations {
 // 	size: string;
