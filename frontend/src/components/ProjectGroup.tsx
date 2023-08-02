@@ -11,7 +11,7 @@ const ProjectGroup = () => {
         </h1>
         <br />
         {proj.creatures.map((creature) => {
-          console.log(creature.productVariations);
+          // console.log(creature.productVariations);
           return (
             <ProductGroup
               key={creature._id}

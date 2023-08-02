@@ -118,7 +118,7 @@ const projects = [
 				ratings: {
 					'art-print': { rating: 4.9, numReviews: 123 },
 					'painting-on-canvas': { rating: 2.9, numReviews: 23 },
-					'poster': { rating: 1.2, numReviews: 4 },
+					poster: { rating: 1.2, numReviews: 4 },
 					'premium-print': { rating: 2.0, numReviews: 23 },
 				},
 				// ??
@@ -156,7 +156,7 @@ const projects = [
 				ratings: {
 					'art-print': { rating: 2.9, numReviews: 13 },
 					'painting-on-canvas': { rating: 2.1, numReviews: 2 },
-					'poster': { rating: 2.2, numReviews: 42312 },
+					poster: { rating: 2.2, numReviews: 42312 },
 					'premium-print': { rating: 1.0, numReviews: 1 },
 				},
 				// ??
@@ -195,8 +195,8 @@ const projects = [
 
 				ratings: {
 					'art-print': { rating: 1.9, numReviews: 3 },
-					'painting-on-canvas': {rating: 2.1, numReviews: 2 },
-					'poster': { rating: 5, numReviews: 456435 },
+					'painting-on-canvas': { rating: 2.1, numReviews: 2 },
+					poster: { rating: 5, numReviews: 456435 },
 					'premium-print': { rating: 1, numReviews: 2 },
 				},
 				// ??
@@ -210,3 +210,18 @@ const projects = [
 ];
 
 export default projects;
+
+
+		// options: [
+		// 	{
+		// 		name: 'size',
+		// 		values: [
+		// 			{ '20x40': 109 },
+		// 			{ '30x40': 179 },
+		// 			{ '40x60': 259 },
+		// 			{ '50x70': 319 },
+		// 			{ '60x90': 399 },
+		// 			{ '70x100': 499 },
+		// 		],
+		// 	},
+		// ],

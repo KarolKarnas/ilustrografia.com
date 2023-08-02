@@ -1,9 +1,41 @@
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 import projects from '../products';
 import { productVariations } from '../products';
 import { Link } from 'react-router-dom';
+import { link } from 'fs';
+
+// interface Variations {
+// 	size: string;
+// 	price: number;
+// }
+
+// interface ProductVariation {
+// 	name: string;
+// 	description: string;
+// 	characteristics: string[];
+// 	shortName: string
+// 	variations: Variations[];
+// }
+
+interface ProductVariation {
+	name: string;
+	shortName: string;
+	description: string;
+	characteristics: string[];
+	variations: {
+		size: string;
+		price: number;
+	}[];
+}
+
+// interface variationData {
+
+// }
 
 const ProductPage = () => {
+	const [price, setPrice] = useState(0);
+
 	function findSubstring(input: string): string | null {
 		if (!input) {
 			return null; // Return null for undefined input
@@ -20,17 +52,18 @@ const ProductPage = () => {
 	}
 
 	const { project, creature: creatureShortName, product } = useParams();
-	console.log(`${project} ${creatureShortName} ${product}`);
+	// console.log(`${project} ${creatureShortName} ${product}`);
 
 	let variationShortName: string | null;
-	let variationData;
+	let variationData: ProductVariation | undefined;
 	if (product !== undefined) {
 		variationShortName = findSubstring(product);
-		console.log('Matched substring:', variationShortName);
+		// console.log('Matched substring:', variationShortName);
 		if (variationShortName) {
 			variationData = productVariations.find(
 				(varia) => varia.shortName === variationShortName
 			);
+			console.log(variationData);
 		} else {
 			console.log('variation undefined');
 		}
@@ -45,19 +78,34 @@ const ProductPage = () => {
 		creatureData = projectData.creatures.find(
 			(creature) => creature.shortName === creatureShortName
 		);
-		console.log(creatureData);
+		// console.log(creatureData);
 	}
+
+	const handleChangeSize = (e: React.MouseEvent<HTMLButtonElement>) => {
+		const buttonText = e.currentTarget.textContent;
+		console.log(buttonText);
+		if (variationData) {
+			const selectedVariation = variationData.variations.find(
+				(variation) => variation.size === buttonText
+			);
+			if (selectedVariation) {
+				const selectedPrice = selectedVariation.price;
+				setPrice(selectedPrice);
+			}
+		}
+	};
+
 	return (
 		<>
 			{product && variationData && creatureData && projectData ? (
-				<div className='flex gap-5'>
-					<div className='w-6/12'>
+				<div className='flex gap-20 my-5 justify-center '>
+					<div className='w-4/12'>
 						<img
 							src={`/images/${projectData.shortName}/${creatureData.shortName}/${variationData.shortName}/${product}-1.jpg`}
 							alt='bazylica'
 						/>
 					</div>
-					<div className='w-6/12'>
+					<div className='w-4/12'>
 						<p className=' text-zinc-300'>
 							<Link to={`/shop`} className=' hover:text-red-400 text-xs'>
 								shop
@@ -93,6 +141,7 @@ const ProductPage = () => {
 						<div className='flex gap-3'>
 							{variationData.variations.map((variation) => (
 								<button
+									onClick={handleChangeSize}
 									key={variation.size}
 									className='font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white focus:border-red-400 focus:bg-red-200 focus:text-white'
 								>
@@ -100,6 +149,18 @@ const ProductPage = () => {
 								</button>
 							))}
 						</div>
+						<div className='text-2xl my-3'>{price}zł</div>
+						<button className=' bg-zinc-900 text-white px-32 py-1 hover:bg-red-200'>Add to Cart</button>
+						<div className='text-xs font-semibold text-zinc-700 mt-3 mb-2'>Buying {creatureData.name} you are gaining:</div>
+						<ul className='list-disc pl-8'>
+							{creatureData.productStatistics.map(stat => (<li className='text-xs text-zinc-500  ' key={stat}>{stat}</li>))}
+						</ul>
+						<hr className=" h-px mx-auto my-3"></hr>
+						<p className='leading-tight font-light text-zinc-500 text-sm'>{variationData.description}</p>
+						<hr className=" h-px mx-auto my-3"></hr>
+						<ul className='list-disc pl-8'>
+							{variationData.characteristics.map(char => (<li className='text-xs text-zinc-500  ' key={char}>{char}</li>))}
+						</ul>
 					</div>
 				</div>
 			) : (

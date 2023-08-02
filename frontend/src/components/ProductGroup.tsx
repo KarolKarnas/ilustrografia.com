@@ -18,6 +18,7 @@ interface ProductVariation {
 	name: string;
 	description: string;
 	characteristics: string[];
+	shortName: string
 	variations: Variations[];
 }
 
