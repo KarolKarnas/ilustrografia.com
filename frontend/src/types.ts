@@ -20,7 +20,6 @@ export interface Creature {
   blogSketches: string[];
   ytLink: string;
   image: string;
-  description: string;
   productVariations: ProductVariation[];
   productStatistics: string[];
   rating: number;

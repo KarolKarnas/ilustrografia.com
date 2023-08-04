@@ -3,15 +3,15 @@ import axios from 'axios';
 import { Project } from '../types';
 // import projects from '../products';
 import ProductGroup from './ProductGroup';
+import projectService from '../services/projectService';
 
 const ProjectGroup = () => {
 	const [projects, setProjects] = useState<Project[]>([]);
 
 	useEffect(() => {
 		const fetchProjects = async () => {
-			const { data } = await axios.get('/api/projects');
-      console.log(data)
-			setProjects(data);
+			const projects = await projectService.getAll();
+			setProjects(projects);
 		};
     fetchProjects()
 	}, []);

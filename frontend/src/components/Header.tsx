@@ -57,7 +57,7 @@ const Header = () => {
 					<Link to='/'>
 						<img
 							className='h-20 hover:-translate-y-1 hover:scale-105 duration-300'
-							src='logo-ilustrografia.png'
+							src='/logo-ilustrografia.png'
 							alt='logo-ilustrografia'
 						/>
 					</Link>

@@ -1,57 +1,37 @@
-
-
 import { useParams } from 'react-router-dom';
-import { useState,useEffect } from 'react';
-import projects from '../products';
-import { productVariations } from '../products';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { findSubstring } from '../../utils/utils';
+import VariationDescription from './VariationDescription';
+import { ProductVariation, Project } from '../../types';
 
-// interface Variations {
-// 	size: string;
-// 	price: number;
-// }
-
-// interface ProductVariation {
-// 	name: string;
-// 	description: string;
-// 	characteristics: string[];
-// 	shortName: string
-// 	variations: Variations[];
-// }
-
-interface ProductVariation {
-	name: string;
-	shortName: string;
-	description: string;
-	characteristics: string[];
-	variations: {
-		size: string;
-		price: number;
-	}[];
-}
-
-// interface variationData {
-
-// }
+import projectService from '../../services/projectService';
+import productService from '../../services/productService';
 
 const ProductPage = () => {
 	const [price, setPrice] = useState(0);
+	const [projects, setProjects] = useState<Project[]>([]);
+	const [productVariations, setProductVariations] = useState<
+		ProductVariation[]
+	>([]);
 
-	function findSubstring(input: string): string | null {
-		if (!input) {
-			return null; // Return null for undefined input
-		}
-		const substringsToCheck = [
-			'art-print',
-			'painting-on-canvas',
-			'poster',
-			'premium-print',
-		];
-		const regex = new RegExp(substringsToCheck.join('|'), 'i'); // 'i' flag for case-insensitive matching
-		const match = input.match(regex);
-		return match ? match[0] : null;
-	}
+
+
+	useEffect(() => {
+		const fetchProjects = async () => {
+			const projects = await projectService.getAll();
+			setProjects(projects);
+		};
+		fetchProjects();
+	}, []);
+
+	useEffect(() => {
+		const fetchProductsVariations = async () => {
+			const productVariations = await productService.getAll();
+			setProductVariations(productVariations);
+		};
+		fetchProductsVariations();
+	}, []);
 
 	const { project, creature: creatureShortName, product } = useParams();
 	// console.log(`${project} ${creatureShortName} ${product}`);
@@ -65,7 +45,7 @@ const ProductPage = () => {
 			variationData = productVariations.find(
 				(varia) => varia.shortName === variationShortName
 			);
-			console.log(variationData);
+			// console.log(variationData);
 		} else {
 			console.log('variation undefined');
 		}
@@ -85,7 +65,7 @@ const ProductPage = () => {
 
 	const handleChangeSize = (e: React.MouseEvent<HTMLButtonElement>) => {
 		const buttonText = e.currentTarget.textContent;
-		console.log(buttonText);
+		// console.log(buttonText);
 		if (variationData) {
 			const selectedVariation = variationData.variations.find(
 				(variation) => variation.size === buttonText
@@ -152,16 +132,31 @@ const ProductPage = () => {
 							))}
 						</div>
 						<div className='text-2xl my-3'>{price}zł</div>
-						<button className=' bg-zinc-900 text-white px-32 py-1 hover:bg-red-200'>Add to Cart</button>
-						<div className='text-xs font-semibold text-zinc-700 mt-3 mb-2'>Buying {creatureData.name} you are gaining:</div>
+						<button className=' bg-zinc-900 text-white px-32 py-1 hover:bg-red-200'>
+							Add to Cart
+						</button>
+						<div className='text-xs font-semibold text-zinc-700 mt-3 mb-2'>
+							Buying {creatureData.name} you are gaining:
+						</div>
 						<ul className='list-disc pl-8'>
-							{creatureData.productStatistics.map(stat => (<li className='text-xs text-zinc-500  ' key={stat}>{stat}</li>))}
+							{creatureData.productStatistics.map((stat) => (
+								<li className='text-xs text-zinc-500  ' key={stat}>
+									{stat}
+								</li>
+							))}
 						</ul>
-						<hr className=" h-px mx-auto my-3"></hr>
-						<p className='leading-tight font-light text-zinc-500 text-sm'>{variationData.description}</p>
-						<hr className=" h-px mx-auto my-3"></hr>
+						<hr className=' h-px mx-auto my-3'></hr>
+						<p className='leading-tight font-light text-zinc-500 text-sm'>
+							<VariationDescription shortName={variationData.shortName} />
+							{/* {variationData.description} */}
+						</p>
+						<hr className=' h-px mx-auto my-3'></hr>
 						<ul className='list-disc pl-8'>
-							{variationData.characteristics.map(char => (<li className='text-xs text-zinc-500  ' key={char}>{char}</li>))}
+							{variationData.characteristics.map((char) => (
+								<li className='text-xs text-zinc-500  ' key={char}>
+									{char}
+								</li>
+							))}
 						</ul>
 					</div>
 				</div>

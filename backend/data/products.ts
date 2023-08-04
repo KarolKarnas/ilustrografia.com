@@ -2,8 +2,6 @@ export const productVariations = [
 	{
 		name: 'Art Print',
 		shortName: 'art-print',
-		description:
-			'Wydruki Fine Art Print (Giclée) to najwyższej jakości druk pigmentowy oparty o bazę żywiczną, który wykorzystuje materiały klasy archiwalnej. Co to oznacza? Że Twój wydruk to technologia jakiej używają muzea i domy aukcyjne; nie żółknie, nie blaknie i zachowuje swoją jakość gwarantowaną na co najmniej 100 lat. Ten najbardziej profesjonalny druk artystyczny wspomagany jest także przez użycie bezkwasowych papierów, dzięki którym widać każdy detal i kolor. Metoda Fine Art Print pozwoli Ci uzyskać wydruk o absolutnie najlepszych parametrach jakościowych dostępnych na rynku. Do tego dochodzi jego długowieczność i genialna prezencja. Ponadto, wydruki Giclée, po podpisaniu przez autora oryginału, zyskują wartość kolekcjonerską oraz traktowane są na równi z dziełami sztuki nowoczesnej.Czas zainwestować w perfekcję, nie sądzisz?',
 		characteristics: [
 			'Elegancki, gruby, matowy papier z wyczuwalną fakturą 270g',
 			'Papier spełnia standardy papierów archiwalnych',
@@ -23,8 +21,6 @@ export const productVariations = [
 	{
 		name: 'Painting on Canvas',
 		shortName: 'painting-on-canvas',
-		description:
-			'Te wyjątkowe druki powstają na tkaninie Canvas, o charakterystyce bawełny. Materiał ten ma niesamowitą fakturę, która nada Twojemu obrazowi nieprzeciętny charakter i klimat. To wszystko zwieńczy naciągnięcie druku na drewniane, sosnowe ramy, dzięki czemu uzyskasz fenomenalny efekt prawdziwej pracy malarskiej. Zwróć także uwagę, że do produkcji obrazu użyto tylko ekologicznych i bezzapachowych atramentów, które zapewnią bezpieczeństwo dla Twojego zdrowia i środowiska. Ułatwione Ci zostanie także zawieszenie obrazu na ścianie – płótno naciągane jest na naturalną, drewnianą konstrukcję z zadrukowanymi krawędziami bocznymi, więc nie musisz wkładać obrazu w ramę.Wybieraj i zawieszaj!',
 		characteristics: [
 			'Bardzo solidne płótno canvas z wyraźną malarską strukturą 380g',
 			'Płótno jest naciągnięte na drewniane krosno malarskie (tzw. blejtram)',
@@ -44,8 +40,6 @@ export const productVariations = [
 	{
 		name: 'Poster',
 		shortName: 'poster',
-		description:
-			'Wydruk plakatowy powstaje na atramentowym ploterze, gdzie tusze wodne zastępuje się pigmentowymi atramentami eco-solwentowymi. Takie atramenty bazując na organicznych rozpuszczalnikach, są przyjazne środowisku, dzięki czemu świadomie wspierasz dobro naszej planety. Możesz mieć więc pewność co do trafnej inwestycji w plakat. Ponadto, atramenty eco-solwentowe słyną z bardzo dużej odporności druku, zwłaszcza na promienie słoneczne. Sprawi to, że zyskasz dowolność w tym, gdzie plakat zawiesisz – zarówno miejsca nasłonecznione, jak i ciemne, nie będą wpływać na jakość ilustracji. Wydruk powstaje na lekko sztywnym i trwałym papierze 200g, który pozwoli Ci cieszyć się jego dużą wytrzymałością. Wiesz już jaki plakat wybierzesz?',
 		characteristics: [
 			'Wysokiej jakości powlekany papier plakatowy 200g',
 			'Duża odporność druku na promienie słoneczne',
@@ -64,8 +58,6 @@ export const productVariations = [
 	{
 		name: 'Premium Print',
 		shortName: 'premium-print',
-		description:
-			'Wydruk Premium używa technologii atramentowej, która we współpracy z półmatowym, grubym papierem 265g, sprawi że Twoja ilustracja będzie delikatnie i intrygująco odbijała światło. Ponadto papier ten wykazuje niezwykłą wytrzymałość, będąc dużo odporniejszym na deformacje i wilgoć w pomieszczeniu. Dodatkowo, do produkcji papieru wykorzystano specjalistyczną emulsję, która tworzy powłokę gwarantującą mocne, nasycone kolory oraz wysoką jakość i ostrość wydruku. Dzięki temu Twoja ilustracja zyska nie tylko niezwykły, wyróżniający się wygląd, ale także trwałość i solidność pozwalającą cieszyć się nim przez długie lata. Pozwól sobie na wydruk Premium!',
 		characteristics: [
 			'Półmatowy, gruby i wytrzymały papier 265g',
 			'Druk atramentowy z zastosowaniem 11 atramentów w trybie najwyższej jakości',

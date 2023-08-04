@@ -1,4 +1,4 @@
-import ProjectGroup from '../components/ProjectGroup';
+import ProjectGroup from '../../components/ProjectGroup';
 
 const HomeScreen = () => {
 	return (

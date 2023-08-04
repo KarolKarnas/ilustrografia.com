@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import projects from './data/products';
+import { productVariations } from './data/products';
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
@@ -19,6 +20,10 @@ app.get('/ping', (_req, res) => {
 
 app.get('/api/projects', (_req, res) => {
 	res.json(projects);
+});
+
+app.get('/api/product-variations', (_req, res) => {
+	res.json(productVariations);
 });
 
 //PROJECT
