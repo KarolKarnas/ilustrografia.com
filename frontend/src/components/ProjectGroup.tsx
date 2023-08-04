@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Project } from '../types';
-// import projects from '../products';
 import ProductGroup from './ProductGroup';
 import projectService from '../services/projectService';
 
@@ -13,7 +11,7 @@ const ProjectGroup = () => {
 			const projects = await projectService.getAll();
 			setProjects(projects);
 		};
-    fetchProjects()
+		fetchProjects();
 	}, []);
 
 	return (

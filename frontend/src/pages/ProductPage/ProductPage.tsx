@@ -25,7 +25,7 @@ const ProductPage = () => {
 		fetchProjects();
 	}, []);
 
-	useEffect(() => {
+		useEffect(() => {
 		const fetchProductsVariations = async () => {
 			const productVariations = await productService.getAll();
 			setProductVariations(productVariations);

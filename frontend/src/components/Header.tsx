@@ -5,6 +5,8 @@ import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import logo from './assets/logo-ilustrografia.png';
+
 const Header = () => {
 	const [isActive, setIsActive] = useState(false);
 
@@ -57,7 +59,7 @@ const Header = () => {
 					<Link to='/'>
 						<img
 							className='h-20 hover:-translate-y-1 hover:scale-105 duration-300'
-							src='/logo-ilustrografia.png'
+							src={logo}
 							alt='logo-ilustrografia'
 						/>
 					</Link>
@@ -112,7 +114,7 @@ const Header = () => {
 					<Link to='/'>
 						<img
 							className='h-20 hover:-translate-y-1 hover:scale-105 duration-300'
-							src='logo-ilustrografia.png'
+							src={logo}
 							alt='logo-ilustrografia'
 						/>
 					</Link>
