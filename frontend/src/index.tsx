@@ -11,14 +11,21 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import HomeScreen from './pages/HomePage/HomePage';
 import ProductPage from './pages/ProductPage/ProductPage';
+import IllustrationsPage from './pages/IllustrationsPage/IllustrationsPage';
+import CreaturePage from './pages/CreaturePage/CreaturePage';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path='/' element={<App />}>
 			<Route index={true} path='/' element={<HomeScreen />}></Route>
+			<Route index={true} path='/illustrations' element={<IllustrationsPage />}></Route>
 			<Route
 				path='/shop/:project/:creature/:product'
 				element={<ProductPage />}
+			></Route>
+			<Route
+				path='/projects/:project/:creature/'
+				element={<CreaturePage />}
 			></Route>
 		</Route>
 	)
