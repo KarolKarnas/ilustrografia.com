@@ -47,3 +47,21 @@ export interface Rating {
   rating: number;
   numReviews: number;
 }
+
+
+export interface Product {
+  name: string;
+  slug: string;
+  images: string[];
+category: [
+  name: string,
+  slug: string
+];
+basePrice: number
+skus: [
+
+]
+
+
+
+}

@@ -1,32 +1,32 @@
-import Product from './Product';
+import Product from './Product'
 
 interface RatingTs {
-  rating: number;
-  numReviews: number;
+	rating: number
+	numReviews: number
 }
 
 interface Ratings {
-  [key: string]: RatingTs;
+	[key: string]: RatingTs
 }
 
 interface Variations {
-	size: string;
-	price: number;
+	size: string
+	price: number
 }
 
 interface ProductVariation {
-	name: string;
-	characteristics: string[];
+	name: string
+	characteristics: string[]
 	shortName: string
-	variations: Variations[];
+	variations: Variations[]
 }
 
 interface Props {
-	name: string;
-	productVariations: ProductVariation[];
-	projShortName: string;
-	creatureShortName: string;
-	ratings: Ratings;
+	name: string
+	productVariations: ProductVariation[]
+	projShortName: string
+	creatureShortName: string
+	ratings: Ratings
 }
 
 const ProductGroup = ({
@@ -48,13 +48,12 @@ const ProductGroup = ({
 							projShortName={projShortName}
 							creatureShortName={creatureShortName}
 							lowestPrice={variation.variations[0].price}
-		
 							ratings={ratings}
 						/>
 					</div>
 				))}
 			</div>
 		</div>
-	);
-};
-export default ProductGroup;
+	)
+}
+export default ProductGroup
