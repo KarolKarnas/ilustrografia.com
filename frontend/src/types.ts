@@ -1,67 +1,53 @@
-export interface Project {
-  _id: number;
-  name: string;
-  shortName: string;
-  creatures: Creature[];
+interface Rating {
+	rating: number;
+	numReviews: number;
 }
 
-export interface Creature {
-  _id: string;
-  name: string;
-  shortName: string;
-  latinName: string;
-  type: string;
-  category: string;
-  subCategory: string;
-  species: string;
-  occurrence: string;
-  properName: string;
-  blogImages: string[];
-  blogSketches: string[];
-  ytLink: string;
-  image: string;
-  productVariations: ProductVariation[];
-  productStatistics: string[];
-  rating: number;
-  numReviews: number;
-  ratings: Record<string, Rating>;
-  artPrintImages: string[];
-  printOnCanvasImages: string[];
-  posterImages: string[];
-  premiumPrintImages: string[];
+interface Category {
+	name: string;
+	slug: string;
 }
 
-export interface ProductVariation {
-  name: string;
-  shortName: string;
-  characteristics: string[];
-  variations: Variation[];
+interface TitleImages {
+	title: string;
+	images: string[];
 }
 
-export interface Variation {
-  size: string;
-  price: number;
+interface Variation {
+	options: {
+		material: string;
+		size: string;
+	};
+	SKU: string;
+	price: number;
+	countInStock: number;
 }
-
-export interface Rating {
-  rating: number;
-  numReviews: number;
-}
-
 
 export interface Product {
-  name: string;
-  slug: string;
-  images: string[];
-category: [
-  name: string,
-  slug: string
-];
-basePrice: number
-skus: [
-
-]
-
-
-
+	_id: string;
+	name: string;
+	slug: string;
+	rating: Rating;
+	category: Category[];
+	images: string[];
+	options: {
+		material: {
+			optionName: string;
+			'art-print': TitleImages;
+			'painting-on-canvas': TitleImages;
+			poster: TitleImages;
+			'premium-print': TitleImages;
+		};
+		size: {
+			optionName: string;
+			s20x30: TitleImages;
+			s20x40: TitleImages;
+			s30x40: TitleImages;
+			s40x60: TitleImages;
+			s50x70: TitleImages;
+			s60x90: TitleImages;
+			s70x100: TitleImages;
+		};
+	};
+	variations: Variation[];
 }

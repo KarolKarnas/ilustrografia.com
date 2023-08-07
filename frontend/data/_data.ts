@@ -1,688 +1,242 @@
-export const products = [
+export const productVariations = [
 	{
-		_id: '1',
-		name: 'Bazylica',
-		slug: 'bazylica',
-		rating: {
-			rating: 4.9,
-			numReviews: 2,
-		},
-		category: [
-			{
-				name: 'Nowosłowiański Spis Powszechny',
-				slug: 'nowoslowianski-spis-powszechny',
-			},
+		name: 'Art Print',
+		shortName: 'art-print',
+		characteristics: [
+			'Elegancki, gruby, matowy papier z wyczuwalną fakturą 270g',
+			'Papier spełnia standardy papierów archiwalnych',
+			'12-pigmentowy druk w trybie najwyższej jakości',
+			'Każdy wydruk posiada klasyczne białe marginesy dookoła',
+			'Wydruk sprzedawany bez ramki',
 		],
-		dimensions: {
-			material: {
-				title: 'Material',
-				'art-print': {
-					title: 'Art Print',
-					images: [
-						// '/images/nowoslowianski-spis-powszechny/bazylica/art-print/bazylica-art-print-1.jpg',
-						'/images/nowoslowianski-spis-powszechny/bazylica-art-print-1.jpg',
-					],
-				},
-				'painting-on-canvas': {
-					title: 'Painting On Canvas',
-					images: [
-						'/images/nowoslowianski-spis-powszechny/bazylica-painting-on-canvas-1.jpg',
-						// '/images/nowoslowianski-spis-powszechny/bazylica/painting-on-canvas/bazylica-painting-on-canvas-1.jpg',
-					],
-				},
-				poster: {
-					title: 'Poster',
-					images: [
-						'/images/nowoslowianski-spis-powszechny/bazylica-poster-1.jpg',
-						// '/images/nowoslowianski-spis-powszechny/bazylica/poster/bazylica-poster-1.jpg',
-					],
-				},
-				'premium-print': {
-					title: 'Premium Print',
-					images: [
-						'/images/nowoslowianski-spis-powszechny/bazylica-premium-print-1.jpg',
-						// '/images/nowoslowianski-spis-powszechny/bazylica/premium-print/bazylica-premium-print-1.jpg',
-					],
-				},
-			},
-			size: {
-				title: 'Size',
-				s20x30: {
-					title: '20x30',
-					images: [],
-				},
-				s20x40: {
-					title: '20x40',
-					images: [],
-				},
-				s30x40: {
-					title: '30x40',
-					images: [],
-				},
-				s40x60: {
-					title: '40x60',
-					images: [],
-				},
-				s50x70: {
-					title: '50x70',
-					images: [],
-				},
-				s60x90: {
-					title: '60x90',
-					images: [],
-				},
-				s70x100: {
-					title: '70x100',
-					images: [],
-				},
-			},
-		},
-		// here you need a stable way of generating keys from dimension data
 		variations: [
+			{ size: '20x40', price: 109 },
+			{ size: '30x40', price: 179 },
+			{ size: '40x60', price: 259 },
+			{ size: '50x70', price: 319 },
+			{ size: '60x90', price: 399 },
+			{ size: '70x100', price: 499 },
+		],
+	},
+	{
+		name: 'Painting on Canvas',
+		shortName: 'painting-on-canvas',
+		characteristics: [
+			'Bardzo solidne płótno canvas z wyraźną malarską strukturą 380g',
+			'Płótno jest naciągnięte na drewniane krosno malarskie (tzw. blejtram)',
+			'Drukowane ekologicznymi i bezzapachowymi atramentami',
+			'Zadrukowane brzegi obrazu',
+			'Obraz jest gotowy do zawieszenia na ścianie',
+		],
+		variations: [
+			{ size: '20x40', price: 209 },
+			{ size: '30x40', price: 249 },
+			{ size: '40x60', price: 299 },
+			{ size: '50x70', price: 349 },
+			{ size: '60x90', price: 449 },
+			{ size: '70x100', price: 569 },
+		],
+	},
+	{
+		name: 'Poster',
+		shortName: 'poster',
+		characteristics: [
+			'Wysokiej jakości powlekany papier plakatowy 200g',
+			'Duża odporność druku na promienie słoneczne',
+			'Druk atramentami eco-solwentowymi',
+			'Wydruk sprzedawany bez ramki',
+		],
+		variations: [
+			{ size: '20x30', price: 49 },
+			{ size: '30x40', price: 59 },
+			{ size: '40x60', price: 99 },
+			{ size: '50x70', price: 129 },
+			{ size: '60x90', price: 169 },
+			{ size: '70x100', price: 209 },
+		],
+	},
+	{
+		name: 'Premium Print',
+		shortName: 'premium-print',
+		characteristics: [
+			'Półmatowy, gruby i wytrzymały papier 265g',
+			'Druk atramentowy z zastosowaniem 11 atramentów w trybie najwyższej jakości',
+			'Mocne, nasycone kolory',
+			'Wydruk sprzedawany bez ramki',
+		],
+		variations: [
+			{ size: '20x30', price: 59 },
+			{ size: '30x40', price: 99 },
+			{ size: '40x60', price: 149 },
+			{ size: '50x70', price: 209 },
+			{ size: '60x90', price: 269 },
+			{ size: '70x100', price: 299 },
+		],
+	},
+];
+
+const projects = [
+	{
+		_id: 1,
+		name: 'Nowosłowiański Spis Powszechny',
+		shortName: 'nowoslowianski-spis-powszechny',
+		creatures: [
 			{
-				dimensions: { material: 'art-print', size: 's20x40' },
-				SKU: '98765',
-				price: 109,
-				countInStock: 2,
+				_id: '1',
+				name: 'Bazylica',
+				shortName: 'bazylica',
+				latinName: 'Reprivatus Camenisus',
+				type: 'Dawnosłowiańskie',
+				category: 'Smokowate Mniejsze',
+				subCategory: 'Regulus',
+				species: 'Bazyliszek, żeń. Bazylica (Reprivatus Camenisus)',
+				occurrence: 'Unikat. Prawdopodobnie ostatni przedstawiciel gatunku',
+				properName: 'Anna Bronkiewicz-Faltz',
+				blogImages: ['/images/airpods.jpg'],
+				blogSketches: ['/images/airpods.jpg'],
+				ytLink:
+					'https://www.youtube.com/watch?v=u8d6Pbykjgg&ab_channel=ilustrografia',
+				image: '/images/airpods.jpg',
+				description: 'Bazylica',
+				productVariations,
+				productStatistics: [
+					'+50 do umiejętności tworzenia zaskórniaków',
+					'+10 dla znajomości topografii Warszawy',
+					'+25% ochrony przed zamienieniem w kamień',
+					'Akt własności nieruchomości najbezpieczniej trzymać za wydrukiem',
+				],
+				rating: 4.9,
+				numReviews: 1543,
+				ratings: {
+					'art-print': { rating: 4.9, numReviews: 123 },
+					'painting-on-canvas': { rating: 2.9, numReviews: 23 },
+					poster: { rating: 1.2, numReviews: 4 },
+					'premium-print': { rating: 2.0, numReviews: 23 },
+				},
+				// ??
+				artPrintImages: [],
+				printOnCanvasImages: [],
+				posterImages: [],
+				premiumPrintImages: [],
 			},
 			{
-				dimensions: { material: 'art-print', size: 's30x40' },
-				SKU: '98766',
-				price: 179,
-				countInStock: 10,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's40x60' },
-				SKU: '98767',
-				price: 259,
-				countInStock: 10,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's50x70' },
-				SKU: '98768',
-				price: 319,
-				countInStock: 8,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's60x90' },
-				SKU: '98769',
-				price: 399,
-				countInStock: 10,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's70x100' },
-				SKU: '98770',
-				price: 499,
-				countInStock: 5,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's20x40' },
-				SKU: '98771',
-				price: 209,
-				countInStock: 5,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's30x40' },
-				SKU: '98772',
-				price: 249,
-				countInStock: 8,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's40x60' },
-				SKU: '98773',
-				price: 299,
-				countInStock: 15,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's50x70' },
-				SKU: '98774',
-				price: 349,
-				countInStock: 12,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's60x90' },
-				SKU: '98775',
-				price: 449,
-				countInStock: 7,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's70x100' },
-				SKU: '98776',
-				price: 569,
-				countInStock: 3,
-			},
-			// POSTER
-			{
-				dimensions: { material: 'poster', size: 's20x30' },
-				SKU: '98777',
-				price: 49,
-				countInStock: 5,
-			},
-			{
-				dimensions: { material: 'poster', size: 's30x40' },
-				SKU: '98778',
-				price: 59,
-				countInStock: 6,
-			},
-			{
-				dimensions: { material: 'poster', size: 's40x60' },
-				SKU: '98779',
-				price: 99,
-				countInStock: 7,
-			},
-			{
-				dimensions: { material: 'poster', size: 's50x70' },
-				SKU: '98780',
-				price: 129,
-				countInStock: 6,
-			},
-			{
-				dimensions: { material: 'poster', size: 's60x90' },
-				SKU: '98781',
-				price: 129,
-				countInStock: 16,
-			},
-			{
-				dimensions: { material: 'poster', size: 's70x100' },
-				SKU: '98782',
-				price: 209,
-				countInStock: 11,
-			},
-			// PREMIUM PRINT
-			{
-				dimensions: { material: 'premium-print', size: 's20x30' },
-				SKU: '98783',
-				price: 59,
-				countInStock: 5,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's30x40' },
-				SKU: '98784',
-				price: 99,
-				countInStock: 6,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's40x60' },
-				SKU: '98785',
-				price: 149,
-				countInStock: 7,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's50x70' },
-				SKU: '98786',
-				price: 209,
-				countInStock: 16,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's60x90' },
-				SKU: '98787',
-				price: 269,
-				countInStock: 6,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's70x100' },
-				SKU: '98788',
-				price: 299,
-				countInStock: 1,
+				_id: '2',
+				name: 'Bobo Leśne',
+				shortName: 'bobo-lesne',
+				latinName: 'Vampus Trampus',
+				type: 'Prasłowiańskie',
+				category: 'Martwce',
+				subCategory: 'Wampiry Dawne',
+				species: 'Bobo Leśne (Energius Visisatis)',
+				occurrence: 'Średnio',
+				properName: 'Nieznana',
+				blogImages: ['/images/airpods.jpg'],
+				blogSketches: ['/images/airpods.jpg'],
+				ytLink:
+					'https://www.youtube.com/watch?v=enO_H99fqv8&ab_channel=ilustrografia',
+				image: '/images/airpods.jpg',
+				description: 'Bobobobobo',
+				productVariations,
+				productStatistics: [
+					'+10 energii życiowej w poniedziałki',
+					'+50 do układów u Borowego',
+					'+15% dla wzrostu paprotek w salonie',
+					'Zawieszona w sypialni poprawia sprężystość materaca w łóżku',
+				],
+				rating: 4.2,
+				numReviews: 14,
+				ratings: {
+					'art-print': { rating: 2.9, numReviews: 13 },
+					'painting-on-canvas': { rating: 2.1, numReviews: 2 },
+					poster: { rating: 2.2, numReviews: 42312 },
+					'premium-print': { rating: 1.0, numReviews: 1 },
+				},
+				// ??
+				artPrintImages: [],
+				printOnCanvasImages: [],
+				posterImages: [],
+				premiumPrintImages: [],
 			},
 		],
 	},
-	//BOBO
 	{
-		_id: '2',
-		name: 'Bobo Leśne',
-		slug: 'bobo-lesna',
-		rating: {
-			rating: 4.9,
-			numReviews: 2,
-		},
-		category: [
+		_id: 2,
+		name: 'Ilustracje Fantasy',
+		shortName: 'ilustracje-fantasy',
+		creatures: [
 			{
-				name: 'Nowosłowiański Spis Powszechny',
-				slug: 'nowoslowianski-spis-powszechny',
-			},
-		],
-		dimensions: {
-			material: {
-				title: 'Material',
-				'art-print': {
-					title: 'Art Print',
-					images: [
-						// '/images/nowoslowianski-spis-powszechny/bobo-lesne/art-print/bobo-lesne-art-print-1.jpg',
-						'/images/nowoslowianski-spis-powszechny/bobo-lesne-art-print-1.jpg',
-					],
+				_id: '1',
+				name: 'Nimfa Wiosenna',
+				shortName: 'nimfa-wiosenna',
+				latinName: '',
+				type: '',
+				category: '',
+				subCategory: '',
+				species: '',
+				occurrence: '',
+				properName: '',
+				blogImages: ['/images/airpods.jpg'],
+				blogSketches: ['/images/airpods.jpg'],
+				ytLink: '',
+				image: '/images/airpods.jpg',
+				description: '',
+				productVariations,
+				productStatistics: [''],
+				rating: 4.5,
+				numReviews: 12,
+
+				ratings: {
+					'art-print': { rating: 1.9, numReviews: 3 },
+					'painting-on-canvas': { rating: 2.1, numReviews: 2 },
+					poster: { rating: 5, numReviews: 456435 },
+					'premium-print': { rating: 1, numReviews: 2 },
 				},
-				'painting-on-canvas': {
-					title: 'Painting On Canvas',
-					images: [
-						'/images/nowoslowianski-spis-powszechny/bobo-lesne-painting-on-canvas-1.jpg',
-						// '/images/nowoslowianski-spis-powszechny/bobo-lesne/painting-on-canvas/bobo-lesne-painting-on-canvas-1.jpg',
-					],
-				},
-				poster: {
-					title: 'Poster',
-					images: [
-						'/images/nowoslowianski-spis-powszechny/bobo-lesne-poster-1.jpg',
-						// '/images/nowoslowianski-spis-powszechny/bobo-lesne/poster/bobo-lesne-poster-1.jpg',
-					],
-				},
-				'premium-print': {
-					title: 'Premium Print',
-					images: [
-						'/images/nowoslowianski-spis-powszechny/bobo-lesne-premium-print-1.jpg',
-						// '/images/nowoslowianski-spis-powszechny/bobo-lesne/premium-print/bobo-lesne-premium-print-1.jpg',
-					],
-				},
-			},
-			size: {
-				title: 'Size',
-				s20x30: {
-					title: '20x30',
-					images: [],
-				},
-				s20x40: {
-					title: '20x40',
-					images: [],
-				},
-				s30x40: {
-					title: '30x40',
-					images: [],
-				},
-				s40x60: {
-					title: '40x60',
-					images: [],
-				},
-				s50x70: {
-					title: '50x70',
-					images: [],
-				},
-				s60x90: {
-					title: '60x90',
-					images: [],
-				},
-				s70x100: {
-					title: '70x100',
-					images: [],
-				},
-			},
-		},
-		// here you need a stable way of generating keys from dimension data
-		variations: [
-			{
-				dimensions: { material: 'art-print', size: 's20x40' },
-				SKU: '98789',
-				price: 109,
-				countInStock: 2,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's30x40' },
-				SKU: '98790',
-				price: 179,
-				countInStock: 10,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's40x60' },
-				SKU: '98791',
-				price: 259,
-				countInStock: 10,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's50x70' },
-				SKU: '98792',
-				price: 319,
-				countInStock: 8,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's60x90' },
-				SKU: '98793',
-				price: 399,
-				countInStock: 10,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's70x100' },
-				SKU: '98794',
-				price: 499,
-				countInStock: 5,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's20x40' },
-				SKU: '98795',
-				price: 209,
-				countInStock: 5,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's30x40' },
-				SKU: '98796',
-				price: 249,
-				countInStock: 8,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's40x60' },
-				SKU: '98797',
-				price: 299,
-				countInStock: 15,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's50x70' },
-				SKU: '98798',
-				price: 349,
-				countInStock: 12,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's60x90' },
-				SKU: '98799',
-				price: 449,
-				countInStock: 7,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's70x100' },
-				SKU: '98800',
-				price: 569,
-				countInStock: 3,
-			},
-			// POSTER
-			{
-				dimensions: { material: 'poster', size: 's20x30' },
-				SKU: '98801',
-				price: 49,
-				countInStock: 5,
-			},
-			{
-				dimensions: { material: 'poster', size: 's30x40' },
-				SKU: '98802',
-				price: 59,
-				countInStock: 6,
-			},
-			{
-				dimensions: { material: 'poster', size: 's40x60' },
-				SKU: '98803',
-				price: 99,
-				countInStock: 7,
-			},
-			{
-				dimensions: { material: 'poster', size: 's50x70' },
-				SKU: '98804',
-				price: 129,
-				countInStock: 6,
-			},
-			{
-				dimensions: { material: 'poster', size: 's60x90' },
-				SKU: '98805',
-				price: 129,
-				countInStock: 16,
-			},
-			{
-				dimensions: { material: 'poster', size: 's70x100' },
-				SKU: '98806',
-				price: 209,
-				countInStock: 11,
-			},
-			// PREMIUM PRINT
-			{
-				dimensions: { material: 'premium-print', size: 's20x30' },
-				SKU: '98807',
-				price: 59,
-				countInStock: 5,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's30x40' },
-				SKU: '98808',
-				price: 99,
-				countInStock: 6,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's40x60' },
-				SKU: '98809',
-				price: 149,
-				countInStock: 7,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's50x70' },
-				SKU: '98810',
-				price: 209,
-				countInStock: 16,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's60x90' },
-				SKU: '98811',
-				price: 269,
-				countInStock: 6,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's70x100' },
-				SKU: '98812',
-				price: 299,
-				countInStock: 1,
-			},
-		],
-	},
-	// NIMFA WIOSENNA
-	{
-		_id: '3',
-		name: 'Nimfa Wiosenna',
-		slug: 'nimfa-wiosenna',
-		rating: {
-			rating: 4.9,
-			numReviews: 2,
-		},
-		category: [
-			{
-				name: 'Ilustracje Fantasy',
-				slug: 'ilustracje-fantasy',
-			},
-		],
-		dimensions: {
-			material: {
-				title: 'Material',
-				'art-print': {
-					title: 'Art Print',
-					images: [
-						// '/images/ilustracje-fantasy/nimfa-wiosenna/art-print/nimfa-wiosenna-art-print-1.jpg',
-						'/images/ilustracje-fantasy/nimfa-wiosenna-art-print-1.jpg',
-					],
-				},
-				'painting-on-canvas': {
-					title: 'Painting On Canvas',
-					images: [
-						'/images/ilustracje-fantasy/nimfa-wiosenna-painting-on-canvas-1.jpg',
-						// '/images/ilustracje-fantasy/nimfa-wiosenna/painting-on-canvas/nimfa-wiosenna-painting-on-canvas-1.jpg',
-					],
-				},
-				poster: {
-					title: 'Poster',
-					images: [
-						'/images/ilustracje-fantasy/nimfa-wiosenna-poster-1.jpg',
-						// '/images/ilustracje-fantasy/nimfa-wiosenna/poster/nimfa-wiosenna-poster-1.jpg',
-					],
-				},
-				'premium-print': {
-					title: 'Premium Print',
-					images: [
-						'/images/ilustracje-fantasy/nimfa-wiosenna-premium-print-1.jpg',
-						// '/images/ilustracje-fantasy/nimfa-wiosenna/premium-print/nimfa-wiosenna-premium-print-1.jpg',
-					],
-				},
-			},
-			size: {
-				title: 'Size',
-				s20x30: {
-					title: '20x30',
-					images: [],
-				},
-				s20x40: {
-					title: '20x40',
-					images: [],
-				},
-				s30x40: {
-					title: '30x40',
-					images: [],
-				},
-				s40x60: {
-					title: '40x60',
-					images: [],
-				},
-				s50x70: {
-					title: '50x70',
-					images: [],
-				},
-				s60x90: {
-					title: '60x90',
-					images: [],
-				},
-				s70x100: {
-					title: '70x100',
-					images: [],
-				},
-			},
-		},
-		// here you need a stable way of generating keys from dimension data
-		variations: [
-			{
-				dimensions: { material: 'art-print', size: 's20x40' },
-				SKU: '98813',
-				price: 109,
-				countInStock: 2,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's30x40' },
-				SKU: '98814',
-				price: 179,
-				countInStock: 10,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's40x60' },
-				SKU: '98815',
-				price: 259,
-				countInStock: 10,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's50x70' },
-				SKU: '98816',
-				price: 319,
-				countInStock: 8,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's60x90' },
-				SKU: '98817',
-				price: 399,
-				countInStock: 10,
-			},
-			{
-				dimensions: { material: 'art-print', size: 's70x100' },
-				SKU: '98819',
-				price: 499,
-				countInStock: 5,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's20x40' },
-				SKU: '98820',
-				price: 209,
-				countInStock: 5,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's30x40' },
-				SKU: '98821',
-				price: 249,
-				countInStock: 8,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's40x60' },
-				SKU: '98822',
-				price: 299,
-				countInStock: 15,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's50x70' },
-				SKU: '98823',
-				price: 349,
-				countInStock: 12,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's60x90' },
-				SKU: '98824',
-				price: 449,
-				countInStock: 7,
-			},
-			{
-				dimensions: { material: 'painting-on-canvas', size: 's70x100' },
-				SKU: '98825',
-				price: 569,
-				countInStock: 3,
-			},
-			// POSTER
-			{
-				dimensions: { material: 'poster', size: 's20x30' },
-				SKU: '98826',
-				price: 49,
-				countInStock: 5,
-			},
-			{
-				dimensions: { material: 'poster', size: 's30x40' },
-				SKU: '98827',
-				price: 59,
-				countInStock: 6,
-			},
-			{
-				dimensions: { material: 'poster', size: 's40x60' },
-				SKU: '98828',
-				price: 99,
-				countInStock: 7,
-			},
-			{
-				dimensions: { material: 'poster', size: 's50x70' },
-				SKU: '98829',
-				price: 129,
-				countInStock: 6,
-			},
-			{
-				dimensions: { material: 'poster', size: 's60x90' },
-				SKU: '98830',
-				price: 129,
-				countInStock: 16,
-			},
-			{
-				dimensions: { material: 'poster', size: 's70x100' },
-				SKU: '98831',
-				price: 209,
-				countInStock: 11,
-			},
-			// PREMIUM PRINT
-			{
-				dimensions: { material: 'premium-print', size: 's20x30' },
-				SKU: '98832',
-				price: 59,
-				countInStock: 5,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's30x40' },
-				SKU: '98833',
-				price: 99,
-				countInStock: 6,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's40x60' },
-				SKU: '98834',
-				price: 149,
-				countInStock: 7,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's50x70' },
-				SKU: '98835',
-				price: 209,
-				countInStock: 16,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's60x90' },
-				SKU: '98836',
-				price: 269,
-				countInStock: 6,
-			},
-			{
-				dimensions: { material: 'premium-print', size: 's70x100' },
-				SKU: '98837',
-				price: 299,
-				countInStock: 1,
+				// ??
+				artPrintImages: [],
+				printOnCanvasImages: [],
+				posterImages: [],
+				premiumPrintImages: [],
 			},
 		],
 	},
 ];
+
+export default projects;
+
+
+		// options: [
+		// 	{
+		// 		name: 'size',
+		// 		values: [
+		// 			{ '20x40': 109 },
+		// 			{ '30x40': 179 },
+		// 			{ '40x60': 259 },
+		// 			{ '50x70': 319 },
+		// 			{ '60x90': 399 },
+		// 			{ '70x100': 499 },
+		// 		],
+		// 	},
+		// ],
+
+
+		// const productVariations = [
+		// 	{
+		// 		name: 'Art Print',
+		// 		shortName: 'art-print',
+			
+		// 	},
+		// 	{
+		// 		name: 'Painting on Canvas',
+		// 		shortName: 'painting-on-canvas',
+				
+		// 	},
+		// 	{
+		// 		name: 'Poster',
+		// 		shortName: 'poster',
+			
+		// 	},
+		// 	{
+		// 		name: 'Premium Print',
+		// 		shortName: 'premium-print',
+		// 	},
+		// ];

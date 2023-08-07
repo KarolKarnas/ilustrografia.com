@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Project } from '../../types';
+import { Project } from '../../_types';
 import projectService from '../../services/projectService';
 
 import { Link } from 'react-router-dom';
@@ -63,7 +63,10 @@ const Filter = () => {
 			<div className='grid grid-cols-3 gap-5 w-8/12'>
 				{projects.map((project) =>
 					project.creatures.map((creature) => (
-						<Link key={creature._id} to={`/projects/${project.shortName}/${creature.shortName}`}>
+						<Link
+							key={creature._id}
+							to={`/projects/${project.shortName}/${creature.shortName}`}
+						>
 							<img
 								src={`/images/${project.shortName}/${creature.shortName}/post/${creature.shortName}-1.jpg`}
 							/>

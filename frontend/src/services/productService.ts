@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ProductVariation } from '../types';
+import { ProductVariation } from '../_types';
 
 const getAll = async () => {
 	const { data } = await axios.get<ProductVariation[]>(

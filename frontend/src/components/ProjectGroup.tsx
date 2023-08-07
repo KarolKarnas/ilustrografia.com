@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Project } from '../types';
+import { Project } from '../_types';
 import ProductGroup from './ProductGroup';
 import projectService from '../services/projectService';
 
