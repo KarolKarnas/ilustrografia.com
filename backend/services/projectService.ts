@@ -1,6 +1,6 @@
-import projects from '../data/products';
+import projects from '../data/_products';
 // import { productVariations } from '../data/products';
-import { Project, Creature, Variation } from '../types';
+import { Project, Creature, Variation } from '../_types';
 import { findSubstring } from '../utils';
 
 const getProjects = (): Project[] => {

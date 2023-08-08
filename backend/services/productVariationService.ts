@@ -1,5 +1,5 @@
-import { productVariations } from '../data/products';
-import { ProductVariation } from '../types';
+import { productVariations } from '../data/_products';
+import { ProductVariation } from '../_types';
 
 const getProductVariations = (): ProductVariation[] => {
 	return productVariations;

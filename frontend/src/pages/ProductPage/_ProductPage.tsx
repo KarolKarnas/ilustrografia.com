@@ -6,7 +6,7 @@ import VariationDescription from './VariationDescription';
 import { ProductVariation, Project } from '../../_types';
 
 import projectService from '../../services/projectService';
-import productService from '../../services/productService';
+import productService from '../../services/productVariationService';
 
 const ProductPage = () => {
 	const [price, setPrice] = useState(0);

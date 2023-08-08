@@ -15,7 +15,7 @@ const ProductPage = () => {
 				<div className='flex gap-20 my-5 justify-center '>
 					<div className='w-4/12'>
 						<img
-							src={`/images/${product.category[0].slug}/${product.slug}-1.jpg`}
+							src={`/images/${product.categories[0].slug}/${product.slug}-1.jpg`}
 							alt='bazylica'
 						/>
 					</div>
@@ -26,14 +26,14 @@ const ProductPage = () => {
 							</Link>{' '}
 							/{' '}
 							<Link
-								to={`/shop/${product.category[0].slug}`}
+								to={`/shop/${product.categories[0].slug}`}
 								className=' hover:text-red-400 text-xs'
 							>
-								{product.category[0].slug}
+								{product.categories[0].slug}
 							</Link>{' '}
 							/{' '}
 							<Link
-								to={`/shop/${product.category[0].slug}/${product.slug}`}
+								to={`/shop/${product.categories[0].slug}/${product.slug}`}
 								className=' hover:text-red-400 text-xs'
 							>
 								{product.slug}

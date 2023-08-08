@@ -8,6 +8,11 @@ interface Category {
 	slug: string;
 }
 
+interface Tag {
+	name: string;
+	slug: string;
+}
+
 interface TitleImages {
 	title: string;
 	images: string[];
@@ -21,6 +26,7 @@ interface Variation {
 	SKU: string;
 	price: number;
 	countInStock: number;
+	tags: Tag[];
 }
 
 export interface Product {
@@ -28,7 +34,8 @@ export interface Product {
 	name: string;
 	slug: string;
 	rating: Rating;
-	category: Category[];
+	categories: Category[];
+	tags: Tag[];
 	images: string[];
 	options: {
 		material: {

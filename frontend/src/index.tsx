@@ -11,8 +11,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import HomeScreen from './pages/HomePage/HomePage';
 import ProductPage from './pages/ProductPage/ProductPage';
+import axios from 'axios';
 // import IllustrationsPage from './pages/IllustrationsPage/IllustrationsPage';
 // import CreaturePage from './pages/CreaturePage/CreaturePage';
+
+
+// axios.defaults.baseURL =
+// 	process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : '/';
+
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
