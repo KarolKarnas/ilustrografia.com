@@ -2,65 +2,20 @@
 import Rating from '../../components/Rating';
 // import { products } from '../../data';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { Product } from '../../types/Product';
-import { useEffect, useReducer } from 'react';
+import { useGetProductsQuery } from '../../hooks/productHook';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 
-type State = {
-	products: Product[];
-	loading: boolean;
-	error: string;
-};
-type Action =
-	| { type: 'FETCH_REQUEST' }
-	| {
-			type: 'FETCH_SUCCESS';
-			payload: Product[];
-	  }
-	| { type: 'FETCH_FAIL'; payload: string };
 
-const initialState: State = {
-	products: [],
-	loading: true,
-	error: '',
-};
-const reducer = (state: State, action: Action) => {
-	switch (action.type) {
-		case 'FETCH_REQUEST':
-			return { ...state, loading: true };
-		case 'FETCH_SUCCESS':
-			return { ...state, products: action.payload, loading: false };
-		case 'FETCH_FAIL':
-			return { ...state, loading: false, error: action.payload };
-		default:
-			return state;
-	}
-};
 
 const HomeScreen = () => {
-	const [{ loading, error, products }, dispatch] = useReducer<
-		React.Reducer<State, Action>
-	>(reducer, initialState);
+	const { data: products, isLoading, error } = useGetProductsQuery()
 
-	useEffect(() => {
-		const fetchData = async () => {
-			dispatch({ type: 'FETCH_REQUEST' });
-			try {
-				const result = await axios.get('/api/products');
-				dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
-			} catch (err) {
-				dispatch({ type: 'FETCH_FAIL', payload: getError(err as ApiError) });
-			}
-		};
-		fetchData();
-	}, []);
 
-	return loading ? (
+	return isLoading ? (
 		<div>Loading...</div>
 	) : error ? (
-		<div>{error}</div>
+		<div>{getError(error as ApiError)}</div>
 	) : (
 		<>
 			<h1 className='text-3xl font-bold text-center mt-5'>
@@ -71,7 +26,7 @@ const HomeScreen = () => {
 			</h2>
 			{/* <ProjectGroup /> */}
 			<div className='flex'>
-				{products.map((product) => (
+				{products && products.map((product) => (
 					<div key={product._id}>
 						<div className='bg-red-200 m-2'>
 							<h4 className='p-2 italic'>{product.name}</h4>
