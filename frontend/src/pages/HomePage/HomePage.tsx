@@ -2,7 +2,7 @@
 import Rating from '../../components/Rating';
 // import { products } from '../../data';
 import { Link } from 'react-router-dom';
-import { useGetProductsQuery } from '../../hooks/productHook';
+import { useGetProductsQuery } from '../../hooks/productHooks';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 

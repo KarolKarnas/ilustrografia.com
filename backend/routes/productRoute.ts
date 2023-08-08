@@ -7,4 +7,8 @@ productRouter.get('/', (_req, res) => {
 	res.send(productService.getProducts());
 });
 
+productRouter.get('/:slug', (req, res) => {
+	res.json(productService.getProduct(req.params.slug));
+});
+
 export default productRouter;

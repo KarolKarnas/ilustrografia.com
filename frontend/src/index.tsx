@@ -10,7 +10,6 @@ import {
 import App from './App';
 import HomeScreen from './pages/HomePage/HomePage';
 import ProductPage from './pages/ProductPage/ProductPage';
-import axios from 'axios';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 // import IllustrationsPage from './pages/IllustrationsPage/IllustrationsPage';
@@ -19,7 +18,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 // axios.defaults.baseURL =
 // 	process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : '/';
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
