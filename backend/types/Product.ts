@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 interface Rating {
 	rating: number;
 	numReviews: number;
@@ -55,6 +57,19 @@ export interface ProductOptions {
 	size: SizeOption;
 }
 
+export interface ProductUser {
+	user: mongoose.Schema.Types.ObjectId;
+	name: string;
+	slug: string;
+	rating: Rating;
+	categories: Category[];
+	tags: Tag[];
+	images: string[];
+	options: ProductOptions;
+	variations: Variation[];
+}
+
+
 export interface Product {
 	_id: string;
 	name: string;
@@ -66,3 +81,4 @@ export interface Product {
 	options: ProductOptions;
 	variations: Variation[];
 }
+
