@@ -48,8 +48,11 @@ export interface SizeOption {
 	s70x100: TitleImages;
 }
 
+export type SizeOptionNoName = Omit<SizeOption, 'optionName'>;
+
 export interface ProductOptions {
-	[key:string]: MaterialOption | SizeOption;
+	material: MaterialOption,
+	size: SizeOption;
 }
 
 export interface Product {

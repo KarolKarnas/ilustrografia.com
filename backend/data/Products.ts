@@ -1,6 +1,6 @@
-import { Product } from './types/Product';
+// import { Product } from '../_types';
 
-export const products: Product[] = [
+export const products = [
 	{
 		_id: '1',
 		name: 'Bazylica',

@@ -1,5 +1,5 @@
-import { products } from '../data/data';
-import { Product } from '../types';
+import { products } from '../data/Products';
+import { Product } from '../types/Product';
 
 const getProducts = (): Product[] => {
 	return products;

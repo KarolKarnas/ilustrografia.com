@@ -4,6 +4,7 @@ import { useGetProductDetailsBySlugQuery } from '../../hooks/productHooks';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 import _ from 'lodash';
+import { Product, SizeOptionNoName } from '../../types/Product';
 // import { isString } from '../../utils/typeCheck';
 
 const ProductPage = () => {
@@ -20,12 +21,30 @@ const ProductPage = () => {
 		return <div>No product found</div>;
 	}
 
-	const materialValues = _.uniq(_.map(product.variations, 'options.material'));
 
-	console.log(materialValues);
+	// const materialValues = _.uniq(_.map(product.variations, 'options.material'));
 
-	// const options = Object.keys(product.options);
-	// console.log(options);
+	// const sizeValues = _.uniq(_.map(product.variations, 'options.size'))
+
+	// console.log(materialValues);
+	// console.log(sizeValues.sort())
+
+		const getSizesForMaterialFromProduct = (product: Product, material: string) => {
+		const sizes = _.uniq(product.variations
+			.filter(variation => variation.options.material === material)
+			.map(variation => variation.options.size)
+		);
+		return sizes;
+	};
+	
+	// Get array of all sizes for 'art-print' material from the provided product
+	const sizesForArtPrint = getSizesForMaterialFromProduct(product, 'art-print');
+
+	console.log('artPrint ', sizesForArtPrint);
+
+	const sizesForArtPrintTitle = sizesForArtPrint.map(name => product.options.size[name as keyof SizeOptionNoName].title)
+
+	console.log(sizesForArtPrintTitle)
 
 	return isLoading ? (
 		<div>Loading...</div>
@@ -38,7 +57,7 @@ const ProductPage = () => {
 					<div className='w-4/12'>
 						<img
 							src={`/images/${product.categories[0].slug}/${product.slug}-1.jpg`}
-							alt='bazylica'
+							alt={product.slug}
 						/>
 					</div>
 					<div className='w-4/12'>
@@ -65,23 +84,15 @@ const ProductPage = () => {
 						</p>
 						<h1 className=' text-3xl'>{product.name}</h1>
 						<>
-							{/* {Object.keys(product.options).map((option) => {
-						return <div key={option}>{product.options[option]}</div>;
-					})} */}
-					{/* {Object.keys(product.options).forEach(option => {
-						console.log(option)
-						console.log(product.options[option])
-						
-						return <p>{option}</p>;
-					})} */}
-
-<h3>{product.options.material.optionName}</h3>
-{/* {product.variations.map(variation => <p key={variation.SKU}>{variation.SKU}</p>)} */}
-{/* <div className='flex gap-3'>
-	{product.options.material}
-</div> */}
 
 
+{sizesForArtPrintTitle.map(option => <button
+									// onClick={handleChangeSize}
+									key={option}
+									className='font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white '
+								>
+									{option}
+								</button>)}
 						
 						</>
 					</div>

@@ -8,7 +8,12 @@ productRouter.get('/', (_req, res) => {
 });
 
 productRouter.get('/:slug', (req, res) => {
-	res.json(productService.getProduct(req.params.slug));
+	const product = productService.getProduct(req.params.slug);
+	if (product) {
+		res.json(product);
+	} else {
+		res.status(404).json({ message: 'Product Not Found' });
+	}
 });
 
 export default productRouter;
