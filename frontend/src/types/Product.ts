@@ -37,6 +37,8 @@ export interface MaterialOption {
 	'premium-print': TitleImages;
 }
 
+export type MaterialOptionNoName = Omit<MaterialOption, 'optionName'>;
+
 export interface SizeOption {
 	optionName: string;
 	s20x30: TitleImages;

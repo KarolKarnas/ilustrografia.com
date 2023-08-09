@@ -4,8 +4,7 @@ import { useGetProductDetailsBySlugQuery } from '../../hooks/productHooks';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 import _ from 'lodash';
-import { Product, SizeOptionNoName } from '../../types/Product';
-// import { isString } from '../../utils/typeCheck';
+import { MaterialOptionNoName, Product, SizeOptionNoName } from '../../types/Product';
 
 const ProductPage = () => {
 	const { slug } = useParams();
@@ -22,7 +21,7 @@ const ProductPage = () => {
 	}
 
 
-	// const materialValues = _.uniq(_.map(product.variations, 'options.material'));
+	const materialValues = _.uniq(_.map(product.variations, 'options.material'));
 
 	// const sizeValues = _.uniq(_.map(product.variations, 'options.size'))
 
@@ -44,6 +43,8 @@ const ProductPage = () => {
 
 	const sizesForArtPrintTitle = sizesForArtPrint.map(name => product.options.size[name as keyof SizeOptionNoName].title)
 
+	const materialTitle = materialValues.map(name => product.options.material[name as keyof MaterialOptionNoName].title)
+
 	console.log(sizesForArtPrintTitle)
 
 	return isLoading ? (
@@ -53,7 +54,7 @@ const ProductPage = () => {
 	) : (
 		<>
 			{product ? (
-				<div className='flex gap-20 my-5 justify-center '>
+				<div className='flex gap-20 my-5 justify-center'>
 					<div className='w-4/12'>
 						<img
 							src={`/images/${product.categories[0].slug}/${product.slug}-1.jpg`}
@@ -83,9 +84,9 @@ const ProductPage = () => {
 							/{' '}
 						</p>
 						<h1 className=' text-3xl'>{product.name}</h1>
-						<>
+					
 
-
+						<div className='flex gap-1'>
 {sizesForArtPrintTitle.map(option => <button
 									// onClick={handleChangeSize}
 									key={option}
@@ -93,8 +94,19 @@ const ProductPage = () => {
 								>
 									{option}
 								</button>)}
+								</div>
+								<hr className=' h-px mx-auto my-3'></hr>
+								<div className='flex gap-1'>
+{materialTitle.map(option => <button
+									// onClick={handleChangeSize}
+									key={option}
+									className='font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white '
+								>
+									{option}
+								</button>)}
+								</div>
 						
-						</>
+					
 					</div>
 				</div>
 			) : (
