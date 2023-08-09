@@ -1,11 +1,11 @@
-import { products } from '../data/Products';
-import { Product } from '../types/Product';
+import { products } from '../data/products';
+import { ProductNoId } from '../types/Product';
 
-const getProducts = (): Product[] => {
+const getProducts = (): ProductNoId[] => {
 	return products;
 };
 
-const getProduct = (slug: string): Product | undefined => {
+const getProduct = (slug: string): ProductNoId | undefined => {
 	const product = products.find((product) => product.slug === slug);
 
 	return product;

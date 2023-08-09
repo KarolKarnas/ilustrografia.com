@@ -9,13 +9,7 @@ import connectDB from './config/db';
 
 const PORT = process.env.PORT || 5000;
 
-connectDB()
-	.then(() => {
-		console.log('Database connected');
-	})
-	.catch((error) => {
-		console.error('Error connecting to the database:', error);
-	});
+connectDB();
 
 const app = express();
 app.use(cors());

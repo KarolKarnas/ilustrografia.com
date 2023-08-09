@@ -82,3 +82,4 @@ export interface Product {
 	variations: Variation[];
 }
 
+export type ProductNoId = Omit<Product, '_id'>;

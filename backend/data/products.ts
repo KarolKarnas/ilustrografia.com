@@ -1,8 +1,6 @@
-// import { Product } from '../_types';
-
-export const products = [
+import { ProductNoId } from '../types/Product';
+export const products: ProductNoId[] = [
 	{
-		_id: '1',
 		name: 'Bazylica',
 		slug: 'bazylica',
 		rating: {
@@ -252,7 +250,6 @@ export const products = [
 	},
 	//BOBO
 	{
-		_id: '2',
 		name: 'Bobo Leśne',
 		slug: 'bobo-lesne',
 		rating: {
@@ -502,7 +499,6 @@ export const products = [
 	},
 	// NIMFA WIOSENNA
 	{
-		_id: '3',
 		name: 'Nimfa Wiosenna',
 		slug: 'nimfa-wiosenna',
 		rating: {
@@ -747,4 +743,3 @@ export const products = [
 		],
 	},
 ];
-
