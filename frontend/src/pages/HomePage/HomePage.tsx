@@ -11,6 +11,7 @@ import { ApiError } from '../../types/ApiError';
 const HomeScreen = () => {
 	const { data: products, isLoading, error } = useGetProductsQuery()
 
+	console.log(products)
 
 	return isLoading ? (
 		<div>Loading...</div>
