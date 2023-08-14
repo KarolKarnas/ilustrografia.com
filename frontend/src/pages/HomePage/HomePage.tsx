@@ -1,18 +1,14 @@
-// import ProjectGroup from '../../components/ProjectGroup';
 import Rating from '../../components/Rating';
-// import { products } from '../../data';
 import { Link } from 'react-router-dom';
-import { useGetProductsQuery } from '../../hooks/productHooks';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
+import { useGetProductsQuery } from '../../slices/productsApiSlice';
+import { Product } from '../../types/Product';
 
+const HomePage = () => {
+	const { data: products, isLoading, error } = useGetProductsQuery({})
 
-
-const HomeScreen = () => {
-	const { data: products, isLoading, error } = useGetProductsQuery()
-
-	console.log(products)
-
+	// console.log(products)
 	return isLoading ? (
 		<div>Loading...</div>
 	) : error ? (
@@ -27,7 +23,7 @@ const HomeScreen = () => {
 			</h2>
 			{/* <ProjectGroup /> */}
 			<div className='flex'>
-				{products && products.map((product) => (
+				{products && products.map((product: Product) => (
 					<div key={product._id}>
 						<div className='bg-red-200 m-2'>
 							<h4 className='p-2 italic'>{product.name}</h4>
@@ -51,4 +47,4 @@ const HomeScreen = () => {
 		</>
 	);
 };
-export default HomeScreen;
+export default HomePage;

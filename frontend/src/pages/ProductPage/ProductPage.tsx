@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { useGetProductDetailsBySlugQuery } from '../../hooks/productHooks';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 import _ from 'lodash';
 import { MaterialOptionNoName, Product, SizeOptionNoName } from '../../types/Product';
+import { useGetProductDetailsQuery } from '../../slices/productsApiSlice';
 
 const ProductPage = () => {
 	const { slug } = useParams();
@@ -15,7 +15,9 @@ const ProductPage = () => {
 		data: product,
 		isLoading,
 		error,
-	} = useGetProductDetailsBySlugQuery(slug);
+	} = useGetProductDetailsQuery(slug);
+
+
 	if (!product) {
 		return <div>No product found</div>;
 	}
