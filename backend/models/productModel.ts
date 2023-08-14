@@ -30,6 +30,7 @@ const productSchema = new mongoose.Schema<ProductUser>(
 			type: [String],
 			required: true,
 		},
+		statistics: [String],
 		options: {
 			material: {
 				optionName: String,

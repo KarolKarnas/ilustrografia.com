@@ -67,6 +67,7 @@ export interface ProductUser {
 	images: string[];
 	options: ProductOptions;
 	variations: Variation[];
+	statistics?: string[]
 }
 
 
@@ -80,6 +81,7 @@ export interface Product {
 	images: string[];
 	options: ProductOptions;
 	variations: Variation[];
+	statistics?: string[]
 }
 
 export type ProductNoId = Omit<Product, '_id'>;

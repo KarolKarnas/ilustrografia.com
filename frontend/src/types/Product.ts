@@ -67,4 +67,5 @@ export interface Product {
 	images: string[];
 	options: ProductOptions;
 	variations: Variation[];
+	statistics?: string[]
 }

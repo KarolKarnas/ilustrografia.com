@@ -15,6 +15,12 @@ export const products: ProductNoId[] = [
 		],
 		tags: [{ name: '', slug: '' }],
 		images: ['/images/nowoslowianski-spis-powszechny/bazylica-1.jpg'],
+		statistics: [
+			'+50 do umiejętności tworzenia zaskórniaków',
+			'+10 dla znajomości topografii Warszawy',
+			'+25% ochrony przed zamienieniem w kamień',
+			'Akt własności nieruchomości najbezpieczniej trzymać za wydrukiem',
+		],
 		options: {
 			material: {
 				optionName: 'Material',
@@ -264,6 +270,12 @@ export const products: ProductNoId[] = [
 		],
 		tags: [{ name: '', slug: '' }],
 		images: ['/images/nowoslowianski-spis-powszechny/bobo-lesne-1.jpg'],
+		statistics: [
+			'+10 energii życiowej w poniedziałki',
+			'+50 do układów u Borowego',
+			'+15% dla wzrostu paprotek w salonie',
+			'Zawieszona w sypialni poprawia sprężystość materaca w łóżku',
+		],
 		options: {
 			material: {
 				optionName: 'Material',
@@ -513,6 +525,12 @@ export const products: ProductNoId[] = [
 		],
 		tags: [{ name: '', slug: '' }],
 		images: ['/images/ilustracje-fantasy/nimfa-wiosenna-1.jpg'],
+		statistics: [
+			'+50 do zdolności zakłócania ludzkich planów piknikowych',
+			'+25 do przekonywania kwiatów, by zakwitły w najmniej odpowiednich momentach',
+			'+10% do szansy na ominięcie alergii pyłkowej podczas walki w obszarach trawiastych',
+			"Umiejętność 'Chichot Natury': Nimfa wiosenna może wywołać dźwięki śmiechu liści, sprawiając, że przeciwnicy tracą koncentrację i celność.",
+		],
 		options: {
 			material: {
 				optionName: 'Material',
