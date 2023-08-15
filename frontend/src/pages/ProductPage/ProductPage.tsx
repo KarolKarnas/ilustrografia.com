@@ -1,3 +1,5 @@
+import { UseSelector } from 'react-redux/es/hooks/useSelector';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { getError } from '../../utils/utils';
@@ -10,24 +12,37 @@ import {
 } from '../../types/Product';
 import { useGetProductDetailsQuery } from '../../slices/productsApiSlice';
 import VariationDescription from './VariationDescription';
+import { Variation } from '../../types/Product';
 
 const ProductPage = () => {
 	const { slug } = useParams();
+	const [qty, setQty] = useState(1);
+	const [variation, setVariation] = useState<Variation>();
+
 	if (!slug) {
 		return <div>No slug provided</div>;
 	}
 	const { data: product, isLoading, error } = useGetProductDetailsQuery(slug);
 
-	if (!product) {
-		return <div>No product found</div>;
+	useEffect(() => {
+		if (!isLoading) {
+			setVariation(product.variations[0]);
+		}
+	}, [isLoading, product]);
+
+	if (isLoading) {
+		return <div>Loading...</div>;
 	}
-	console.log(product);
+
+	if (error) {
+		<div>{getError(error as ApiError)}</div>;
+	}
+	// console.log(product);
+	console.log(variation);
+
 	const materialValues = _.uniq(_.map(product.variations, 'options.material'));
 
-	// const sizeValues = _.uniq(_.map(product.variations, 'options.size'))
-
-	// console.log(materialValues);
-	// console.log(sizeValues.sort())
+	const sizeValues = _.uniq(_.map(product.variations, 'options.size'));
 
 	const getSizesForMaterialFromProduct = (
 		product: Product,
@@ -41,101 +56,190 @@ const ProductPage = () => {
 		return sizes;
 	};
 
-	// Get array of all sizes for 'art-print' material from the provided product
-	const sizesForArtPrint = getSizesForMaterialFromProduct(product, 'art-print');
+	const sizesByMaterial: { [key: string]: string[] } = {};
 
-	// console.log('artPrint ', sizesForArtPrint);
+	materialValues.forEach((material: string) => {
+		sizesByMaterial[`${material}`] = getSizesForMaterialFromProduct(
+			product,
+			material
+		);
+	});
 
-	const sizesForArtPrintTitle = sizesForArtPrint.map(
-		(name) => product.options.size[name as keyof SizeOptionNoName].title
-	);
+	const sizesByMaterialTitle: { [key: string]: string[] } = {};
+
+	for (const property in sizesByMaterial) {
+		const names = sizesByMaterial[property];
+		const titles = names.map((name) => product.options.size[name].title);
+		sizesByMaterialTitle[property] = titles;
+	}
 
 	const materialTitle = materialValues.map(
 		(name) => product.options.material[name as keyof MaterialOptionNoName].title
 	);
+	//TITLE_TO_NAME_MATERIAL
+	const titleToNameMaterial: { [key: string]: string } = {};
 
-	// console.log(sizesForArtPrintTitle)
+	materialTitle.forEach(
+		(title, index) => (titleToNameMaterial[title] = materialValues[index])
+	);
 
-	return isLoading ? (
-		<div>Loading...</div>
-	) : error ? (
-		<div>{getError(error as ApiError)}</div>
-	) : (
+	const sizeTitle = sizeValues.map(
+		(name) => product.options.size[name as keyof SizeOptionNoName].title
+	);
+
+	//TITLE_TO_NAME_SIZE
+	const titleToNameSize: { [key: string]: string } = {};
+
+	sizeTitle.forEach(
+		(title, index) => (titleToNameSize[title] = sizeValues[index])
+	);
+
+	// console.log(titleToNameSize)
+
+	const getVariation = (material: string, size: string) => {
+		return _.find(product.variations, { options: { material, size } });
+	};
+
+	const handleChangeSize = (e: SyntheticEvent) => {
+		const targetSize = e.currentTarget.textContent;
+		if (targetSize) {
+			const shortSizeName = titleToNameSize[targetSize];
+			if (variation) {
+				const currentVariation = getVariation(
+					variation?.options.material,
+					shortSizeName
+				);
+				setVariation(currentVariation);
+			}
+		}
+	};
+
+	const handleChangeMaterial = (e: SyntheticEvent) => {
+		const targetMaterial = e.currentTarget.textContent;
+		if (targetMaterial) {
+			const shortMaterialName = titleToNameMaterial[targetMaterial];
+			// if same size exist
+			if (variation) {
+				const theSame = getVariation(
+					shortMaterialName,
+					variation?.options.size
+				);
+
+				if (theSame) {
+					setVariation(theSame);
+				} else {
+					const cheapestOfMaterialVariation = product.variations.find(
+						(variation: Variation) =>
+							variation.options.material === shortMaterialName
+					);
+					setVariation(cheapestOfMaterialVariation);
+				}
+			}
+		}
+	};
+
+	return (
 		<>
-			{product ? (
-				<div className='flex gap-20 my-5 justify-center'>
-					<div className='w-4/12'>
-						<img
-							src={`/images/${product.categories[0].slug}/${product.slug}-1.jpg`}
-							alt={product.slug}
-						/>
-					</div>
-					<div className='w-4/12'>
-						{/* BREADCRUMBS */}
-						<p className=' text-zinc-300'>
-							<Link to={`/shop`} className=' hover:text-red-400 text-xs'>
-								shop
-							</Link>{' '}
-							/{' '}
-							<Link
-								to={`/shop/${product.categories[0].slug}`}
-								className=' hover:text-red-400 text-xs'
-							>
-								{product.categories[0].slug}
-							</Link>{' '}
-							/{' '}
-							<Link
-								to={`/shop/${product.categories[0].slug}/${product.slug}`}
-								className=' hover:text-red-400 text-xs'
-							>
-								{product.slug}
-							</Link>{' '}
-							/{' '}
-						</p>
-						<h1 className=' text-3xl'>{product.name}</h1>
-						{/* SIZES */}
-						<div className='flex gap-1'>
-							{sizesForArtPrintTitle.map((option) => (
-								<button
-									// onClick={handleChangeSize}
-									key={option}
-									className='font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white '
-								>
-									{option}
-								</button>
-							))}
-						</div>
-						<hr className=' h-px mx-auto my-3'></hr>
-						{/* Materials */}
-						<div className='flex gap-1'>
-							{materialTitle.map((option) => (
-								<button
-									// onClick={handleChangeSize}
-									key={option}
-									className='font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white '
-								>
-									{option}
-								</button>
-							))}
-						</div>
-						<button className=' bg-zinc-900 text-white px-32 py-1 hover:bg-red-200 my-2'>
-							Add to Cart
-						</button>
-						{product.statistics.length > 0 ? (
-							<ul className='list-disc pl-8'>
-								{product.statistics.map((stat: string) => (
-									<li className='text-xs text-zinc-500  ' key={stat}>
-										{stat}
-									</li>
-								))}
-							</ul>
-						) : null}
-						<hr className=' h-px mx-auto my-3'></hr>
-					</div>
+			<div className='flex gap-20 my-5 justify-center'>
+				<div className='w-4/12'>
+					<img
+						src={`/images/${product.categories[0].slug}/${product.slug}-1.jpg`}
+						alt={product.slug}
+					/>
 				</div>
-			) : (
-				<div>Something went wrong</div>
-			)}
+				<div className='w-4/12'>
+					{/* BREADCRUMBS */}
+					<p className=' text-zinc-300'>
+						<Link to={`/shop`} className=' hover:text-red-400 text-xs'>
+							shop
+						</Link>{' '}
+						/{' '}
+						<Link
+							to={`/shop/${product.categories[0].slug}`}
+							className=' hover:text-red-400 text-xs'
+						>
+							{product.categories[0].slug}
+						</Link>{' '}
+						/{' '}
+						<Link
+							to={`/shop/${product.categories[0].slug}/${product.slug}`}
+							className=' hover:text-red-400 text-xs'
+						>
+							{product.slug}
+						</Link>{' '}
+						/{' '}
+					</p>
+					<h1 className=' text-3xl'>{product.name}</h1>
+					{/* SIZES */}
+					<div className='flex gap-1'>
+						{variation &&
+							sizesByMaterialTitle[variation.options.material] &&
+							sizesByMaterialTitle[variation.options.material].map((option) => (
+								<button
+									onClick={handleChangeSize}
+									key={option}
+									className={`${
+										option ===
+										product.options.size[variation.options.size].title
+											? 'bg-red-200 text-white border-red-400 '
+											: ''
+									}font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white`}
+								>
+									{option}
+								</button>
+							))}
+					</div>
+					<hr className=' h-px mx-auto my-3'></hr>
+					{/* Materials */}
+					<div className='flex gap-1'>
+						{variation &&
+							materialTitle.map((option) => {
+								return (
+									<button
+										onClick={handleChangeMaterial}
+										key={option}
+										className={`${
+											// option === product.options.material[material].title
+											option ===
+											product.options.material[variation.options.material].title
+												? 'bg-red-200 text-white border-red-400 '
+												: ''
+										}font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white`}
+									>
+										{option}
+									</button>
+								);
+							})}
+					</div>
+					<div className='flex justify-evenly'>
+						<div>SKU {variation?.SKU}</div>
+						<div>Price {variation?.price}zł</div>
+					</div>
+					<hr className=' h-px mx-auto my-3'></hr>
+					{/* select quantity */}
+					<select className=' px-5'>
+						{variation &&
+							Array.from({ length: variation.countInStock }, (_, index) => (
+								<option key={index + 1} value={index + 1}>
+									{index + 1}
+								</option>
+							))}
+					</select>
+					<button className=' bg-zinc-900 text-white px-32 py-1 hover:bg-red-200 my-2'>
+						Add to Cart
+					</button>
+					{product.statistics.length > 0 ? (
+						<ul className='list-disc pl-8'>
+							{product.statistics.map((stat: string) => (
+								<li className='text-xs text-zinc-500  ' key={stat}>
+									{stat}
+								</li>
+							))}
+						</ul>
+					) : null}
+					<hr className=' h-px mx-auto my-3'></hr>
+				</div>
+			</div>
 		</>
 	);
 };

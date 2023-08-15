@@ -18,7 +18,7 @@ interface TitleImages {
 	images: string[];
 }
 
-interface Variation {
+export interface Variation {
 	options: {
 		material: string;
 		size: string;
@@ -27,6 +27,10 @@ interface Variation {
 	price: number;
 	countInStock: number;
 	tags: Tag[];
+}
+
+export interface VariationCart extends Variation {
+	qty: number
 }
 
 export interface MaterialOption {
