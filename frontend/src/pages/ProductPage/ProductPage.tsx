@@ -1,6 +1,6 @@
-import { UseSelector } from 'react-redux/es/hooks/useSelector';
+import { useDispatch } from 'react-redux';
 import { SyntheticEvent, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
@@ -13,11 +13,18 @@ import {
 import { useGetProductDetailsQuery } from '../../slices/productsApiSlice';
 import VariationDescription from './VariationDescription';
 import { Variation } from '../../types/Product';
+import { addToCart } from '../../slices/cartSlice';
 
 const ProductPage = () => {
 	const { slug } = useParams();
+
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+
 	const [qty, setQty] = useState(1);
 	const [variation, setVariation] = useState<Variation>();
+
+
 
 	if (!slug) {
 		return <div>No slug provided</div>;
@@ -38,7 +45,8 @@ const ProductPage = () => {
 		<div>{getError(error as ApiError)}</div>;
 	}
 	// console.log(product);
-	console.log(variation);
+	// console.log(variation);
+	console.log(qty);
 
 	const materialValues = _.uniq(_.map(product.variations, 'options.material'));
 
@@ -138,6 +146,12 @@ const ProductPage = () => {
 		}
 	};
 
+
+	const addToCartHandler = () => {
+		dispatch(addToCart({...variation, qty}))
+		navigate('/cart')
+			}
+
 	return (
 		<>
 			<div className='flex gap-20 my-5 justify-center'>
@@ -199,7 +213,6 @@ const ProductPage = () => {
 										onClick={handleChangeMaterial}
 										key={option}
 										className={`${
-											// option === product.options.material[material].title
 											option ===
 											product.options.material[variation.options.material].title
 												? 'bg-red-200 text-white border-red-400 '
@@ -217,15 +230,33 @@ const ProductPage = () => {
 					</div>
 					<hr className=' h-px mx-auto my-3'></hr>
 					{/* select quantity */}
-					<select className=' px-5'>
-						{variation &&
-							Array.from({ length: variation.countInStock }, (_, index) => (
-								<option key={index + 1} value={index + 1}>
-									{index + 1}
-								</option>
-							))}
-					</select>
-					<button className=' bg-zinc-900 text-white px-32 py-1 hover:bg-red-200 my-2'>
+					<div className='flex justify-around'>
+						<div>
+							{variation && variation.countInStock > 0
+								? 'In Stock'
+								: 'Out Of Stock'}
+						</div>
+						<select
+							className=' px-5'
+							onChange={(e) => setQty(Number(e.target.value))}
+						>
+							{variation &&
+								Array.from({ length: variation.countInStock }, (_, index) => (
+									<option key={index + 1} value={index + 1}>
+										{index + 1}
+									</option>
+								))}
+						</select>
+					</div>
+					<button
+					onClick={addToCartHandler}
+						className={`${
+							variation?.countInStock === 0
+								? 'bg-zinc-100 text-zinc-300'
+								: 'bg-zinc-900 text-white hover:bg-red-200'
+						}   px-32 py-1  my-2`}
+						disabled={variation?.countInStock === 0}
+					>
 						Add to Cart
 					</button>
 					{product.statistics.length > 0 ? (

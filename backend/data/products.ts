@@ -93,7 +93,7 @@ export const products: ProductNoId[] = [
 				options: { material: 'art-print', size: 's30x40' },
 				SKU: '98766',
 				price: 179,
-				countInStock: 10,
+				countInStock: 0,
 				tags: [{ name: '', slug: '' }],
 			},
 			{

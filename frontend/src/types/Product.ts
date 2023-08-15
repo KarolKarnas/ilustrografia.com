@@ -30,7 +30,8 @@ export interface Variation {
 }
 
 export interface VariationCart extends Variation {
-	qty: number
+	_id: string;
+	qty: number;
 }
 
 export interface MaterialOption {
@@ -57,7 +58,7 @@ export interface SizeOption {
 export type SizeOptionNoName = Omit<SizeOption, 'optionName'>;
 
 export interface ProductOptions {
-	material: MaterialOption,
+	material: MaterialOption;
 	size: SizeOption;
 }
 
@@ -71,5 +72,5 @@ export interface Product {
 	images: string[];
 	options: ProductOptions;
 	variations: Variation[];
-	statistics?: string[]
+	statistics?: string[];
 }

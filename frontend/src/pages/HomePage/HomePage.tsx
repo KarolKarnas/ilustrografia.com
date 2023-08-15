@@ -8,7 +8,7 @@ import { Product } from '../../types/Product';
 const HomePage = () => {
 	const { data: products, isLoading, error } = useGetProductsQuery({})
 
-	// console.log(products)
+	console.log(products)
 	return isLoading ? (
 		<div>Loading...</div>
 	) : error ? (

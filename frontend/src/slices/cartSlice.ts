@@ -14,12 +14,12 @@ const cartSlice = createSlice({
 	reducers: {addToCart: (state, action) => {
     //variation and item?
     const item = action.payload;
-    //by slug not_id
+    //by slug not_id ?
     // variation SKU
-    const existItem = state.cartItems.find((currentItem: Product) => currentItem._id === item._id);
+    const existItem = state.cartItems.find((currentItem: VariationCart) => currentItem._id === item._id);
 
     if (existItem) {
-      state.cartItems = state.cartItems.map((currentItem: Product) =>
+      state.cartItems = state.cartItems.map((currentItem: VariationCart) =>
         currentItem._id === existItem._id ? item : currentItem
       );
     } else {
@@ -45,5 +45,7 @@ const cartSlice = createSlice({
     localStorage.setItem('cart', JSON.stringify(state));
   },},
 });
+
+export const {addToCart} = cartSlice.actions
 
 export default cartSlice.reducer;
