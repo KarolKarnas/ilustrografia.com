@@ -18,13 +18,11 @@ import { addToCart } from '../../slices/cartSlice';
 const ProductPage = () => {
 	const { slug } = useParams();
 
-	const dispatch = useDispatch()
-	const navigate = useNavigate()
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const [qty, setQty] = useState(1);
 	const [variation, setVariation] = useState<Variation>();
-
-
 
 	if (!slug) {
 		return <div>No slug provided</div>;
@@ -45,8 +43,8 @@ const ProductPage = () => {
 		<div>{getError(error as ApiError)}</div>;
 	}
 	// console.log(product);
-	// console.log(variation);
-	console.log(qty);
+	console.log(variation);
+	// console.log(qty);
 
 	const materialValues = _.uniq(_.map(product.variations, 'options.material'));
 
@@ -146,18 +144,20 @@ const ProductPage = () => {
 		}
 	};
 
-
 	const addToCartHandler = () => {
-		dispatch(addToCart({...variation, qty}))
-		navigate('/cart')
-			}
+		dispatch(addToCart({ ...variation, qty }));
+		navigate('/cart');
+	};
 
 	return (
 		<>
 			<div className='flex gap-20 my-5 justify-center'>
 				<div className='w-4/12'>
 					<img
-						src={`/images/${product.categories[0].slug}/${product.slug}-1.jpg`}
+						src={
+							variation &&
+							product.options.material[variation.options.material].images[0]
+						}
 						alt={product.slug}
 					/>
 				</div>
@@ -249,7 +249,7 @@ const ProductPage = () => {
 						</select>
 					</div>
 					<button
-					onClick={addToCartHandler}
+						onClick={addToCartHandler}
 						className={`${
 							variation?.countInStock === 0
 								? 'bg-zinc-100 text-zinc-300'
