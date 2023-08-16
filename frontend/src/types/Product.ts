@@ -19,6 +19,7 @@ interface TitleImages {
 }
 
 export interface Variation {
+	productSlug: string,
 	options: {
 		material: string;
 		size: string;
@@ -32,6 +33,7 @@ export interface Variation {
 export interface VariationCart extends Variation {
 	_id: string;
 	qty: number;
+	image: string;
 }
 
 export interface MaterialOption {

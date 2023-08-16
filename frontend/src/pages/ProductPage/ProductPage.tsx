@@ -14,9 +14,11 @@ import { useGetProductDetailsQuery } from '../../slices/productsApiSlice';
 import VariationDescription from './VariationDescription';
 import { Variation } from '../../types/Product';
 import { addToCart } from '../../slices/cartSlice';
+import { useSearchParams } from 'react-router-dom';
 
 const ProductPage = () => {
 	const { slug } = useParams();
+	const [searchParams, setSearchParams] = useSearchParams();
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -29,11 +31,32 @@ const ProductPage = () => {
 	}
 	const { data: product, isLoading, error } = useGetProductDetailsQuery(slug);
 
+	const getVariation = (material: string, size: string) => {
+		return _.find(product.variations, { options: { material, size } });
+	};
+
 	useEffect(() => {
 		if (!isLoading) {
-			setVariation(product.variations[0]);
+			if (searchParams) {
+				const material = searchParams.get('material');
+				const size = searchParams.get('size');
+				if (material && size) {
+					setVariation(getVariation(material, size));
+				} else {
+					setVariation(product.variations[0]);
+				}
+			}
 		}
 	}, [isLoading, product]);
+
+	useEffect(() => {
+		if (variation) {
+			setSearchParams({
+				material: variation.options.material,
+				size: variation.options.size,
+			});
+		}
+	}, [variation]);
 
 	if (isLoading) {
 		return <div>Loading...</div>;
@@ -102,10 +125,6 @@ const ProductPage = () => {
 
 	// console.log(titleToNameSize)
 
-	const getVariation = (material: string, size: string) => {
-		return _.find(product.variations, { options: { material, size } });
-	};
-
 	const handleChangeSize = (e: SyntheticEvent) => {
 		const targetSize = e.currentTarget.textContent;
 		if (targetSize) {
@@ -125,6 +144,7 @@ const ProductPage = () => {
 		if (targetMaterial) {
 			const shortMaterialName = titleToNameMaterial[targetMaterial];
 			// if same size exist
+
 			if (variation) {
 				const theSame = getVariation(
 					shortMaterialName,
@@ -145,8 +165,16 @@ const ProductPage = () => {
 	};
 
 	const addToCartHandler = () => {
-		dispatch(addToCart({ ...variation, qty }));
-		// navigate('/cart');
+		if (variation) {
+			dispatch(
+				addToCart({
+					...variation,
+					qty,
+					image: product.options.material[variation.options.material].images[0],
+				})
+				// navigate('/cart');
+			);
+		}
 	};
 
 	return (

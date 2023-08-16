@@ -21,6 +21,7 @@ interface TitleImages {
 }
 
 interface Variation {
+	productSlug: string,
 	options: {
 		material: string;
 		size: string;

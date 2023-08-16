@@ -87,6 +87,7 @@ const productSchema = new mongoose.Schema<ProductUser>(
 		},
 		variations: [
 			{
+				productSlug: String,
 				options: {
 					material: String,
 					size: String,
