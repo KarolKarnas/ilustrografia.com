@@ -74,3 +74,12 @@ export interface Product {
 	variations: Variation[];
 	statistics?: string[];
 }
+
+
+export interface CartState {
+	itemsPrice: string,
+	cartItems: VariationCart[],
+	shippingPrice: string,
+	taxPrice: string,
+	totalPrice: string
+}
