@@ -1,3 +1,7 @@
+import { useSelector } from 'react-redux';
+import { VariationCart } from '../types/Product';
+import { RootState } from '../store';
+
 import { GrCart, GrUser, GrFavorite } from 'react-icons/gr';
 
 import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa';
@@ -9,6 +13,9 @@ import logo from './assets/logo-ilustrografia.png';
 
 const Header = () => {
 	const [isActive, setIsActive] = useState(false);
+
+	const { cartItems } = useSelector((state: RootState) => state.cart);
+	console.log(cartItems);
 
 	const handleClick = () => {
 		setIsActive(!isActive);
@@ -74,9 +81,16 @@ const Header = () => {
 					</Link>
 				</div>
 				<div className='hidden lg:flex gap-x-3 w-20'>
-					<Link to={'/cart'}>
+					<Link className=' relative' to={'/cart'}>
 						<GrCart />
+						<span className='absolute object-right-top -mr-6  bottom-2 left-2 '>
+							<div className='inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white'>
+								{cartItems.length > 0 && cartItems.reduce((acc: number, item: VariationCart) => acc + item.qty,0)}
+							</div>
+						</span>
+				
 					</Link>
+
 					<Link to={'/login'}>
 						<GrUser />
 					</Link>

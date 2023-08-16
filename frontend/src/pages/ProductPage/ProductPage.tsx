@@ -43,7 +43,7 @@ const ProductPage = () => {
 		<div>{getError(error as ApiError)}</div>;
 	}
 	// console.log(product);
-	console.log(variation);
+	// console.log(variation);
 	// console.log(qty);
 
 	const materialValues = _.uniq(_.map(product.variations, 'options.material'));
@@ -146,7 +146,7 @@ const ProductPage = () => {
 
 	const addToCartHandler = () => {
 		dispatch(addToCart({ ...variation, qty }));
-		navigate('/cart');
+		// navigate('/cart');
 	};
 
 	return (
@@ -227,6 +227,7 @@ const ProductPage = () => {
 					<div className='flex justify-evenly'>
 						<div>SKU {variation?.SKU}</div>
 						<div>Price {variation?.price}zł</div>
+						<div>Price {variation && variation?.price * qty}zł</div>
 					</div>
 					<hr className=' h-px mx-auto my-3'></hr>
 					{/* select quantity */}
