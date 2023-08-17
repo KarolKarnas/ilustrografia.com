@@ -15,6 +15,7 @@ import VariationDescription from './VariationDescription';
 import { Variation } from '../../types/Product';
 import { addToCart } from '../../slices/cartSlice';
 import { useSearchParams } from 'react-router-dom';
+import VariationCharacteristics from './VariationCharacteristics';
 
 const ProductPage = () => {
 	const { slug } = useParams();
@@ -137,6 +138,7 @@ const ProductPage = () => {
 				setVariation(currentVariation);
 			}
 		}
+
 	};
 
 	const handleChangeMaterial = (e: SyntheticEvent) => {
@@ -166,141 +168,172 @@ const ProductPage = () => {
 
 	const addToCartHandler = () => {
 		if (variation) {
+
+			const pathnameWithQuery = window.location.pathname + window.location.search;
+			console.log(pathnameWithQuery);
 			dispatch(
 				addToCart({
 					...variation,
 					qty,
 					image: product.options.material[variation.options.material].images[0],
+					variationName: `${product.name} ${product.options.material[variation.options.material].title} 
+					${product.options.size[variation.options.size].title}`,
+					pathnameWithQuery,
+					
 				})
-				// navigate('/cart');
 			);
+			navigate('/cart');
 		}
 	};
 
-	return (
-		<>
-			<div className='flex gap-20 my-5 justify-center'>
-				<div className='w-4/12'>
-					<img
-						src={
-							variation &&
-							product.options.material[variation.options.material].images[0]
-						}
-						alt={product.slug}
-					/>
-				</div>
-				<div className='w-4/12'>
-					{/* BREADCRUMBS */}
-					<p className=' text-zinc-300'>
-						<Link to={`/shop`} className=' hover:text-red-400 text-xs'>
-							shop
-						</Link>{' '}
-						/{' '}
-						<Link
-							to={`/shop/${product.categories[0].slug}`}
-							className=' hover:text-red-400 text-xs'
-						>
-							{product.categories[0].slug}
-						</Link>{' '}
-						/{' '}
-						<Link
-							to={`/shop/${product.categories[0].slug}/${product.slug}`}
-							className=' hover:text-red-400 text-xs'
-						>
-							{product.slug}
-						</Link>{' '}
-						/{' '}
-					</p>
-					<h1 className=' text-3xl'>{product.name}</h1>
-					{/* SIZES */}
-					<div className='flex gap-1'>
-						{variation &&
-							sizesByMaterialTitle[variation.options.material] &&
-							sizesByMaterialTitle[variation.options.material].map((option) => (
-								<button
-									onClick={handleChangeSize}
-									key={option}
-									className={`${
-										option ===
-										product.options.size[variation.options.size].title
-											? 'bg-red-200 text-white border-red-400 '
-											: ''
-									}font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white`}
-								>
-									{option}
-								</button>
-							))}
+
+
+	if (variation) {
+		return (
+			<>
+				<div className='flex gap-20 my-5 justify-center'>
+					<div className='w-4/12'>
+						<img
+							src={
+								variation &&
+								product.options.material[variation.options.material].images[0]
+							}
+							alt={product.slug}
+						/>
 					</div>
-					<hr className=' h-px mx-auto my-3'></hr>
-					{/* Materials */}
-					<div className='flex gap-1'>
-						{variation &&
-							materialTitle.map((option) => {
-								return (
-									<button
-										onClick={handleChangeMaterial}
-										key={option}
-										className={`${
-											option ===
-											product.options.material[variation.options.material].title
-												? 'bg-red-200 text-white border-red-400 '
-												: ''
-										}font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white`}
-									>
-										{option}
-									</button>
-								);
-							})}
-					</div>
-					<div className='flex justify-evenly'>
-						<div>SKU {variation?.SKU}</div>
-						<div>Price {variation?.price}zł</div>
-						<div>Price {variation && variation?.price * qty}zł</div>
-					</div>
-					<hr className=' h-px mx-auto my-3'></hr>
-					{/* select quantity */}
-					<div className='flex justify-around'>
-						<div>
-							{variation && variation.countInStock > 0
-								? 'In Stock'
-								: 'Out Of Stock'}
+					<div className='w-4/12'>
+						{/* BREADCRUMBS */}
+						<p className=' text-zinc-300'>
+							<Link to={`/shop`} className=' hover:text-red-400 text-xs'>
+								shop
+							</Link>{' '}
+							/{' '}
+							<Link
+								to={`/shop/${product.categories[0].slug}`}
+								className=' hover:text-red-400 text-xs'
+							>
+								{product.categories[0].slug}
+							</Link>{' '}
+							/{' '}
+							<Link
+								to={`/shop/${product.categories[0].slug}/${product.slug}`}
+								className=' hover:text-red-400 text-xs'
+							>
+								{product.slug}
+							</Link>{' '}
+							/{' '}
+						</p>
+						<h1 className=' text-3xl mb-2'>
+							{product.name}{' '}
+							<span className='text-xl'>{product.options.material[variation.options.material].title}{' '}
+							{product.options.size[variation.options.size].title}</span>
+						</h1>
+						{/* SIZES */}
+						<div className='flex gap-1'>
+							{	sizesByMaterialTitle[variation.options.material].map(
+									(option) => (
+										<button
+											onClick={handleChangeSize}
+											key={option}
+											className={`${
+												option ===
+												product.options.size[variation.options.size].title
+													? 'bg-red-200 text-white border-red-400 '
+													: ''
+											}font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white`}
+										>
+											{option}
+										</button>
+									)
+								)}
 						</div>
-						<select
-							className=' px-5'
-							onChange={(e) => setQty(Number(e.target.value))}
+						<hr className=' h-px mx-auto my-3'></hr>
+						{/* Materials */}
+						<div className='flex gap-1'>
+							{materialTitle.map((option) => {
+									return (
+										<button
+											onClick={handleChangeMaterial}
+											key={option}
+											className={`${
+												option ===
+												product.options.material[variation.options.material]
+													.title
+													? 'bg-red-200 text-white border-red-400 '
+													: ''
+											}font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white`}
+										>
+											{option}
+										</button>
+									);
+								})}
+						</div>
+						<div className='flex justify-evenly'>
+							<div>SKU {variation?.SKU}</div>
+							<div>Price {variation?.price}zł</div>
+							<div>Price {variation?.price * qty}zł</div>
+						</div>
+						<hr className=' h-px mx-auto my-3'></hr>
+						{/* select quantity */}
+						<div className='flex justify-around'>
+							<div>
+								{variation.countInStock > 0
+									? 'In Stock'
+									: 'Out Of Stock'}
+							</div>
+							<select
+								className=' px-5'
+								onChange={(e) => setQty(Number(e.target.value))}
+							>
+								{Array.from({ length: variation.countInStock }, (_, index) => (
+										<option key={index + 1} value={index + 1}>
+											{index + 1}
+										</option>
+									))}
+							</select>
+						</div>
+						<button
+							onClick={addToCartHandler}
+							className={`${
+								variation?.countInStock === 0
+									? 'bg-zinc-100 text-zinc-300'
+									: 'bg-zinc-900 text-white hover:bg-red-200'
+							}   px-32 py-1  my-2`}
+							disabled={variation?.countInStock === 0}
 						>
-							{variation &&
-								Array.from({ length: variation.countInStock }, (_, index) => (
-									<option key={index + 1} value={index + 1}>
-										{index + 1}
-									</option>
+							Add to Cart
+						</button>
+						{product.statistics.length > 0 ? (
+							<ul className='list-disc pl-8'>
+								{product.statistics.map((stat: string) => (
+									<li className='text-xs text-zinc-500  ' key={stat}>
+										{stat}
+									</li>
 								))}
-						</select>
+							</ul>
+						) : null}
+						<hr className=' h-px mx-auto my-3'></hr>
+
+						{(
+							<div className='leading-tight font-light text-zinc-500 text-sm'>
+								<VariationDescription
+									variationMaterial={variation.options.material}
+								/>{' '}
+								<hr className=' h-px mx-auto my-3'></hr>
+							</div>
+						)}
+
+						{(
+							<VariationCharacteristics
+								variationMaterial={variation.options.material}
+							/>
+						)}
 					</div>
-					<button
-						onClick={addToCartHandler}
-						className={`${
-							variation?.countInStock === 0
-								? 'bg-zinc-100 text-zinc-300'
-								: 'bg-zinc-900 text-white hover:bg-red-200'
-						}   px-32 py-1  my-2`}
-						disabled={variation?.countInStock === 0}
-					>
-						Add to Cart
-					</button>
-					{product.statistics.length > 0 ? (
-						<ul className='list-disc pl-8'>
-							{product.statistics.map((stat: string) => (
-								<li className='text-xs text-zinc-500  ' key={stat}>
-									{stat}
-								</li>
-							))}
-						</ul>
-					) : null}
-					<hr className=' h-px mx-auto my-3'></hr>
 				</div>
-			</div>
-		</>
-	);
+			</>
+		);
+	} else {
+		return <div>No variation</div>
+	}
 };
 export default ProductPage;

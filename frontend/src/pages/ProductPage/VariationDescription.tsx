@@ -1,9 +1,9 @@
 type Props = {
-	shortName: string;
+	variationMaterial: string;
 };
 
-const VariationDescription = ({ shortName }: Props) => {
-	if (shortName === 'art-print') {
+const VariationDescription = ({ variationMaterial }: Props) => {
+	if (variationMaterial === 'art-print') {
 		return (
 			<>
 				Wydruki Fine Art Print (Giclée) to najwyższej jakości druk pigmentowy
@@ -20,7 +20,7 @@ const VariationDescription = ({ shortName }: Props) => {
 				nowoczesnej.Czas zainwestować w perfekcję, nie sądzisz?
 			</>
 		);
-	} else if (shortName === 'painting-on-canvas') {
+	} else if (variationMaterial === 'painting-on-canvas') {
 		return (
 			<>
 				Te wyjątkowe druki powstają na tkaninie{' '}
@@ -37,7 +37,7 @@ const VariationDescription = ({ shortName }: Props) => {
 				<em className='block pt-2'>Wybieraj i zawieszaj!</em>
 			</>
 		);
-	} else if (shortName === 'poster') {
+	} else if (variationMaterial === 'poster') {
 		return (
 			<>
 				<strong>
@@ -55,7 +55,7 @@ const VariationDescription = ({ shortName }: Props) => {
 				wytrzymałością. Wiesz już jaki plakat wybierzesz?
 			</>
 		);
-	} else if (shortName === 'premium-print') {
+	} else if (variationMaterial === 'premium-print') {
 		return (
 			<>
 				Wydruk Premium używa technologii atramentowej, która we współpracy z
@@ -72,7 +72,7 @@ const VariationDescription = ({ shortName }: Props) => {
 			</>
 		);
 	} else {
-		return <div>{shortName}</div>;
+		return <div>{variationMaterial}</div>;
 	}
 };
 export default VariationDescription;

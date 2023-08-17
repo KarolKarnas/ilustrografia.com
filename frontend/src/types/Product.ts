@@ -19,7 +19,7 @@ interface TitleImages {
 }
 
 export interface Variation {
-	productSlug: string,
+	productSlug: string;
 	options: {
 		material: string;
 		size: string;
@@ -34,6 +34,8 @@ export interface VariationCart extends Variation {
 	_id: string;
 	qty: number;
 	image: string;
+	variationName: string;
+	pathnameWithQuery: string
 }
 
 export interface MaterialOption {
@@ -77,11 +79,10 @@ export interface Product {
 	statistics?: string[];
 }
 
-
 export interface CartState {
-	itemsPrice: string,
-	cartItems: VariationCart[],
-	shippingPrice: string,
-	taxPrice: string,
-	totalPrice: string
+	itemsPrice: string;
+	cartItems: VariationCart[];
+	shippingPrice: string;
+	taxPrice: string;
+	totalPrice: string;
 }

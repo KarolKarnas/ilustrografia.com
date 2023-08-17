@@ -9,7 +9,7 @@ const App = () => {
 	return (
 		<div className='flex flex-col items-center justify-between min-h-screen overflow-hidden'>
 			<Header />
-			<main>
+			<main className=' w-full'>
 			<Outlet />
 			</main>
 			<Footer />
