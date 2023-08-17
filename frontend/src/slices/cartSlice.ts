@@ -15,18 +15,18 @@ const cartSlice = createSlice({
 			//by slug not_id ?
 			// variation SKU
 			const existItem = state.cartItems.find(
-				(item: VariationCart) => item._id === item._id
+				(currentItem: VariationCart) => currentItem._id === item._id
 			);
 
 			if (existItem) {
-				state.cartItems = state.cartItems.map((item: VariationCart) =>
-					item._id === existItem._id ? item : item
+				state.cartItems = state.cartItems.map((currentItem: VariationCart) =>
+					currentItem._id === existItem._id ? item : currentItem
 				);
 			} else {
 				state.cartItems = [...state.cartItems, item];
 			}
 
-			return updateCart(state);
+return updateCart(state)
 		},
 		removeFromCart: (state, action) => {
 			state.cartItems = state.cartItems.filter((item: VariationCart) => item._id !== action.payload)

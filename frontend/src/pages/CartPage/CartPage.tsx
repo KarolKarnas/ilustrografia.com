@@ -13,10 +13,13 @@ const CartPage = () => {
 	const { cartItems } = cart;
 	console.log(cartItems);
 
+	const checkoutHandler = () => {
+		navigate('/login?redirect=/shipping');
+	};
+
 	const addToCartHandler = async (variation: VariationCart, qty: number) => {
 		dispatch(addToCart({ ...variation, qty }));
 	};
-
 	const removeFromCartHandler = async (id: string) => {
 		dispatch(removeFromCart(id));
 	};
@@ -36,12 +39,12 @@ const CartPage = () => {
 			) : (
 				<div className=' w-8/12'>
 					{cartItems.map((variation) => (
-						<>
-							<div
-								className='flex items-center justify-between mb-4'
-								key={variation._id}
-							>
-								<FaTrash onClick={() => removeFromCartHandler(variation._id)} className='basis-1/12 hover:cursor-pointer hover:text-red-300' />
+						<div key={variation._id}>
+							<div className='flex items-center justify-between mb-4'>
+								<FaTrash
+									onClick={() => removeFromCartHandler(variation._id)}
+									className='basis-1/12 hover:cursor-pointer hover:text-red-300'
+								/>
 								<img
 									className='basis-1/12 w-10'
 									src={variation.image}
@@ -82,7 +85,7 @@ const CartPage = () => {
 								</div>
 							</div>
 							<hr className=' h-px mx-auto my-3'></hr>
-						</>
+						</div>
 					))}
 				</div>
 			)}
@@ -99,15 +102,21 @@ const CartPage = () => {
 					</div>
 					<div>
 						You will own me just{' '}
-						<strong>{cartItems
-							.reduce((acc, variant) => acc + variant.qty * variant.price, 0)
-							.toFixed(2)}</strong> złotych, thanks
+						<strong>
+							{cartItems
+								.reduce((acc, variant) => acc + variant.qty * variant.price, 0)
+								.toFixed(2)}
+						</strong>{' '}
+						złotych, thanks
 					</div>
-					<Link to='/'>
-						<button disabled={cartItems.length === 0} className='bg-zinc-900 text-white hover:bg-red-200 px-32 py-1  my-2'>
-							Proceed To Checkout
-						</button>
-					</Link>
+
+					<button
+						disabled={cartItems.length === 0}
+						onClick={checkoutHandler}
+						className='bg-zinc-900 text-white hover:bg-red-200 px-32 py-1  my-2'
+					>
+						Proceed To Checkout
+					</button>
 				</div>
 			</div>
 		</div>

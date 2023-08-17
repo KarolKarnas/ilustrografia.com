@@ -5,11 +5,11 @@ import {
 	getVariantBySlugAndSku,
 } from '../controllers/productController';
 
-const productRouter = express.Router();
+const router = express.Router();
 
-productRouter.route('/').get(getProducts);
-productRouter.route('/:slug').get(getProductBySlug);
-productRouter.route('/:slug/:sku').get(getVariantBySlugAndSku);
+router.route('/').get(getProducts);
+router.route('/:slug').get(getProductBySlug);
+router.route('/:slug/:sku').get(getVariantBySlugAndSku);
 
 
-export default productRouter;
+export default router;
