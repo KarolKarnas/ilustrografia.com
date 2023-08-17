@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FaTrash } from 'react-icons/fa';
 import { CartState } from '../../types/Product';
 import { RootState } from '../../store';
-import { addToCart } from '../../slices/cartSlice';
+import { addToCart, removeFromCart } from '../../slices/cartSlice';
 import { VariationCart } from '../../types/Product';
 
 const CartPage = () => {
@@ -15,6 +15,10 @@ const CartPage = () => {
 
 	const addToCartHandler = async (variation: VariationCart, qty: number) => {
 		dispatch(addToCart({ ...variation, qty }));
+	};
+
+	const removeFromCartHandler = async (id: string) => {
+		dispatch(removeFromCart(id));
 	};
 	return (
 		<div className='flex w-full flex-col justify-center items-center'>
@@ -37,7 +41,7 @@ const CartPage = () => {
 								className='flex items-center justify-between mb-4'
 								key={variation._id}
 							>
-								<FaTrash className='basis-1/12 hover:cursor-pointer hover:text-red-300' />
+								<FaTrash onClick={() => removeFromCartHandler(variation._id)} className='basis-1/12 hover:cursor-pointer hover:text-red-300' />
 								<img
 									className='basis-1/12 w-10'
 									src={variation.image}
@@ -54,6 +58,7 @@ const CartPage = () => {
 								<div className='basis-2/12'>
 									<select
 										className='bg-red-50'
+										value={variation.qty}
 										onChange={(e) =>
 											addToCartHandler(variation, Number(e.target.value))
 										}
@@ -82,13 +87,27 @@ const CartPage = () => {
 				</div>
 			)}
 
-			<div className='flex'>
+			<div className='flex gap-20'>
 				<div className=' basis-1/2'>
-
-					<img src="/images/shop/cart-1.jpg" alt="" />
+					<img src='/images/shop/cart-1.jpg' alt='' />
 				</div>
 				<div className=' basis-1/2'>
 					<h1 className='text-3xl'>Cart summary</h1>
+					<div>
+						Total cart items:{' '}
+						{cartItems.reduce((acc, variant) => acc + variant.qty, 0)}
+					</div>
+					<div>
+						You will own me just{' '}
+						<strong>{cartItems
+							.reduce((acc, variant) => acc + variant.qty * variant.price, 0)
+							.toFixed(2)}</strong> złotych, thanks
+					</div>
+					<Link to='/'>
+						<button disabled={cartItems.length === 0} className='bg-zinc-900 text-white hover:bg-red-200 px-32 py-1  my-2'>
+							Proceed To Checkout
+						</button>
+					</Link>
 				</div>
 			</div>
 		</div>
