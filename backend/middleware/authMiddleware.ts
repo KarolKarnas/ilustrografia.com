@@ -2,13 +2,13 @@ import jwt from 'jsonwebtoken';
 import { JwtPayload } from 'jsonwebtoken';
 import asyncHandler from './asyncHandler';
 import UserModel from '../models/userModel';
-import { parseToken, parseSecret } from '../types/utils';
+import { parseToken, parseSecret } from '../utils/typeUtils';
 import { Request, Response, NextFunction } from 'express';
 // import { toUserNoPassword } from '../types/utils';
 import { UserNoPassword } from '../types/User';
 
 interface CustomRequest extends Request {
-  user?: UserNoPassword; // Change UserModel to the actual type of user model
+	user?: UserNoPassword; // Change UserModel to the actual type of user model
 }
 
 // Protect routes
@@ -36,10 +36,8 @@ const protect = asyncHandler(async (req: CustomRequest, res, next) => {
 	}
 });
 
-
 //Admin middleware
 const admin = (req: CustomRequest, res: Response, next: NextFunction) => {
-  
 	if (req.user && req.user.isAdmin) {
 		next();
 	} else {

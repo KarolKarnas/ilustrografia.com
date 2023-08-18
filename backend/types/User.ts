@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 export interface User {
 	name: string;
@@ -7,9 +7,18 @@ export interface User {
 	isAdmin: boolean;
 }
 
+export interface UserId extends User {
+	_id: mongoose.Types.ObjectId;
+}
+
+
 export interface CheckUser {
 	email: string;
 	password: string;
+}
+
+export interface CheckUserWithName extends CheckUser {
+	name: string;
 }
 
 //userModel -> userController
@@ -21,7 +30,7 @@ export interface UserSchemaMethod extends User {
 
 // authMiddleware
 export interface UserNoPassword {
-  _id: mongoose.Types.ObjectId;
+	_id: mongoose.Types.ObjectId;
 	name?: string;
 	email?: string;
 	isAdmin?: boolean;
