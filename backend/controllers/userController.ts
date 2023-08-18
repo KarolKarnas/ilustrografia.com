@@ -1,20 +1,34 @@
 import asyncHandler from '../middleware/asyncHandler';
-import User from '../models/userModel';
+import UserModel from '../models/userModel';
 import { Request, Response } from 'express';
+import { toCheckUser } from '../types/utils';
+import { UserSchemaMethod } from '../types/User';
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
 // @access  Public
-const authUser = asyncHandler(async (_req, res) => {
-	await User.find({});
-	res.send('auth user');
+const authUser = asyncHandler(async (req: Request, res: Response) => {
+	const checkedUser = toCheckUser(req.body);
+	const { email, password } = checkedUser;
+	const user: UserSchemaMethod | null = await UserModel.findOne({ email });
+	if (user && (await user.matchPassword(password))) {
+		res.json({
+			_id: user._id,
+			name: user.name,
+			email: user.email,
+			isAdmin: user.isAdmin,
+		});
+	} else {
+		res.status(401);
+		throw new Error('Invalid email or password');
+	}
 });
 
 // @desc    Register a new user
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (_req, res) => {
-	await User.find({});
+	await UserModel.find({});
 	res.send('register user');
 });
 
@@ -29,7 +43,7 @@ const logoutUser = (_req: Request, res: Response) => {
 // @route   GET /api/users/profile
 // @access  Private
 const getUserProfile = asyncHandler(async (_req, res) => {
-	await User.find({});
+	await UserModel.find({});
 	res.send('get user profile');
 });
 
@@ -37,7 +51,7 @@ const getUserProfile = asyncHandler(async (_req, res) => {
 // @route   PUT /api/users/profile
 // @access  Private
 const updateUserProfile = asyncHandler(async (_req, res) => {
-	await User.find({});
+	await UserModel.find({});
 	res.send('update user profile');
 });
 
@@ -45,7 +59,7 @@ const updateUserProfile = asyncHandler(async (_req, res) => {
 // @route   GET /api/users
 // @access  Private/Admin
 const getUsers = asyncHandler(async (_req, res) => {
-	await User.find({});
+	await UserModel.find({});
 	res.send('get users');
 });
 
@@ -53,7 +67,7 @@ const getUsers = asyncHandler(async (_req, res) => {
 // @route   DELETE /api/users/:id
 // @access  Private/Admin
 const deleteUser = asyncHandler(async (_req, res) => {
-	await User.find({});
+	await UserModel.find({});
 	res.send('delete user');
 });
 
@@ -61,7 +75,7 @@ const deleteUser = asyncHandler(async (_req, res) => {
 // @route   GET /api/users/:id
 // @access  Private/Admin
 const getUserById = asyncHandler(async (_req, res) => {
-	await User.find({});
+	await UserModel.find({});
 	res.send('get user by id');
 });
 
@@ -69,7 +83,7 @@ const getUserById = asyncHandler(async (_req, res) => {
 // @route   PUT /api/users/:id
 // @access  Private/Admin
 const updateUser = asyncHandler(async (_req, res) => {
-	await User.find({});
+	await UserModel.find({});
 	res.send('update user');
 });
 
