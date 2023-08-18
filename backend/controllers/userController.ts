@@ -1,8 +1,9 @@
 import asyncHandler from '../middleware/asyncHandler';
 import UserModel from '../models/userModel';
 import { Request, Response } from 'express';
-import { toCheckUser } from '../types/utils';
+import { toCheckUser, parseSecret } from '../types/utils';
 import { UserSchemaMethod } from '../types/User';
+import jwt from 'jsonwebtoken';
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -12,6 +13,19 @@ const authUser = asyncHandler(async (req: Request, res: Response) => {
 	const { email, password } = checkedUser;
 	const user: UserSchemaMethod | null = await UserModel.findOne({ email });
 	if (user && (await user.matchPassword(password))) {
+		const SECRET_KEY: string = parseSecret(process.env.JWT_SECRET);
+		const token = jwt.sign({ userId: user._id }, SECRET_KEY, {
+			expiresIn: '30d',
+		});
+
+		// Set JWT as an HTTP-Only cookie
+		res.cookie('jwt', token, {
+			httpOnly: true,
+			secure: process.env.NODE_ENV !== 'development', // Use secure cookies in production
+			sameSite: 'strict', // Prevent CSRF attacks
+			maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+		});
+
 		res.json({
 			_id: user._id,
 			name: user.name,
