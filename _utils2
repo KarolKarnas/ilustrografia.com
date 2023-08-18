@@ -1,0 +1,58 @@
+// export const findSubstring = (input: string): string | null => {
+// 	if (!input) {
+// 		return null; // Return null for undefined input
+// 	}
+// 	const substringsToCheck = [
+// 		'art-print',
+// 		'painting-on-canvas',
+// 		'poster',
+// 		'premium-print',
+// 	];
+// 	const regex = new RegExp(substringsToCheck.join('|'), 'i'); // 'i' flag for case-insensitive matching
+// 	const match = input.match(regex);
+// 	return match ? match[0] : null;
+// };
+
+// const isMongooseId = (id: unknown): id is mongoose.Types.ObjectId => {
+
+// 	return mongoose.isValidObjectId(id);
+// };
+
+// const parseId = (id: unknown): object => {
+// 	if (isString(id)){
+// 	if (!id || isMongooseId(id)) {
+// 		throw new Error('Incorrect or missing id');
+// 	}
+// 	return new mongoose.Types.ObjectId(id);}
+// 	throw new Error('Incorrect or missing id');
+// };
+
+// const parseIsAdmin = (isAdmin: unknown): boolean => {
+// 	if (!isAdmin || !isBoolean(isAdmin)) {
+// 		throw new Error('Incorrect or missing isAdmin');
+// 	}
+// 	return isAdmin;
+// };
+
+// export const toUserNoPassword = (object: unknown): UserNoPassword => {
+// 	if (!object || typeof object !== 'object') {
+// 		throw new Error('Incorrect or missing data');
+// 	}
+
+// 	if (
+// 		'_id' in object &&
+// 		'name' in object &&
+// 		'email' in object &&
+// 		'isAdmin' in object
+// 	) {
+// 		const checkedUser: UserNoPassword = {
+// 			_id: parseId(object._id),
+// 			email: parseEmail(object.email),
+// 			name: parsePassword(object.name),
+// 			isAdmin: parseIsAdmin(object.isAdmin),
+// 		};
+
+// 		return checkedUser;
+// 	}
+// 	throw new Error('Incorrect data: some fields are missing');
+// };

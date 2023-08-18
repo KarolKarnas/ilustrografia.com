@@ -1,23 +1,14 @@
 import { CheckUser } from './User';
 
-// export const findSubstring = (input: string): string | null => {
-// 	if (!input) {
-// 		return null; // Return null for undefined input
-// 	}
-// 	const substringsToCheck = [
-// 		'art-print',
-// 		'painting-on-canvas',
-// 		'poster',
-// 		'premium-print',
-// 	];
-// 	const regex = new RegExp(substringsToCheck.join('|'), 'i'); // 'i' flag for case-insensitive matching
-// 	const match = input.match(regex);
-// 	return match ? match[0] : null;
-// };
+
 
 const isString = (text: unknown): text is string => {
 	return typeof text === 'string' || text instanceof String;
 };
+
+// const isBoolean = (boolean: unknown): boolean is boolean => {
+// 	return typeof boolean === 'boolean' || boolean instanceof Boolean;
+// };
 
 const parseEmail = (email: unknown): string => {
 	if (!email || !isString(email)) {
@@ -25,6 +16,8 @@ const parseEmail = (email: unknown): string => {
 	}
 	return email;
 };
+
+
 
 const parsePassword = (password: unknown): string => {
 	if (!password || !isString(password)) {
@@ -40,6 +33,12 @@ export const parseSecret = (secret: unknown): string => {
 	return secret;
 };
 
+export const parseToken = (token: unknown): string => {
+	if (!token || !isString(token)) {
+		throw new Error('Not authorized, token failed');
+	}
+	return token;
+};
 
 
 
@@ -58,3 +57,5 @@ export const toCheckUser = (object: unknown): CheckUser => {
 	}
 	throw new Error('Incorrect data: some fields are missing');
 };
+
+

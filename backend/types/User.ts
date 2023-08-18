@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 export interface User {
 	name: string;
 	email: string;
@@ -10,8 +12,17 @@ export interface CheckUser {
 	password: string;
 }
 
+//userModel -> userController
 
 export interface UserSchemaMethod extends User {
-	_id: string,
+	_id: string;
 	matchPassword(enteredPassword: string): Promise<boolean>;
+}
+
+// authMiddleware
+export interface UserNoPassword {
+  _id: mongoose.Types.ObjectId;
+	name?: string;
+	email?: string;
+	isAdmin?: boolean;
 }
