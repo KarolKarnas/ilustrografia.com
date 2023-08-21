@@ -12,7 +12,8 @@ import {
 	CheckUser,
 	CheckUserWithName,
 	UserId,
-	UserUpdate
+	UserUpdate,
+	RequestUser
 } from '../types/User';
 import generateToken from '../utils/generateToken';
 
@@ -88,9 +89,9 @@ const logoutUser = (_req: Request, res: Response) => {
 // @desc    Get user profile
 // @route   GET /api/users/profile
 // @access  Private
-const getUserProfile = asyncHandler(async (req: Request, res: Response) => {
+const getUserProfile = asyncHandler(async (req, res) => {
 	//check req have user
-	const reqWithUser = checkHaveUser(req);
+	const reqWithUser: RequestUser = checkHaveUser(req);
 	const user: UserId | null = await UserModel.findById(reqWithUser.user._id);
 
 	if (user) {

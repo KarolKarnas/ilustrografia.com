@@ -7,9 +7,9 @@ const App = () => {
 	
 	// console.log(projects);
 	return (
-		<div className='flex flex-col items-center justify-between min-h-screen overflow-hidden'>
+		<div className='flex flex-col justify-between min-h-screen overflow-hidden'>
 			<Header />
-			<main className=' w-full'>
+			<main className=' min-w-screen min-h-screen flex flex-col items-center justify-start'>
 			<Outlet />
 			</main>
 			<Footer />

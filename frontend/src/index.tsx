@@ -14,6 +14,7 @@ import CartPage from './pages/CartPage/CartPage';
 
 import { Provider } from 'react-redux';
 import store from './store';
+import LoginPage from './pages/LoginPage/LoginPage';
 
 
 const router = createBrowserRouter(
@@ -21,7 +22,11 @@ const router = createBrowserRouter(
 		<Route path='/' element={<App />}>
 			<Route index={true} path='/' element={<HomePage />}></Route>
 			<Route path='/shop/:slug' element={<ProductPage />}></Route>
-			<Route path='cart' element={<CartPage />}></Route>
+			<Route path='/cart' element={<CartPage />}></Route>
+			<Route path='/login' element={<LoginPage />}></Route>
+
+
+
 			{/* <Route index={true} path='/illustrations' element={<IllustrationsPage />}></Route>
 			<Route
 				path='/shop/:project/:creature/:product'
