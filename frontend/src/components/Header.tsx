@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { VariationCart } from '../types/Product';
 import { RootState } from '../store';
 
@@ -10,6 +11,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import logo from './assets/logo-ilustrografia.png';
+import { useLogoutMutation } from '../slices/usersApiSlice';
+import { logout } from '../slices/authSlice';
 
 const Header = () => {
 	const [isActive, setIsActive] = useState(false);
@@ -17,14 +20,23 @@ const Header = () => {
 	const { cartItems } = useSelector((state: RootState) => state.cart);
 	const { userInfo } = useSelector((state: RootState) => state.auth);
 
-	console.log(userInfo);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const [logoutApiCall] = useLogoutMutation();
 
 	const handleClick = () => {
 		setIsActive(!isActive);
 	};
 
-	const handleLogout = () => {
-		console.log('logout');
+	const handleLogout = async () => {
+		try {
+			await logoutApiCall(null).unwrap();
+			dispatch(logout(null));
+			navigate('/login');
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	return (
