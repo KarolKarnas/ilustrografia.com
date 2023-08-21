@@ -1,4 +1,9 @@
-import { CheckUser, CheckUserWithName } from '../types/User';
+import {
+	CheckUser,
+	CheckUserWithName,
+	RequestUser,
+	UserUpdate,
+} from '../types/User';
 
 const isString = (text: unknown): text is string => {
 	return typeof text === 'string' || text instanceof String;
@@ -43,6 +48,15 @@ export const parseToken = (token: unknown): string => {
 	return token;
 };
 
+// const parseIsAdmin = (isAdmin: unknown): boolean => {
+// 	if (!isAdmin || !isBoolean(isAdmin)) {
+// 		throw new Error('Incorrect or missing isAdmin');
+// 	}
+// 	return isAdmin;
+// };
+
+// CHECKERS
+
 export const toCheckUser = (object: unknown): CheckUser => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data');
@@ -73,6 +87,45 @@ export const toCheckUserWithName = (object: unknown): CheckUserWithName => {
 		};
 
 		return checkedUserName;
+	}
+
+	throw new Error('Incorrect data: some fields are missing');
+};
+
+export const toCheckUserUpdate = (object: unknown): UserUpdate => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data');
+	}
+
+	const checkedUser: UserUpdate = {};
+
+	if ('name' in object) {
+		checkedUser.name = parseName(object.name);
+	}
+	if ('email' in object) {
+		checkedUser.email = parseEmail(object.email);
+	}
+	if ('password' in object) {
+		checkedUser.password = parsePassword(object.password);
+	}
+
+	if (Object.keys(checkedUser).length === 0) {
+		throw new Error('Incorrect data: no valid fields found');
+	}
+
+	return checkedUser;
+};
+
+//
+export const checkHaveUser = (object: unknown): RequestUser => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data');
+	}
+
+	const userObject = object as RequestUser;
+
+	if ('user' in userObject) {
+		return userObject;
 	}
 
 	throw new Error('Incorrect data: some fields are missing');

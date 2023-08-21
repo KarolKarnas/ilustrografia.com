@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+// import { Request } from 'express';
 
 export interface User {
 	name: string;
@@ -11,11 +12,24 @@ export interface UserId extends User {
 	_id: mongoose.Types.ObjectId;
 }
 
+export interface UserIdString extends User {
+	_id: string;
+}
+
+export interface RequestUser extends Request {
+	user: UserId;
+}
 
 export interface CheckUser {
 	email: string;
 	password: string;
 }
+
+export type UserUpdate = {
+  name?: string;
+  email?: string;
+  password?: string;
+};
 
 export interface CheckUserWithName extends CheckUser {
 	name: string;
@@ -35,3 +49,5 @@ export interface UserNoPassword {
 	email?: string;
 	isAdmin?: boolean;
 }
+
+

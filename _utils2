@@ -56,3 +56,46 @@
 // 	}
 // 	throw new Error('Incorrect data: some fields are missing');
 // };
+
+
+
+// _________________
+
+// const isMongooseId = (value: unknown): value is mongoose.Types.ObjectId => {
+// 	return value instanceof mongoose.Types.ObjectId;
+// };
+
+// const parseMongooseObject = (objectId: unknown): mongoose.Types.ObjectId => {
+// 	if (!isMongooseId(objectId)) {
+// 		throw new Error('Incorrect or missing ObjectId');
+// 	}
+// 	return objectId;
+// };
+
+
+
+
+// export const toCheckUserWithId = (object: unknown): UserId => {
+// 	if (!object || typeof object !== 'object') {
+// 		throw new Error('Incorrect or missing data');
+// 	}
+// console.log('first')
+// 	if (
+// 		'name' in object &&
+// 		'email' in object &&
+// 		'password' in object &&
+// 		'_id' in object &&
+// 		'isAdmin' in object
+// 	) {
+// 		const checkedUserName: UserId = {
+// 			_id: parseMongooseObject(object._id),
+// 			name: parseName(object.name),
+// 			email: parseEmail(object.email),
+// 			password: parsePassword(object.password),
+// 			isAdmin: parseIsAdmin(object.isAdmin),
+// 		};
+// 		return checkedUserName;
+// 	}
+
+// 	throw new Error('Incorrect data: some fields are missing');
+// };
