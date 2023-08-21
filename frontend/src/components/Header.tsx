@@ -15,10 +15,16 @@ const Header = () => {
 	const [isActive, setIsActive] = useState(false);
 
 	const { cartItems } = useSelector((state: RootState) => state.cart);
-	console.log(cartItems);
+	const { userInfo } = useSelector((state: RootState) => state.auth);
+
+	console.log(userInfo);
 
 	const handleClick = () => {
 		setIsActive(!isActive);
+	};
+
+	const handleLogout = () => {
+		console.log('logout');
 	};
 
 	return (
@@ -83,17 +89,29 @@ const Header = () => {
 				<div className='hidden lg:flex gap-x-3 w-20'>
 					<Link className=' relative' to={'/cart'}>
 						<GrCart />
-						<span className='absolute object-right-top -mr-6  bottom-2 left-2 '>
-							<div className='inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white'>
-								{cartItems.length > 0 && cartItems.reduce((acc: number, item: VariationCart) => acc + item.qty,0)}
-							</div>
-						</span>
-				
+						{cartItems.length > 0 && (
+							<span className='absolute object-right-top -mr-6  bottom-2 left-2 '>
+								<div className='inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white'>
+									{cartItems.reduce(
+										(acc: number, item: VariationCart) => acc + item.qty,
+										0
+									)}
+								</div>
+							</span>
+						)}
 					</Link>
-
-					<Link to={'/login'}>
-						<GrUser />
-					</Link>
+					{userInfo ? (
+						<>
+							<Link to={'/profile'}>Profile</Link>
+							<p className='hover:cursor-pointer' onClick={handleLogout}>
+								Logout
+							</p>
+						</>
+					) : (
+						<Link to={'/login'}>
+							<GrUser />
+						</Link>
+					)}
 					<GrFavorite />
 				</div>
 

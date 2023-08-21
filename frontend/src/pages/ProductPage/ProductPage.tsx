@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { SyntheticEvent, useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
@@ -14,7 +14,6 @@ import { useGetProductDetailsQuery } from '../../slices/productsApiSlice';
 import VariationDescription from './VariationDescription';
 import { Variation } from '../../types/Product';
 import { addToCart } from '../../slices/cartSlice';
-import { useSearchParams } from 'react-router-dom';
 import VariationCharacteristics from './VariationCharacteristics';
 
 const ProductPage = () => {
