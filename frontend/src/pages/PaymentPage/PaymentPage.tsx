@@ -16,7 +16,7 @@ const PaymentPage = () => {
 	const { shippingAddress } = cart;
 	const currentPaymentMethod = cart.paymentMethod;
 
-	//set cuurent payment
+	//set current payment
 	const [paymentMethod, setPaymentMethod] = useState(
 		currentPaymentMethod || 'PayPal'
 	);
