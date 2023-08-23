@@ -1,12 +1,51 @@
+import { Request, Response } from 'express';
 import asyncHandler from '../middleware/asyncHandler';
 import OrderModel from '../models/orderModel';
+import { Order } from '../types/Order';
+import { toCheckOrder } from '../utils/typeUtils';
 
 // @desc    Create new order
 // @route   POST /api/orders
 // @access  Private
-const addOrderItems = asyncHandler(async (_req, res) => {
+const addOrderItems = asyncHandler(async (req: Request, res: Response) => {
 	await OrderModel.find({});
-	res.send('add order items');
+
+	const checkedOrder: Order = toCheckOrder(req.body);
+	const {
+		orderItems,
+		shippingAddress,
+		paymentMethod,
+		itemsPrice,
+		taxPrice,
+		shippingPrice,
+		totalPrice,
+	} = checkedOrder;
+
+	if (orderItems && orderItems.length === 0) {
+		res.status(400);
+		throw new Error('No order items');
+	} else {
+		const order = new OrderModel({
+			orderItems: orderItems.map((x) => ({
+				...x,
+				product: x._id,
+				_id: undefined,
+			})),
+			user: checkedOrder.user._id,
+			shippingAddress,
+			paymentMethod,
+			itemsPrice,
+			taxPrice,
+			shippingPrice,
+			totalPrice,
+		});
+
+		const createdOrder = await order.save();
+
+		res.status(201).json(createdOrder);
+	}
+	res.send('get my orders test test');
+	// console.log(res);
 });
 
 // @desc    Get logged in user orders

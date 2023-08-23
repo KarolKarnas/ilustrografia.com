@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import { Response } from 'express';
-import { parseSecret } from './typeUtils';
+import { parseStringKey } from './typeUtils';
 
 const generateToken = (res: Response, userId: string) => {
-	const SECRET_KEY: string = parseSecret(process.env.JWT_SECRET);
+	const SECRET_KEY: string = parseStringKey(process.env.JWT_SECRET);
 	const token = jwt.sign({ userId }, SECRET_KEY, {
 		expiresIn: '30d',
 	});

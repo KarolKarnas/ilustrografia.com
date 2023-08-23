@@ -32,6 +32,14 @@ interface Variation {
 	tags: Tag[];
 }
 
+export interface VariationCart extends Variation {
+	_id: string;
+	qty: number;
+	image: string;
+	variationName: string;
+	pathnameWithQuery: string;
+}
+
 export interface MaterialOption {
 	optionName: string;
 	'art-print': TitleImages;
@@ -84,5 +92,9 @@ export interface Product {
 	variations: Variation[];
 	statistics?: string[]
 }
+
+// ----
+
+
 
 export type ProductNoId = Omit<Product, '_id'>;

@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { JwtPayload } from 'jsonwebtoken';
 import asyncHandler from './asyncHandler';
 import UserModel from '../models/userModel';
-import { parseToken, parseSecret } from '../utils/typeUtils';
+import { parseStringKey } from '../utils/typeUtils';
 import { Request, Response, NextFunction } from 'express';
 // import { toUserNoPassword } from '../types/utils';
 import { UserNoPassword } from '../types/User';
@@ -16,11 +16,11 @@ const protect = asyncHandler(async (req: CustomRequest, res, next) => {
 	// let token;
 
 	// Read JWT from the 'jwt' cookie
-	const token: string = parseToken(req.cookies.jwt);
+	const token: string = parseStringKey(req.cookies.jwt);
 
 	if (token) {
 		try {
-			const SECRET_KEY: string = parseSecret(process.env.JWT_SECRET);
+			const SECRET_KEY: string = parseStringKey(process.env.JWT_SECRET);
 			const decoded = jwt.verify(token, SECRET_KEY) as JwtPayload;
 
 			req.user = await UserModel.findById(decoded.userId).select('-password');
