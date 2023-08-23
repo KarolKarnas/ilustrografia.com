@@ -35,7 +35,7 @@ export interface VariationCart extends Variation {
 	qty: number;
 	image: string;
 	variationName: string;
-	pathnameWithQuery: string
+	pathnameWithQuery: string;
 }
 
 export interface MaterialOption {
@@ -83,7 +83,7 @@ export interface ShippingAddress {
 	address: string;
 	city: string;
 	postalCode: string;
-	country: string
+	country: string;
 }
 
 export interface CartState {
@@ -92,5 +92,6 @@ export interface CartState {
 	shippingPrice: string;
 	taxPrice: string;
 	totalPrice: string;
-	shippingAddress?: ShippingAddress
+	shippingAddress?: ShippingAddress;
+	paymentMethod?: string;
 }
