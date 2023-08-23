@@ -114,7 +114,7 @@ const Header = () => {
 					</Link>
 					{userInfo ? (
 						<>
-							<Link to={'/profile'}>Profile</Link>
+							<Link to={'/profile'}>{userInfo.name}</Link>
 							<p className='hover:cursor-pointer' onClick={handleLogout}>
 								Logout
 							</p>

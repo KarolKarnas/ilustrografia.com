@@ -3,7 +3,9 @@ import { VariationCart } from '../types/Product';
 import { updateCart } from '../utils/cartUtils';
 
 const cartData = localStorage.getItem('cart');
-const initialState = cartData ? JSON.parse(cartData) : { cartItems: [] };
+const initialState = cartData
+	? JSON.parse(cartData)
+	: { cartItems: [], shippingAddress: {} };
 
 const cartSlice = createSlice({
 	name: 'cart',
@@ -26,16 +28,22 @@ const cartSlice = createSlice({
 				state.cartItems = [...state.cartItems, item];
 			}
 
-return updateCart(state)
+			return updateCart(state);
 		},
 		removeFromCart: (state, action) => {
-			state.cartItems = state.cartItems.filter((item: VariationCart) => item._id !== action.payload)
+			state.cartItems = state.cartItems.filter(
+				(item: VariationCart) => item._id !== action.payload
+			);
 
-			return updateCart(state)
+			return updateCart(state);
 		},
+		addShippingAddress: (state, action) => {
+			state.shippingAddress = action.payload
+			return updateCart(state)
+		}
 	},
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, addShippingAddress } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -1,4 +1,3 @@
-import { method } from 'lodash';
 import { USERS_URL } from '../constants';
 import { apiSlice } from './apiSlice';
 

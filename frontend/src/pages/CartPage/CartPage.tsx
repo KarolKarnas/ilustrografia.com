@@ -9,7 +9,7 @@ import { VariationCart } from '../../types/Product';
 const CartPage = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const cart = useSelector((state: RootState): CartState => state.cart);
+	const cart: CartState = useSelector((state: RootState): CartState => state.cart);
 	const { cartItems } = cart;
 	console.log(cartItems);
 
