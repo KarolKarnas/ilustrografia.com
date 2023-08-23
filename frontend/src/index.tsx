@@ -8,6 +8,7 @@ import {
 	RouterProvider,
 } from 'react-router-dom';
 import App from './App';
+import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
 import HomePage from './pages/HomePage/HomePage';
 import ProductPage from './pages/ProductPage/ProductPage';
 import CartPage from './pages/CartPage/CartPage';
@@ -18,18 +19,17 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import ShippingPage from './pages/ShippingPage/ShippingPage';
 
-
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path='/' element={<App />}>
-			<Route index={true} path='/' element={<HomePage />}></Route>
-			<Route path='/shop/:slug' element={<ProductPage />}></Route>
-			<Route path='/cart' element={<CartPage />}></Route>
-			<Route path='/login' element={<LoginPage />}></Route>
-			<Route path='/register' element={<RegistrationPage />}></Route>
-			<Route path='/shipping' element={<ShippingPage />}></Route>
-
-
+			<Route index={true} path='/' element={<HomePage />} />
+			<Route path='/shop/:slug' element={<ProductPage />} />
+			<Route path='/cart' element={<CartPage />} />
+			<Route path='/login' element={<LoginPage />} />
+			<Route path='/register' element={<RegistrationPage />} />
+			<Route path='' element={<PrivateRoute />}>
+				<Route path='/shipping' element={<ShippingPage />} />
+			</Route>
 
 			{/* <Route index={true} path='/illustrations' element={<IllustrationsPage />}></Route>
 			<Route
