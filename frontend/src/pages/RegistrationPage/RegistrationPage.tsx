@@ -58,7 +58,7 @@ const RegistrationPage = () => {
 	};
 	return (
 		<div className='flex flex-col items-center w-full'>
-			<h1 className='text-3xl font-bold text-center mt-5'>Login</h1>
+			<h1 className='text-3xl font-bold text-center mt-5'>Register</h1>
 			<Form.Root className='w-4/12' onSubmit={(e) => handleSubmit(e)}>
 				<Form.Field className='flex flex-col' name='name'>
 					<div className='flex items-baseline justify-between'>
@@ -156,7 +156,7 @@ const RegistrationPage = () => {
 						className='bg-zinc-900 text-white hover:bg-red-200 hover:cursor-pointer w-full text-center py-2  mt-5'
 						disabled={isLoading}
 					>
-						Login
+						Register
 					</button>
 				</Form.Submit>
 				{isLoading && <div>Loading...</div>}

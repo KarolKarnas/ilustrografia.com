@@ -8,7 +8,7 @@ import {
 	RouterProvider,
 } from 'react-router-dom';
 import App from './App';
-import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
+import PrivateRoute from './components/PrivateRoute';
 import HomePage from './pages/HomePage/HomePage';
 import ProductPage from './pages/ProductPage/ProductPage';
 import CartPage from './pages/CartPage/CartPage';

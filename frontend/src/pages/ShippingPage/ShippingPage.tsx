@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../store';
 import { addShippingAddress } from '../../slices/cartSlice';
-import { CartState, ShippingAddress } from '../../types/Product';
+import { CartState } from '../../types/Product';
+import CheckoutSteps from '../../components/CheckoutSteps';
 
 const ShippingPage = () => {
 	const cart: CartState = useSelector(
@@ -33,6 +34,7 @@ const ShippingPage = () => {
 
 	return (
 		<div className='flex flex-col items-center w-full'>
+      <CheckoutSteps step1={true} step2={true} step3={false} step4={false} />
 			<h1 className='text-3xl font-bold text-center mt-5'>Shipping</h1>
 			<Form.Root className='w-4/12' onSubmit={(e) => handleSubmit(e)}>
 				<Form.Field className='flex flex-col' name='address'>
