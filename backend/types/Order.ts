@@ -18,39 +18,35 @@ export interface ShippingAddress {
 	country: string;
 }
 
-// interface PaymentResult {
-// 	id: string;
-// 	status: string;
-// 	update_time: string;
-// 	email_address: string;
-// }
+interface PaymentResult {
+	id: string;
+	status: string;
+	update_time: string;
+	email_address: string;
+}
 
 export interface Order {
 	user: mongoose.Types.ObjectId;
 	orderItems: VariationCart[];
 	shippingAddress: ShippingAddress;
 	paymentMethod: string;
-	// paymentResult: PaymentResult;
+	paymentResult?: PaymentResult;
 	itemsPrice: number;
 	taxPrice: number;
 	shippingPrice: number;
 	totalPrice: number;
 	isPaid: boolean;
   // add ? question marks
-	// paidAt?: Date;
+	paidAt?: Date;
 	isDelivered: boolean;
-	// deliveredAt?: Date;
+	deliveredAt?: Date;
 }
 export interface OrderData {
 	orderItems: VariationCart[];
 	shippingAddress: ShippingAddress;
 	paymentMethod: string;
-	// paymentResult: PaymentResult;
 	itemsPrice: number;
 	taxPrice: number;
 	shippingPrice: number;
 	totalPrice: number;
-  // add ? question marks
-	// paidAt?: Date;
-	// deliveredAt?: Date;
 }
