@@ -11,10 +11,10 @@ const orderSchema = new mongoose.Schema<Order>(
     orderItems: [
       {
         //add sku
-        name: { type: String, required: true },
+        variationName: { type: String, required: true },
         qty: { type: Number, required: true },
         image: { type: String, required: true },
-        sku: {type: String},
+        SKU: {type: String},
         price: { type: Number, required: true },
         product: {
           type: mongoose.Schema.Types.ObjectId,

@@ -1,8 +1,8 @@
 import { VariationCart, CartState } from "../types/Product";
 
 
-export const addDecimals = (num: number) => {
-  return (Math.round(num * 100) / 100).toFixed(2);
+export const addDecimals = (num: number):number => {
+  return Number((Math.round(num * 100) / 100).toFixed(2));
 };
 
 export const updateCart = (state: CartState) => {
@@ -19,11 +19,11 @@ export const updateCart = (state: CartState) => {
     Number((0.15 * Number(state.itemsPrice)).toFixed(2))
   );
 
-  state.totalPrice = (
+  state.totalPrice = Number((
     Number(state.itemsPrice) +
     Number(state.shippingPrice) +
     Number(state.taxPrice)
-  ).toFixed(2);
+  ).toFixed(2));
 
   localStorage.setItem('cart', JSON.stringify(state));
   return state

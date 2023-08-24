@@ -41,3 +41,16 @@ export interface Order {
 	isDelivered: boolean;
 	// deliveredAt?: Date;
 }
+export interface OrderData {
+	orderItems: VariationCart[];
+	shippingAddress: ShippingAddress;
+	paymentMethod: string;
+	// paymentResult: PaymentResult;
+	itemsPrice: number;
+	taxPrice: number;
+	shippingPrice: number;
+	totalPrice: number;
+  // add ? question marks
+	// paidAt?: Date;
+	// deliveredAt?: Date;
+}

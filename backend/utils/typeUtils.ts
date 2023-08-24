@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Order, ShippingAddress } from '../types/Order';
+import { Order, OrderData, ShippingAddress } from '../types/Order';
 import { VariationCart } from '../types/Product';
 import {
 	CheckUser,
@@ -23,16 +23,19 @@ const isArray = (arr: unknown): arr is Array<unknown> => {
 	return typeof arr === 'object' && arr instanceof Array && Array.isArray(arr);
 };
 
-export const parseStringKey = (stringKey: unknown): string => {
+export const parseStringKey = (name: string, stringKey: unknown): string => {
 	if (!stringKey || !isString(stringKey)) {
-		throw new Error(`Incorrect or missing ${stringKey}`);
+		throw new Error(`Incorrect or missing ${name}`);
 	}
 	return stringKey;
 };
 
-export const parseNumberKey = (numberKey: unknown): number => {
+export const parseNumberKey = (name: string, numberKey: unknown): number => {
+	if (numberKey === 0 ) {
+		return numberKey;
+	}
 	if (!numberKey || !isNumber(numberKey)) {
-		throw new Error(`Incorrect or missing ${numberKey}`);
+		throw new Error(`Incorrect or missing ${name}`);
 	}
 	return numberKey;
 };
@@ -62,7 +65,7 @@ const parseOrderItems = (orderItems: unknown): VariationCart[] => {
 	}
 
 	const typedVariations = orderItems as VariationCart[];
-//Here
+	//Here
 	// typedEntries.forEach((entry: Entry) => {
 	// 	if (!isValidEntryType(entry.type)) {
 	// 		throw new Error('Incorrect or missing entry type');
@@ -82,10 +85,10 @@ const parseShippingAddress = (object: unknown): ShippingAddress => {
 		'country' in object
 	) {
 		const newShippingAddress: ShippingAddress = {
-			address: parseStringKey(object.address),
-			city: parseStringKey(object.city),
-			postalCode: parseStringKey(object.postalCode),
-			country: parseStringKey(object.country),
+			address: parseStringKey('address', object.address),
+			city: parseStringKey('city',object.city),
+			postalCode: parseStringKey('postalCode', object.postalCode),
+			country: parseStringKey('country', object.country),
 		};
 		return newShippingAddress;
 	}
@@ -110,8 +113,8 @@ export const toCheckUser = (object: unknown): CheckUser => {
 
 	if ('email' in object && 'password' in object) {
 		const checkedUser: CheckUser = {
-			email: parseStringKey(object.email),
-			password: parseStringKey(object.password),
+			email: parseStringKey('email',object.email),
+			password: parseStringKey('password', object.password),
 		};
 
 		return checkedUser;
@@ -127,9 +130,9 @@ export const toCheckUserWithName = (object: unknown): CheckUserWithName => {
 
 	if ('name' in object && 'email' in object && 'password' in object) {
 		const checkedUserName: CheckUserWithName = {
-			name: parseStringKey(object.name),
-			email: parseStringKey(object.email),
-			password: parseStringKey(object.password),
+			name: parseStringKey('name',object.name),
+			email: parseStringKey('email',object.email),
+			password: parseStringKey('password',object.password),
 		};
 
 		return checkedUserName;
@@ -146,13 +149,13 @@ export const toCheckUserUpdate = (object: unknown): UserUpdate => {
 	const checkedUser: UserUpdate = {};
 
 	if ('name' in object) {
-		checkedUser.name = parseStringKey(object.name);
+		checkedUser.name = parseStringKey('name',object.name);
 	}
 	if ('email' in object) {
-		checkedUser.email = parseStringKey(object.email);
+		checkedUser.email = parseStringKey('email',object.email);
 	}
 	if ('password' in object) {
-		checkedUser.password = parseStringKey(object.password);
+		checkedUser.password = parseStringKey('password',object.password);
 	}
 
 	if (Object.keys(checkedUser).length === 0) {
@@ -184,6 +187,8 @@ export const toCheckOrder = (object: unknown): Order => {
 		throw new Error('Incorrect or missing data in order');
 	}
 
+	console.log(object);
+
 	if (
 		'user' in object &&
 		'orderItems' in object &&
@@ -197,18 +202,45 @@ export const toCheckOrder = (object: unknown): Order => {
 		'isDelivered' in object
 	) {
 		const checkedOrder: Order = {
-			user: parseMongooseObject(object.user),
+			user: parseMongooseObject(object.user), // string??
 			orderItems: parseOrderItems(object.orderItems),
 			shippingAddress: parseShippingAddress(object.shippingAddress),
-			paymentMethod: parseStringKey(object.paymentMethod),
-			itemsPrice: parseNumberKey(object.itemsPrice),
-			taxPrice: parseNumberKey(object.taxPrice),
-			shippingPrice: parseNumberKey(object.shippingPrice),
-			totalPrice: parseNumberKey(object.totalPrice),
+			paymentMethod: parseStringKey('payment method',object.paymentMethod),
+			itemsPrice: parseNumberKey('itemsPrice', object.itemsPrice),
+			taxPrice: parseNumberKey('taxPrice',object.taxPrice),
+			shippingPrice: parseNumberKey('shippingPrice', object.shippingPrice),
+			totalPrice: parseNumberKey('totalPrice', object.totalPrice),
 			isPaid: parseBooleanKey(object.isPaid),
 			isDelivered: parseBooleanKey(object.isDelivered),
 		};
 		return checkedOrder;
 	}
 	throw new Error('Incorrect data: some fields are missing in Order');
+};
+
+export const toCheckOrderData = (object: unknown): OrderData => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data in order');
+	}
+	if (
+		'orderItems' in object &&
+		'shippingAddress' in object &&
+		'paymentMethod' in object &&
+		'itemsPrice' in object &&
+		'taxPrice' in object &&
+		'shippingPrice' in object &&
+		'totalPrice' in object
+	) {
+		const checkedOrderData: OrderData = {
+			orderItems: parseOrderItems(object.orderItems),
+			shippingAddress: parseShippingAddress(object.shippingAddress),
+			paymentMethod: parseStringKey('payment method',object.paymentMethod),
+			itemsPrice: parseNumberKey('itemsPrice', object.itemsPrice),
+			taxPrice: parseNumberKey('taxPrice',object.taxPrice),
+			shippingPrice: parseNumberKey('shippingPrice', object.shippingPrice),
+			totalPrice: parseNumberKey('totalPrice',object.totalPrice),
+		};
+		return checkedOrderData;
+	}
+	throw new Error('Incorrect data: some fields are missing in Order Data');
 };

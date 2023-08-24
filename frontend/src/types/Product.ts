@@ -87,11 +87,11 @@ export interface ShippingAddress {
 }
 
 export interface CartState {
-	itemsPrice: string;
+	itemsPrice: number;
 	cartItems: VariationCart[];
-	shippingPrice: string;
-	taxPrice: string;
-	totalPrice: string;
+	shippingPrice: number;
+	taxPrice: number;
+	totalPrice: number;
 	shippingAddress?: ShippingAddress;
 	paymentMethod?: string;
 }

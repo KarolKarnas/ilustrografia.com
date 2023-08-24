@@ -1,16 +1,20 @@
-import { Request, Response } from 'express';
+// import { Request, Response } from 'express';
 import asyncHandler from '../middleware/asyncHandler';
 import OrderModel from '../models/orderModel';
-import { Order } from '../types/Order';
-import { toCheckOrder } from '../utils/typeUtils';
+import { OrderData } from '../types/Order';
+import { checkHaveUser, toCheckOrderData } from '../utils/typeUtils';
+import { RequestUser } from '../types/User';
 
 // @desc    Create new order
 // @route   POST /api/orders
 // @access  Private
-const addOrderItems = asyncHandler(async (req: Request, res: Response) => {
+const addOrderItems = asyncHandler(async (req, res) => {
 	await OrderModel.find({});
 
-	const checkedOrder: Order = toCheckOrder(req.body);
+	const reqWithUser: RequestUser = checkHaveUser(req);
+	// console.log(reqWithUser.user);
+
+	const checkedOrder: OrderData = toCheckOrderData(req.body);
 	const {
 		orderItems,
 		shippingAddress,
@@ -31,7 +35,8 @@ const addOrderItems = asyncHandler(async (req: Request, res: Response) => {
 				product: x._id,
 				_id: undefined,
 			})),
-			user: checkedOrder.user._id,
+			//here user
+			user: reqWithUser.user._id,
 			shippingAddress,
 			paymentMethod,
 			itemsPrice,
@@ -44,24 +49,32 @@ const addOrderItems = asyncHandler(async (req: Request, res: Response) => {
 
 		res.status(201).json(createdOrder);
 	}
-	res.send('get my orders test test');
-	// console.log(res);
 });
 
 // @desc    Get logged in user orders
 // @route   GET /api/orders/myorders
 // @access  Private
-const getMyOrders = asyncHandler(async (_req, res) => {
-	await OrderModel.find({});
-	res.send('get my orders');
+const getMyOrders = asyncHandler(async (req, res) => {
+	const reqWithUser: RequestUser = checkHaveUser(req);
+	const orders = await OrderModel.find({ user: reqWithUser.user._id });
+	res.json(orders);
 });
 
 // @desc    Get order by ID
 // @route   GET /api/orders/:id
 // @access  Private
-const getOrderById = asyncHandler(async (_req, res) => {
-	await OrderModel.find({});
-	res.send('get order by id');
+const getOrderById = asyncHandler(async (req, res) => {
+	const order = await OrderModel.findById(req.params.id).populate(
+		'user',
+		'name email'
+	);
+
+	if (order) {
+		res.json(order);
+	} else {
+		res.status(404);
+		throw new Error('Order not found');
+	}
 });
 
 // @desc    Update order to paid

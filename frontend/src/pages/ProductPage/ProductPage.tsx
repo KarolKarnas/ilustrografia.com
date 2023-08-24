@@ -169,14 +169,12 @@ const ProductPage = () => {
 		if (variation) {
 
 			const pathnameWithQuery = window.location.pathname + window.location.search;
-			console.log(pathnameWithQuery);
 			dispatch(
 				addToCart({
 					...variation,
 					qty,
 					image: product.options.material[variation.options.material].images[0],
-					variationName: `${product.name} ${product.options.material[variation.options.material].title} 
-					${product.options.size[variation.options.size].title}`,
+					variationName: `${product.name} ${product.options.material[variation.options.material].title} ${product.options.size[variation.options.size].title}`,
 					pathnameWithQuery,
 					
 				})
