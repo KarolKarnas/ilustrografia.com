@@ -115,7 +115,7 @@ const PlaceOrderPage = () => {
 											</Link>
 
 											<div className='basis-2/12'>
-												{variation.price}zł * {variation.qty} ={' '}
+											{variation.qty} x {variation.price}zł ={' '}
 												{variation.price * variation.qty}zł
 											</div>
 										</div>
