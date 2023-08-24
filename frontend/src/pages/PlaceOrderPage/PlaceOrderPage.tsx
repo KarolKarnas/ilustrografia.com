@@ -7,6 +7,9 @@ import { useCreateOrderMutation } from '../../slices/ordersApiSlice';
 import { clearCartItems } from '../../slices/cartSlice';
 import { RootState } from '../../store';
 import { CartState } from '../../types/Product';
+import { CustomError } from '../../types/User';
+import { getError } from '../../utils/utils';
+import { ApiError } from '../../types/ApiError';
 
 const PlaceOrderPage = () => {
 	const navigate = useNavigate();
@@ -15,7 +18,7 @@ const PlaceOrderPage = () => {
 		(state: RootState): CartState => state.cart
 	);
 
-	console.log(cart);
+	// console.log(cart);
 
 	const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 	const dispatch = useDispatch();
@@ -45,6 +48,12 @@ const PlaceOrderPage = () => {
 			navigate(`/order/${res._id}`);
 		} catch (err) {
 			console.log(err);
+			if (err instanceof Error) {
+				toast.error(err.message);
+			} else {
+				const customError = err as CustomError;
+				toast.error(customError.data.message);
+			}
 		}
 	};
 
@@ -119,23 +128,32 @@ const PlaceOrderPage = () => {
 				</div>
 				<div className='flex flex-col items-center justify-around w-1/4  bg-white shadow-2xl p-2'>
 					<div>
-					<h3 className='text-3xl font-bold text-center mt-5'>Order Summary</h3>
-					<div className='flex justify-between border-b w-full py-2'>
-						<div>Items</div>
-						<div>{cart.itemsPrice}zł</div>
-					</div>
-					<div className='flex justify-between border-b w-full py-2'>
-						<div>Shipping</div>
-						<div>{cart.shippingPrice}zł</div>
-					</div>
-					<div className='flex justify-between border-b w-full py-2'>
-						<div>Tax</div>
-						<div>{cart.taxPrice}zł</div>
-					</div>
-					<div className='flex justify-between border-b w-full py-2'>
-						<div className='text-lg'><strong>Total</strong></div>
-						<div className='text-lg'><strong>{cart.totalPrice}zł</strong></div>
-					</div>
+						<h3 className='text-3xl font-bold text-center mt-5'>
+							Order Summary
+						</h3>
+						<div className='flex justify-between border-b w-full py-2'>
+							<div>Items</div>
+							<div>{cart.itemsPrice}zł</div>
+						</div>
+						<div className='flex justify-between border-b w-full py-2'>
+							<div>Shipping</div>
+							<div>{cart.shippingPrice}zł</div>
+						</div>
+						<div className='flex justify-between border-b w-full py-2'>
+							<div>Tax</div>
+							<div>{cart.taxPrice}zł</div>
+						</div>
+						<div className='flex justify-between border-b w-full py-2'>
+							<div className='text-lg'>
+								<strong>Total</strong>
+							</div>
+							<div className='text-lg'>
+								<strong>{cart.totalPrice}zł</strong>
+							</div>
+						</div>
+						<div className='flex justify-between w-full py-2'>
+						{error && <div>{getError(error as ApiError)}</div>}
+						</div>
 					</div>
 					<button
 						type='button'
@@ -149,6 +167,7 @@ const PlaceOrderPage = () => {
 					>
 						Place Order
 					</button>
+					{isLoading && <div>Loading...</div>}
 				</div>
 			</div>
 		</div>

@@ -40,9 +40,13 @@ export const parseNumberKey = (name: string, numberKey: unknown): number => {
 	return numberKey;
 };
 
-export const parseBooleanKey = (booleanKey: unknown): boolean => {
+export const parseBooleanKey = (name: string, booleanKey: unknown): boolean => {
+	if (booleanKey === false) {
+		return booleanKey;
+	}
+
 	if (!booleanKey || !isBoolean(booleanKey)) {
-		throw new Error(`Incorrect or missing ${booleanKey}`);
+		throw new Error(`Incorrect or missing ${name}`);
 	}
 	return booleanKey;
 };
@@ -210,8 +214,8 @@ export const toCheckOrder = (object: unknown): Order => {
 			taxPrice: parseNumberKey('taxPrice',object.taxPrice),
 			shippingPrice: parseNumberKey('shippingPrice', object.shippingPrice),
 			totalPrice: parseNumberKey('totalPrice', object.totalPrice),
-			isPaid: parseBooleanKey(object.isPaid),
-			isDelivered: parseBooleanKey(object.isDelivered),
+			isDelivered: parseBooleanKey('isDelivered', object.isDelivered),
+			isPaid: parseBooleanKey('isPaid', object.isPaid),
 		};
 		return checkedOrder;
 	}

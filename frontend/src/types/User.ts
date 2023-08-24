@@ -5,6 +5,8 @@ export interface UserInfo {
 	isAdmin: boolean;
 }
 
+export type UserOrder = Omit<UserInfo, 'isAdmin'>
+
 
 export interface CustomError {
   status: number,
