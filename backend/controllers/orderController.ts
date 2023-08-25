@@ -1,8 +1,12 @@
 // import { Request, Response } from 'express';
 import asyncHandler from '../middleware/asyncHandler';
 import OrderModel from '../models/orderModel';
-import { OrderData } from '../types/Order';
-import { checkHaveUser, toCheckOrderData } from '../utils/typeUtils';
+import { OrderData, OrderUpdateReq } from '../types/Order';
+import {
+	checkHaveUser,
+	toCheckOrderData,
+	toReqOrderUpdate,
+} from '../utils/typeUtils';
 import { RequestUser } from '../types/User';
 
 // @desc    Create new order
@@ -78,15 +82,34 @@ const getOrderById = asyncHandler(async (req, res) => {
 });
 
 // @desc    Update order to paid
-// @route   GET /api/orders/:id/pay
+// @route   PUT /api/orders/:id/pay
 // @access  Private
-const updateOrderToPaid = asyncHandler(async (_req, res) => {
-	await OrderModel.find({});
-	res.send('update order to paid');
+const updateOrderToPaid = asyncHandler(async (req, res) => {
+	const order = await OrderModel.findById(req.params.id);
+	// const reqOrderUpdate = req.body as OrderUpdateReq
+	const reqOrderUpdate: OrderUpdateReq = toReqOrderUpdate(req.body);
+
+	if (order) {
+		order.isPaid = true;
+		order.paidAt = Date.now();
+		order.paymentResult = {
+			id: reqOrderUpdate.id,
+			status: reqOrderUpdate.status,
+			update_time: reqOrderUpdate.update_time,
+			email_address: reqOrderUpdate.payer.email_address,
+		};
+
+		const updatedOrder = await order.save();
+// console.log(updatedOrder)
+		res.json(updatedOrder);
+	} else {
+		res.status(404);
+		throw new Error('Order not found');
+	}
 });
 
 // @desc    Update order to delivered
-// @route   GET /api/orders/:id/deliver
+// @route   PUT /api/orders/:id/deliver
 // @access  Private/Admin
 const updateOrderToDelivered = asyncHandler(async (_req, res) => {
 	await OrderModel.find({});
@@ -109,3 +132,36 @@ export {
 	updateOrderToDelivered,
 	getOrders,
 };
+
+
+
+// const updateOrderToPaid = asyncHandler(async (req, res) => {
+// 	const order = await OrderModel.findById(req.params.id);
+
+// 	// const reqOrderUpdate = req.body as OrderUpdateReq
+// 	// const reqOrderUpdate: OrderUpdateReq = toReqOrderUpdate(req.body);
+// console.log(req.body)
+// 	if (order) {
+// 		order.isPaid = !(order.isPaid);
+// 		order.paidAt = Date.now();
+// 		order.paymentResult = {
+// 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// 			id: req.body.id,
+// 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// 			status: req.body.status,
+// 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// 			update_time: req.body.update_time,
+// 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// 			email_address: req.body.payer.email_address,
+// 		};
+
+
+// 		const updatedOrder = await order.save();
+
+// 		// console.log(updatedOrder);
+// 		res.json(updatedOrder);
+// 	} else {
+// 		res.status(404);
+// 		throw new Error('Order not found');
+// 	}
+// });

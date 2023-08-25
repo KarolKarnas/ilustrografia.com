@@ -36,8 +36,8 @@ export interface Order {
 	shippingPrice: number;
 	totalPrice: number;
 	isPaid: boolean;
-  // add ? question marks
-	paidAt?: Date;
+	// add ? question marks
+	paidAt?: number; // not Date
 	isDelivered: boolean;
 	deliveredAt?: Date;
 }
@@ -49,4 +49,11 @@ export interface OrderData {
 	taxPrice: number;
 	shippingPrice: number;
 	totalPrice: number;
+}
+
+export interface OrderUpdateReq {
+	id: string;
+	status: string;
+	update_time: string;
+	payer: { email_address: string };
 }

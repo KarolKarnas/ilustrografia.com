@@ -1,16 +1,88 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import {
+	PayPalButtons,
+	usePayPalScriptReducer,
+	SCRIPT_LOADING_STATE,
+} from '@paypal/react-paypal-js';
+import { toast } from 'react-toastify';
 import { Link, useParams } from 'react-router-dom';
-import { useGetOrderDetailsQuery } from '../../slices/ordersApiSlice';
+import {
+	useGetOrderDetailsQuery,
+	usePayOrderMutation,
+	useGetPaypalClientIdQuery,
+} from '../../slices/ordersApiSlice';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 import { toCheckOrder } from '../../utils/typeCheck';
 import Message from '../../components/Message';
+import { useEffect, useState } from 'react';
+import { Order } from '../../types/Order';
 
 const OrderDetailsPage = () => {
+	const [order, setOrder] = useState<Order>();
 	const { id: orderId } = useParams();
-	console.log(orderId);
 
-	const { data, error, isLoading } = useGetOrderDetailsQuery(orderId);
+	const { data, refetch, error, isLoading } = useGetOrderDetailsQuery(orderId);
+
+	const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
+
+	const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+
+	const {
+		data: paypal,
+		isLoading: loadingPayPal,
+		error: errorPayPal,
+	} = useGetPaypalClientIdQuery({});
+
+	const { userInfo } = useSelector((state: RootState) => state.auth);
+
+	useEffect(() => {
+		if (!isLoading) {
+			const order = toCheckOrder(data);
+			setOrder(order);
+		}
+	}, [isLoading]);
+
+	console.log(order);
+
+	useEffect(() => {
+		if (!errorPayPal && !loadingPayPal && paypal.clientId) {
+			const loadPaypalScript = async () => {
+				paypalDispatch({
+					type: 'resetOptions',
+					value: {
+						clientId: paypal.clientId,
+						currency: 'USD',
+					},
+				});
+				paypalDispatch({
+					type: 'setLoadingStatus',
+					value: SCRIPT_LOADING_STATE.PENDING,
+				});
+			};
+			if (order && !order.isPaid) {
+				if (!window.paypal) {
+					loadPaypalScript();
+				}
+			}
+		}
+	}, [errorPayPal, loadingPayPal, order, paypal, paypalDispatch]);
+
+	async function onApproveTest() {
+		await payOrder({
+			orderId,
+			details: {
+				id: 'helloId',
+				status: 'statusss',
+				update_time: 'time is good',
+				payer: { email_address: 'test@tes.com' },
+			},
+		});
+		refetch().then((value) => setOrder(toCheckOrder(value.data)));
+
+		toast.success('Order is paid');
+	}
 
 	if (isLoading) {
 		return <div>Loading...</div>;
@@ -19,9 +91,9 @@ const OrderDetailsPage = () => {
 	if (error) {
 		<div>{getError(error as ApiError)}</div>;
 	}
-
-	const order = toCheckOrder(data);
-
+	if (!order) {
+		return <div>No Order</div>;
+	}
 	return (
 		<div className='flex flex-col items-center w-full mt-4'>
 			<div className='flex w-8/12 gap-20'>
@@ -50,9 +122,9 @@ const OrderDetailsPage = () => {
 							{order.shippingAddress?.country}
 						</p>
 						<Message
-							variant={order.isPaid ? 'good' : 'bad'}
+							variant={order.isDelivered ? 'good' : 'bad'}
 							message={
-								order.isPaid
+								order.isDelivered
 									? 'Your order has been delivered'
 									: 'Have not been delivered yet'
 							}
@@ -132,6 +204,31 @@ const OrderDetailsPage = () => {
 								<strong>{order.totalPrice}zł</strong>
 							</div>
 						</div>
+						<div>
+							<button
+								className=' bg-slate-600 hover:bg-red-400'
+								onClick={onApproveTest}
+							>
+								Test Pay order
+							</button>
+						</div>
+						{!order.isPaid && (
+							<div>
+								{loadingPay && <div>Loading...</div>}
+								{isPending ? (
+									<div>Loading...</div>
+								) : (
+									<div>
+										{/* <button
+											className=' bg-slate-600 hover:bg-red-400'
+											onClick={onApproveTest}
+										>
+											Test Pay order
+										</button> */}
+									</div>
+								)}
+							</div>
+						)}
 						<div className='flex justify-between w-full py-2'>
 							{error && <div>{getError(error as ApiError)}</div>}
 						</div>
@@ -141,4 +238,5 @@ const OrderDetailsPage = () => {
 		</div>
 	);
 };
+
 export default OrderDetailsPage;

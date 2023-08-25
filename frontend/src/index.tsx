@@ -13,6 +13,7 @@ import HomePage from './pages/HomePage/HomePage';
 import ProductPage from './pages/ProductPage/ProductPage';
 import CartPage from './pages/CartPage/CartPage';
 
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { Provider } from 'react-redux';
 import store from './store';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -56,7 +57,14 @@ const root = ReactDOM.createRoot(
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<RouterProvider router={router} />
+			<PayPalScriptProvider
+				deferLoading={true}
+				options={{
+					clientId: 'test',
+				}}
+			>
+				<RouterProvider router={router} />
+			</PayPalScriptProvider>
 		</Provider>
 	</React.StrictMode>
 );

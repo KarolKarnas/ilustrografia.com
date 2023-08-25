@@ -1,0 +1,29 @@
+[0] req.body {
+[0]   id: '0B181303307783937',
+[0]   intent: 'CAPTURE',
+[0]   status: 'COMPLETED',
+[0]   purchase_units: [
+[0]     {
+[0]       reference_id: 'default',
+[0]       amount: [Object],
+[0]       payee: [Object],
+[0]       shipping: [Object],
+[0]       payments: [Object]
+[0]     }
+[0]   ],
+[0]   payer: {
+[0]     name: { given_name: 'John', surname: 'Doe' },
+[0]     email_address: 'sb-3umxf27178817@personal.example.com',
+[0]     payer_id: 'FYJNDD47AMQPA',
+[0]     address: { country_code: 'PL' }
+[0]   },
+[0]   create_time: '2023-08-25T08:42:37Z',
+[0]   update_time: '2023-08-25T08:42:52Z',
+[0]   links: [
+[0]     {
+[0]       href: 'https://api.sandbox.paypal.com/v2/checkout/orders/0B181303307783937',
+[0]       rel: 'self',
+[0]       method: 'GET'
+[0]     }
+[0]   ]
+[0] }

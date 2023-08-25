@@ -1,5 +1,10 @@
 import mongoose from 'mongoose';
-import { Order, OrderData, ShippingAddress } from '../types/Order';
+import {
+	Order,
+	OrderData,
+	ShippingAddress,
+	OrderUpdateReq
+} from '../types/Order';
 import { Options, Tag, VariationCart } from '../types/Product';
 import {
 	CheckUser,
@@ -368,4 +373,28 @@ export const toCheckOrderData = (object: unknown): OrderData => {
 		return checkedOrderData;
 	}
 	throw new Error('Incorrect data: some fields are missing in Order Data');
+};
+
+
+
+export const toReqOrderUpdate = (object: unknown): OrderUpdateReq => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data in order');
+	}
+
+	if (
+		'id' in object &&
+		'status' in object &&
+		'update_time' in object &&
+		'payer' in object
+	) {
+		const order = {
+			id: parseStringKey('id', object.id),
+			status: parseStringKey('status', object.status),
+			update_time: parseStringKey('update_time', object.status),
+			payer: { email_address: parseStringKey('email_address', object.status) },
+		};
+		return order;
+	}
+	throw new Error('Incorrect data: some fields are missing in OrderUpdateReq');
 };
