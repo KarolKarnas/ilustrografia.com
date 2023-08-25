@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import {
 	PayPalButtons,
+	PayPalButtonsComponentProps,
 	usePayPalScriptReducer,
 	SCRIPT_LOADING_STATE,
 } from '@paypal/react-paypal-js';
@@ -35,6 +36,8 @@ const OrderDetailsPage = () => {
 		error: errorPayPal,
 	} = useGetPaypalClientIdQuery({});
 
+// console.log(paypal);
+
 	const { userInfo } = useSelector((state: RootState) => state.auth);
 
 	useEffect(() => {
@@ -44,7 +47,7 @@ const OrderDetailsPage = () => {
 		}
 	}, [isLoading]);
 
-	console.log(order);
+	// console.log(order);
 
 	useEffect(() => {
 		if (!errorPayPal && !loadingPayPal && paypal.clientId) {
@@ -84,6 +87,8 @@ const OrderDetailsPage = () => {
 		toast.success('Order is paid');
 	}
 
+
+
 	if (isLoading) {
 		return <div>Loading...</div>;
 	}
@@ -94,8 +99,42 @@ const OrderDetailsPage = () => {
 	if (!order) {
 		return <div>No Order</div>;
 	}
+
+	const paypalButtonTransactionProps: PayPalButtonsComponentProps = {
+		style: { layout: 'vertical' },
+
+		createOrder(data, actions) {
+			return actions.order
+				.create({
+					purchase_units: [
+						{
+							amount: { value: order.totalPrice.toString() },
+						},
+					],
+				})
+				.then((orderID: string) => {
+					return orderID;
+				});
+		},
+		onApprove(data, actions) {
+			return actions.order!.capture().then(async function (details) {
+				try {
+					await payOrder({ orderId, details });
+					refetch().then((value) => setOrder(toCheckOrder(value.data)));
+					toast.success('Order is paid');
+				} catch (err) {
+					toast.error(getError(err as ApiError));
+				}
+			});
+		},
+		onError(err) {
+			toast.error(getError(err as ApiError));
+		},
+	};
 	return (
 		<div className='flex flex-col items-center w-full mt-4'>
+			
+
 			<div className='flex w-8/12 gap-20'>
 				{/* col 1 */}
 				<div className=' w-3/4'>
@@ -204,14 +243,6 @@ const OrderDetailsPage = () => {
 								<strong>{order.totalPrice}zł</strong>
 							</div>
 						</div>
-						<div>
-							<button
-								className=' bg-slate-600 hover:bg-red-400'
-								onClick={onApproveTest}
-							>
-								Test Pay order
-							</button>
-						</div>
 						{!order.isPaid && (
 							<div>
 								{loadingPay && <div>Loading...</div>}
@@ -225,6 +256,9 @@ const OrderDetailsPage = () => {
 										>
 											Test Pay order
 										</button> */}
+										<div>
+											<PayPalButtons {...paypalButtonTransactionProps }></PayPalButtons>
+										</div>
 									</div>
 								)}
 							</div>

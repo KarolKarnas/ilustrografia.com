@@ -317,7 +317,7 @@ export const toCheckOrder = (object: unknown): Order => {
 		throw new Error('Incorrect or missing data in order');
 	}
 
-	console.log(object);
+	// console.log(object);
 
 	if (
 		'user' in object &&

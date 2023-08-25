@@ -20,7 +20,7 @@ const Filter = () => {
 		const btnValue = e.currentTarget.value;
 		// console.log(btnValue)
 		setActive(btnValue);
-		console.log(active);
+		// console.log(active);
 		// const newFilterImages = images.filter((item) => item.category === btnValue);
 		// if (btnValue === "all") {
 		//   setFilterImages(images);

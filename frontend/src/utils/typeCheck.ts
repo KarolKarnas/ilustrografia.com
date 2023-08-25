@@ -115,7 +115,7 @@ export const toCheckOrder = (object: unknown): Order => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data in order');
 	}
-	console.log(object);
+	// console.log(object);
 	if (
 		'createdAt' in object &&
 		'isDelivered' in object &&
