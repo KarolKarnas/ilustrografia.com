@@ -10,7 +10,7 @@ interface Category {
 	slug: string;
 }
 
-interface Tag {
+export interface Tag {
 	name: string;
 	slug: string;
 }
@@ -20,12 +20,14 @@ interface TitleImages {
 	images: string[];
 }
 
+export interface Options {
+	material: string;
+	size: string;
+}
+
 interface Variation {
 	productSlug: string,
-	options: {
-		material: string;
-		size: string;
-	};
+	options: Options
 	SKU: string;
 	price: number;
 	countInStock: number;

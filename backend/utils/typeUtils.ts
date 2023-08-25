@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { Order, OrderData, ShippingAddress } from '../types/Order';
-import { VariationCart } from '../types/Product';
+import { Options, Tag, VariationCart } from '../types/Product';
 import {
 	CheckUser,
 	CheckUserWithName,
@@ -31,7 +31,7 @@ export const parseStringKey = (name: string, stringKey: unknown): string => {
 };
 
 export const parseNumberKey = (name: string, numberKey: unknown): number => {
-	if (numberKey === 0 ) {
+	if (numberKey === 0) {
 		return numberKey;
 	}
 	if (!numberKey || !isNumber(numberKey)) {
@@ -57,23 +57,144 @@ const isMongooseId = (value: unknown): value is mongoose.Types.ObjectId => {
 };
 
 const parseMongooseObject = (objectId: unknown): mongoose.Types.ObjectId => {
-	if (!isMongooseId(objectId)) {
+	if (!objectId || !isMongooseId(objectId)) {
 		throw new Error('Incorrect or missing ObjectId');
 	}
 	return objectId;
 };
+//begin
+export const isValidTag = (object: unknown): boolean => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data');
+	}
+
+	if ('name' in object && 'slug' in object) {
+		if (isString(object.name) && isString(object.slug)) {
+			return true;
+		}
+	}
+	throw new Error('Incorrect data: some fields are missing in Tag ');
+};
+
+export const parseTags = (object: unknown): Tag[] => {
+	if (!object || !isArray(object)) {
+		throw new Error('Incorrect or missing data');
+	}
+
+	const typedObject = object as Tag[];
+	typedObject.forEach((tag: Tag) => {
+		if (!isValidTag(tag)) {
+			throw new Error('Incorrect or missing tag');
+		}
+	});
+
+	return typedObject;
+};
+
+export const parseOptions = (object: unknown): Options => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data');
+	}
+	if ('material' in object && 'size' in object) {
+		const options: Options = {
+			material: parseStringKey('material', object.material),
+			size: parseStringKey('size', object.size),
+		};
+		return options;
+	}
+	throw new Error('Incorrect data: some fields are missing in Options ');
+};
+
+export const toVariationCart = (object: unknown): VariationCart => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data');
+	}
+
+	if (
+		'productSlug' in object &&
+		'options' in object &&
+		'SKU' in object &&
+		'price' in object &&
+		'countInStock' in object &&
+		'tags' in object &&
+		'_id' in object &&
+		'qty' in object &&
+		'image' in object &&
+		'variationName' in object &&
+		'pathnameWithQuery' in object
+	) {
+		const variationCart: VariationCart = {
+			productSlug: parseStringKey('productSlug', object.productSlug),
+			options: parseOptions(object.options),
+			SKU: parseStringKey('SKU', object.SKU),
+			price: parseNumberKey('price', object.price),
+			countInStock: parseNumberKey('countInStock', object.countInStock),
+			tags: parseTags(object.tags),
+			_id: parseStringKey('_id', object._id),
+			qty: parseNumberKey('qty', object.qty),
+			image: parseStringKey('image', object.image),
+			variationName: parseStringKey('variationName', object.variationName),
+			pathnameWithQuery: parseStringKey(
+				'pathnameWithQuery',
+				object.pathnameWithQuery
+			),
+		};
+
+		return variationCart;
+	}
+
+	throw new Error('Incorrect data: some fields are missing');
+};
+export const isValidVariationCart = (object: unknown): boolean => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data');
+	}
+
+	if (
+		'productSlug' in object &&
+		'options' in object &&
+		'SKU' in object &&
+		'price' in object &&
+		'countInStock' in object &&
+		'tags' in object &&
+		'_id' in object &&
+		'qty' in object &&
+		'image' in object &&
+		'variationName' in object &&
+		'pathnameWithQuery' in object
+	) {
+		if (
+			parseStringKey('productSlug', object.productSlug) &&
+			parseOptions(object.options) &&
+			parseStringKey('SKU', object.SKU) &&
+			parseNumberKey('price', object.price) &&
+			parseNumberKey('countInStock', object.countInStock) &&
+			parseTags(object.tags) &&
+			parseStringKey('_id', object._id) &&
+			parseNumberKey('qty', object.qty) &&
+			parseStringKey('image', object.image) &&
+			parseStringKey('variationName', object.variationName) &&
+			parseStringKey('pathnameWithQuery', object.pathnameWithQuery)
+		) {
+			return true;
+		}
+	}
+
+	throw new Error('Incorrect data: some fields are missing in VariationCart');
+};
+
+//end
 
 const parseOrderItems = (orderItems: unknown): VariationCart[] => {
 	if (!orderItems || !isArray(orderItems)) {
 		throw new Error('Incorrect or missing orderItems');
 	}
-
 	const typedVariations = orderItems as VariationCart[];
-	//Here
-	// typedEntries.forEach((entry: Entry) => {
-	// 	if (!isValidEntryType(entry.type)) {
-	// 		throw new Error('Incorrect or missing entry type');
-	// 	}
+	typedVariations.forEach((variation: VariationCart) => {
+		if (!isValidVariationCart(variation)) {
+			throw new Error('Incorrect or missing VariationCart');
+		}
+	});
 	return typedVariations;
 };
 
@@ -90,7 +211,7 @@ const parseShippingAddress = (object: unknown): ShippingAddress => {
 	) {
 		const newShippingAddress: ShippingAddress = {
 			address: parseStringKey('address', object.address),
-			city: parseStringKey('city',object.city),
+			city: parseStringKey('city', object.city),
 			postalCode: parseStringKey('postalCode', object.postalCode),
 			country: parseStringKey('country', object.country),
 		};
@@ -117,7 +238,7 @@ export const toCheckUser = (object: unknown): CheckUser => {
 
 	if ('email' in object && 'password' in object) {
 		const checkedUser: CheckUser = {
-			email: parseStringKey('email',object.email),
+			email: parseStringKey('email', object.email),
 			password: parseStringKey('password', object.password),
 		};
 
@@ -134,9 +255,9 @@ export const toCheckUserWithName = (object: unknown): CheckUserWithName => {
 
 	if ('name' in object && 'email' in object && 'password' in object) {
 		const checkedUserName: CheckUserWithName = {
-			name: parseStringKey('name',object.name),
-			email: parseStringKey('email',object.email),
-			password: parseStringKey('password',object.password),
+			name: parseStringKey('name', object.name),
+			email: parseStringKey('email', object.email),
+			password: parseStringKey('password', object.password),
 		};
 
 		return checkedUserName;
@@ -153,13 +274,13 @@ export const toCheckUserUpdate = (object: unknown): UserUpdate => {
 	const checkedUser: UserUpdate = {};
 
 	if ('name' in object) {
-		checkedUser.name = parseStringKey('name',object.name);
+		checkedUser.name = parseStringKey('name', object.name);
 	}
 	if ('email' in object) {
-		checkedUser.email = parseStringKey('email',object.email);
+		checkedUser.email = parseStringKey('email', object.email);
 	}
 	if ('password' in object) {
-		checkedUser.password = parseStringKey('password',object.password);
+		checkedUser.password = parseStringKey('password', object.password);
 	}
 
 	if (Object.keys(checkedUser).length === 0) {
@@ -209,9 +330,9 @@ export const toCheckOrder = (object: unknown): Order => {
 			user: parseMongooseObject(object.user), // string??
 			orderItems: parseOrderItems(object.orderItems),
 			shippingAddress: parseShippingAddress(object.shippingAddress),
-			paymentMethod: parseStringKey('payment method',object.paymentMethod),
+			paymentMethod: parseStringKey('payment method', object.paymentMethod),
 			itemsPrice: parseNumberKey('itemsPrice', object.itemsPrice),
-			taxPrice: parseNumberKey('taxPrice',object.taxPrice),
+			taxPrice: parseNumberKey('taxPrice', object.taxPrice),
 			shippingPrice: parseNumberKey('shippingPrice', object.shippingPrice),
 			totalPrice: parseNumberKey('totalPrice', object.totalPrice),
 			isDelivered: parseBooleanKey('isDelivered', object.isDelivered),
@@ -238,11 +359,11 @@ export const toCheckOrderData = (object: unknown): OrderData => {
 		const checkedOrderData: OrderData = {
 			orderItems: parseOrderItems(object.orderItems),
 			shippingAddress: parseShippingAddress(object.shippingAddress),
-			paymentMethod: parseStringKey('payment method',object.paymentMethod),
+			paymentMethod: parseStringKey('payment method', object.paymentMethod),
 			itemsPrice: parseNumberKey('itemsPrice', object.itemsPrice),
-			taxPrice: parseNumberKey('taxPrice',object.taxPrice),
+			taxPrice: parseNumberKey('taxPrice', object.taxPrice),
 			shippingPrice: parseNumberKey('shippingPrice', object.shippingPrice),
-			totalPrice: parseNumberKey('totalPrice',object.totalPrice),
+			totalPrice: parseNumberKey('totalPrice', object.totalPrice),
 		};
 		return checkedOrderData;
 	}
