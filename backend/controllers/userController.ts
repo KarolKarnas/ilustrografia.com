@@ -5,7 +5,7 @@ import {
 	toCheckUser,
 	toCheckUserWithName,
 	checkHaveUser,
-	toCheckUserUpdate
+	toCheckUserUpdate,
 } from '../utils/typeUtils';
 import {
 	UserSchemaMethod,
@@ -13,7 +13,7 @@ import {
 	CheckUserWithName,
 	UserId,
 	UserUpdate,
-	RequestUser
+	RequestUser,
 } from '../types/User';
 import generateToken from '../utils/generateToken';
 
@@ -111,35 +111,35 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @route   PUT /api/users/profile
 // @access  Private
 
-
 const updateUserProfile = asyncHandler(async (req: Request, res: Response) => {
 	const reqWithUser = checkHaveUser(req);
 	const user = await UserModel.findById(reqWithUser.user._id);
 	// console.log(user);
 	// console.log(req.body);
-  if (user) {
-
+	if (user) {
 		//HERE
-    const bodyData: UserUpdate = toCheckUserUpdate(req.body); // Type assertion
-    user.name = bodyData.name || user.name;
-    user.email = bodyData.email || user.email;
+		const bodyData: UserUpdate = toCheckUserUpdate(req.body); // Type assertion
+		user.name = bodyData.name || user.name;
+		user.email = bodyData.email || user.email;
 
-    if (bodyData.password) {
-      user.password = bodyData.password;
-    }
+		// console.log(bodyData);
 
-    const updatedUser = await user.save();
+		if (bodyData.password) {
+			user.password = bodyData.password;
+		}
 
-    res.json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
-    });
-  } else {
-    res.status(404);
-    throw new Error('User not found');
-  }
+		const updatedUser = await user.save();
+
+		res.json({
+			_id: updatedUser._id,
+			name: updatedUser.name,
+			email: updatedUser.email,
+			isAdmin: updatedUser.isAdmin,
+		});
+	} else {
+		res.status(404);
+		throw new Error('User not found');
+	}
 });
 
 // @desc    Get all users

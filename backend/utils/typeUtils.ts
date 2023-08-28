@@ -3,7 +3,7 @@ import {
 	Order,
 	OrderData,
 	ShippingAddress,
-	OrderUpdateReq
+	OrderUpdateReq,
 } from '../types/Order';
 import { Options, Tag, VariationCart } from '../types/Product';
 import {
@@ -29,6 +29,10 @@ const isArray = (arr: unknown): arr is Array<unknown> => {
 };
 
 export const parseStringKey = (name: string, stringKey: unknown): string => {
+	if (stringKey === '') {
+		return stringKey;
+	}
+
 	if (!stringKey || !isString(stringKey)) {
 		throw new Error(`Incorrect or missing ${name}`);
 	}
@@ -374,8 +378,6 @@ export const toCheckOrderData = (object: unknown): OrderData => {
 	}
 	throw new Error('Incorrect data: some fields are missing in Order Data');
 };
-
-
 
 export const toReqOrderUpdate = (object: unknown): OrderUpdateReq => {
 	if (!object || typeof object !== 'object') {

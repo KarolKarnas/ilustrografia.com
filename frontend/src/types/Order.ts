@@ -43,9 +43,14 @@ export interface Order {
 	_id: string;
 	// add ? question marks
 	// paymentResult?: PaymentResult;
-	// paidAt?: Date;
-	// deliveredAt?: Date;
+	paidAt?: string;
+	deliveredAt?: string;
 }
+
+export interface OrderUser extends Omit<Order, 'user'> {
+	user: string;
+}
+
 export interface OrderData {
 	orderItems: VariationCart[];
 	shippingAddress: ShippingAddress;

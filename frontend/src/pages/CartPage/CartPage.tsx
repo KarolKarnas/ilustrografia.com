@@ -9,7 +9,9 @@ import { VariationCart } from '../../types/Product';
 const CartPage = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const cart: CartState = useSelector((state: RootState): CartState => state.cart);
+	const cart: CartState = useSelector(
+		(state: RootState): CartState => state.cart
+	);
 	const { cartItems } = cart;
 	// console.log(cartItems);
 
@@ -38,6 +40,17 @@ const CartPage = () => {
 				</div>
 			) : (
 				<div className=' w-8/12'>
+					<div>
+						<div className='flex items-center justify-between mb-4 bg-slate-100 py-3'>
+							<div className='basis-1/12 font-bold '>Remove</div>
+							<div className='basis-1/12 w-10 text-center font-bold'>Image</div>
+							<div className='basis-6/12 text-center font-bold'>Link</div>
+							<div className='basis-2/12 font-bold'>Price</div>
+							<div className='basis-2/12 font-bold'>Qty</div>
+							<div className='basis-2/12 font-bold'>Total</div>
+						</div>
+						<hr className=' h-px mx-auto my-3'></hr>
+					</div>
 					{cartItems.map((variation) => (
 						<div key={variation._id}>
 							<div className='flex items-center justify-between mb-4'>

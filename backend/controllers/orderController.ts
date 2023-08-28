@@ -60,7 +60,10 @@ const addOrderItems = asyncHandler(async (req, res) => {
 // @access  Private
 const getMyOrders = asyncHandler(async (req, res) => {
 	const reqWithUser: RequestUser = checkHaveUser(req);
-	const orders = await OrderModel.find({ user: reqWithUser.user._id });
+	const orders = await OrderModel.find({ user: reqWithUser.user._id }).populate(
+		'user',
+		'name email'
+	);
 	res.json(orders);
 });
 

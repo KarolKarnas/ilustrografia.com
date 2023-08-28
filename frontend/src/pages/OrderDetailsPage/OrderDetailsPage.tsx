@@ -42,7 +42,7 @@ const OrderDetailsPage = () => {
 
 	useEffect(() => {
 		if (!isLoading) {
-			const order = toCheckOrder(data);
+			const order: Order = toCheckOrder(data);
 			setOrder(order);
 		}
 	}, [isLoading]);

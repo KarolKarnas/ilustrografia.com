@@ -9,10 +9,10 @@ const App = () => {
 	
 	// console.log(projects);
 	return (
-		<div className='flex flex-col justify-between min-h-screen overflow-hidden'>
+		<div className='flex flex-col justify-between overflow-hidden h-screen'>
 			<ToastContainer />
 			<Header />
-			<main className=' min-w-screen min-h-screen flex flex-col items-center justify-start'>
+			<main className=' min-w-screen h-5/6  flex flex-col items-center justify-center'>
 			<Outlet />
 			</main>
 			<Footer />

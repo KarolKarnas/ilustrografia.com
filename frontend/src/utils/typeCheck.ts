@@ -148,7 +148,33 @@ export const toCheckOrder = (object: unknown): Order => {
 			__v: parseNumberKey('__v', object.__v),
 			_id: parseStringKey('_id', object._id),
 		};
+
+		if ('paidAt' in object) {
+			checkedOrder.paidAt = parseStringKey('paidAt', object.paidAt);
+		}
+
+		if ('deliveredAt' in object) {
+			checkedOrder.deliveredAt = parseStringKey('deliveredAt', object.deliveredAt);
+		}
 		return checkedOrder;
 	}
 	throw new Error('Incorrect data: some fields are missing in Order');
+};
+
+export const toCheckOrders = (object: unknown): Order[] => {
+	if (!object || !isArray(object)) {
+		throw new Error('Incorrect or missing data in orders');
+	}
+
+	const newArr: Order[] = [];
+
+	object.forEach((order) => {
+		const checkedOrder = toCheckOrder(order);
+		if (!checkedOrder) {
+			throw new Error('Incorrect or missing order in orders');
+		}
+		newArr.push(checkedOrder);
+	});
+
+	return newArr;
 };
