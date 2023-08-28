@@ -307,7 +307,7 @@ export const checkHaveUser = (object: unknown): RequestUser => {
 		return userObject;
 	}
 
-	throw new Error('Incorrect data: some fields are missing');
+	throw new Error('Incorrect data: some fields are missing in Request User');
 };
 
 // ORDER

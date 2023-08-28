@@ -36,7 +36,7 @@ const OrderDetailsPage = () => {
 		error: errorPayPal,
 	} = useGetPaypalClientIdQuery({});
 
-// console.log(paypal);
+	// console.log(paypal);
 
 	const { userInfo } = useSelector((state: RootState) => state.auth);
 
@@ -56,7 +56,7 @@ const OrderDetailsPage = () => {
 					type: 'resetOptions',
 					value: {
 						clientId: paypal.clientId,
-						currency: 'USD',
+						currency: 'PLN',
 					},
 				});
 				paypalDispatch({
@@ -87,19 +87,6 @@ const OrderDetailsPage = () => {
 		toast.success('Order is paid');
 	}
 
-
-
-	if (isLoading) {
-		return <div>Loading...</div>;
-	}
-
-	if (error) {
-		<div>{getError(error as ApiError)}</div>;
-	}
-	if (!order) {
-		return <div>No Order</div>;
-	}
-
 	const paypalButtonTransactionProps: PayPalButtonsComponentProps = {
 		style: { layout: 'vertical' },
 
@@ -108,7 +95,7 @@ const OrderDetailsPage = () => {
 				.create({
 					purchase_units: [
 						{
-							amount: { value: order.totalPrice.toString() },
+							amount: { value: order!.totalPrice.toString() },
 						},
 					],
 				})
@@ -131,10 +118,20 @@ const OrderDetailsPage = () => {
 			toast.error(getError(err as ApiError));
 		},
 	};
+
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
+
+	if (error) {
+		<div>{getError(error as ApiError)}</div>;
+	}
+	if (!order) {
+		return <div>No Order</div>;
+	}
+
 	return (
 		<div className='flex flex-col items-center w-full mt-4'>
-			
-
 			<div className='flex w-8/12 gap-20'>
 				{/* col 1 */}
 				<div className=' w-3/4'>
@@ -257,7 +254,9 @@ const OrderDetailsPage = () => {
 											Test Pay order
 										</button> */}
 										<div>
-											<PayPalButtons {...paypalButtonTransactionProps }></PayPalButtons>
+											<PayPalButtons
+												{...paypalButtonTransactionProps}
+											></PayPalButtons>
 										</div>
 									</div>
 								)}

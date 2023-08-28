@@ -116,7 +116,7 @@ const updateUserProfile = asyncHandler(async (req: Request, res: Response) => {
 	const reqWithUser = checkHaveUser(req);
 	const user = await UserModel.findById(reqWithUser.user._id);
 	// console.log(user);
-	console.log(req.body);
+	// console.log(req.body);
   if (user) {
 
 		//HERE

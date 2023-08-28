@@ -22,6 +22,7 @@ import ShippingPage from './pages/ShippingPage/ShippingPage';
 import PaymentPage from './pages/PaymentPage/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage/PlaceOrderPage';
 import OrderDetailsPage from './pages/OrderDetailsPage/OrderDetailsPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -36,6 +37,7 @@ const router = createBrowserRouter(
 				<Route path='/payment' element={<PaymentPage />} />
 				<Route path='/place-order' element={<PlaceOrderPage />} />
 				<Route path='/order/:id' element={<OrderDetailsPage />} />
+				<Route path='/profile' element={<ProfilePage />} />
 			</Route>
 
 			{/* <Route index={true} path='/illustrations' element={<IllustrationsPage />}></Route>
