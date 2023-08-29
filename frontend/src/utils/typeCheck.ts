@@ -1,6 +1,6 @@
 import { Order } from '../types/Order';
 import { ShippingAddress, VariationCart } from '../types/Product';
-import { UserOrder } from '../types/User';
+import { UserOrder, UserInfoOptions } from '../types/User';
 
 export const isString = (text: unknown): text is string => {
 	return typeof text === 'string' || text instanceof String;
@@ -111,6 +111,34 @@ export const parseUserOrder = (object: unknown): UserOrder => {
 	throw new Error('Incorrect data: some fields are missing');
 };
 
+export const parseUserInfoOptions = (object: unknown): UserInfoOptions => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data');
+	}
+	const userOrderOptions: UserInfoOptions = {}
+	if ('_id' in object) {
+		userOrderOptions._id = parseStringKey('email', object._id)
+
+	}
+	if ('name' in object) {
+		 
+		userOrderOptions.name = parseStringKey('name', object.name)
+		};
+	if ('email' in object) {
+		 
+			userOrderOptions.email = parseStringKey('email', object.email)
+		};
+	if ('isAdmin' in object) {
+		 
+			userOrderOptions.isAdmin = parseBooleanKey('isAdmin', object.isAdmin)
+		};
+
+		if (Object.keys(userOrderOptions).length === 0) {
+			throw new Error('Incorrect data: no valid fields found');
+		}
+		return userOrderOptions;
+};
+
 export const toCheckOrder = (object: unknown): Order => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data in order');
@@ -144,7 +172,7 @@ export const toCheckOrder = (object: unknown): Order => {
 			taxPrice: parseNumberKey('taxPrice', object.taxPrice),
 			totalPrice: parseNumberKey('totalPrice', object.totalPrice),
 			updatedAt: parseStringKey('updatedAt', object.updatedAt),
-			user: parseUserOrder(object.user), // string??
+			user: parseUserInfoOptions(object.user), // string??
 			__v: parseNumberKey('__v', object.__v),
 			_id: parseStringKey('_id', object._id),
 		};

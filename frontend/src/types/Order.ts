@@ -1,6 +1,6 @@
 // import mongoose from 'mongoose';
 import { ShippingAddress, VariationCart } from './Product';
-import { UserOrder } from './User';
+import { UserOrder, UserInfoOptions } from './User';
 
 //add sku
 // interface OrderItems {
@@ -38,7 +38,7 @@ export interface Order {
 	taxPrice: number;
 	totalPrice: number;
 	updatedAt: string;
-	user: UserOrder;
+	user: UserInfoOptions;
 	__v: number;
 	_id: string;
 	// add ? question marks

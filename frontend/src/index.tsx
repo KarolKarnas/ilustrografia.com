@@ -9,6 +9,8 @@ import {
 } from 'react-router-dom';
 import App from './App';
 import PrivateRoute from './components/PrivateRoute';
+import AdminRoute from './components/AdminRoute';
+
 import HomePage from './pages/HomePage/HomePage';
 import ProductPage from './pages/ProductPage/ProductPage';
 import CartPage from './pages/CartPage/CartPage';
@@ -24,6 +26,10 @@ import PlaceOrderPage from './pages/PlaceOrderPage/PlaceOrderPage';
 import OrderDetailsPage from './pages/OrderDetailsPage/OrderDetailsPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 
+import OrderListPage from './pages/Admin/OrderListPage';
+
+
+
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path='/' element={<App />}>
@@ -38,6 +44,9 @@ const router = createBrowserRouter(
 				<Route path='/place-order' element={<PlaceOrderPage />} />
 				<Route path='/order/:id' element={<OrderDetailsPage />} />
 				<Route path='/profile' element={<ProfilePage />} />
+			</Route>
+			<Route path='' element={<AdminRoute />}>
+				<Route path='/admin/order-list' element={<OrderListPage />} />
 			</Route>
 
 			{/* <Route index={true} path='/illustrations' element={<IllustrationsPage />}></Route>

@@ -4,6 +4,7 @@ import { VariationCart } from '../types/Product';
 import { RootState } from '../store';
 
 import { GrCart, GrUser, GrFavorite } from 'react-icons/gr';
+import {FaUserAltSlash} from 'react-icons/fa'
 
 import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa';
 
@@ -13,6 +14,7 @@ import { Link } from 'react-router-dom';
 import logo from './assets/logo-ilustrografia.png';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
+import Dropdown from './Dropdown';
 
 const Header = () => {
 	const [isActive, setIsActive] = useState(false);
@@ -98,7 +100,7 @@ const Header = () => {
 						Contact
 					</Link>
 				</div>
-				<div className='hidden lg:flex gap-x-3 w-20'>
+				<div className='hidden lg:flex gap-x-3 w-30'>
 					<Link className=' relative' to={'/cart'}>
 						<GrCart />
 						{cartItems.length > 0 && (
@@ -112,18 +114,15 @@ const Header = () => {
 							</span>
 						)}
 					</Link>
+					<div className='w-10 px-3'>
 					{userInfo ? (
-						<>
-							<Link to={'/profile'}>{userInfo.name}</Link>
-							<p className='hover:cursor-pointer' onClick={handleLogout}>
-								Logout
-							</p>
-						</>
+						<Dropdown userInfo={userInfo} handleLogout={handleLogout} />
 					) : (
 						<Link to={'/login'}>
-							<GrUser />
+							<FaUserAltSlash />
 						</Link>
 					)}
+					</div>
 					<GrFavorite />
 				</div>
 
@@ -212,3 +211,10 @@ const Header = () => {
 	);
 };
 export default Header;
+
+
+
+				{/* <Link to={'/profile'}>{userInfo.name}</Link>
+							<p className='hover:cursor-pointer' onClick={handleLogout}>
+								Logout
+							</p> */}

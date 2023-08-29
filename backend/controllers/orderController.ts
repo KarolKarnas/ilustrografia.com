@@ -1,7 +1,7 @@
 // import { Request, Response } from 'express';
 import asyncHandler from '../middleware/asyncHandler';
 import OrderModel from '../models/orderModel';
-import { OrderData, OrderUpdateReq } from '../types/Order';
+import { Order, OrderData, OrderUpdateReq } from '../types/Order';
 import {
 	checkHaveUser,
 	toCheckOrderData,
@@ -103,7 +103,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 		};
 
 		const updatedOrder = await order.save();
-// console.log(updatedOrder)
+		// console.log(updatedOrder)
 		res.json(updatedOrder);
 	} else {
 		res.status(404);
@@ -123,8 +123,8 @@ const updateOrderToDelivered = asyncHandler(async (_req, res) => {
 // @route   GET /api/orders/
 // @access  Private/Admin
 const getOrders = asyncHandler(async (_req, res) => {
-	await OrderModel.find({});
-	res.send('admin get all orders');
+	const orders: Order[] = await OrderModel.find({}).populate('user', 'id name');
+	res.send(orders);
 });
 
 export {
@@ -135,8 +135,6 @@ export {
 	updateOrderToDelivered,
 	getOrders,
 };
-
-
 
 // const updateOrderToPaid = asyncHandler(async (req, res) => {
 // 	const order = await OrderModel.findById(req.params.id);
@@ -157,7 +155,6 @@ export {
 // 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 // 			email_address: req.body.payer.email_address,
 // 		};
-
 
 // 		const updatedOrder = await order.save();
 
