@@ -15,6 +15,7 @@ import VariationDescription from './VariationDescription';
 import { Variation } from '../../types/Product';
 import { addToCart } from '../../slices/cartSlice';
 import VariationCharacteristics from './VariationCharacteristics';
+import { toast } from 'react-toastify';
 
 const ProductPage = () => {
 	const { slug } = useParams();
@@ -137,7 +138,6 @@ const ProductPage = () => {
 				setVariation(currentVariation);
 			}
 		}
-
 	};
 
 	const handleChangeMaterial = (e: SyntheticEvent) => {
@@ -167,23 +167,24 @@ const ProductPage = () => {
 
 	const addToCartHandler = () => {
 		if (variation) {
-
-			const pathnameWithQuery = window.location.pathname + window.location.search;
+			const pathnameWithQuery =
+				window.location.pathname + window.location.search;
+			const variationName = `${product.name} ${
+				product.options.material[variation.options.material].title
+			} ${product.options.size[variation.options.size].title}`;
 			dispatch(
 				addToCart({
 					...variation,
 					qty,
 					image: product.options.material[variation.options.material].images[0],
-					variationName: `${product.name} ${product.options.material[variation.options.material].title} ${product.options.size[variation.options.size].title}`,
+					variationName,
 					pathnameWithQuery,
-					
 				})
 			);
-			navigate('/cart');
+			toast.success(`Added to cart ${variationName}`);
+			// navigate('/cart');
 		}
 	};
-
-
 
 	if (variation) {
 		return (
@@ -222,48 +223,49 @@ const ProductPage = () => {
 						</p>
 						<h1 className=' text-3xl mb-2'>
 							{product.name}{' '}
-							<span className='text-xl'>{product.options.material[variation.options.material].title}{' '}
-							{product.options.size[variation.options.size].title}</span>
+							<span className='text-xl'>
+								{product.options.material[variation.options.material].title}{' '}
+								{product.options.size[variation.options.size].title}
+							</span>
 						</h1>
 						{/* SIZES */}
 						<div className='flex gap-1'>
-							{	sizesByMaterialTitle[variation.options.material].map(
-									(option) => (
-										<button
-											onClick={handleChangeSize}
-											key={option}
-											className={`${
-												option ===
-												product.options.size[variation.options.size].title
-													? 'bg-red-200 text-white border-red-400 '
-													: ''
-											}font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white`}
-										>
-											{option}
-										</button>
-									)
-								)}
+							{sizesByMaterialTitle[variation.options.material].map(
+								(option) => (
+									<button
+										onClick={handleChangeSize}
+										key={option}
+										className={`${
+											option ===
+											product.options.size[variation.options.size].title
+												? 'bg-red-200 text-white border-red-400 '
+												: ''
+										}font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white`}
+									>
+										{option}
+									</button>
+								)
+							)}
 						</div>
 						<hr className=' h-px mx-auto my-3'></hr>
 						{/* Materials */}
 						<div className='flex gap-1'>
 							{materialTitle.map((option) => {
-									return (
-										<button
-											onClick={handleChangeMaterial}
-											key={option}
-											className={`${
-												option ===
-												product.options.material[variation.options.material]
-													.title
-													? 'bg-red-200 text-white border-red-400 '
-													: ''
-											}font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white`}
-										>
-											{option}
-										</button>
-									);
-								})}
+								return (
+									<button
+										onClick={handleChangeMaterial}
+										key={option}
+										className={`${
+											option ===
+											product.options.material[variation.options.material].title
+												? 'bg-red-200 text-white border-red-400 '
+												: ''
+										}font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white`}
+									>
+										{option}
+									</button>
+								);
+							})}
 						</div>
 						<div className='flex justify-evenly'>
 							<div>SKU {variation?.SKU}</div>
@@ -274,19 +276,17 @@ const ProductPage = () => {
 						{/* select quantity */}
 						<div className='flex justify-around'>
 							<div>
-								{variation.countInStock > 0
-									? 'In Stock'
-									: 'Out Of Stock'}
+								{variation.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
 							</div>
 							<select
 								className=' px-5'
 								onChange={(e) => setQty(Number(e.target.value))}
 							>
 								{Array.from({ length: variation.countInStock }, (_, index) => (
-										<option key={index + 1} value={index + 1}>
-											{index + 1}
-										</option>
-									))}
+									<option key={index + 1} value={index + 1}>
+										{index + 1}
+									</option>
+								))}
 							</select>
 						</div>
 						<button
@@ -311,26 +311,26 @@ const ProductPage = () => {
 						) : null}
 						<hr className=' h-px mx-auto my-3'></hr>
 
-						{(
+						{
 							<div className='leading-tight font-light text-zinc-500 text-sm'>
 								<VariationDescription
 									variationMaterial={variation.options.material}
 								/>{' '}
 								<hr className=' h-px mx-auto my-3'></hr>
 							</div>
-						)}
+						}
 
-						{(
+						{
 							<VariationCharacteristics
 								variationMaterial={variation.options.material}
 							/>
-						)}
+						}
 					</div>
 				</div>
 			</>
 		);
 	} else {
-		return <div>No variation</div>
+		return <div>No variation</div>;
 	}
 };
 export default ProductPage;

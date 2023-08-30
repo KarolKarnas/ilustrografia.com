@@ -12,6 +12,7 @@ import {
 	useGetOrderDetailsQuery,
 	usePayOrderMutation,
 	useGetPaypalClientIdQuery,
+	useDeliverOrderMutation,
 } from '../../slices/ordersApiSlice';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
@@ -27,6 +28,7 @@ const OrderDetailsPage = () => {
 	const { data, refetch, error, isLoading } = useGetOrderDetailsQuery(orderId);
 
 	const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
+	const [deliverOrder, { isLoading: loadingDeliver }] = useDeliverOrderMutation();
 
 	const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
@@ -72,7 +74,7 @@ const OrderDetailsPage = () => {
 		}
 	}, [errorPayPal, loadingPayPal, order, paypal, paypalDispatch]);
 
-	async function onApproveTest() {
+	const onApproveTest = async () => {
 		await payOrder({
 			orderId,
 			details: {
@@ -85,7 +87,17 @@ const OrderDetailsPage = () => {
 		refetch().then((value) => setOrder(toCheckOrder(value.data)));
 
 		toast.success('Order is paid');
-	}
+	};
+
+	const handleDelivered = async () => {
+		try {
+			await deliverOrder(order?._id);
+			refetch().then((value) => setOrder(toCheckOrder(value.data)));
+			toast.success('Order is Delivered!');
+		} catch (err) {
+			toast.error(getError(err as ApiError));
+		}
+	};
 
 	const paypalButtonTransactionProps: PayPalButtonsComponentProps = {
 		style: { layout: 'vertical' },
@@ -262,6 +274,15 @@ const OrderDetailsPage = () => {
 								)}
 							</div>
 						)}
+						{loadingDeliver && <div>Loading...</div>}
+						{order.isPaid && !order.isDelivered ? (
+							<button
+								className='p-2 mt-2 text-white bg-slate-600 hover:bg-red-400'
+								onClick={handleDelivered}
+							>
+								Mark as Delivered
+							</button>
+						) : null}
 						<div className='flex justify-between w-full py-2'>
 							{error && <div>{getError(error as ApiError)}</div>}
 						</div>

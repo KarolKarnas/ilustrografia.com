@@ -39,7 +39,7 @@ export interface Order {
 	// add ? question marks
 	paidAt?: number; // not Date
 	isDelivered: boolean;
-	deliveredAt?: Date;
+	deliveredAt?: number;
 }
 export interface OrderData {
 	orderItems: VariationCart[];

@@ -67,7 +67,7 @@ const ProfilePage = () => {
 				}
 			}
 		}
-		console.log('hello');
+		// console.log('hello');
 
 		// updateProfile({_id: userInfo._id, name, email, password })
 	};
