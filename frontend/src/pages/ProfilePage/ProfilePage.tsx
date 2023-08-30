@@ -28,7 +28,7 @@ const ProfilePage = () => {
 		useUpdateProfileMutation();
 
 	const { data, isLoading, isError } = useGetMyOrdersQuery({});
-
+console.log(data)
 	console.log(userInfo);
 
 	useEffect(() => {

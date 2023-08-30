@@ -1,15 +1,15 @@
-import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Product } from "../../types/Product";
 import { useGetProductsQuery } from "../../slices/productsApiSlice";
 import { Link } from "react-router-dom";
-import { FaTimes } from "react-icons/fa";
-import { toCheckProduct, toCheckProducts } from "../../utils/typeCheck";
+
+import { toCheckProducts } from "../../utils/typeCheck";
 
 
 const ProductListPage = () => {
   const [products, setProducts] = useState<Product[]>();
 
-   const {data, isLoading, isError} = useGetProductsQuery({})
+   const {data, isLoading} = useGetProductsQuery({})
 
    useEffect(() => {
 		if (!isLoading) {
@@ -69,7 +69,7 @@ const ProductListPage = () => {
               {}
             </div>
             <Link
-              to={`/order/`}
+              to={`/shop/${product.slug}`}
               className='basis-2/12 underline hover:text-red-300'
             >
               Details

@@ -128,44 +128,81 @@ const parseOrderItems = (orderItems: unknown): VariationCart[] => {
 	return typedVariations;
 };
 
-
 export const isValidVariationCart = (object: unknown): boolean => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data');
 	}
 
-	if (
-		'productSlug' in object &&
-		'options' in object &&
-		'SKU' in object &&
-		'price' in object &&
-		'countInStock' in object &&
-		'tags' in object &&
-		'_id' in object &&
-		'qty' in object &&
-		'image' in object &&
-		'variationName' in object &&
-		'pathnameWithQuery' in object
-	) {
+	const variationObject = object as VariationCart; // Type assertion
+
+	const requiredProperties = [
+		'SKU',
+		'price',
+		'_id',
+		'qty',
+		'image',
+	];
+
+	const missingProperties = requiredProperties.filter(
+		(prop) => !(prop in variationObject)
+	);
+	if (missingProperties.length === 0) {
 		if (
-			parseStringKey('productSlug', object.productSlug) &&
-			parseOptions(object.options) &&
-			parseStringKey('SKU', object.SKU) &&
-			parseNumberKey('price', object.price) &&
-			parseNumberKey('countInStock', object.countInStock) &&
-			parseTags(object.tags) &&
-			parseStringKey('_id', object._id) &&
-			parseNumberKey('qty', object.qty) &&
-			parseStringKey('image', object.image) &&
-			parseStringKey('variationName', object.variationName) &&
-			parseStringKey('pathnameWithQuery', object.pathnameWithQuery)
+			parseStringKey('SKU', variationObject.SKU) &&
+			parseNumberKey('price', variationObject.price) &&
+			parseStringKey('_id', variationObject._id) &&
+			parseNumberKey('qty', variationObject.qty) &&
+			parseStringKey('image', variationObject.image) &&
+			parseStringKey('variationName', variationObject.variationName)
 		) {
 			return true;
 		}
+		return true;
+	} else {
+		throw new Error(
+			`Incorrect data: the following fields are missing in Variation: ${missingProperties.join(
+				', '
+			)}`
+		);
 	}
-
-	throw new Error('Incorrect data: some fields are missing in VariationCart');
 };
+// export const isValidVariationCart = (object: unknown): boolean => {
+// 	if (!object || typeof object !== 'object') {
+// 		throw new Error('Incorrect or missing data');
+// 	}
+
+// 	if (
+// 		'productSlug' in object &&
+// 		'options' in object &&
+// 		'SKU' in object &&
+// 		'price' in object &&
+// 		'countInStock' in object &&
+// 		'tags' in object &&
+// 		'_id' in object &&
+// 		'qty' in object &&
+// 		'image' in object &&
+// 		'variationName' in object &&
+// 		'pathnameWithQuery' in object
+// 	) {
+// 		if (
+// 			parseStringKey('productSlug', object.productSlug) &&
+// 			parseOptions(object.options) &&
+// 			parseStringKey('SKU', object.SKU) &&
+// 			parseNumberKey('price', object.price) &&
+// 			parseNumberKey('countInStock', object.countInStock) &&
+// 			parseTags(object.tags) &&
+// 			parseStringKey('_id', object._id) &&
+// 			parseNumberKey('qty', object.qty) &&
+// 			parseStringKey('image', object.image) &&
+// 			parseStringKey('variationName', object.variationName) &&
+// 			parseStringKey('pathnameWithQuery', object.pathnameWithQuery)
+// 		) {
+// 			return true;
+// 		}
+// 	}
+
+// 	throw new Error('Incorrect data: some fields are missing in VariationCart');
+// };
 
 export const parseUserOrder = (object: unknown): UserOrder => {
 	if (!object || typeof object !== 'object') {
@@ -381,31 +418,43 @@ export const parseOptions = (object: unknown): Options => {
 
 export const isValidVariation = (object: unknown): boolean => {
 	if (!object || typeof object !== 'object') {
-			throw new Error('Incorrect or missing data');
+		throw new Error('Incorrect or missing data');
 	}
 
 	const variationObject = object as Variation; // Type assertion
 
 	const requiredProperties = [
-			'productSlug', 'options', 'SKU', 'price', 'countInStock', 'tags', '_id'
+		'productSlug',
+		'options',
+		'SKU',
+		'price',
+		'countInStock',
+		'tags',
+		'_id',
 	];
 
-	const missingProperties = requiredProperties.filter(prop => !(prop in variationObject));
+	const missingProperties = requiredProperties.filter(
+		(prop) => !(prop in variationObject)
+	);
 	if (missingProperties.length === 0) {
-			if (
-					parseStringKey('productSlug', variationObject.productSlug) &&
-					parseOptions(variationObject.options) &&
-					parseStringKey('SKU', variationObject.SKU) &&
-					parseNumberKey('price', variationObject.price) &&
-					parseNumberKey('countInStock', variationObject.countInStock) &&
-					parseTags(variationObject.tags) &&
-					parseStringKey('_id', variationObject._id)
-			) {
-					return true;
-			}
-	return true
+		if (
+			parseStringKey('productSlug', variationObject.productSlug) &&
+			parseOptions(variationObject.options) &&
+			parseStringKey('SKU', variationObject.SKU) &&
+			parseNumberKey('price', variationObject.price) &&
+			parseNumberKey('countInStock', variationObject.countInStock) &&
+			parseTags(variationObject.tags) &&
+			parseStringKey('_id', variationObject._id)
+		) {
+			return true;
+		}
+		return true;
 	} else {
-			throw new Error(`Incorrect data: the following fields are missing in Variation: ${missingProperties.join(', ')}`);
+		throw new Error(
+			`Incorrect data: the following fields are missing in Variation: ${missingProperties.join(
+				', '
+			)}`
+		);
 	}
 };
 // export const isValidVariation = (object: unknown): boolean => {
@@ -420,7 +469,7 @@ export const isValidVariation = (object: unknown): boolean => {
 // 		'price' in object &&
 // 		'countInStock' in object &&
 // 		'tags' in object &&
-// 		'_id' in object 
+// 		'_id' in object
 // 	) {
 // 		if (
 // 			parseStringKey('productSlug', object.productSlug) &&
@@ -429,7 +478,7 @@ export const isValidVariation = (object: unknown): boolean => {
 // 			parseNumberKey('price', object.price) &&
 // 			parseNumberKey('countInStock', object.countInStock) &&
 // 			parseTags(object.tags) &&
-// 			parseStringKey('_id', object._id) 
+// 			parseStringKey('_id', object._id)
 
 // 		) {
 // 			return true;
@@ -477,7 +526,7 @@ export const toCheckProduct = (object: unknown): Product => {
 			tags: parseTags(object.tags),
 			images: parseArrayStrings('images', object.images),
 			options: parseProductOptions(object.options),
-			variations: parseVariations(object.variations)
+			variations: parseVariations(object.variations),
 		};
 
 		// if ('statistics' in object) {
@@ -487,7 +536,6 @@ export const toCheckProduct = (object: unknown): Product => {
 	}
 	throw new Error('Incorrect data: some fields are missing in Product');
 };
-
 
 export const toCheckProducts = (object: unknown): Product[] => {
 	if (!object || !isArray(object)) {
