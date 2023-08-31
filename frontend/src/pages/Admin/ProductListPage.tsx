@@ -40,8 +40,8 @@ const ProductListPage = () => {
 		}
 	};
 
-	const createVariationHandler = async (id: string) => {
-		await console.log(id);
+	const createVariationHandler = async (slug: string) => {
+		await console.log(slug);
 	};
 
 	return (
@@ -103,7 +103,7 @@ const ProductListPage = () => {
 									<div className='flex justify-between'>
 										<h3>Variations of {product.name}</h3>
 										<button
-											onClick={() => createVariationHandler(product._id)}
+											onClick={() => createVariationHandler(product.slug)}
 											className={`
 								
 								 bg-zinc-900 text-white hover:bg-red-200

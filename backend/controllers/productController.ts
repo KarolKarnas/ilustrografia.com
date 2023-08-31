@@ -2,7 +2,7 @@ import asyncHandler from '../middleware/asyncHandler';
 import ProductModel from '../models/productModel';
 import { RequestUser } from '../types/User';
 import { checkHaveUser } from '../utils/typeUtils';
-
+import { v4 as uuidv4 } from 'uuid';
 
 // @desc    Fetch all products
 // @route   GET /api/products
@@ -45,11 +45,13 @@ const getVariantBySlugAndSku = asyncHandler(async (req, res) => {
 const createProduct = asyncHandler(async (req, res) => {
 	const reqWithUser: RequestUser = checkHaveUser(req);
 
-	
-  const product = new ProductModel({
+	const slug = uuidv4();
+	const productSlug = `sample-slug-${slug}`;
+
+	const product = new ProductModel({
 		user: reqWithUser.user._id,
-		name: 'Sample Name',
-		slug: 'sample-slug',
+		name: `Sample Name ${slug}`,
+		slug: productSlug,
 		rating: {
 			rating: 0,
 			numReviews: 0,
@@ -73,27 +75,19 @@ const createProduct = asyncHandler(async (req, res) => {
 				optionName: 'Material',
 				'art-print': {
 					title: 'Art Print',
-					images: [
-						'/images/sample.jpg',
-					],
+					images: ['/images/sample.jpg'],
 				},
 				'painting-on-canvas': {
 					title: 'Painting On Canvas',
-					images: [
-						'/images/sample.jpg',
-					],
+					images: ['/images/sample.jpg'],
 				},
 				poster: {
 					title: 'Poster',
-					images: [
-						'/images/sample.jpg',
-					],
+					images: ['/images/sample.jpg'],
 				},
 				'premium-print': {
 					title: 'Premium Print',
-					images: [
-						'/images/sample.jpg',
-					],
+					images: ['/images/sample.jpg'],
 				},
 			},
 			size: {
@@ -131,7 +125,7 @@ const createProduct = asyncHandler(async (req, res) => {
 		variations: [
 			//ART-PRINT
 			{
-				productSlug: 'sample-slug',
+				productSlug: productSlug,
 				options: { material: 'art-print', size: 's20x40' },
 				SKU: 'sample-slug-art-print-s20x40',
 				price: 109,
@@ -140,7 +134,7 @@ const createProduct = asyncHandler(async (req, res) => {
 			},
 			//CANVAS
 			{
-				productSlug: 'sample-slug',
+				productSlug: productSlug,
 				options: { material: 'painting-on-canvas', size: 's20x40' },
 				SKU: 'sample-slug-painting-on-canvas-s20x40',
 				price: 209,
@@ -149,7 +143,7 @@ const createProduct = asyncHandler(async (req, res) => {
 			},
 			// POSTER
 			{
-				productSlug: 'sample-slug',
+				productSlug: productSlug,
 				options: { material: 'poster', size: 's20x30' },
 				SKU: 'sample-product-poster-s20x30',
 				price: 49,
@@ -158,7 +152,7 @@ const createProduct = asyncHandler(async (req, res) => {
 			},
 			// PREMIUM PRINT
 			{
-				productSlug: 'sample-slug',
+				productSlug: productSlug,
 				options: { material: 'premium-print', size: 's20x30' },
 				SKU: 'sample-product-premium-print-s20x30',
 				price: 59,
@@ -168,8 +162,22 @@ const createProduct = asyncHandler(async (req, res) => {
 		],
 	});
 
-  const createdProduct = await product.save();
-  res.status(201).json(createdProduct);
+	const createdProduct = await product.save();
+	res.status(201).json(createdProduct);
 });
+
+// // @desc    Create a product
+// // @route   POST /api/products/:id
+// // @access  Private/Admin
+
+// const createVariation = asyncHandler(async (req, res) => {
+// 	const product = await ProductModel.findOne({ slug: req.params.slug });
+// 	if (product) {
+// 		res.json(product);
+// 	} else {
+// 		res.status(404);
+// 		throw new Error(`Product not found`);
+// 	}
+// });
 
 export { getProducts, getProductBySlug, getVariantBySlugAndSku, createProduct };
