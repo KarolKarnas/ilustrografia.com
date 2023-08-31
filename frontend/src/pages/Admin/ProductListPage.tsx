@@ -4,6 +4,7 @@ import {
 	useGetProductsQuery,
 	useCreateProductMutation,
 } from '../../slices/productsApiSlice';
+import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 import { toCheckProducts } from '../../utils/typeCheck';
@@ -43,6 +44,10 @@ const ProductListPage = () => {
 	const createVariationHandler = async (slug: string) => {
 		await console.log(slug);
 	};
+
+	const handleDeleteProduct = () => {
+		console.log('delete')
+	}
 
 	return (
 		<div className='w-3/4'>
@@ -98,11 +103,19 @@ const ProductListPage = () => {
 										>
 											Details
 										</Link>
-										<div className='basis-2/12'>EDIT / Delete</div>
+										<div className='basis-2/12 flex gap-2'>
+											<Link
+												to={`/admin/product/${product.slug}/edit`}
+												className='hover:text-red-300 hover:cursor-pointer'
+											>
+												<FaEdit />
+											</Link>{' '}
+											<FaTrash onClick={handleDeleteProduct} className='hover:text-red-300 hover:cursor-pointer text-red-500' />
+										</div>
 									</div>
 									<div className='flex justify-between'>
 										<h3>Variations of {product.name}</h3>
-										<button
+										{/* <button
 											onClick={() => createVariationHandler(product.slug)}
 											className={`
 								
@@ -110,7 +123,7 @@ const ProductListPage = () => {
 							 px-32 py-1  my-2`}
 										>
 											Add Variation
-										</button>
+										</button> */}
 									</div>
 									<div className='flex gap-1'>
 										{' '}
@@ -129,9 +142,9 @@ const ProductListPage = () => {
 										<div className='basis-2/12 font-semibold text-sm'>
 											DETAILS
 										</div>
-										<div className='basis-1/12 font-semibold text-sm'>
+										{/* <div className='basis-1/12 font-semibold text-sm'>
 											DELETE
-										</div>
+										</div> */}
 									</div>
 									<div>
 										{product.variations.map((variation, index) => (
@@ -164,7 +177,7 @@ const ProductListPage = () => {
 															details
 														</Link>
 													</div>
-													<div className='basis-1/12 text-sm'>DELETE</div>
+													{/* <div className='basis-1/12 text-sm'>DELETE</div> */}
 												</div>
 											</div>
 										))}

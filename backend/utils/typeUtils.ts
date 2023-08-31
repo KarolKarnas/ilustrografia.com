@@ -5,7 +5,7 @@ import {
 	ShippingAddress,
 	OrderUpdateReq,
 } from '../types/Order';
-import { Options, Tag, VariationCart } from '../types/Product';
+import { Category, Options, Product, ProductOptions, Rating, Tag, Variation, VariationCart } from '../types/Product';
 import {
 	CheckUser,
 	CheckUserWithName,
@@ -58,6 +58,27 @@ export const parseBooleanKey = (name: string, booleanKey: unknown): boolean => {
 		throw new Error(`Incorrect or missing ${name}`);
 	}
 	return booleanKey;
+};
+
+export const parseArrayStrings = (
+	name: string,
+	arrString: unknown
+): string[] => {
+	if (!arrString || !isArray(arrString)) {
+		throw new Error(`Incorrect or missing ${name}`);
+	}
+
+	if (arrString.length === 0) {
+		throw new Error(`Missing string in ${name}`);
+	}
+
+	const typedArray = arrString as string[];
+	typedArray.forEach((element: string) => {
+		if (!isString(element)) {
+			throw new Error(`Incorrect or missing ${name}`);
+		}
+	});
+	return typedArray;
 };
 
 // Mongoose ID
@@ -399,4 +420,151 @@ export const toReqOrderUpdate = (object: unknown): OrderUpdateReq => {
 		return order;
 	}
 	throw new Error('Incorrect data: some fields are missing in OrderUpdateReq');
+};
+
+// PRODUCT
+
+export const parseRating = (object: unknown): Rating => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data in Rating');
+	}
+	if ('numReviews' in object && 'rating' in object) {
+		const options: Rating = {
+			numReviews: parseNumberKey('numReviews', object.numReviews),
+			rating: parseNumberKey('rating', object.rating),
+		};
+		return options;
+	}
+	throw new Error('Incorrect data: some fields are missing in Options ');
+};
+
+export const isValidCategory = (object: unknown): boolean => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data in category');
+	}
+
+	if ('name' in object && 'slug' in object) {
+		if (isString(object.name) && isString(object.slug)) {
+			return true;
+		}
+	}
+	throw new Error('Incorrect data: some fields are missing in Category ');
+};
+
+export const parseCategories = (object: unknown): Category[] => {
+	if (!object || !isArray(object)) {
+		throw new Error('Incorrect or missing data in Categories');
+	}
+
+	const typedObject = object as Category[];
+	typedObject.forEach((category: Category) => {
+		if (!isValidCategory(category)) {
+			throw new Error('Incorrect or missing category');
+		}
+	});
+
+	return typedObject;
+};
+
+export const parseProductOptions = (object: unknown): ProductOptions => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data');
+	}
+	if ('material' in object && 'size' in object) {
+		const typedProductOptions: ProductOptions = object as ProductOptions;
+		return typedProductOptions;
+	}
+	throw new Error('Incorrect data: some fields are missing in ProductOptions ');
+};
+
+export const isValidVariation = (object: unknown): boolean => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data');
+	}
+
+	const variationObject = object as Variation; // Type assertion
+
+	const requiredProperties = [
+		'productSlug',
+		'options',
+		'SKU',
+		'price',
+		'countInStock',
+		'tags',
+		// '_id',
+	];
+
+	const missingProperties = requiredProperties.filter(
+		(prop) => !(prop in variationObject)
+	);
+	if (missingProperties.length === 0) {
+		if (
+			parseStringKey('productSlug', variationObject.productSlug) &&
+			parseOptions(variationObject.options) &&
+			parseStringKey('SKU', variationObject.SKU) &&
+			parseNumberKey('price', variationObject.price) &&
+			parseNumberKey('countInStock', variationObject.countInStock) &&
+			parseTags(variationObject.tags)
+			// parseStringKey('_id', variationObject._id)
+		) {
+			return true;
+		}
+		return true;
+	} else {
+		throw new Error(
+			`Incorrect data: the following fields are missing in Variation: ${missingProperties.join(
+				', '
+			)}`
+		);
+	}
+};
+
+
+const parseVariations = (variations: unknown): Variation[] => {
+	if (!variations || !isArray(variations)) {
+		throw new Error('Incorrect or missing variations');
+	}
+	const typedVariations = variations as Variation[];
+	typedVariations.forEach((variation: Variation) => {
+		if (!isValidVariation(variation)) {
+			throw new Error('Incorrect or missing Variation');
+		}
+	});
+	return typedVariations;
+};
+
+export const toCheckedProduct = (object: unknown): Product => {
+
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data in Product');
+	}
+	if (
+		'_id' in object &&
+		'name' in object &&
+		'slug' in object &&
+		'rating' in object &&
+		'categories' in object &&
+		'tags' in object &&
+		'images' in object &&
+		'options' in object &&
+		'variations' in object
+	) {
+		const checkedProduct: Product = {
+			_id: parseStringKey('_id', object._id),
+			name: parseStringKey('name', object.name),
+			slug: parseStringKey('slug', object.slug),
+			rating: parseRating(object.rating),
+			categories: parseCategories(object.categories),
+			tags: parseTags(object.tags),
+			images: parseArrayStrings('images', object.images),
+			options: parseProductOptions(object.options),
+			variations: parseVariations(object.variations),
+		};
+
+		// if ('statistics' in object) {
+		// 	checkedProduct.statistics =
+		// }
+		return checkedProduct;
+	}
+	throw new Error('Incorrect data: some fields are missing in Product');
 };

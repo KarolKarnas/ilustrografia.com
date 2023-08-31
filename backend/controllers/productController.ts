@@ -1,7 +1,7 @@
 import asyncHandler from '../middleware/asyncHandler';
 import ProductModel from '../models/productModel';
 import { RequestUser } from '../types/User';
-import { checkHaveUser } from '../utils/typeUtils';
+import { checkHaveUser, toCheckedProduct } from '../utils/typeUtils';
 import { v4 as uuidv4 } from 'uuid';
 
 // @desc    Fetch all products
@@ -166,6 +166,34 @@ const createProduct = asyncHandler(async (req, res) => {
 	res.status(201).json(createdProduct);
 });
 
+// @desc    Update a product
+// @route   PUT /api/products/:id
+// @access  Private/Admin
+const updateProduct = asyncHandler(async (req, res) => {
+	const { name, slug, rating, categories, tags, images, options, variations } =
+		toCheckedProduct(req.body);
+
+	// const product = await ProductModel.findById(req.params.id);
+	const product = await ProductModel.findOne({ slug: req.params.slug });
+
+	if (product) {
+		product.name = name;
+		product.slug = slug;
+		product.rating = rating;
+		product.categories = categories;
+		product.tags = tags;
+		product.images = images;
+		product.options = options;
+		product.variations = variations;
+
+		const updatedProduct = await product.save();
+		res.json(updatedProduct);
+	} else {
+		res.status(404);
+		throw new Error('Product not found');
+	}
+});
+
 // // @desc    Create a product
 // // @route   POST /api/products/:id
 // // @access  Private/Admin
@@ -180,4 +208,10 @@ const createProduct = asyncHandler(async (req, res) => {
 // 	}
 // });
 
-export { getProducts, getProductBySlug, getVariantBySlugAndSku, createProduct };
+export {
+	getProducts,
+	getProductBySlug,
+	getVariantBySlugAndSku,
+	createProduct,
+	updateProduct,
+};

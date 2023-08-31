@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
-interface Rating {
+export interface Rating {
 	rating: number;
 	numReviews: number;
 }
 
-interface Category {
+export interface Category {
 	name: string;
 	slug: string;
 }
@@ -25,13 +25,14 @@ export interface Options {
 	size: string;
 }
 
-interface Variation {
+export interface Variation {
 	productSlug: string,
 	options: Options
 	SKU: string;
 	price: number;
 	countInStock: number;
 	tags: Tag[];
+	// _id ???
 }
 
 export interface VariationCart extends Variation {
