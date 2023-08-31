@@ -94,7 +94,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'art-print', size: 's30x40' },
-				SKU: '98766',
+				SKU: 'bazylica-art-print-s30x40',
 				price: 179,
 				countInStock: 0,
 				tags: [{ name: '', slug: '' }],
@@ -102,7 +102,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'art-print', size: 's40x60' },
-				SKU: '98767',
+				SKU: 'bazylica-art-print-s40x60',
 				price: 259,
 				countInStock: 10,
 				tags: [{ name: '', slug: '' }],
@@ -110,7 +110,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'art-print', size: 's50x70' },
-				SKU: '98768',
+				SKU: 'bazylica-art-print-s50x70',
 				price: 319,
 				countInStock: 8,
 				tags: [{ name: '', slug: '' }],
@@ -118,7 +118,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'art-print', size: 's60x90' },
-				SKU: '98769',
+				SKU: 'bazylica-art-print-s60x90',
 				price: 399,
 				countInStock: 10,
 				tags: [{ name: '', slug: '' }],
@@ -126,7 +126,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'art-print', size: 's70x100' },
-				SKU: '98770',
+				SKU: 'bazylica-art-print-s70x100',
 				price: 499,
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
@@ -135,7 +135,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'painting-on-canvas', size: 's20x40' },
-				SKU: '98771',
+				SKU: 'bazylica-painting-on-canvas-s20x40',
 				price: 209,
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
@@ -143,7 +143,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'painting-on-canvas', size: 's30x40' },
-				SKU: '98772',
+				SKU: 'bazylica-painting-on-canvas-s30x40',
 				price: 249,
 				countInStock: 8,
 				tags: [{ name: '', slug: '' }],
@@ -151,7 +151,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'painting-on-canvas', size: 's40x60' },
-				SKU: '98773',
+				SKU: 'bazylica-painting-on-canvas-s40x60',
 				price: 299,
 				countInStock: 15,
 				tags: [{ name: '', slug: '' }],
@@ -159,7 +159,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'painting-on-canvas', size: 's50x70' },
-				SKU: '98774',
+				SKU: 'bazylica-painting-on-canvas-s50x70',
 				price: 349,
 				countInStock: 12,
 				tags: [{ name: '', slug: '' }],
@@ -167,7 +167,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'painting-on-canvas', size: 's60x90' },
-				SKU: '98775',
+				SKU: 'bazylica-painting-on-canvas-s60x90',
 				price: 449,
 				countInStock: 7,
 				tags: [{ name: '', slug: '' }],
@@ -175,7 +175,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'painting-on-canvas', size: 's70x100' },
-				SKU: '98776',
+				SKU: 'bazylica-painting-on-canvas-s70x100',
 				price: 569,
 				countInStock: 3,
 				tags: [{ name: '', slug: '' }],
@@ -184,7 +184,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'poster', size: 's20x30' },
-				SKU: '98777',
+				SKU: 'bazylica-poster-s20x30',
 				price: 49,
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
@@ -192,7 +192,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'poster', size: 's30x40' },
-				SKU: '98778',
+				SKU: 'bazylica-poster-s30x40',
 				price: 59,
 				countInStock: 6,
 				tags: [{ name: '', slug: '' }],
@@ -200,7 +200,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'poster', size: 's40x60' },
-				SKU: '98779',
+				SKU: 'bazylica-poster-s40x60',
 				price: 99,
 				countInStock: 7,
 				tags: [{ name: '', slug: '' }],
@@ -208,7 +208,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'poster', size: 's50x70' },
-				SKU: '98780',
+				SKU: 'bazylica-poster-s50x70',
 				price: 129,
 				countInStock: 6,
 				tags: [{ name: '', slug: '' }],
@@ -216,7 +216,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'poster', size: 's60x90' },
-				SKU: '98781',
+				SKU: 'bazylica-poster-s60x90',
 				price: 129,
 				countInStock: 16,
 				tags: [{ name: '', slug: '' }],
@@ -224,7 +224,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'poster', size: 's70x100' },
-				SKU: '98782',
+				SKU: 'bazylica-poster-s70x100',
 				price: 209,
 				countInStock: 11,
 				tags: [{ name: '', slug: '' }],
@@ -233,7 +233,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'premium-print', size: 's20x30' },
-				SKU: '98783',
+				SKU: 'bazylica-premium-print-s20x30',
 				price: 59,
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
@@ -241,7 +241,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'premium-print', size: 's30x40' },
-				SKU: '98784',
+				SKU: 'bazylica-premium-print-s30x40',
 				price: 99,
 				countInStock: 6,
 				tags: [{ name: '', slug: '' }],
@@ -249,7 +249,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'premium-print', size: 's40x60' },
-				SKU: '98785',
+				SKU: 'bazylica-premium-print-s40x60',
 				price: 149,
 				countInStock: 7,
 				tags: [{ name: '', slug: '' }],
@@ -257,7 +257,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'premium-print', size: 's50x70' },
-				SKU: '98786',
+				SKU: 'bazylica-premium-print-s50x70',
 				price: 209,
 				countInStock: 16,
 				tags: [{ name: '', slug: '' }],
@@ -265,7 +265,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'premium-print', size: 's60x90' },
-				SKU: '98787',
+				SKU: 'bazylica-premium-print-s60x90',
 				price: 269,
 				countInStock: 6,
 				tags: [{ name: '', slug: '' }],
@@ -273,7 +273,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bazylica',
 				options: { material: 'premium-print', size: 's70x100' },
-				SKU: '98788',
+				SKU: 'bazylica-premium-print-s70x100',
 				price: 299,
 				countInStock: 1,
 				tags: [{ name: '', slug: '' }],
@@ -367,7 +367,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'art-print', size: 's20x40' },
-				SKU: '98789',
+				SKU: 'bobo-lesne-art-print-s20x40',
 				price: 109,
 				countInStock: 2,
 				tags: [{ name: '', slug: '' }],
@@ -375,7 +375,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'art-print', size: 's30x40' },
-				SKU: '98790',
+				SKU: 'bobo-lesne-art-print-s30x40',
 				price: 179,
 				countInStock: 10,
 				tags: [{ name: '', slug: '' }],
@@ -383,7 +383,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'art-print', size: 's40x60' },
-				SKU: '98791',
+				SKU: 'bobo-lesne-art-print-s40x60',
 				price: 259,
 				countInStock: 10,
 				tags: [{ name: '', slug: '' }],
@@ -391,7 +391,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'art-print', size: 's50x70' },
-				SKU: '98792',
+				SKU: 'bobo-lesne-art-print-s50x70',
 				price: 319,
 				countInStock: 8,
 				tags: [{ name: '', slug: '' }],
@@ -399,7 +399,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'art-print', size: 's60x90' },
-				SKU: '98793',
+				SKU: 'bobo-lesne-art-print-s60x90',
 				price: 399,
 				countInStock: 10,
 				tags: [{ name: '', slug: '' }],
@@ -407,7 +407,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'art-print', size: 's70x100' },
-				SKU: '98794',
+				SKU: 'bobo-lesne-art-print-s70x100',
 				price: 499,
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
@@ -416,7 +416,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'painting-on-canvas', size: 's20x40' },
-				SKU: '98795',
+				SKU: 'bobo-lesne-painting-on-canvas-s20x40',
 				price: 209,
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
@@ -424,7 +424,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'painting-on-canvas', size: 's30x40' },
-				SKU: '98796',
+				SKU: 'bobo-lesne-painting-on-canvas-s300x40',
 				price: 249,
 				countInStock: 8,
 				tags: [{ name: '', slug: '' }],
@@ -432,7 +432,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'painting-on-canvas', size: 's40x60' },
-				SKU: '98797',
+				SKU: 'bobo-lesne-painting-on-canvas-s40x60',
 				price: 299,
 				countInStock: 15,
 				tags: [{ name: '', slug: '' }],
@@ -440,7 +440,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'painting-on-canvas', size: 's50x70' },
-				SKU: '98798',
+				SKU: 'bobo-lesne-painting-on-canvas-s50x70',
 				price: 349,
 				countInStock: 12,
 				tags: [{ name: '', slug: '' }],
@@ -448,7 +448,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'painting-on-canvas', size: 's60x90' },
-				SKU: '98799',
+				SKU: 'bobo-lesne-painting-on-canvas-s60x90',
 				price: 449,
 				countInStock: 7,
 				tags: [{ name: '', slug: '' }],
@@ -456,7 +456,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'painting-on-canvas', size: 's70x100' },
-				SKU: '98800',
+				SKU: 'bobo-lesne-painting-on-canvas-s70x100',
 				price: 569,
 				countInStock: 3,
 				tags: [{ name: '', slug: '' }],
@@ -465,7 +465,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'poster', size: 's20x30' },
-				SKU: '98801',
+				SKU: 'bobo-lesne-poster-s20x30',
 				price: 49,
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
@@ -473,7 +473,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'poster', size: 's30x40' },
-				SKU: '98802',
+				SKU: 'bobo-lesne-poster-s30x40',
 				price: 59,
 				countInStock: 6,
 				tags: [{ name: '', slug: '' }],
@@ -481,7 +481,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'poster', size: 's40x60' },
-				SKU: '98803',
+				SKU: 'bobo-lesne-poster-s40x60',
 				price: 99,
 				countInStock: 7,
 				tags: [{ name: '', slug: '' }],
@@ -489,7 +489,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'poster', size: 's50x70' },
-				SKU: '98804',
+				SKU: 'bobo-lesne-poster-s50x70',
 				price: 129,
 				countInStock: 6,
 				tags: [{ name: '', slug: '' }],
@@ -497,7 +497,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'poster', size: 's60x90' },
-				SKU: '98805',
+				SKU: 'bobo-lesne-poster-s60x90',
 				price: 129,
 				countInStock: 16,
 				tags: [{ name: '', slug: '' }],
@@ -505,7 +505,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'poster', size: 's70x100' },
-				SKU: '98806',
+				SKU: 'bobo-lesne-poster-s70x100',
 				price: 209,
 				countInStock: 11,
 				tags: [{ name: '', slug: '' }],
@@ -514,7 +514,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'premium-print', size: 's20x30' },
-				SKU: '98807',
+				SKU: 'bobo-lesne-premium-print-s20x30',
 				price: 59,
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
@@ -522,7 +522,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'premium-print', size: 's30x40' },
-				SKU: '98808',
+				SKU: 'bobo-lesne-premium-print-s30x40',
 				price: 99,
 				countInStock: 6,
 				tags: [{ name: '', slug: '' }],
@@ -530,7 +530,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'premium-print', size: 's40x60' },
-				SKU: '98809',
+				SKU: 'bobo-lesne-premium-print-s40x60',
 				price: 149,
 				countInStock: 7,
 				tags: [{ name: '', slug: '' }],
@@ -538,7 +538,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'premium-print', size: 's50x70' },
-				SKU: '98810',
+				SKU: 'bobo-lesne-premium-print-s50x70',
 				price: 209,
 				countInStock: 16,
 				tags: [{ name: '', slug: '' }],
@@ -546,7 +546,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'premium-print', size: 's60x90' },
-				SKU: '98811',
+				SKU: 'bobo-lesne-premium-print-s60x90',
 				price: 269,
 				countInStock: 6,
 				tags: [{ name: '', slug: '' }],
@@ -554,7 +554,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'premium-print', size: 's70x100' },
-				SKU: '98812',
+				SKU: 'bobo-lesne-premium-print-s70x100',
 				price: 299,
 				countInStock: 1,
 				tags: [{ name: '', slug: '' }],
@@ -644,7 +644,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'art-print', size: 's20x40' },
-				SKU: '98813',
+				SKU: 'nimfa-wiosenna-art-print-s20x40',
 				price: 109,
 				countInStock: 2,
 				tags: [{ name: '', slug: '' }],
@@ -652,7 +652,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'art-print', size: 's30x40' },
-				SKU: '98814',
+				SKU: 'nimfa-wiosenna-art-print-s20x40',
 				price: 179,
 				countInStock: 10,
 				tags: [{ name: '', slug: '' }],
@@ -660,7 +660,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'art-print', size: 's40x60' },
-				SKU: '98815',
+				SKU: 'nimfa-wiosenna-art-print-s40x60',
 				price: 259,
 				countInStock: 10,
 				tags: [{ name: '', slug: '' }],
@@ -668,7 +668,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'art-print', size: 's50x70' },
-				SKU: '98816',
+				SKU: 'nimfa-wiosenna-art-print-s50x70',
 				price: 319,
 				countInStock: 8,
 				tags: [{ name: '', slug: '' }],
@@ -676,7 +676,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'art-print', size: 's60x90' },
-				SKU: '98817',
+				SKU: 'nimfa-wiosenna-art-print-s60x90',
 				price: 399,
 				countInStock: 10,
 				tags: [{ name: '', slug: '' }],
@@ -684,7 +684,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'art-print', size: 's70x100' },
-				SKU: '98819',
+				SKU: 'nimfa-wiosenna-art-print-s70x100',
 				price: 499,
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
@@ -693,7 +693,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'painting-on-canvas', size: 's20x40' },
-				SKU: '98820',
+				SKU: 'nimfa-wiosenna-na-painting-on-canvas-s20x40',
 				price: 209,
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
@@ -701,7 +701,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'painting-on-canvas', size: 's30x40' },
-				SKU: '98821',
+				SKU: 'nimfa-wiosenna-na-painting-on-canvas-s30x40',
 				price: 249,
 				countInStock: 8,
 				tags: [{ name: '', slug: '' }],
@@ -709,7 +709,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'painting-on-canvas', size: 's40x60' },
-				SKU: '98822',
+				SKU: 'nimfa-wiosenna-na-painting-on-canvas-s40x60',
 				price: 299,
 				countInStock: 15,
 				tags: [{ name: '', slug: '' }],
@@ -717,7 +717,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'painting-on-canvas', size: 's50x70' },
-				SKU: '98823',
+				SKU: 'nimfa-wiosenna-na-painting-on-canvas-s50x70',
 				price: 349,
 				countInStock: 12,
 				tags: [{ name: '', slug: '' }],
@@ -725,7 +725,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'painting-on-canvas', size: 's60x90' },
-				SKU: '98824',
+				SKU: 'nimfa-wiosenna-na-painting-on-canvas-s60x90',
 				price: 449,
 				countInStock: 7,
 				tags: [{ name: '', slug: '' }],
@@ -733,7 +733,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'painting-on-canvas', size: 's70x100' },
-				SKU: '98825',
+				SKU: 'nimfa-wiosenna-na-painting-on-canvas-s70x100',
 				price: 569,
 				countInStock: 3,
 				tags: [{ name: '', slug: '' }],
@@ -742,7 +742,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'poster', size: 's20x30' },
-				SKU: '98826',
+				SKU: 'nimfa-wiosenna-poster-s20x30',
 				price: 49,
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
@@ -750,7 +750,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'poster', size: 's30x40' },
-				SKU: '98827',
+				SKU: 'nimfa-wiosenna-poster-s30x40',
 				price: 59,
 				countInStock: 6,
 				tags: [{ name: '', slug: '' }],
@@ -758,7 +758,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'poster', size: 's40x60' },
-				SKU: '98828',
+				SKU: 'nimfa-wiosenna-poster-s40x60',
 				price: 99,
 				countInStock: 7,
 				tags: [{ name: '', slug: '' }],
@@ -766,7 +766,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'poster', size: 's50x70' },
-				SKU: '98829',
+				SKU: 'nimfa-wiosenna-poster-s50x70',
 				price: 129,
 				countInStock: 6,
 				tags: [{ name: '', slug: '' }],
@@ -774,7 +774,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'poster', size: 's60x90' },
-				SKU: '98830',
+				SKU: 'nimfa-wiosenna-poster-s60x90',
 				price: 129,
 				countInStock: 16,
 				tags: [{ name: '', slug: '' }],
@@ -782,7 +782,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'poster', size: 's70x100' },
-				SKU: '98831',
+				SKU: 'nimfa-wiosenna-poster-s70x100',
 				price: 209,
 				countInStock: 11,
 				tags: [{ name: '', slug: '' }],
@@ -791,7 +791,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'premium-print', size: 's20x30' },
-				SKU: '98832',
+				SKU: 'nimfa-wiosenna-premium-print-s20x30',
 				price: 59,
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
@@ -799,7 +799,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'premium-print', size: 's30x40' },
-				SKU: '98833',
+				SKU: 'nimfa-wiosenna-premium-print-s30x40',
 				price: 99,
 				countInStock: 6,
 				tags: [{ name: '', slug: '' }],
@@ -807,7 +807,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'premium-print', size: 's40x60' },
-				SKU: '98834',
+				SKU: 'nimfa-wiosenna-premium-print-s40x60',
 				price: 149,
 				countInStock: 7,
 				tags: [{ name: '', slug: '' }],
@@ -815,7 +815,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'premium-print', size: 's50x70' },
-				SKU: '98835',
+				SKU: 'nimfa-wiosenna-premium-print-s50x70',
 				price: 209,
 				countInStock: 16,
 				tags: [{ name: '', slug: '' }],
@@ -823,7 +823,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'premium-print', size: 's60x90' },
-				SKU: '98836',
+				SKU: 'nimfa-wiosenna-premium-print-s60x90',
 				price: 269,
 				countInStock: 6,
 				tags: [{ name: '', slug: '' }],
@@ -831,7 +831,7 @@ export const products: ProductNoId[] = [
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'premium-print', size: 's70x100' },
-				SKU: '98837',
+				SKU: 'nimfa-wiosenna-premium-print-s70x100',
 				price: 299,
 				countInStock: 1,
 				tags: [{ name: '', slug: '' }],
