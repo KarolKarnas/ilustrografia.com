@@ -134,13 +134,7 @@ export const isValidVariationCart = (object: unknown): boolean => {
 
 	const variationObject = object as VariationCart; // Type assertion
 
-	const requiredProperties = [
-		'SKU',
-		'price',
-		'_id',
-		'qty',
-		'image',
-	];
+	const requiredProperties = ['SKU', 'price', '_id', 'qty', 'image'];
 
 	const missingProperties = requiredProperties.filter(
 		(prop) => !(prop in variationObject)
@@ -528,9 +522,9 @@ export const toCheckProduct = (object: unknown): Product => {
 			variations: parseVariations(object.variations),
 		};
 
-		// if ('statistics' in object) {
-		// 	checkedProduct.statistics =
-		// }
+		if ('statistics' in object) {
+			checkedProduct.statistics = parseArrayStrings('statistics',object.statistics);
+		}
 		return checkedProduct;
 	}
 	throw new Error('Incorrect data: some fields are missing in Product');

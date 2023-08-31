@@ -5,7 +5,16 @@ import {
 	ShippingAddress,
 	OrderUpdateReq,
 } from '../types/Order';
-import { Category, Options, Product, ProductOptions, Rating, Tag, Variation, VariationCart } from '../types/Product';
+import {
+	Category,
+	Options,
+	Product,
+	ProductOptions,
+	Rating,
+	Tag,
+	Variation,
+	VariationCart,
+} from '../types/Product';
 import {
 	CheckUser,
 	CheckUserWithName,
@@ -519,7 +528,6 @@ export const isValidVariation = (object: unknown): boolean => {
 	}
 };
 
-
 const parseVariations = (variations: unknown): Variation[] => {
 	if (!variations || !isArray(variations)) {
 		throw new Error('Incorrect or missing variations');
@@ -534,7 +542,6 @@ const parseVariations = (variations: unknown): Variation[] => {
 };
 
 export const toCheckedProduct = (object: unknown): Product => {
-
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data in Product');
 	}
@@ -561,10 +568,11 @@ export const toCheckedProduct = (object: unknown): Product => {
 			variations: parseVariations(object.variations),
 		};
 
-		// if ('statistics' in object) {
-		// 	checkedProduct.statistics =
-		// }
+		if ('statistics' in object) {
+			checkedProduct.statistics = parseArrayStrings('statistics',object.statistics);
+		}
 		return checkedProduct;
 	}
+	console.log('error');
 	throw new Error('Incorrect data: some fields are missing in Product');
 };

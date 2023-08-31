@@ -105,7 +105,7 @@ const ProductListPage = () => {
 										</Link>
 										<div className='basis-2/12 flex gap-2'>
 											<Link
-												to={`/admin/product/${product.slug}/edit`}
+												to={`/admin/product-list/${product.slug}/edit`}
 												className='hover:text-red-300 hover:cursor-pointer'
 											>
 												<FaEdit />

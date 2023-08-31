@@ -28,9 +28,9 @@ const ProductPage = () => {
 	const [qty, setQty] = useState(1);
 	const [variation, setVariation] = useState<Variation>();
 
-	if (!slug) {
-		return <div>No slug provided</div>;
-	}
+	// if (!slug) {
+	// 	return <div>No slug provided</div>;
+	// }
 	const { data: product, isLoading, error } = useGetProductDetailsQuery(slug);
 
 	const getVariation = (material: string, size: string) => {

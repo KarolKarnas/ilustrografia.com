@@ -170,8 +170,28 @@ const createProduct = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
-	const { name, slug, rating, categories, tags, images, options, variations } =
-		toCheckedProduct(req.body);
+	const typedProduct = toCheckedProduct(req.body);
+
+	const {
+		name,
+		slug,
+		rating,
+		categories,
+		tags,
+		images,
+		options,
+		variations,
+		statistics,
+	} = typedProduct;
+	if (slug !== req.params.slug) {
+		const slugs = await ProductModel.find({ slug });
+		if (slugs.length !== 0) {
+			res.status(400);
+			throw new Error(
+				`Product with the slug ${slug} already exists, provide unique slug`
+			);
+		}
+	}
 
 	// const product = await ProductModel.findById(req.params.id);
 	const product = await ProductModel.findOne({ slug: req.params.slug });
@@ -185,6 +205,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 		product.images = images;
 		product.options = options;
 		product.variations = variations;
+		product.statistics = statistics;
 
 		const updatedProduct = await product.save();
 		res.json(updatedProduct);
