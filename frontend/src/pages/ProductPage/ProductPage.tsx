@@ -16,6 +16,7 @@ import { Variation } from '../../types/Product';
 import { addToCart } from '../../slices/cartSlice';
 import VariationCharacteristics from './VariationCharacteristics';
 import { toast } from 'react-toastify';
+import ToastLink from '../../components/ToastLink';
 
 const ProductPage = () => {
 	const { slug } = useParams();
@@ -181,7 +182,7 @@ const ProductPage = () => {
 					pathnameWithQuery,
 				})
 			);
-			toast.success(`Added to cart ${variationName}`);
+			toast.success(<ToastLink product={variationName} />);
 			// navigate('/cart');
 		}
 	};
