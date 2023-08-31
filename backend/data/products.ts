@@ -82,10 +82,11 @@ export const products: ProductNoId[] = [
 			},
 		},
 		variations: [
+			//ART-PRINT
 			{
 				productSlug: 'bazylica',
 				options: { material: 'art-print', size: 's20x40' },
-				SKU: '98765',
+				SKU: 'bazylica-art-print-s20x40',
 				price: 109,
 				countInStock: 2,
 				tags: [{ name: '', slug: '' }],
@@ -130,6 +131,7 @@ export const products: ProductNoId[] = [
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
 			},
+			//CANVAS
 			{
 				productSlug: 'bazylica',
 				options: { material: 'painting-on-canvas', size: 's20x40' },
@@ -361,6 +363,7 @@ export const products: ProductNoId[] = [
 			},
 		},
 		variations: [
+			//ART-PRINT
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'art-print', size: 's20x40' },
@@ -409,6 +412,7 @@ export const products: ProductNoId[] = [
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
 			},
+			//CANVAS
 			{
 				productSlug: 'bobo-lesne',
 				options: { material: 'painting-on-canvas', size: 's20x40' },
@@ -636,6 +640,7 @@ export const products: ProductNoId[] = [
 			},
 		},
 		variations: [
+			//ART-PRINT
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'art-print', size: 's20x40' },
@@ -684,6 +689,7 @@ export const products: ProductNoId[] = [
 				countInStock: 5,
 				tags: [{ name: '', slug: '' }],
 			},
+			//CANVAS
 			{
 				productSlug: 'nimfa-wiosenna',
 				options: { material: 'painting-on-canvas', size: 's20x40' },
