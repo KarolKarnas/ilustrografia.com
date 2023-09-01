@@ -31,7 +31,6 @@ const ProductEditScreen = () => {
 
 	const [_id, set_Id] = useState('');
 	const [name, setName] = useState('');
-	const [slug, setSlug] = useState('');
 	const [rating, setRating] = useState<Rating>();
 
 	const [categories, setCategories] = useState<Category[]>([]);
@@ -69,7 +68,6 @@ const ProductEditScreen = () => {
 			if (typedProduct) {
 				set_Id(typedProduct._id);
 				setName(typedProduct.name);
-				setSlug(typedProduct.slug);
 				setRating(typedProduct.rating);
 				setCategories(typedProduct.categories);
 				setTags(typedProduct.tags);
@@ -83,7 +81,7 @@ const ProductEditScreen = () => {
 
 	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();
-
+		const slug = _.kebabCase(name);
 		try {
 			await updateProduct({
 				productSlug,
@@ -186,38 +184,6 @@ const ProductEditScreen = () => {
 									placeholder='Enter name'
 									value={name}
 									onChange={(e) => setName(e.target.value)}
-								/>
-							</Form.Control>
-						</Form.Field>
-						<Form.Field className='flex flex-col' name='name'>
-							<div className='flex items-baseline justify-between'>
-								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-									Slug
-								</Form.Label>
-								<Form.Message
-									className='text-md text-red-400'
-									match='valueMissing'
-								>
-									Please enter product slug
-								</Form.Message>
-								{updateError && (
-									<Form.Message
-										className='text-md text-red-400'
-										match='typeMismatch'
-										forceMatch={Boolean(updateError)}
-									>
-										Please provide a valid product slug
-									</Form.Message>
-								)}
-							</div>
-							<Form.Control asChild>
-								<input
-									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-									type='text'
-									required
-									placeholder='Enter slug'
-									value={slug}
-									onChange={(e) => setSlug(e.target.value)}
 								/>
 							</Form.Control>
 						</Form.Field>

@@ -183,17 +183,26 @@ const updateProduct = asyncHandler(async (req, res) => {
 		variations,
 		statistics,
 	} = typedProduct;
-	if (slug !== req.params.slug) {
-		const slugs = await ProductModel.find({ slug });
-		if (slugs.length !== 0) {
-			res.status(400);
-			throw new Error(
-				`Product with the slug ${slug} already exists, provide unique slug`
-			);
-		}
+
+	const names = await ProductModel.find({ name });
+
+	if (names.length !== 0) {
+		res.status(400);
+		throw new Error(
+			`Product with the name ${name} already exists, provide unique name`
+		);
 	}
 
-	// const product = await ProductModel.findById(req.params.id);
+	// if (slug !== req.params.slug) {
+	// 	const slugs = await ProductModel.find({ slug });
+	// 	if (slugs.length !== 0) {
+	// 		res.status(400);
+	// 		throw new Error(
+	// 			`Product with the slug ${slug} already exists, provide unique slug`
+	// 		);
+	// 	}
+	// }
+
 	const product = await ProductModel.findOne({ slug: req.params.slug });
 
 	if (product) {
