@@ -186,11 +186,13 @@ const updateProduct = asyncHandler(async (req, res) => {
 
 	const names = await ProductModel.find({ name });
 
+	if (slug !== req.params.slug) {
 	if (names.length !== 0) {
 		res.status(400);
 		throw new Error(
 			`Product with the name ${name} already exists, provide unique name`
 		);
+	}
 	}
 
 	// if (slug !== req.params.slug) {

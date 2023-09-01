@@ -29,11 +29,11 @@ export interface Variation {
 	price: number;
 	countInStock: number;
 	tags: Tag[];
-	_id: string;
+	_id?: string;
 }
 
 export interface VariationCart extends Variation {
-	// _id: string;
+	_id: string;
 	qty: number;
 	image: string;
 	variationName: string;

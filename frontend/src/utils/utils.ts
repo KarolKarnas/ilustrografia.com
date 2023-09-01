@@ -1,4 +1,7 @@
 import { ApiError } from "../types/ApiError";
+import { Product } from "../types/Product";
+
+import _ from 'lodash';
 
 export const findSubstring = (input: string): string | null => {
   if (!input) {
