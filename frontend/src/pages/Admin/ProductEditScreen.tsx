@@ -30,6 +30,7 @@ const ProductEditScreen = () => {
 	const [name, setName] = useState('');
 	const [slug, setSlug] = useState('');
 	const [rating, setRating] = useState<Rating>();
+
 	const [categories, setCategories] = useState<Category[]>();
 	const [tags, setTags] = useState<Tag[]>();
 	const [images, setImages] = useState<string[]>();
@@ -40,7 +41,7 @@ const ProductEditScreen = () => {
 	const { data, isLoading, refetch, error } =
 		useGetProductDetailsQuery(productSlug);
 
-	// console.log(data);
+	console.log(data);
 
 	const [updateProduct, { isLoading: loadingUpdate, error: updateError }] =
 		useUpdateProductMutation();
@@ -165,12 +166,15 @@ const ProductEditScreen = () => {
 							>
 								Please enter product slug
 							</Form.Message>
-							<Form.Message
-								className='text-md text-red-400'
-								match='typeMismatch'
-							>
-								Please provide a valid product slug
-							</Form.Message>
+							{updateError && (
+								<Form.Message
+									className='text-md text-red-400'
+									match='typeMismatch'
+									forceMatch={Boolean(updateError)}
+								>
+									Please provide a valid product slug
+								</Form.Message>
+							)}
 						</div>
 						<Form.Control asChild>
 							<input
@@ -180,6 +184,80 @@ const ProductEditScreen = () => {
 								placeholder='Enter slug'
 								value={slug}
 								onChange={(e) => setSlug(e.target.value)}
+							/>
+						</Form.Control>
+					</Form.Field>
+
+					<Form.Field className='flex flex-col' name='name'>
+						<div className='flex items-baseline justify-between'>
+							<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
+								Rating (0-5)
+							</Form.Label>
+							<Form.Message
+								className='text-md text-red-400'
+								match='valueMissing'
+							>
+								Please enter Rating
+							</Form.Message>
+							<Form.Message
+								className='text-md text-red-400'
+								match={(value) =>
+									Number(value) < 0 || Number(value) > 5
+								}
+							>
+								Please provide a valid Rating
+							</Form.Message>
+						</div>
+						<Form.Control asChild>
+							<input
+								className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
+								type='number'
+								required
+								placeholder='Enter rating'
+								value={rating?.rating}
+								onChange={(e) =>
+									setRating({
+										...rating,
+										rating: Number(e.target.value),
+										numReviews: rating?.numReviews || 0,
+									})
+								}
+							/>
+						</Form.Control>
+					</Form.Field>
+
+					<Form.Field className='flex flex-col' name='name'>
+						<div className='flex items-baseline justify-between'>
+							<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
+								Number of Reviews
+							</Form.Label>
+							<Form.Message
+								className='text-md text-red-400'
+								match='valueMissing'
+							>
+								Please enter Number of Reviews
+							</Form.Message>
+							<Form.Message
+								className='text-md text-red-400'
+								match='typeMismatch'
+							>
+								Please provide a Number of Reviews
+							</Form.Message>
+						</div>
+						<Form.Control asChild>
+							<input
+								className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
+								type='number'
+								required
+								placeholder='Enter Number of Reviews'
+								value={rating?.numReviews}
+								onChange={(e) =>
+									setRating({
+										...rating,
+										rating: rating?.rating || 0,
+										numReviews: Number(e.target.value),
+									})
+								}
 							/>
 						</Form.Control>
 					</Form.Field>

@@ -26,7 +26,7 @@ const ProductListPage = () => {
 			// console.log(typedProducts);
 			setProducts(typedProducts);
 		}
-	}, [isLoading]);
+	}, [isLoading, loadingCreate]);
 
 	console.log(products);
 
@@ -34,7 +34,8 @@ const ProductListPage = () => {
 		if (window.confirm('Are you sure you want to create a new product?')) {
 			try {
 				await createProduct({});
-				refetch().then((value) => setProducts(toCheckProducts(value.data)));
+				const newProducts = await refetch()
+				setProducts(toCheckProducts(newProducts.data));
 			} catch (error) {
 				toast.error(getError(error as ApiError));
 			}
@@ -65,6 +66,8 @@ const ProductListPage = () => {
 			</div>
 
 			<div className='flex flex-col mt-4 w-full'>
+      {loadingCreate && (<div>Loading...</div>)}
+
 				{isLoading ? (
 					<div>Loading...</div>
 				) : (
