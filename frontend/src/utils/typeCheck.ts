@@ -508,7 +508,8 @@ export const toCheckProduct = (object: unknown): Product => {
 		'tags' in object &&
 		'images' in object &&
 		'options' in object &&
-		'variations' in object
+		'variations' in object &&
+		'statistics' in object
 	) {
 		const checkedProduct: Product = {
 			_id: parseStringKey('_id', object._id),
@@ -520,11 +521,12 @@ export const toCheckProduct = (object: unknown): Product => {
 			images: parseArrayStrings('images', object.images),
 			options: parseProductOptions(object.options),
 			variations: parseVariations(object.variations),
+			statistics: parseArrayStrings('statistics',object.statistics)
 		};
 
-		if ('statistics' in object) {
-			checkedProduct.statistics = parseArrayStrings('statistics',object.statistics);
-		}
+		// if ('statistics' in object) {
+		// 	checkedProduct.statistics = parseArrayStrings('statistics',object.statistics);
+		// }
 		return checkedProduct;
 	}
 	throw new Error('Incorrect data: some fields are missing in Product');

@@ -27,6 +27,7 @@ const ProductPage = () => {
 
 	const [qty, setQty] = useState(1);
 	const [variation, setVariation] = useState<Variation>();
+	console.log(variation)
 
 	// if (!slug) {
 	// 	return <div>No slug provided</div>;

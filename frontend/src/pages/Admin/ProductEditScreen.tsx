@@ -3,10 +3,11 @@ import * as Select from '@radix-ui/react-select';
 import {
 	useGetProductDetailsQuery,
 	useUpdateProductMutation,
+	useUploadProductImageMutation,
 } from '../../slices/productsApiSlice';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Message from '../../components/Message';
-import { SyntheticEvent, useState, useEffect } from 'react';
+import { SyntheticEvent, useState, useEffect, ChangeEvent } from 'react';
 import {
 	Category,
 	Options,
@@ -44,13 +45,15 @@ const ProductEditScreen = () => {
 
 	const [images, setImages] = useState<string[]>();
 	const [options, setOptions] = useState<ProductOptions>();
-	const [statistics, setStatistics] = useState<string[]>();
+
+	const [statistics, setStatistics] = useState<string[]>([]);
+	const [newStatistic, setNewStatistic] = useState('');
 
 	const [variations, setVariations] = useState<Variation[]>([]);
 
-// variation 
+	// variation
 	const [optionsMaterial, setOptionsMaterial] = useState('');
-	console.log(optionsMaterial);
+	// console.log(optionsMaterial);
 	const [optionsSize, setOptionsSize] = useState('');
 
 	const [countInStock, setCountInStock] = useState(1);
@@ -59,12 +62,13 @@ const ProductEditScreen = () => {
 	const { data, isLoading, refetch, error } =
 		useGetProductDetailsQuery(productSlug);
 
-	console.log(data);
-
-
+	// console.log(data);
 
 	const [updateProduct, { isLoading: loadingUpdate, error: updateError }] =
 		useUpdateProductMutation();
+
+	const [uploadProductImage, { isLoading: loadingUpload }] =
+		useUploadProductImageMutation();
 
 	const toCustomError = (err: unknown): CustomError => {
 		const customError = err as CustomError;
@@ -94,6 +98,10 @@ const ProductEditScreen = () => {
 	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();
 		// const slug = _.kebabCase(name);
+		if (name.trim() === '') {
+			setName('');
+			return toast.error('Just empty spaces here...');
+		}
 		try {
 			await updateProduct({
 				productSlug,
@@ -122,9 +130,29 @@ const ProductEditScreen = () => {
 			}
 		}
 	};
+	// Statistic
+	const handleSubmitStatistic = (e: SyntheticEvent) => {
+		e.preventDefault();
+		if (newStatistic.trim() === '') {
+			setNewStatistic('');
+			return toast.error('Just empty spaces here...');
+		}
+		setStatistics([...statistics, newStatistic]);
+	};
+
+	const handleDeleteStatistic = (index: number) => {
+		const updatedStatistics = statistics.filter((_statistic, i) => i !== index);
+		setStatistics(updatedStatistics);
+		// setCategoryName('');
+		// refetch().then((value) => setProduct(toCheckProduct(value.data)));
+	};
 	// Category
 	const handleSubmitCategory = (e: SyntheticEvent) => {
 		e.preventDefault();
+		if (categoryName.trim() === '') {
+			setCategoryName('');
+			return toast.error('Just empty spaces here...');
+		}
 		const categorySlug = _.kebabCase(categoryName);
 		//duplicate Category here
 		setCategories([...categories, { name: categoryName, slug: categorySlug }]);
@@ -139,6 +167,10 @@ const ProductEditScreen = () => {
 	//Tag
 	const handleSubmitTag = (e: SyntheticEvent) => {
 		e.preventDefault();
+		if (tagName.trim() === '') {
+			setTagName('');
+			return toast.error('Just empty spaces here...');
+		}
 		const tagSlug = _.kebabCase(tagName);
 		//duplicate Category here
 		setTags([...tags, { name: tagName, slug: tagSlug }]);
@@ -180,11 +212,37 @@ const ProductEditScreen = () => {
 
 	const handleDeleteVariation = (index: number) => {
 		const updatedVariations = variations.filter((_variation, i) => i !== index);
-	setVariations(updatedVariations)
-	}
+		setVariations(updatedVariations);
+	};
 	const handleEditVariation = (index: number) => {
-		console.log(index)
-	}
+		console.log(index);
+	};
+
+	const uploadFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files === null) {
+			console.log('no file selected');
+		} else {
+			const formData = new FormData();
+			formData.append('image', e.target.files[0]);
+			try {
+				const res = await uploadProductImage(formData).unwrap();
+				console.log(res);
+				toast.success(res.message);
+				setImages([res.image]);
+			} catch (err) {
+				if (err instanceof Error) {
+					// console.log('Error', err);
+					// console.log('err')
+					toast.error(err.message);
+				} else {
+					const customError = err as CustomError;
+					// console.log('CustomError', customError);
+					console.log(err);
+					toast.error(customError.data.message);
+				}
+			}
+		}
+	};
 
 	return (
 		<div className='flex flex-col items-center w-full'>
@@ -319,6 +377,69 @@ const ProductEditScreen = () => {
 							</Form.Control>
 						</Form.Field>
 
+						{/* Image URL */}
+						<Form.Field className='flex flex-col' name='imageUrl'>
+							<div className='flex items-baseline justify-between'>
+								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
+									Image URL
+								</Form.Label>
+								<Form.Message
+									className='text-md text-red-400'
+									match='valueMissing'
+								>
+									Please enter Image URL
+								</Form.Message>
+								<Form.Message
+									className='text-md text-red-400'
+									match={(value) => Number(value) < 0}
+								>
+									Please provide a Image URL
+								</Form.Message>
+							</div>
+							<Form.Control asChild>
+								<input
+									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
+									type='text'
+									required
+									placeholder='Enter Number of Reviews'
+									value={images && images[0]}
+									onChange={(e) => setImages([e.target.value])}
+									// onChange={(e) => setNewStatistic(e.target.value)}
+								/>
+							</Form.Control>
+						</Form.Field>
+
+						{/* Image upload */}
+						<Form.Field className='flex flex-col' name='uploadImage'>
+							<div className='flex items-baseline justify-between'>
+								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
+									Add Product Image
+								</Form.Label>
+								<Form.Message
+									className='text-md text-red-400'
+									match='valueMissing'
+								>
+									Please enter Product Image
+								</Form.Message>
+								<Form.Message
+									className='text-md text-red-400'
+									match='typeMismatch'
+								>
+									Please provide a Product Image
+								</Form.Message>
+							</div>
+							<Form.Control asChild>
+								<input
+									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
+									type='file'
+									// required
+									placeholder='Enter Number of Reviews'
+									// value={rating?.numReviews}
+									onChange={uploadFileHandler}
+								/>
+							</Form.Control>
+						</Form.Field>
+
 						<Form.Submit asChild>
 							<button
 								// add disabled styling
@@ -330,7 +451,67 @@ const ProductEditScreen = () => {
 						</Form.Submit>
 						{isLoading && <div>Loading...</div>}
 					</Form.Root>
+
 					<div className='w-3/12'>
+						{/* Statistics */}
+						<Form.Root
+							className='w-full'
+							onSubmit={(e) => handleSubmitStatistic(e)}
+						>
+							<div className='flex flex-col'>
+								<h3>Statistics list</h3>
+								{statistics?.map((statistic, index) => (
+									<div key={index} className='flex items-center'>
+										<FaTrash
+											className='hover:cursor-pointer hover:text-red-300'
+											onClick={() => handleDeleteStatistic(index)}
+										/>{' '}
+										{statistic}
+									</div>
+								))}
+							</div>
+
+							<Form.Field className='flex flex-col' name='statistic'>
+								<div className='flex items-baseline justify-between'>
+									<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
+										New Statistic
+									</Form.Label>
+									<Form.Message
+										className='text-md text-red-400'
+										match='valueMissing'
+									>
+										Please enter New Statistic
+									</Form.Message>
+									<Form.Message
+										className='text-md text-red-400'
+										match='typeMismatch'
+									>
+										Please provide a valid New Statistic
+									</Form.Message>
+								</div>
+								<Form.Control asChild>
+									<input
+										className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
+										type='text'
+										required
+										placeholder='Enter 	New Statistic'
+										value={newStatistic}
+										onChange={(e) => setNewStatistic(e.target.value)}
+									/>
+								</Form.Control>
+							</Form.Field>
+
+							<Form.Submit asChild>
+								<button
+									// add disabled styling
+									className='bg-zinc-900 text-white hover:bg-red-200 hover:cursor-pointer w-full text-center py-2  mt-5'
+									disabled={isLoading}
+								>
+									Add Category
+								</button>
+							</Form.Submit>
+						</Form.Root>
+						{/* Categories */}
 						<Form.Root
 							className='w-full'
 							onSubmit={(e) => handleSubmitCategory(e)}
@@ -388,6 +569,8 @@ const ProductEditScreen = () => {
 								</button>
 							</Form.Submit>
 						</Form.Root>
+
+						{/* Tags */}
 						<Form.Root className='w-full' onSubmit={(e) => handleSubmitTag(e)}>
 							<div className='flex flex-col'>
 								<h3>Tag list</h3>

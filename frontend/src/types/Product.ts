@@ -29,6 +29,7 @@ export interface Variation {
 	price: number;
 	countInStock: number;
 	tags: Tag[];
+	// images: string[]
 	_id?: string;
 }
 
@@ -78,7 +79,7 @@ export interface Product {
 	images: string[];
 	options: ProductOptions;
 	variations: Variation[];
-	statistics?: string[];
+	statistics: string[];
 }
 
 export interface ShippingAddress {
