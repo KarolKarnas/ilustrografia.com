@@ -75,19 +75,19 @@ const createProduct = asyncHandler(async (req, res) => {
 				optionName: 'Material',
 				'art-print': {
 					title: 'Art Print',
-					images: ['/images/sample.jpg'],
+					images: ['/images/sample-art-print.jpg'],
 				},
 				'painting-on-canvas': {
 					title: 'Painting On Canvas',
-					images: ['/images/sample.jpg'],
+					images: ['/images/sample-painting-on-canvas.jpg'],
 				},
 				poster: {
 					title: 'Poster',
-					images: ['/images/sample.jpg'],
+					images: ['/images/sample-poster.jpg'],
 				},
 				'premium-print': {
 					title: 'Premium Print',
-					images: ['/images/sample.jpg'],
+					images: ['/images/sample-premium-print.jpg'],
 				},
 			},
 			size: {

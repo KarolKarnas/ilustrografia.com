@@ -237,7 +237,7 @@ const ProductEditScreen = () => {
 				} else {
 					const customError = err as CustomError;
 					// console.log('CustomError', customError);
-					console.log(err);
+					// console.log(err);
 					toast.error(customError.data.message);
 				}
 			}
