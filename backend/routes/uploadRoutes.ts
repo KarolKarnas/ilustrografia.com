@@ -50,8 +50,7 @@ router.post('/', (req, res) => {
 
 			res.status(200).send({
 				message: 'Image uploaded successfully',
-				image: `uploads/${uploadedFile.filename}`
-				// image2: `/uploads/${uploadedFile.filename}`,
+				image: `/uploads/${uploadedFile.filename}`
 			});
 			return;
 		} else {

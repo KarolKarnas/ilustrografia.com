@@ -26,11 +26,15 @@ import { CustomError } from '../../types/User';
 import { FaEdit, FaPlus, FaTrash, FaChevronDown } from 'react-icons/fa';
 import _ from 'lodash';
 
+
+
 const ProductEditScreen = () => {
 	const { slug: productSlug } = useParams();
 	const navigate = useNavigate();
 
 	const [product, setProduct] = useState<Product>();
+
+	// console.log(product?.options.material['art-print'].images[0])
 
 	const [_id, set_Id] = useState('');
 	const [name, setName] = useState('');
@@ -44,8 +48,60 @@ const ProductEditScreen = () => {
 	const [tagName, setTagName] = useState('');
 
 	const [images, setImages] = useState<string[]>();
-	const [options, setOptions] = useState<ProductOptions>();
+	const [options, setOptions] = useState<ProductOptions>({
+		material: {
+			optionName: '', // You can provide a default option name here
+			'art-print': {
+				title: '',
+				images: [],
+			},
+			'painting-on-canvas': {
+				title: '',
+				images: [],
+			},
+			poster: {
+				title: '',
+				images: [],
+			},
+			'premium-print': {
+				title: '',
+				images: [],
+			},
+		},
+		size: {
+			optionName: '', // You can provide a default option name here
+			s20x30: {
+				title: '',
+				images: [],
+			},
+			s20x40: {
+				title: '',
+				images: [],
+			},
+			s30x40: {
+				title: '',
+				images: [],
+			},
+			s40x60: {
+				title: '',
+				images: [],
+			},
+			s50x70: {
+				title: '',
+				images: [],
+			},
+			s60x90: {
+				title: '',
+				images: [],
+			},
+			s70x100: {
+				title: '',
+				images: [],
+			},
+		},
+	});
 
+	console.log(options?.material['art-print'].images);
 	const [statistics, setStatistics] = useState<string[]>([]);
 	const [newStatistic, setNewStatistic] = useState('');
 
@@ -244,6 +300,48 @@ const ProductEditScreen = () => {
 		}
 	};
 
+
+	const uploadArtPrintFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files === null) {
+			console.log('no file selected');
+		} else {
+			const formData = new FormData();
+			formData.append('image', e.target.files[0]);
+			try {
+				const res = await uploadProductImage(formData).unwrap();
+				console.log(res);
+				toast.success(res.message);
+
+				const updatedOptions = {
+					...options,
+					material: {
+						...options.material,
+						'art-print': {
+							...options.material['art-print'],
+							images: [res.image],
+						},
+					},
+				};
+				// Set the updated options object in the state
+				setOptions(updatedOptions);
+				// setImages([res.image]);
+			} catch (err) {
+				if (err instanceof Error) {
+					// console.log('Error', err);
+					// console.log('err')
+					toast.error(err.message);
+				} else {
+					const customError = err as CustomError;
+					// console.log('CustomError', customError);
+					// console.log(err);
+					toast.error(customError.data.message);
+				}
+			}
+		}
+	};
+
+
+
 	return (
 		<div className='flex flex-col items-center w-full'>
 			<h1 className='text-3xl font-bold text-center mt-5'>Edit Product</h1>{' '}
@@ -377,23 +475,23 @@ const ProductEditScreen = () => {
 							</Form.Control>
 						</Form.Field>
 
-						{/* Image URL */}
-						<Form.Field className='flex flex-col' name='imageUrl'>
+						{/*MAIN Image URL */}
+						<Form.Field className='flex flex-col' name='mainImageUrl'>
 							<div className='flex items-baseline justify-between'>
 								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-									Image URL
+									Main Image URL
 								</Form.Label>
 								<Form.Message
 									className='text-md text-red-400'
 									match='valueMissing'
 								>
-									Please enter Image URL
+									Please enter Main Image URL
 								</Form.Message>
 								<Form.Message
 									className='text-md text-red-400'
 									match={(value) => Number(value) < 0}
 								>
-									Please provide a Image URL
+									Please provide a Main Image URL
 								</Form.Message>
 							</div>
 							<Form.Control asChild>
@@ -401,7 +499,7 @@ const ProductEditScreen = () => {
 									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
 									type='text'
 									required
-									placeholder='Enter Number of Reviews'
+									placeholder='Enter Main image url'
 									value={images && images[0]}
 									onChange={(e) => setImages([e.target.value])}
 									// onChange={(e) => setNewStatistic(e.target.value)}
@@ -409,8 +507,8 @@ const ProductEditScreen = () => {
 							</Form.Control>
 						</Form.Field>
 
-						{/* Image upload */}
-						<Form.Field className='flex flex-col' name='uploadImage'>
+						{/*MAIN Image upload */}
+						<Form.Field className='flex flex-col' name='uploadMainImage'>
 							<div className='flex items-baseline justify-between'>
 								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
 									Add Product Image
@@ -433,9 +531,85 @@ const ProductEditScreen = () => {
 									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
 									type='file'
 									// required
-									placeholder='Enter Number of Reviews'
+									// placeholder='Enter Number of Reviews'
 									// value={rating?.numReviews}
 									onChange={uploadFileHandler}
+								/>
+							</Form.Control>
+						</Form.Field>
+
+						{/*Art Print Image URL */}
+						<Form.Field className='flex flex-col' name='artPrintImageUrl'>
+							<div className='flex items-baseline justify-between'>
+								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
+									Art Print Image URL
+								</Form.Label>
+								<Form.Message
+									className='text-md text-red-400'
+									match='valueMissing'
+								>
+									Art Print Please enter Image URL
+								</Form.Message>
+								<Form.Message
+									className='text-md text-red-400'
+									match='typeMismatch'
+								>
+									Please provide a Art Print Image URL
+								</Form.Message>
+							</div>
+							<Form.Control asChild>
+								<input
+									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
+									type='text'
+									required
+									placeholder='Enter Art Print Image URL'
+									value={options && options.material['art-print'].images[0]}
+									onChange={(e) => {
+										const updatedOptions = {
+											...options,
+											material: {
+												...options.material,
+												'art-print': {
+													...options.material['art-print'],
+													images: [e.target.value],
+												},
+											},
+										};
+										// Set the updated options object in the state
+										setOptions(updatedOptions);
+									}}
+								/>
+							</Form.Control>
+						</Form.Field>
+
+
+												{/*ART PRINT Image upload */}
+												<Form.Field className='flex flex-col' name='uploadArtPrintImage'>
+							<div className='flex items-baseline justify-between'>
+								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
+									Add Product Art Print Image
+								</Form.Label>
+								<Form.Message
+									className='text-md text-red-400'
+									match='valueMissing'
+								>
+									Please enter Product Art Print Image
+								</Form.Message>
+								<Form.Message
+									className='text-md text-red-400'
+									match='typeMismatch'
+								>
+									Please provide a Product Art Print Image
+								</Form.Message>
+							</div>
+							<Form.Control asChild>
+								<input
+									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
+									type='file'
+									// required
+									// placeholder='Enter Number of Reviews'
+									// value={rating?.numReviews}
+									onChange={uploadArtPrintFileHandler}
 								/>
 							</Form.Control>
 						</Form.Field>
