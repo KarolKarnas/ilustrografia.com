@@ -25,7 +25,8 @@ import { CustomError } from '../../types/User';
 
 import { FaEdit, FaPlus, FaTrash, FaChevronDown } from 'react-icons/fa';
 import _ from 'lodash';
-
+import TagsForm from './TagsForm';
+import CategoriesForm from './CategoriesForm';
 
 
 const ProductEditScreen = () => {
@@ -42,10 +43,10 @@ const ProductEditScreen = () => {
 	const [rating, setRating] = useState<Rating>();
 
 	const [categories, setCategories] = useState<Category[]>([]);
-	const [categoryName, setCategoryName] = useState('');
+
 
 	const [tags, setTags] = useState<Tag[]>([]);
-	const [tagName, setTagName] = useState('');
+
 
 	const [images, setImages] = useState<string[]>();
 	const [options, setOptions] = useState<ProductOptions>({
@@ -202,40 +203,7 @@ const ProductEditScreen = () => {
 		// setCategoryName('');
 		// refetch().then((value) => setProduct(toCheckProduct(value.data)));
 	};
-	// Category
-	const handleSubmitCategory = (e: SyntheticEvent) => {
-		e.preventDefault();
-		if (categoryName.trim() === '') {
-			setCategoryName('');
-			return toast.error('Just empty spaces here...');
-		}
-		const categorySlug = _.kebabCase(categoryName);
-		//duplicate Category here
-		setCategories([...categories, { name: categoryName, slug: categorySlug }]);
-	};
-
-	const handleDeleteCategory = (index: number) => {
-		const updatedCategories = categories.filter((_category, i) => i !== index);
-		setCategories(updatedCategories);
-		// setCategoryName('');
-		// refetch().then((value) => setProduct(toCheckProduct(value.data)));
-	};
-	//Tag
-	const handleSubmitTag = (e: SyntheticEvent) => {
-		e.preventDefault();
-		if (tagName.trim() === '') {
-			setTagName('');
-			return toast.error('Just empty spaces here...');
-		}
-		const tagSlug = _.kebabCase(tagName);
-		//duplicate Category here
-		setTags([...tags, { name: tagName, slug: tagSlug }]);
-	};
-
-	const handleDeleteTag = (index: number) => {
-		const updatedTags = tags.filter((_tag, i) => i !== index);
-		setTags(updatedTags);
-	};
+	
 
 	const handleSubmitVariation = (e: SyntheticEvent) => {
 		e.preventDefault();
@@ -686,120 +654,12 @@ const ProductEditScreen = () => {
 							</Form.Submit>
 						</Form.Root>
 						{/* Categories */}
-						<Form.Root
-							className='w-full'
-							onSubmit={(e) => handleSubmitCategory(e)}
-						>
-							<div className='flex flex-col'>
-								<h3>Category list</h3>
-								{categories?.map((category, index) => (
-									<div key={index} className='flex items-center'>
-										<FaTrash
-											className='hover:cursor-pointer hover:text-red-300'
-											onClick={() => handleDeleteCategory(index)}
-										/>{' '}
-										{category.name}
-									</div>
-								))}
-							</div>
 
-							<Form.Field className='flex flex-col' name='name'>
-								<div className='flex items-baseline justify-between'>
-									<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-										Category Name
-									</Form.Label>
-									<Form.Message
-										className='text-md text-red-400'
-										match='valueMissing'
-									>
-										Please enter Category Name
-									</Form.Message>
-									<Form.Message
-										className='text-md text-red-400'
-										match='typeMismatch'
-									>
-										Please provide a valid Category Name
-									</Form.Message>
-								</div>
-								<Form.Control asChild>
-									<input
-										className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-										type='text'
-										required
-										placeholder='Enter Category Name'
-										value={categoryName}
-										onChange={(e) => setCategoryName(e.target.value)}
-									/>
-								</Form.Control>
-							</Form.Field>
-
-							<Form.Submit asChild>
-								<button
-									// add disabled styling
-									className='bg-zinc-900 text-white hover:bg-red-200 hover:cursor-pointer w-full text-center py-2  mt-5'
-									disabled={isLoading}
-								>
-									Add Category
-								</button>
-							</Form.Submit>
-						</Form.Root>
+						<CategoriesForm categories={categories} setCategories={setCategories}/>
 
 						{/* Tags */}
-						<Form.Root className='w-full' onSubmit={(e) => handleSubmitTag(e)}>
-							<div className='flex flex-col'>
-								<h3>Tag list</h3>
-								{tags?.map((tag, index) => (
-									<div key={index} className='flex items-center'>
-										<FaTrash
-											className='hover:cursor-pointer hover:text-red-300'
-											onClick={() => handleDeleteTag(index)}
-										/>{' '}
-										{tag.name}
-									</div>
-								))}
-							</div>
-
-							<Form.Field className='flex flex-col' name='name'>
-								<div className='flex items-baseline justify-between'>
-									<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-										Tag Name
-									</Form.Label>
-									<Form.Message
-										className='text-md text-red-400'
-										match='valueMissing'
-									>
-										Please enter Tag Name
-									</Form.Message>
-									<Form.Message
-										className='text-md text-red-400'
-										match='typeMismatch'
-									>
-										Please provide a valid Tag Name
-									</Form.Message>
-								</div>
-								<Form.Control asChild>
-									<input
-										className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-										type='text'
-										required
-										placeholder='Enter Tag Name'
-										value={tagName}
-										onChange={(e) => setTagName(e.target.value)}
-									/>
-								</Form.Control>
-							</Form.Field>
-
-							<Form.Submit asChild>
-								<button
-									// add disabled styling
-									className='bg-zinc-900 text-white hover:bg-red-200 hover:cursor-pointer w-full text-center py-2  mt-5'
-									disabled={isLoading}
-								>
-									Add Tag
-								</button>
-							</Form.Submit>
-						</Form.Root>
-
+						<TagsForm  tags={tags} setTags={setTags}/>
+					
 						{/* //Variation Form */}
 
 						<Form.Root
@@ -973,44 +833,6 @@ const ProductEditScreen = () => {
 							</Form.Submit>
 						</Form.Root>
 
-						{/* <Select.Root defaultValue='blueberry'>
-							<Select.Trigger asChild aria-label='Food'>
-								<button>
-									<Select.Value />
-									<Select.Icon className='ml-2'>
-										<FaChevronDown />
-									</Select.Icon>
-								</button>
-							</Select.Trigger>
-							<Select.Content>
-								<Select.ScrollUpButton className='flex items-center justify-center text-gray-700 dark:text-gray-300'>
-									<FaChevronDown />
-								</Select.ScrollUpButton>
-								<Select.Viewport className='bg-white dark:bg-gray-800 p-2 rounded-lg shadow-lg'>
-									<Select.Group>
-										{[
-											'Apple',
-											'Banana',
-											'Blueberry',
-											'Strawberry',
-											'Grapes',
-										].map((f, i) => (
-											<Select.Item
-												disabled={f === 'Grapes'}
-												key={`${f}-${i}`}
-												value={f.toLowerCase()}
-											>
-												<Select.ItemText>{f}</Select.ItemText>
-												<Select.ItemIndicator className='absolute left-2 inline-flex items-center'>
-													<FaChevronDown />
-												</Select.ItemIndicator>
-											</Select.Item>
-										))}
-									</Select.Group>
-								</Select.Viewport>
-								<Select.ScrollDownButton className='flex items-center justify-center text-gray-700 dark:text-gray-300'></Select.ScrollDownButton>
-							</Select.Content>
-						</Select.Root> */}
 					</div>
 				</div>
 			) : (
