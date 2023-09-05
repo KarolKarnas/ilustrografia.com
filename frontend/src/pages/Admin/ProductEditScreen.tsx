@@ -29,7 +29,9 @@ import TagsForm from '../../components/Admin/TagsForm';
 import CategoriesForm from '../../components/Admin/CategoriesForm';
 import { productOptionsInitial } from '../../utils/initialStates';
 import StatisticsForm from '../../components/Admin/StatisticsForm';
-
+import VariationForm from '../../components/Admin/VariationForm';
+import UploadArtPrintField from '../../components/Admin/UploadArtPrintField';
+import UploadMainImageField from '../../components/Admin/UploadMainImageField';
 
 const ProductEditScreen = () => {
 	const { slug: productSlug } = useParams();
@@ -41,32 +43,15 @@ const ProductEditScreen = () => {
 	const [name, setName] = useState('');
 	const [slug, setSlug] = useState('');
 	const [rating, setRating] = useState<Rating>();
-
 	const [categories, setCategories] = useState<Category[]>([]);
-
-
 	const [tags, setTags] = useState<Tag[]>([]);
-
-
-	const [images, setImages] = useState<string[]>();
+	const [images, setImages] = useState<string[]>([]);
 	const [options, setOptions] = useState<ProductOptions>(productOptionsInitial);
-
 	const [statistics, setStatistics] = useState<string[]>([]);
-	
-
 	const [variations, setVariations] = useState<Variation[]>([]);
-
-	// variation
-	const [optionsMaterial, setOptionsMaterial] = useState('');
-	const [optionsSize, setOptionsSize] = useState('');
-
-	const [countInStock, setCountInStock] = useState(1);
-	const [price, setPrice] = useState(100);
 
 	const { data, isLoading, refetch, error } =
 		useGetProductDetailsQuery(productSlug);
-
-	// console.log(data);
 
 	const [updateProduct, { isLoading: loadingUpdate, error: updateError }] =
 		useUpdateProductMutation();
@@ -134,128 +119,6 @@ const ProductEditScreen = () => {
 			}
 		}
 	};
-	// // Statistic
-	// const handleSubmitStatistic = (e: SyntheticEvent) => {
-	// 	e.preventDefault();
-	// 	if (newStatistic.trim() === '') {
-	// 		setNewStatistic('');
-	// 		return toast.error('Just empty spaces here...');
-	// 	}
-	// 	setStatistics([...statistics, newStatistic]);
-	// };
-
-	// const handleDeleteStatistic = (index: number) => {
-	// 	const updatedStatistics = statistics.filter((_statistic, i) => i !== index);
-	// 	setStatistics(updatedStatistics);
-	// 	// setCategoryName('');
-	// 	// refetch().then((value) => setProduct(toCheckProduct(value.data)));
-	// };
-	
-
-	const handleSubmitVariation = (e: SyntheticEvent) => {
-		e.preventDefault();
-		if (optionsMaterial === '') {
-			return toast.error('Select the material');
-		} else if (optionsSize === '') {
-			return toast.error('Select the size');
-		} else {
-			const currentSku = `${slug}-${optionsMaterial}-${optionsSize}`;
-			// setSku(currentSku);
-			const currentVariationOptions = {
-				material: optionsMaterial,
-				size: optionsSize,
-			};
-			// setVariationOptions(currentVariationOptions);
-
-			setVariations([
-				...variations,
-				{
-					SKU: currentSku,
-					countInStock,
-					options: currentVariationOptions,
-					price,
-					productSlug: slug,
-					tags: [{ name: '', slug: '' }],
-				},
-			]);
-		}
-	};
-
-	const handleDeleteVariation = (index: number) => {
-		const updatedVariations = variations.filter((_variation, i) => i !== index);
-		setVariations(updatedVariations);
-	};
-	const handleEditVariation = (index: number) => {
-		console.log(index);
-	};
-
-	const uploadFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
-		if (e.target.files === null) {
-			console.log('no file selected');
-		} else {
-			const formData = new FormData();
-			formData.append('image', e.target.files[0]);
-			try {
-				const res = await uploadProductImage(formData).unwrap();
-				console.log(res);
-				toast.success(res.message);
-				setImages([res.image]);
-			} catch (err) {
-				if (err instanceof Error) {
-					// console.log('Error', err);
-					// console.log('err')
-					toast.error(err.message);
-				} else {
-					const customError = err as CustomError;
-					// console.log('CustomError', customError);
-					// console.log(err);
-					toast.error(customError.data.message);
-				}
-			}
-		}
-	};
-
-
-	const uploadArtPrintFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
-		if (e.target.files === null) {
-			console.log('no file selected');
-		} else {
-			const formData = new FormData();
-			formData.append('image', e.target.files[0]);
-			try {
-				const res = await uploadProductImage(formData).unwrap();
-				console.log(res);
-				toast.success(res.message);
-
-				const updatedOptions = {
-					...options,
-					material: {
-						...options.material,
-						'art-print': {
-							...options.material['art-print'],
-							images: [res.image],
-						},
-					},
-				};
-				// Set the updated options object in the state
-				setOptions(updatedOptions);
-				// setImages([res.image]);
-			} catch (err) {
-				if (err instanceof Error) {
-					// console.log('Error', err);
-					// console.log('err')
-					toast.error(err.message);
-				} else {
-					const customError = err as CustomError;
-					// console.log('CustomError', customError);
-					// console.log(err);
-					toast.error(customError.data.message);
-				}
-			}
-		}
-	};
-
-
 
 	return (
 		<div className='flex flex-col items-center w-full'>
@@ -390,144 +253,8 @@ const ProductEditScreen = () => {
 							</Form.Control>
 						</Form.Field>
 
-						{/*MAIN Image URL */}
-						<Form.Field className='flex flex-col' name='mainImageUrl'>
-							<div className='flex items-baseline justify-between'>
-								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-									Main Image URL
-								</Form.Label>
-								<Form.Message
-									className='text-md text-red-400'
-									match='valueMissing'
-								>
-									Please enter Main Image URL
-								</Form.Message>
-								<Form.Message
-									className='text-md text-red-400'
-									match={(value) => Number(value) < 0}
-								>
-									Please provide a Main Image URL
-								</Form.Message>
-							</div>
-							<Form.Control asChild>
-								<input
-									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-									type='text'
-									required
-									placeholder='Enter Main image url'
-									value={images && images[0]}
-									onChange={(e) => setImages([e.target.value])}
-									// onChange={(e) => setNewStatistic(e.target.value)}
-								/>
-							</Form.Control>
-						</Form.Field>
-
-						{/*MAIN Image upload */}
-						<Form.Field className='flex flex-col' name='uploadMainImage'>
-							<div className='flex items-baseline justify-between'>
-								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-									Add Product Image
-								</Form.Label>
-								<Form.Message
-									className='text-md text-red-400'
-									match='valueMissing'
-								>
-									Please enter Product Image
-								</Form.Message>
-								<Form.Message
-									className='text-md text-red-400'
-									match='typeMismatch'
-								>
-									Please provide a Product Image
-								</Form.Message>
-							</div>
-							<Form.Control asChild>
-								<input
-									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-									type='file'
-									// required
-									// placeholder='Enter Number of Reviews'
-									// value={rating?.numReviews}
-									onChange={uploadFileHandler}
-								/>
-							</Form.Control>
-						</Form.Field>
-
-						{/*Art Print Image URL */}
-						<Form.Field className='flex flex-col' name='artPrintImageUrl'>
-							<div className='flex items-baseline justify-between'>
-								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-									Art Print Image URL
-								</Form.Label>
-								<Form.Message
-									className='text-md text-red-400'
-									match='valueMissing'
-								>
-									Art Print Please enter Image URL
-								</Form.Message>
-								<Form.Message
-									className='text-md text-red-400'
-									match='typeMismatch'
-								>
-									Please provide a Art Print Image URL
-								</Form.Message>
-							</div>
-							<Form.Control asChild>
-								<input
-									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-									type='text'
-									required
-									placeholder='Enter Art Print Image URL'
-									value={options && options.material['art-print'].images[0]}
-									onChange={(e) => {
-										const updatedOptions = {
-											...options,
-											material: {
-												...options.material,
-												'art-print': {
-													...options.material['art-print'],
-													images: [e.target.value],
-												},
-											},
-										};
-										// Set the updated options object in the state
-										setOptions(updatedOptions);
-									}}
-								/>
-							</Form.Control>
-						</Form.Field>
-
-
-												{/*ART PRINT Image upload */}
-												<Form.Field className='flex flex-col' name='uploadArtPrintImage'>
-							<div className='flex items-baseline justify-between'>
-								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-									Add Product Art Print Image
-								</Form.Label>
-								<Form.Message
-									className='text-md text-red-400'
-									match='valueMissing'
-								>
-									Please enter Product Art Print Image
-								</Form.Message>
-								<Form.Message
-									className='text-md text-red-400'
-									match='typeMismatch'
-								>
-									Please provide a Product Art Print Image
-								</Form.Message>
-							</div>
-							<Form.Control asChild>
-								<input
-									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-									type='file'
-									// required
-									// placeholder='Enter Number of Reviews'
-									// value={rating?.numReviews}
-									onChange={uploadArtPrintFileHandler}
-								/>
-							</Form.Control>
-						</Form.Field>
+						<UploadMainImageField images={images} setImages={setImages} />
+						<UploadArtPrintField options={options} setOptions={setOptions} />
 
 						<Form.Submit asChild>
 							<button
@@ -542,193 +269,21 @@ const ProductEditScreen = () => {
 					</Form.Root>
 
 					<div className='w-3/12'>
-						{/* Statistics */}
-
-
-						<StatisticsForm statistics={statistics} setStatistics={setStatistics} />
-
-
-					
-						{/* Categories */}
-
-						<CategoriesForm categories={categories} setCategories={setCategories}/>
-
-						{/* Tags */}
-						<TagsForm  tags={tags} setTags={setTags}/>
-					
-						{/* //Variation Form */}
-
-						<Form.Root
-							className='w-full'
-							onSubmit={(e) => handleSubmitVariation(e)}
-						>
-							<div className='flex flex-col'>
-								<h3>Create Variation</h3>
-								{variations?.map((variation, index) => (
-									<div key={index} className='flex items-center'>
-										<FaTrash
-											className='hover:cursor-pointer hover:text-red-300'
-											onClick={() => handleDeleteVariation(index)}
-										/>{' '}
-										<FaEdit
-											className='hover:cursor-pointer hover:text-red-300'
-											onClick={() => handleEditVariation(index)}
-										/>{' '}
-										{variation.SKU} / {variation.price}zł /{' '}
-										{variation.countInStock}
-									</div>
-								))}
-							</div>
-
-							<Form.Field className='flex flex-col' name='price'>
-								<div className='flex items-baseline justify-between'>
-									<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-										Price
-									</Form.Label>
-									<Form.Message
-										className='text-md text-red-400'
-										match='valueMissing'
-									>
-										Please write price of variation
-									</Form.Message>
-									<Form.Message
-										className='text-md text-red-400'
-										match={(value) => Number(value) <= 0}
-									>
-										Please provide a valid price
-									</Form.Message>
-								</div>
-								<Form.Control asChild>
-									<input
-										className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-										type='number'
-										required
-										placeholder='Enter Variation Price'
-										value={price}
-										onChange={(e) => setPrice(Number(e.target.value))}
-									/>
-								</Form.Control>
-							</Form.Field>
-							{/* count in stock */}
-							<Form.Field className='flex flex-col' name='countInStock'>
-								<div className='flex items-baseline justify-between'>
-									<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-										Count In Stock
-									</Form.Label>
-									<Form.Message
-										className='text-md text-red-400'
-										match='valueMissing'
-									>
-										Please provide Count in Stock
-									</Form.Message>
-									<Form.Message
-										className='text-md text-red-400'
-										match={(value) => Number(value) <= 0}
-									>
-										Please provide a Count in Stock
-									</Form.Message>
-								</div>
-								<Form.Control asChild>
-									<input
-										className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-										type='number'
-										required
-										placeholder='Enter Count In Stock'
-										value={countInStock}
-										onChange={(e) => setCountInStock(Number(e.target.value))}
-									/>
-								</Form.Control>
-							</Form.Field>
-
-							{/* options */}
-							<div className='flex justify-between'>
-								{/* variation material */}
-								<Select.Root
-									onValueChange={(value) => setOptionsMaterial(value)}
-								>
-									<Select.Trigger>
-										<Select.Value placeholder='Select Material' />
-										<Select.Icon>
-											<FaChevronDown />
-										</Select.Icon>
-									</Select.Trigger>
-
-									<Select.Portal>
-										<Select.Content>
-											<Select.ScrollUpButton />
-											<Select.Viewport className='bg-gray-800 p-2 rounded-lg shadow-lg text-white'>
-												<Select.Group>
-													{Object.keys(product.options.material)
-														.filter((key) => key !== 'optionName')
-														.map((material, i) => (
-															<Select.Item
-																// disabled={f === 'Grapes'}
-																key={`${material}-${i}`}
-																value={material.toLowerCase()}
-															>
-																<Select.ItemText>{material}</Select.ItemText>
-																<Select.ItemIndicator className='absolute left-2 inline-flex items-center'>
-																	<FaChevronDown />
-																</Select.ItemIndicator>
-															</Select.Item>
-														))}
-												</Select.Group>
-											</Select.Viewport>
-											<Select.ScrollDownButton />
-											<Select.Arrow />
-										</Select.Content>
-									</Select.Portal>
-								</Select.Root>
-
-								{/* variation size */}
-
-								<Select.Root onValueChange={(value) => setOptionsSize(value)}>
-									<Select.Trigger>
-										<Select.Value placeholder='Select Size' />
-										<Select.Icon>
-											<FaChevronDown />
-										</Select.Icon>
-									</Select.Trigger>
-
-									<Select.Portal>
-										<Select.Content>
-											<Select.ScrollUpButton />
-											<Select.Viewport className='bg-gray-800 p-2 rounded-lg shadow-lg text-white'>
-												<Select.Group>
-													{Object.keys(product.options.size)
-														.filter((key) => key !== 'optionName')
-														.map((size, i) => (
-															<Select.Item
-																// disabled={f === 'Grapes'}
-																key={`${size}-${i}`}
-																value={size.toLowerCase()}
-															>
-																<Select.ItemText>{size}</Select.ItemText>
-																<Select.ItemIndicator className='absolute left-2 inline-flex items-center'>
-																	<FaChevronDown />
-																</Select.ItemIndicator>
-															</Select.Item>
-														))}
-												</Select.Group>
-											</Select.Viewport>
-											<Select.ScrollDownButton />
-											<Select.Arrow />
-										</Select.Content>
-									</Select.Portal>
-								</Select.Root>
-							</div>
-
-							<Form.Submit asChild>
-								<button
-									// add disabled styling
-									className='bg-zinc-900 text-white hover:bg-red-200 hover:cursor-pointer w-full text-center py-2  mt-5'
-									disabled={isLoading}
-								>
-									Add Variation
-								</button>
-							</Form.Submit>
-						</Form.Root>
-
+						<StatisticsForm
+							statistics={statistics}
+							setStatistics={setStatistics}
+						/>
+						<CategoriesForm
+							categories={categories}
+							setCategories={setCategories}
+						/>
+						<TagsForm tags={tags} setTags={setTags} />
+						<VariationForm
+							variations={variations}
+							setVariations={setVariations}
+							slug={slug}
+							product={product}
+						/>
 					</div>
 				</div>
 			) : (
