@@ -10,7 +10,7 @@ import {
 	Variation,
 	VariationCart,
 } from '../types/Product';
-import { UserOrder, UserInfoOptions } from '../types/User';
+import { UserOrder, UserInfoOptions, UserInfo } from '../types/User';
 
 export const isString = (text: unknown): text is string => {
 	return typeof text === 'string' || text instanceof String;
@@ -521,7 +521,7 @@ export const toCheckProduct = (object: unknown): Product => {
 			images: parseArrayStrings('images', object.images),
 			options: parseProductOptions(object.options),
 			variations: parseVariations(object.variations),
-			statistics: parseArrayStrings('statistics',object.statistics)
+			statistics: parseArrayStrings('statistics', object.statistics),
 		};
 
 		// if ('statistics' in object) {
@@ -545,6 +545,48 @@ export const toCheckProducts = (object: unknown): Product[] => {
 			throw new Error('Incorrect or missing order in products');
 		}
 		newArr.push(typedProduct);
+	});
+
+	return newArr;
+};
+
+// USER
+
+export const parseUserInfo = (object: unknown): UserInfo => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data in UserInfo');
+	}
+
+	if (
+		'_id' in object &&
+		'name' in object &&
+		'email' in object &&
+		'isAdmin' in object
+	) {
+		const typedUser: UserInfo = {
+			_id: parseStringKey('email', object._id),
+			name: parseStringKey('name', object.name),
+			email: parseStringKey('email', object.email),
+			isAdmin: parseBooleanKey('isAdmin', object.isAdmin),
+		}
+
+		return typedUser
+	}
+	throw new Error('Incorrect data: some fields are missing in UserInfo');
+	};
+
+export const toCheckUsers = (object: unknown): UserInfo[] => {
+	if (!object || !isArray(object)) {
+		throw new Error('Incorrect or missing data in Objects');
+	}
+	const newArr: UserInfo[] = [];
+
+	object.forEach((user) => {
+		const typedUser = parseUserInfo(user);
+		if (!typedUser) {
+			throw new Error('Incorrect or missing order in users');
+		}
+		newArr.push(typedUser);
 	});
 
 	return newArr;

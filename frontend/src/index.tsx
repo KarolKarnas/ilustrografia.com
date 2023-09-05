@@ -28,8 +28,8 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 import OrderListPage from './pages/Admin/OrderListPage';
 import ProductListPage from './pages/Admin/ProductListPage'; 
-import ProductEditScreen from './pages/Admin/ProductEditScreen';
-
+import ProductEditScreen from './pages/Admin/ProductEditPage';
+import UserListPage from './pages/Admin/UserListPage';
 
 
 const router = createBrowserRouter(
@@ -51,6 +51,7 @@ const router = createBrowserRouter(
 				<Route path='/admin/order-list' element={<OrderListPage />} />
 				<Route path='/admin/product-list' element={<ProductListPage />} />
 				<Route path='/admin/product-list/:slug/edit' element={<ProductEditScreen />} />
+				<Route path='/admin/user-list' element={<UserListPage />} />
 			</Route>
 
 			{/* <Route index={true} path='/illustrations' element={<IllustrationsPage />}></Route>

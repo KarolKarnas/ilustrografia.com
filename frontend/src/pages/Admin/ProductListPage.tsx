@@ -18,6 +18,8 @@ const ProductListPage = () => {
 
 	const { data, isLoading, error, refetch } = useGetProductsQuery({});
 
+	console.log(data)
+
 	const [createProduct, { isLoading: loadingCreate }] =
 		useCreateProductMutation();
 

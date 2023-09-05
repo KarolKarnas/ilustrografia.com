@@ -29,6 +29,7 @@ export type UserUpdate = {
   name?: string;
   email?: string;
   password?: string;
+	// isAdmin?: boolean;
 };
 
 export interface CheckUserWithName extends CheckUser {

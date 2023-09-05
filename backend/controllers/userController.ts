@@ -146,8 +146,13 @@ const updateUserProfile = asyncHandler(async (req: Request, res: Response) => {
 // @route   GET /api/users
 // @access  Private/Admin
 const getUsers = asyncHandler(async (_req, res) => {
-	await UserModel.find({});
-	res.send('get users');
+	const users = await UserModel.find({});
+	if (users) {
+		res.send(users);
+	} else {
+		res.status(404);
+		throw new Error('No users found');
+	}
 });
 
 // @desc    Delete user
