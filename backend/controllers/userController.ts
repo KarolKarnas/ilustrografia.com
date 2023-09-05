@@ -158,9 +158,19 @@ const getUsers = asyncHandler(async (_req, res) => {
 // @desc    Delete user
 // @route   DELETE /api/users/:id
 // @access  Private/Admin
-const deleteUser = asyncHandler(async (_req, res) => {
-	await UserModel.find({});
-	res.send('delete user');
+const deleteUser = asyncHandler(async (req, res) => {
+	const user = await UserModel.findById(req.params.id);
+	if (user) {
+		if (user.isAdmin) {
+			res.status(400);
+			throw new Error('Can not delete admin user');
+		}
+		await UserModel.deleteOne({ _id: user._id });
+		res.json({ message: 'User removed' });
+	} else {
+		res.status(404);
+		throw new Error('User not found');
+	}
 });
 
 // @desc    Get user by ID

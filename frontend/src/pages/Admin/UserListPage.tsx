@@ -1,14 +1,22 @@
 import { useEffect, useState } from 'react';
-import { useGetUsersQuery } from '../../slices/usersApiSlice';
+import {
+	useGetUsersQuery,
+	useDeleteUserMutation,
+} from '../../slices/usersApiSlice';
 import { toCheckUsers } from '../../utils/typeCheck';
 import { UserInfo } from '../../types/User';
 import { Link } from 'react-router-dom';
 import { FaTrash, FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
+import { getError } from '../../utils/utils';
+import { toast } from 'react-toastify';
+import { ApiError } from '../../types/ApiError';
 
 const UserListPage = () => {
 	const [users, setUsers] = useState<UserInfo[]>([]);
 	const { data, isLoading, error, refetch } = useGetUsersQuery({});
 	console.log(users);
+
+	const [deleteUser] = useDeleteUserMutation();
 
 	useEffect(() => {
 		if (!isLoading) {
@@ -19,8 +27,17 @@ const UserListPage = () => {
 	}, [isLoading]);
 	// }, [isLoading, loadingCreate]);
 
-	const handleDeleteUser = (id: string) => {
-		console.log(`delete ${id}`);
+	const handleDeleteUser = async (id: string) => {
+		if (window.confirm('Are you sure you want to delete the user?')) {
+			try {
+				await deleteUser(id);
+				const newUser = await refetch();
+				setUsers(toCheckUsers(newUser.data));
+				toast.success(`User deleted successfully`);
+			} catch (error) {
+				toast.error(getError(error as ApiError));
+			}
+		}
 	};
 
 	return (
@@ -58,8 +75,13 @@ const UserListPage = () => {
 										<div className='basis-3/12'>{user._id}</div>
 										<div className='basis-1/12'>{user.name}</div>
 										<div className='basis-3/12'>{user.email}</div>
-										<div className='basis-1/12'>{user.isAdmin ? (<FaCheck className='text-green-400'/>) : (<FaTimes className='text-red-400' />
-              )}</div>
+										<div className='basis-1/12'>
+											{user.isAdmin ? (
+												<FaCheck className='text-green-400' />
+											) : (
+												<FaTimes className='text-red-400' />
+											)}
+										</div>
 										<div className='basis-4/12 flex gap-2'>
 											<Link
 												to={`/admin/user-list/${user._id}/edit`}
