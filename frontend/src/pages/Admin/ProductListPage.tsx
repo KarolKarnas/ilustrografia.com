@@ -3,11 +3,12 @@ import { Product } from '../../types/Product';
 import {
 	useGetProductsQuery,
 	useCreateProductMutation,
+	useDeleteProductMutation,
 } from '../../slices/productsApiSlice';
 import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-import { toCheckProducts } from '../../utils/typeCheck';
+import { toCheckProduct, toCheckProducts } from '../../utils/typeCheck';
 import { toast } from 'react-toastify';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
@@ -20,6 +21,9 @@ const ProductListPage = () => {
 	const [createProduct, { isLoading: loadingCreate }] =
 		useCreateProductMutation();
 
+	const [deleteProduct, { isLoading: loadingDelete }] =
+		useDeleteProductMutation();
+
 	useEffect(() => {
 		if (!isLoading) {
 			const typedProducts = toCheckProducts(data);
@@ -28,27 +32,40 @@ const ProductListPage = () => {
 		}
 	}, [isLoading, loadingCreate]);
 
-	console.log(products);
+	// console.log(products);
 
 	const createProductHandler = async () => {
 		if (window.confirm('Are you sure you want to create a new product?')) {
 			try {
-				await createProduct({});
-				const newProducts = await refetch()
+				await createProduct({});			
+				const newProducts = await refetch();
 				setProducts(toCheckProducts(newProducts.data));
+				toast.success(`Product created successfully`)
 			} catch (error) {
 				toast.error(getError(error as ApiError));
 			}
 		}
 	};
 
-	const createVariationHandler = async (slug: string) => {
-		await console.log(slug);
-	};
+	// const createVariationHandler = async (slug: string) => {
+	// 	await console.log(slug);
+	// };
 
-	const handleDeleteProduct = () => {
-		console.log('delete')
-	}
+	const handleDeleteProduct = async (slug: string) => {
+		console.log(`delete ${slug}`);
+
+		if (window.confirm(`Are you sure you want to delete ${slug}?`)) {
+			try {
+				await deleteProduct(slug);
+				const newProducts = await refetch();
+				setProducts(toCheckProducts(newProducts.data));
+				toast.success(`Product ${slug} deleted successfully`)
+			} catch (error) {
+				toast.error(getError(error as ApiError));
+			}
+		}
+
+	};
 
 	return (
 		<div className='w-3/4'>
@@ -66,7 +83,8 @@ const ProductListPage = () => {
 			</div>
 
 			<div className='flex flex-col mt-4 w-full'>
-      {loadingCreate && (<div>Loading...</div>)}
+				{loadingCreate && <div>Loading...</div>}
+				{loadingDelete && <div>Loading...</div>}
 
 				{isLoading ? (
 					<div>Loading...</div>
@@ -113,7 +131,10 @@ const ProductListPage = () => {
 											>
 												<FaEdit />
 											</Link>{' '}
-											<FaTrash onClick={handleDeleteProduct} className='hover:text-red-300 hover:cursor-pointer text-red-500' />
+											<FaTrash
+												onClick={() => handleDeleteProduct(product.slug)}
+												className='hover:text-red-300 hover:cursor-pointer text-red-500'
+											/>
 										</div>
 									</div>
 									<div className='flex justify-between'>

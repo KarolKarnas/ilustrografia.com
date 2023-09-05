@@ -38,8 +38,14 @@ export const productsApiSlice = apiSlice.injectEndpoints({
 				body: data,
 			}),
 		}),
+		 deleteProduct: builder.mutation({
+			query: (slug) => ({
+				url: `${PRODUCTS_URL}/${slug}`,
+				method: 'DELETE'
+			}),
+		}),
 	}),
 });
 
-export const { useGetProductsQuery, useGetProductDetailsQuery, useCreateProductMutation, useUpdateProductMutation, useUploadProductImageMutation } =
+export const { useGetProductsQuery, useGetProductDetailsQuery, useCreateProductMutation, useUpdateProductMutation, useUploadProductImageMutation, useDeleteProductMutation } =
 	productsApiSlice;

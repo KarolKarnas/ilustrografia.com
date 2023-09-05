@@ -13,7 +13,7 @@ const getProducts = asyncHandler(async (_req, res) => {
 });
 
 // @desc    Fetch single product
-// @route   GET /api/products/:id
+// @route   GET /api/products/:slug
 // @access  Public
 const getProductBySlug = asyncHandler(async (req, res) => {
 	const product = await ProductModel.findOne({ slug: req.params.slug });
@@ -187,12 +187,12 @@ const updateProduct = asyncHandler(async (req, res) => {
 	const names = await ProductModel.find({ name });
 
 	if (slug !== req.params.slug) {
-	if (names.length !== 0) {
-		res.status(400);
-		throw new Error(
-			`Product with the name ${name} already exists, provide unique name`
-		);
-	}
+		if (names.length !== 0) {
+			res.status(400);
+			throw new Error(
+				`Product with the name ${name} already exists, provide unique name`
+			);
+		}
 	}
 
 	// if (slug !== req.params.slug) {
@@ -226,24 +226,27 @@ const updateProduct = asyncHandler(async (req, res) => {
 	}
 });
 
-// // @desc    Create a product
-// // @route   POST /api/products/:id
-// // @access  Private/Admin
+// @desc    Delete product
+// @route   PUT /api/products/:id
+// @access  Private/Admin
 
-// const createVariation = asyncHandler(async (req, res) => {
-// 	const product = await ProductModel.findOne({ slug: req.params.slug });
-// 	if (product) {
-// 		res.json(product);
-// 	} else {
-// 		res.status(404);
-// 		throw new Error(`Product not found`);
-// 	}
-// });
-
+const deleteProduct = asyncHandler(async (req, res) => {
+	const product = await ProductModel.findOne({
+		slug: req.params.slug,
+	});
+	if (product) {
+		await ProductModel.deleteOne({ slug: product.slug });
+		res.json(`${req.params.slug} product deleted successfully`);
+	} else {
+		res.status(404);
+		throw new Error(`Product not found`);
+	}
+});
 export {
 	getProducts,
 	getProductBySlug,
 	getVariantBySlugAndSku,
 	createProduct,
 	updateProduct,
+	deleteProduct,
 };

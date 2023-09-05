@@ -129,6 +129,7 @@ const ProductEditScreen = () => {
 					Go Back
 				</button>
 			</Link>{' '}
+			{loadingUpdate && <div>Loading...</div>}
 			{isLoading ? (
 				<div>Loading...</div>
 			) : error ? (
