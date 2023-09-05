@@ -1,8 +1,6 @@
 import * as Form from '@radix-ui/react-form';
 import { SyntheticEvent, useState } from 'react';
 import _ from 'lodash';
-// import * as Select from '@radix-ui/react-select';
-
 import { FaTrash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { Category } from '../../types/Product';

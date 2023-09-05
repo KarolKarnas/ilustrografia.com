@@ -1,16 +1,13 @@
 import * as Form from '@radix-ui/react-form';
-import * as Select from '@radix-ui/react-select';
 import {
 	useGetProductDetailsQuery,
 	useUpdateProductMutation,
-	useUploadProductImageMutation,
 } from '../../slices/productsApiSlice';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Message from '../../components/Message';
-import { SyntheticEvent, useState, useEffect, ChangeEvent } from 'react';
+import { SyntheticEvent, useState, useEffect } from 'react';
 import {
 	Category,
-	Options,
 	Product,
 	ProductOptions,
 	Rating,
@@ -23,15 +20,23 @@ import { ApiError } from '../../types/ApiError';
 import { toast } from 'react-toastify';
 import { CustomError } from '../../types/User';
 
-import { FaEdit, FaPlus, FaTrash, FaChevronDown } from 'react-icons/fa';
 import _ from 'lodash';
 import TagsForm from '../../components/Admin/TagsForm';
 import CategoriesForm from '../../components/Admin/CategoriesForm';
-import { productOptionsInitial } from '../../utils/initialStates';
+import {
+	productOptionsInitial,
+	ratingInitial,
+} from '../../utils/initialStates';
 import StatisticsForm from '../../components/Admin/StatisticsForm';
 import VariationForm from '../../components/Admin/VariationForm';
 import UploadArtPrintField from '../../components/Admin/UploadArtPrintField';
 import UploadMainImageField from '../../components/Admin/UploadMainImageField';
+import NumberReviewsField from '../../components/Admin/NumberReviewsField';
+import RatingField from '../../components/Admin/RatingField';
+import NameField from '../../components/Admin/NameField';
+import UploadCanvasField from '../../components/Admin/UploadCanvasField';
+import UploadPosterField from '../../components/Admin/UploadPosterField';
+import UploadPremiumField from '../../components/Admin/UploadPremiumField';
 
 const ProductEditScreen = () => {
 	const { slug: productSlug } = useParams();
@@ -42,7 +47,7 @@ const ProductEditScreen = () => {
 	const [_id, set_Id] = useState('');
 	const [name, setName] = useState('');
 	const [slug, setSlug] = useState('');
-	const [rating, setRating] = useState<Rating>();
+	const [rating, setRating] = useState<Rating>(ratingInitial);
 	const [categories, setCategories] = useState<Category[]>([]);
 	const [tags, setTags] = useState<Tag[]>([]);
 	const [images, setImages] = useState<string[]>([]);
@@ -55,14 +60,6 @@ const ProductEditScreen = () => {
 
 	const [updateProduct, { isLoading: loadingUpdate, error: updateError }] =
 		useUpdateProductMutation();
-
-	const [uploadProductImage, { isLoading: loadingUpload }] =
-		useUploadProductImageMutation();
-
-	const toCustomError = (err: unknown): CustomError => {
-		const customError = err as CustomError;
-		return customError;
-	};
 
 	useEffect(() => {
 		if (!isLoading) {
@@ -86,7 +83,6 @@ const ProductEditScreen = () => {
 
 	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();
-		// const slug = _.kebabCase(name);
 		if (name.trim() === '') {
 			setName('');
 			return toast.error('Just empty spaces here...');
@@ -140,121 +136,20 @@ const ProductEditScreen = () => {
 			) : product ? (
 				<div className='flex w-full justify-center gap-10 '>
 					<Form.Root className='w-4/12' onSubmit={(e) => handleSubmit(e)}>
-						<Form.Field className='flex flex-col' name='name'>
-							<div className='flex items-baseline justify-between'>
-								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-									Name
-								</Form.Label>
-								<Form.Message
-									className='text-md text-red-400'
-									match='valueMissing'
-								>
-									Please enter your name
-								</Form.Message>
-								{updateError && (
-									<Form.Message
-										className='text-md text-red-400'
-										match='typeMismatch'
-										forceMatch={Boolean(updateError)}
-									>
-										{toCustomError(updateError).data.message}
-									</Form.Message>
-								)}
-							</div>
-							<Form.Control asChild>
-								<input
-									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-									type='text'
-									required
-									placeholder='Enter name'
-									value={name}
-									onChange={(e) => {
-										const newName = e.target.value;
-										const newSlug = _.kebabCase(newName);
-
-										setName(newName);
-										setSlug(newSlug);
-										// setVariationProductSlug(newSlug);
-									}}
-								/>
-							</Form.Control>
-						</Form.Field>
-
-						{/* rating */}
-						<Form.Field className='flex flex-col' name='ratingRating'>
-							<div className='flex items-baseline justify-between'>
-								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-									Rating (0-5)
-								</Form.Label>
-								<Form.Message
-									className='text-md text-red-400'
-									match='valueMissing'
-								>
-									Please enter Rating
-								</Form.Message>
-								<Form.Message
-									className='text-md text-red-400'
-									match={(value) => Number(value) < 0 || Number(value) > 5}
-								>
-									Please provide a valid Rating
-								</Form.Message>
-							</div>
-							<Form.Control asChild>
-								<input
-									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-									type='number'
-									required
-									placeholder='Enter rating'
-									value={rating?.rating}
-									onChange={(e) =>
-										setRating({
-											...rating,
-											rating: Number(e.target.value),
-											numReviews: rating?.numReviews || 0,
-										})
-									}
-								/>
-							</Form.Control>
-						</Form.Field>
-						{/* Number of Reviews */}
-						<Form.Field className='flex flex-col' name='RatingNumReviews'>
-							<div className='flex items-baseline justify-between'>
-								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-									Number of Reviews
-								</Form.Label>
-								<Form.Message
-									className='text-md text-red-400'
-									match='valueMissing'
-								>
-									Please enter Number of Reviews
-								</Form.Message>
-								<Form.Message
-									className='text-md text-red-400'
-									match={(value) => Number(value) < 0}
-								>
-									Please provide a Number of Reviews
-								</Form.Message>
-							</div>
-							<Form.Control asChild>
-								<input
-									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-									type='number'
-									required
-									placeholder='Enter Number of Reviews'
-									value={rating?.numReviews}
-									onChange={(e) =>
-										setRating({
-											...rating,
-											rating: rating?.rating || 0,
-											numReviews: Number(e.target.value),
-										})
-									}
-								/>
-							</Form.Control>
-						</Form.Field>
-
+						<NameField
+							updateError={updateError}
+							name={name}
+							setName={setName}
+							setSlug={setSlug}
+						/>
+						<RatingField rating={rating} setRating={setRating} />
+						<NumberReviewsField rating={rating} setRating={setRating} />
 						<UploadMainImageField images={images} setImages={setImages} />
+
 						<UploadArtPrintField options={options} setOptions={setOptions} />
+						<UploadCanvasField options={options} setOptions={setOptions} />
+						<UploadPosterField options={options} setOptions={setOptions} />
+						<UploadPremiumField options={options} setOptions={setOptions} />
 
 						<Form.Submit asChild>
 							<button

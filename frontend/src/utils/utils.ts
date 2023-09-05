@@ -2,6 +2,7 @@ import { ApiError } from "../types/ApiError";
 import { Product } from "../types/Product";
 
 import _ from 'lodash';
+import { CustomError } from "../types/User";
 
 export const findSubstring = (input: string): string | null => {
   if (!input) {
@@ -23,3 +24,8 @@ export const getError = (error: ApiError) => {
     ? error.response.data.message
     : error.message
 }
+
+export const toCustomError = (err: unknown): CustomError => {
+  const customError = err as CustomError;
+  return customError;
+};
