@@ -25,8 +25,10 @@ import { CustomError } from '../../types/User';
 
 import { FaEdit, FaPlus, FaTrash, FaChevronDown } from 'react-icons/fa';
 import _ from 'lodash';
-import TagsForm from './TagsForm';
-import CategoriesForm from './CategoriesForm';
+import TagsForm from '../../components/Admin/TagsForm';
+import CategoriesForm from '../../components/Admin/CategoriesForm';
+import { productOptionsInitial } from '../../utils/initialStates';
+import StatisticsForm from '../../components/Admin/StatisticsForm';
 
 
 const ProductEditScreen = () => {
@@ -34,8 +36,6 @@ const ProductEditScreen = () => {
 	const navigate = useNavigate();
 
 	const [product, setProduct] = useState<Product>();
-
-	// console.log(product?.options.material['art-print'].images[0])
 
 	const [_id, set_Id] = useState('');
 	const [name, setName] = useState('');
@@ -49,68 +49,15 @@ const ProductEditScreen = () => {
 
 
 	const [images, setImages] = useState<string[]>();
-	const [options, setOptions] = useState<ProductOptions>({
-		material: {
-			optionName: '', // You can provide a default option name here
-			'art-print': {
-				title: '',
-				images: [],
-			},
-			'painting-on-canvas': {
-				title: '',
-				images: [],
-			},
-			poster: {
-				title: '',
-				images: [],
-			},
-			'premium-print': {
-				title: '',
-				images: [],
-			},
-		},
-		size: {
-			optionName: '', // You can provide a default option name here
-			s20x30: {
-				title: '',
-				images: [],
-			},
-			s20x40: {
-				title: '',
-				images: [],
-			},
-			s30x40: {
-				title: '',
-				images: [],
-			},
-			s40x60: {
-				title: '',
-				images: [],
-			},
-			s50x70: {
-				title: '',
-				images: [],
-			},
-			s60x90: {
-				title: '',
-				images: [],
-			},
-			s70x100: {
-				title: '',
-				images: [],
-			},
-		},
-	});
+	const [options, setOptions] = useState<ProductOptions>(productOptionsInitial);
 
-	console.log(options?.material['art-print'].images);
 	const [statistics, setStatistics] = useState<string[]>([]);
-	const [newStatistic, setNewStatistic] = useState('');
+	
 
 	const [variations, setVariations] = useState<Variation[]>([]);
 
 	// variation
 	const [optionsMaterial, setOptionsMaterial] = useState('');
-	// console.log(optionsMaterial);
 	const [optionsSize, setOptionsSize] = useState('');
 
 	const [countInStock, setCountInStock] = useState(1);
@@ -187,22 +134,22 @@ const ProductEditScreen = () => {
 			}
 		}
 	};
-	// Statistic
-	const handleSubmitStatistic = (e: SyntheticEvent) => {
-		e.preventDefault();
-		if (newStatistic.trim() === '') {
-			setNewStatistic('');
-			return toast.error('Just empty spaces here...');
-		}
-		setStatistics([...statistics, newStatistic]);
-	};
+	// // Statistic
+	// const handleSubmitStatistic = (e: SyntheticEvent) => {
+	// 	e.preventDefault();
+	// 	if (newStatistic.trim() === '') {
+	// 		setNewStatistic('');
+	// 		return toast.error('Just empty spaces here...');
+	// 	}
+	// 	setStatistics([...statistics, newStatistic]);
+	// };
 
-	const handleDeleteStatistic = (index: number) => {
-		const updatedStatistics = statistics.filter((_statistic, i) => i !== index);
-		setStatistics(updatedStatistics);
-		// setCategoryName('');
-		// refetch().then((value) => setProduct(toCheckProduct(value.data)));
-	};
+	// const handleDeleteStatistic = (index: number) => {
+	// 	const updatedStatistics = statistics.filter((_statistic, i) => i !== index);
+	// 	setStatistics(updatedStatistics);
+	// 	// setCategoryName('');
+	// 	// refetch().then((value) => setProduct(toCheckProduct(value.data)));
+	// };
 	
 
 	const handleSubmitVariation = (e: SyntheticEvent) => {
@@ -596,63 +543,12 @@ const ProductEditScreen = () => {
 
 					<div className='w-3/12'>
 						{/* Statistics */}
-						<Form.Root
-							className='w-full'
-							onSubmit={(e) => handleSubmitStatistic(e)}
-						>
-							<div className='flex flex-col'>
-								<h3>Statistics list</h3>
-								{statistics?.map((statistic, index) => (
-									<div key={index} className='flex items-center'>
-										<FaTrash
-											className='hover:cursor-pointer hover:text-red-300'
-											onClick={() => handleDeleteStatistic(index)}
-										/>{' '}
-										{statistic}
-									</div>
-								))}
-							</div>
 
-							<Form.Field className='flex flex-col' name='statistic'>
-								<div className='flex items-baseline justify-between'>
-									<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-										New Statistic
-									</Form.Label>
-									<Form.Message
-										className='text-md text-red-400'
-										match='valueMissing'
-									>
-										Please enter New Statistic
-									</Form.Message>
-									<Form.Message
-										className='text-md text-red-400'
-										match='typeMismatch'
-									>
-										Please provide a valid New Statistic
-									</Form.Message>
-								</div>
-								<Form.Control asChild>
-									<input
-										className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-										type='text'
-										required
-										placeholder='Enter 	New Statistic'
-										value={newStatistic}
-										onChange={(e) => setNewStatistic(e.target.value)}
-									/>
-								</Form.Control>
-							</Form.Field>
 
-							<Form.Submit asChild>
-								<button
-									// add disabled styling
-									className='bg-zinc-900 text-white hover:bg-red-200 hover:cursor-pointer w-full text-center py-2  mt-5'
-									disabled={isLoading}
-								>
-									Add Category
-								</button>
-							</Form.Submit>
-						</Form.Root>
+						<StatisticsForm statistics={statistics} setStatistics={setStatistics} />
+
+
+					
 						{/* Categories */}
 
 						<CategoriesForm categories={categories} setCategories={setCategories}/>

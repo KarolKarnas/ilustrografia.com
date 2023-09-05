@@ -12,12 +12,7 @@ type Props = {
 	setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
 };
 
-const CategoriesForm = ({
-
-	categories,
-	setCategories,
-}: Props) => {
-
+const CategoriesForm = ({ categories, setCategories }: Props) => {
 	const [categoryName, setCategoryName] = useState('');
 
 	// Category
