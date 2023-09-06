@@ -7,8 +7,10 @@ import { useLoginMutation } from '../../slices/usersApiSlice';
 import { setCredentials } from '../../slices/authSlice';
 import { toast } from 'react-toastify';
 import { RootState } from '../../store';
-import { CustomError, UserInfo } from '../../types/User';
+import { UserInfo } from '../../types/User';
 import CheckoutSteps from '../../components/CheckoutSteps';
+import { getError } from '../../utils/utils';
+import { ApiError } from '../../types/ApiError';
 
 const LoginPage = () => {
 	const [email, setEmail] = useState('');
@@ -42,15 +44,8 @@ const LoginPage = () => {
 			console.log(res)
 			dispatch(setCredentials({ ...res }));
 			navigate(redirect);
-		} catch (err) {
-			if (err instanceof Error) {
-				// console.log('Error', err);
-				toast.error(err.message);
-			} else {
-				const customError = err as CustomError;
-				// console.log('CustomError', customError);
-				toast.error(customError.data.message);
-			}
+		} catch (error) {
+			toast.error(getError(error as ApiError));
 		}
 	};
 	return (

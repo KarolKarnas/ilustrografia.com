@@ -3,7 +3,8 @@ import { ProductOptions } from '../../types/Product';
 import { ChangeEvent } from 'react';
 import { useUploadProductImageMutation } from '../../slices/productsApiSlice';
 import { toast } from 'react-toastify';
-import { CustomError } from '../../types/User';
+import { getError } from '../../utils/utils';
+import { ApiError } from '../../types/ApiError';
 
 
 type Props = {
@@ -41,13 +42,8 @@ const UploadPosterField = ({options, setOptions}: Props) => {
 					},
 				};
 				setOptions(updatedOptions);
-			} catch (err) {
-				if (err instanceof Error) {
-					toast.error(err.message);
-				} else {
-					const customError = err as CustomError;
-					toast.error(customError.data.message);
-				}
+			} catch (error) {
+				toast.error(getError(error as ApiError));
 			}
 		}
 	};

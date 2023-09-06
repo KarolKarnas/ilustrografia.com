@@ -7,7 +7,9 @@ import { useRegisterMutation } from '../../slices/usersApiSlice';
 import { setCredentials } from '../../slices/authSlice';
 import { toast } from 'react-toastify';
 import { RootState } from '../../store';
-import { CustomError, UserInfo } from '../../types/User';
+import { UserInfo } from '../../types/User';
+import { getError } from '../../utils/utils';
+import { ApiError } from '../../types/ApiError';
 
 const RegistrationPage = () => {
 	const [name, setName] = useState('');
@@ -44,15 +46,8 @@ const RegistrationPage = () => {
 				const res = await register({ name, email, password }).unwrap();
 				dispatch(setCredentials({ ...res }));
 				navigate(redirect);
-			} catch (err) {
-				if (err instanceof Error) {
-					// console.log('Error', err);
-					toast.error(err.message);
-				} else {
-					const customError = err as CustomError;
-					// console.log('CustomError', customError);
-					toast.error(customError.data.message);
-				}
+			} catch (error) {
+				toast.error(getError(error as ApiError));
 			}
 		}
 	};

@@ -7,11 +7,12 @@ import { setCredentials } from '../../slices/authSlice';
 import { useUpdateProfileMutation } from '../../slices/usersApiSlice';
 import { useGetMyOrdersQuery } from '../../slices/ordersApiSlice';
 import { RootState } from '../../store';
-import { CustomError } from '../../types/User';
 import { Link } from 'react-router-dom';
 import { Order } from '../../types/Order';
 import { toCheckOrders } from '../../utils/typeCheck';
-import { FaTimes, FaCheck } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
+import { getError } from '../../utils/utils';
+import { ApiError } from '../../types/ApiError';
 
 const ProfilePage = () => {
 	const [name, setName] = useState('');
@@ -58,13 +59,8 @@ const ProfilePage = () => {
 				}).unwrap();
 				dispatch(setCredentials(res));
 				toast.success('Profile updated');
-			} catch (err) {
-				if (err instanceof Error) {
-					toast.error(err.message);
-				} else {
-					const customError = err as CustomError;
-					toast.error(customError.data.message);
-				}
+			} catch (error) {
+				toast.error(getError(error as ApiError));
 			}
 		}
 		// console.log('hello');

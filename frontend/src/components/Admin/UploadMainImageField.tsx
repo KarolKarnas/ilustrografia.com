@@ -2,7 +2,8 @@ import * as Form from '@radix-ui/react-form';
 import { ChangeEvent } from 'react';
 import { useUploadProductImageMutation } from '../../slices/productsApiSlice';
 import { toast } from 'react-toastify';
-import { CustomError } from '../../types/User';
+import { getError } from '../../utils/utils';
+import { ApiError } from '../../types/ApiError';
 
 type Props = {
 	images: string[];
@@ -25,13 +26,8 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
 				console.log(res);
 				toast.success(res.message);
 				setImages([res.image]);
-			} catch (err) {
-				if (err instanceof Error) {
-					toast.error(err.message);
-				} else {
-					const customError = err as CustomError;
-					toast.error(customError.data.message);
-				}
+			} catch (error) {
+				toast.error(getError(error as ApiError));
 			}
 		}
 	};

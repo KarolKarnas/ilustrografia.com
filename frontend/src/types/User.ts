@@ -13,12 +13,3 @@ export interface UserInfoOptions {
 	email?: string;
 	isAdmin?: boolean;
 }
-
-
-export interface CustomError {
-  status: number,
-  data: {
-    message: string,
-    stack: string
-  }
-}

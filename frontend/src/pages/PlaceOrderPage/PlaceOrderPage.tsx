@@ -7,7 +7,6 @@ import { useCreateOrderMutation } from '../../slices/ordersApiSlice';
 import { clearCartItems } from '../../slices/cartSlice';
 import { RootState } from '../../store';
 import { CartState } from '../../types/Product';
-import { CustomError } from '../../types/User';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 
@@ -46,14 +45,8 @@ const PlaceOrderPage = () => {
 			// console.log(res);
 			dispatch(clearCartItems({}));
 			navigate(`/order/${res._id}`);
-		} catch (err) {
-			console.log(err);
-			if (err instanceof Error) {
-				toast.error(err.message);
-			} else {
-				const customError = err as CustomError;
-				toast.error(customError.data.message);
-			}
+		} catch (error) {
+			toast.error(getError(error as ApiError));
 		}
 	};
 

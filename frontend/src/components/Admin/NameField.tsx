@@ -1,8 +1,9 @@
 import * as Form from '@radix-ui/react-form';
 import { SerializedError } from '@reduxjs/toolkit';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
-import { toCustomError } from '../../utils/utils';
+import { getError } from '../../utils/utils';
 import _ from 'lodash';
+import { ApiError } from '../../types/ApiError';
 
 type Props = {
 	updateError: FetchBaseQueryError | SerializedError | undefined;
@@ -10,6 +11,8 @@ type Props = {
 	setName: React.Dispatch<React.SetStateAction<string>>;
 	setSlug: React.Dispatch<React.SetStateAction<string>>;
 };
+
+// toast.error(getError(error as ApiError));
 
 const NameField = ({ updateError, name, setName, setSlug }: Props) => {
 	return (
@@ -29,7 +32,7 @@ const NameField = ({ updateError, name, setName, setSlug }: Props) => {
 							match='typeMismatch'
 							forceMatch={Boolean(updateError)}
 						>
-							{toCustomError(updateError).data.message}
+							{getError(updateError as ApiError)}
 						</Form.Message>
 					)}
 				</div>

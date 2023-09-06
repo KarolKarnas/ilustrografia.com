@@ -18,7 +18,6 @@ import { toCheckProduct } from '../../utils/typeCheck';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 import { toast } from 'react-toastify';
-import { CustomError } from '../../types/User';
 
 import _ from 'lodash';
 import TagsForm from '../../components/Admin/TagsForm';
