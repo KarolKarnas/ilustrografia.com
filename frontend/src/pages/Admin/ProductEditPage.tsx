@@ -102,17 +102,11 @@ const ProductEditScreen = () => {
 				statistics,
 			}).unwrap();
 			toast.success('product updated successfully');
-			refetch().then((value) => setProduct(toCheckProduct(value.data)));
+			const updatedProduct = await refetch()
+			setProduct(toCheckProduct(updatedProduct.data))
 			navigate(`/admin/product-list/${slug}/edit`);
-		} catch (err) {
-			if (err instanceof Error) {
-				// console.log('Error', err);
-				toast.error(err.message);
-			} else {
-				const customError = err as CustomError;
-				// console.log('CustomError', customError);
-				toast.error(customError.data.message);
-			}
+		} catch (error) {
+			toast.error(getError(error as ApiError));
 		}
 	};
 

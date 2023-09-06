@@ -19,11 +19,21 @@ export const findSubstring = (input: string): string | null => {
   return match ? match[0] : null;
 }
 
+// export const getError = (error: ApiError) => {
+//   return error.response && error.response.data.message
+//     ? error.response.data.message
+//     : error.message
+// }
+
 export const getError = (error: ApiError) => {
-  return error.response && error.response.data.message
-    ? error.response.data.message
-    : error.message
-}
+  if (error.response && error.response.data.message) {
+    return error.response.data.message;
+  } else if (error.data && error.data.message) {
+    return error.data.message;
+  } else {
+    return error.message;
+  }
+};
 
 export const toCustomError = (err: unknown): CustomError => {
   const customError = err as CustomError;

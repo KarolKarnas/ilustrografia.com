@@ -19,6 +19,7 @@ import {
 	CheckUser,
 	CheckUserWithName,
 	RequestUser,
+	UserInfoOptions,
 	UserUpdate,
 } from '../types/User';
 
@@ -59,6 +60,7 @@ export const parseNumberKey = (name: string, numberKey: unknown): number => {
 };
 
 export const parseBooleanKey = (name: string, booleanKey: unknown): boolean => {
+	
 	if (booleanKey === false) {
 		return booleanKey;
 	}
@@ -569,10 +571,41 @@ export const toCheckedProduct = (object: unknown): Product => {
 		};
 
 		if ('statistics' in object) {
-			checkedProduct.statistics = parseArrayStrings('statistics',object.statistics);
+			checkedProduct.statistics = parseArrayStrings(
+				'statistics',
+				object.statistics
+			);
 		}
 		return checkedProduct;
 	}
 	console.log('error');
 	throw new Error('Incorrect data: some fields are missing in Product');
+};
+
+// USER ADMIN
+
+export const parseUserInfoOptions = (object: unknown): UserInfoOptions => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data');
+	}
+
+	const userOrderOptions: UserInfoOptions = {};
+	if ('_id' in object) {
+		userOrderOptions._id = parseStringKey('email', object._id);
+	}
+
+	if ('name' in object) {
+		userOrderOptions.name = parseStringKey('name', object.name);
+	}
+	if ('email' in object) {
+		userOrderOptions.email = parseStringKey('email', object.email);
+	}
+	if ('isAdmin' in object) {
+		userOrderOptions.isAdmin = parseBooleanKey('isAdmin', object.isAdmin);
+	}
+
+	if (Object.keys(userOrderOptions).length === 0) {
+		throw new Error('Incorrect data: no valid fields found');
+	}
+	return userOrderOptions;
 };

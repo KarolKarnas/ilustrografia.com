@@ -51,6 +51,14 @@ export interface UserNoPassword {
 	isAdmin?: boolean;
 }
 
+export interface UserInfoOptions {
+  _id?: string,
+	name?: string;
+	email?: string;
+	isAdmin?: boolean;
+}
+
+
 
 
 
