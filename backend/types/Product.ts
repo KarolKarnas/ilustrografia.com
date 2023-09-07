@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 export interface Rating {
 	rating: number;
@@ -26,8 +26,8 @@ export interface Options {
 }
 
 export interface Variation {
-	productSlug: string,
-	options: Options
+	productSlug: string;
+	options: Options;
 	SKU: string;
 	price: number;
 	countInStock: number;
@@ -65,39 +65,50 @@ export interface SizeOption {
 export type SizeOptionNoName = Omit<SizeOption, 'optionName'>;
 
 export interface ProductOptions {
-	material: MaterialOption,
+	material: MaterialOption;
 	size: SizeOption;
+}
+
+export interface ReviewUser {
+	user: mongoose.Types.ObjectId;
+	name: string;
+	rating: number;
+	comment: string;
+}
+
+export interface Review {
+	rating: number;
+	comment: string;
 }
 
 export interface ProductUser {
 	user: mongoose.Schema.Types.ObjectId;
 	name: string;
 	slug: string;
+	reviews?: ReviewUser[];
 	rating: Rating;
 	categories: Category[];
 	tags: Tag[];
 	images: string[];
 	options: ProductOptions;
 	variations: Variation[];
-	statistics?: string[]
+	statistics: string[];
 }
-
 
 export interface Product {
 	_id: string;
 	name: string;
 	slug: string;
+	reviews?: ReviewUser[];
 	rating: Rating;
 	categories: Category[];
 	tags: Tag[];
 	images: string[];
 	options: ProductOptions;
 	variations: Variation[];
-	statistics?: string[]
+	statistics: string[];
 }
 
 // ----
-
-
 
 export type ProductNoId = Omit<Product, '_id'>;

@@ -20,6 +20,11 @@ export interface RequestUser extends Request {
 	user: UserId;
 }
 
+export interface RequestUserReview extends RequestUser {
+	rating: number;
+	comment: string;
+}
+
 export interface CheckUser {
 	email: string;
 	password: string;

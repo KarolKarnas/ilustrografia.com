@@ -11,6 +11,8 @@ import {
 	Product,
 	ProductOptions,
 	Rating,
+	Review,
+	ReviewUser,
 	Tag,
 	Variation,
 	VariationCart,
@@ -19,6 +21,7 @@ import {
 	CheckUser,
 	CheckUserWithName,
 	RequestUser,
+	RequestUserReview,
 	UserInfoOptions,
 	UserUpdate,
 } from '../types/User';
@@ -60,7 +63,6 @@ export const parseNumberKey = (name: string, numberKey: unknown): number => {
 };
 
 export const parseBooleanKey = (name: string, booleanKey: unknown): boolean => {
-	
 	if (booleanKey === false) {
 		return booleanKey;
 	}
@@ -340,10 +342,31 @@ export const checkHaveUser = (object: unknown): RequestUser => {
 	const userObject = object as RequestUser;
 
 	if ('user' in userObject) {
+		console.log(userObject);
 		return userObject;
 	}
 
 	throw new Error('Incorrect data: some fields are missing in Request User');
+};
+
+export const checkHaveUserReview = (object: unknown): RequestUserReview => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data user review');
+	}
+
+	const userObject = object as RequestUserReview;
+
+	if (
+		'user' in userObject &&
+		'rating' in userObject &&
+		'comment' in userObject
+	) {
+		return userObject;
+	}
+
+	throw new Error(
+		'Incorrect data: some fields are missing in Request User Review'
+	);
 };
 
 // ORDER
@@ -543,6 +566,50 @@ const parseVariations = (variations: unknown): Variation[] => {
 	return typedVariations;
 };
 
+const isValidReviewUser = (object: unknown): boolean => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data in Review');
+	}
+
+	const variationObject = object as ReviewUser; // Type assertion
+
+	const requiredProperties = ['user', 'name', 'rating', 'comment'];
+
+	const missingProperties = requiredProperties.filter(
+		(prop) => !(prop in variationObject)
+	);
+	if (missingProperties.length === 0) {
+		if (
+			parseMongooseObject(variationObject.user) &&
+			parseStringKey('name', variationObject.name) &&
+			parseNumberKey('rating', variationObject.rating) &&
+			parseStringKey('comment', variationObject.comment)
+		) {
+			return true;
+		}
+		return true;
+	} else {
+		throw new Error(
+			`Incorrect data: the following fields are missing in Review: ${missingProperties.join(
+				', '
+			)}`
+		);
+	}
+};
+
+const parseReviewsUser = (reviews: unknown): ReviewUser[] => {
+	if (!reviews || !isArray(reviews)) {
+		throw new Error('Incorrect or missing reviews');
+	}
+	const typedReviewsUser = reviews as ReviewUser[];
+	typedReviewsUser.forEach((review: ReviewUser) => {
+		if (!isValidReviewUser(review)) {
+			throw new Error('Incorrect or missing Review');
+		}
+	});
+	return typedReviewsUser;
+};
+
 export const toCheckedProduct = (object: unknown): Product => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data in Product');
@@ -556,7 +623,8 @@ export const toCheckedProduct = (object: unknown): Product => {
 		'tags' in object &&
 		'images' in object &&
 		'options' in object &&
-		'variations' in object
+		'variations' in object &&
+		'statistics' in object
 	) {
 		const checkedProduct: Product = {
 			_id: parseStringKey('_id', object._id),
@@ -568,18 +636,31 @@ export const toCheckedProduct = (object: unknown): Product => {
 			images: parseArrayStrings('images', object.images),
 			options: parseProductOptions(object.options),
 			variations: parseVariations(object.variations),
+			statistics: parseArrayStrings('statistics', object.statistics),
 		};
 
-		if ('statistics' in object) {
-			checkedProduct.statistics = parseArrayStrings(
-				'statistics',
-				object.statistics
-			);
+		if ('reviews' in object) {
+			checkedProduct.reviews = parseReviewsUser(object.reviews);
 		}
 		return checkedProduct;
 	}
 	console.log('error');
 	throw new Error('Incorrect data: some fields are missing in Product');
+};
+export const toCheckedReview = (object: unknown): Review => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data in Review');
+	}
+	if ('rating' in object && 'comment' in object) {
+		const typedReview: Review = {
+			rating: parseNumberKey('rating', object.rating),
+			comment: parseStringKey('comment', object.comment),
+		};
+
+		return typedReview;
+	}
+	console.log('error');
+	throw new Error('Incorrect data: some fields are missing in Review');
 };
 
 // USER ADMIN

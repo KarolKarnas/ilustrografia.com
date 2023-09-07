@@ -1,7 +1,12 @@
 import asyncHandler from '../middleware/asyncHandler';
 import ProductModel from '../models/productModel';
 import { RequestUser } from '../types/User';
-import { checkHaveUser, toCheckedProduct } from '../utils/typeUtils';
+import {
+	checkHaveUser,
+	// checkHaveUserReview,
+	toCheckedProduct,
+	toCheckedReview,
+} from '../utils/typeUtils';
 import { v4 as uuidv4 } from 'uuid';
 
 // @desc    Fetch all products
@@ -242,6 +247,53 @@ const deleteProduct = asyncHandler(async (req, res) => {
 		throw new Error(`Product not found`);
 	}
 });
+
+// @desc    Create a review
+// @route   POST /api/products/:slug/reviews
+// @access  Private
+const createProductReview = asyncHandler(async (req, res) => {
+	const reqUser = checkHaveUser(req);
+	console.log(reqUser.user);
+	const typedBody = toCheckedReview(req.body);
+	const { rating, comment } = typedBody;
+
+	const product = await ProductModel.findOne({ slug: req.params.slug });
+
+	if (product) {
+		const alreadyReviewed = product.reviews?.find(
+			(r) => r.user.toString() === reqUser.user._id.toString()
+		);
+
+		if (alreadyReviewed) {
+			res.status(400);
+			throw new Error('Product already reviewed');
+		}
+
+		const review = {
+			user: reqUser.user._id,
+			name: reqUser.user.name,
+			rating: Number(rating),
+			comment,
+		};
+
+		product.reviews?.push(review);
+
+		if (product.reviews) {
+			product.rating.numReviews = product.reviews.length;
+
+			product.rating.rating =
+				product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+				product.reviews.length;
+		}
+
+		await product.save();
+		return res.status(201).json({ message: 'Review added', product });
+	} else {
+		res.status(404);
+		throw new Error('Product not found');
+	}
+});
+
 export {
 	getProducts,
 	getProductBySlug,
@@ -249,4 +301,5 @@ export {
 	createProduct,
 	updateProduct,
 	deleteProduct,
+	createProductReview,
 };
