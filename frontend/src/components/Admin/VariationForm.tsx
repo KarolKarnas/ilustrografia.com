@@ -75,7 +75,7 @@ const VariationForm = ({variations, setVariations, slug, product} : Props) => {
             className='hover:cursor-pointer hover:text-red-300'
             onClick={() => handleEditVariation(index)}
           />{' '}
-          {variation.SKU} / {variation.price}zł /{' '}
+          {variation.SKU} / ${variation.price} /{' '}
           {variation.countInStock}
         </div>
       ))}

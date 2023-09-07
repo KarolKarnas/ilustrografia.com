@@ -58,7 +58,7 @@ const OrderDetailsPage = () => {
 					type: 'resetOptions',
 					value: {
 						clientId: paypal.clientId,
-						currency: 'PLN',
+						currency: 'USD',
 					},
 				});
 				paypalDispatch({
@@ -216,8 +216,8 @@ const OrderDetailsPage = () => {
 										</Link>
 
 										<div className='basis-2/12'>
-											{variation.qty} x {variation.price}zł ={' '}
-											{variation.price * variation.qty}zł
+											{variation.qty} x ${variation.price} ={' '}
+											${variation.price * variation.qty}
 										</div>
 									</div>
 									<hr className=' h-px mx-auto my-3 w-10/12'></hr>
@@ -234,22 +234,22 @@ const OrderDetailsPage = () => {
 						</h3>
 						<div className='flex justify-between border-b w-full py-2'>
 							<div>Items</div>
-							<div>{order.itemsPrice}zł</div>
+							<div>${order.itemsPrice}</div>
 						</div>
 						<div className='flex justify-between border-b w-full py-2'>
 							<div>Shipping</div>
-							<div>{order.shippingPrice}zł</div>
+							<div>${order.shippingPrice}</div>
 						</div>
 						<div className='flex justify-between border-b w-full py-2'>
 							<div>Tax</div>
-							<div>{order.taxPrice}zł</div>
+							<div>${order.taxPrice}</div>
 						</div>
 						<div className='flex justify-between border-b w-full py-2'>
 							<div className='text-lg'>
 								<strong>Total</strong>
 							</div>
 							<div className='text-lg'>
-								<strong>{order.totalPrice}zł</strong>
+								<strong>${order.totalPrice}</strong>
 							</div>
 						</div>
 						{!order.isPaid && (

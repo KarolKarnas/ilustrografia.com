@@ -70,7 +70,7 @@ const CartPage = () => {
 									{' '}
 									<div>{variation.variationName}</div>{' '}
 								</Link>
-								<div className='basis-2/12'>{variation.price}zł</div>
+								<div className='basis-2/12'>${variation.price}</div>
 								<div className='basis-2/12'>
 									<select
 										className='bg-red-50'
@@ -94,7 +94,7 @@ const CartPage = () => {
 									</select>
 								</div>
 								<div className='basis-2/12'>
-									{variation.price * variation.qty}zł
+									${variation.price * variation.qty}
 								</div>
 							</div>
 							<hr className=' h-px mx-auto my-3'></hr>
@@ -120,7 +120,7 @@ const CartPage = () => {
 								.reduce((acc, variant) => acc + variant.qty * variant.price, 0)
 								.toFixed(2)}
 						</strong>{' '}
-						złotych, thanks
+						Dollars, thanks
 					</div>
 
 					<button

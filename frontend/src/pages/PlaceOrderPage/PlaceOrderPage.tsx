@@ -108,8 +108,7 @@ const PlaceOrderPage = () => {
 											</Link>
 
 											<div className='basis-2/12'>
-											{variation.qty} x {variation.price}zł ={' '}
-												{variation.price * variation.qty}zł
+												{variation.qty} x ${variation.price} = ${variation.price * variation.qty}
 											</div>
 										</div>
 										<hr className=' h-px mx-auto my-3'></hr>
@@ -126,26 +125,26 @@ const PlaceOrderPage = () => {
 						</h3>
 						<div className='flex justify-between border-b w-full py-2'>
 							<div>Items</div>
-							<div>{cart.itemsPrice}zł</div>
+							<div>${cart.itemsPrice}</div>
 						</div>
 						<div className='flex justify-between border-b w-full py-2'>
 							<div>Shipping</div>
-							<div>{cart.shippingPrice}zł</div>
+							<div>${cart.shippingPrice}</div>
 						</div>
 						<div className='flex justify-between border-b w-full py-2'>
 							<div>Tax</div>
-							<div>{cart.taxPrice}zł</div>
+							<div>${cart.taxPrice}</div>
 						</div>
 						<div className='flex justify-between border-b w-full py-2'>
 							<div className='text-lg'>
 								<strong>Total</strong>
 							</div>
 							<div className='text-lg'>
-								<strong>{cart.totalPrice}zł</strong>
+								<strong>${cart.totalPrice}</strong>
 							</div>
 						</div>
 						<div className='flex justify-between w-full py-2'>
-						{error && <div>{getError(error as ApiError)}</div>}
+							{error && <div>{getError(error as ApiError)}</div>}
 						</div>
 					</div>
 					<button

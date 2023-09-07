@@ -271,8 +271,8 @@ const ProductPage = () => {
 						</div>
 						<div className='flex justify-evenly'>
 							<div>SKU {variation?.SKU}</div>
-							<div>Price {variation?.price}zł</div>
-							<div>Price {variation?.price * qty}zł</div>
+							<div>Price ${variation?.price}</div>
+							<div>Price ${variation?.price * qty}</div>
 						</div>
 						<hr className=' h-px mx-auto my-3'></hr>
 						{/* select quantity */}

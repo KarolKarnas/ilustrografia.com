@@ -8,33 +8,33 @@ interface Char {
 
 const characteristics: Char = {
 	'art-print': [
-		'Elegancki, gruby, matowy papier z wyczuwalną fakturą 270g',
+    'Elegant, thick, matte paper with a noticeable texture, 270g',
 
-		'Papier spełnia standardy papierów archiwalnych',
+    'Paper meets archival paper standards',
 
-		'12-pigmentowy druk w trybie najwyższej jakości',
-		'Każdy wydruk posiada klasyczne białe marginesy dookoła',
-		'Wydruk sprzedawany bez ramki',
-	],
-	'painting-on-canvas': [
-		' Bardzo solidne płótno canvas z wyraźną malarską strukturą 380g',
-		'Płótno jest naciągnięte na drewniane krosno malarskie (tzw. blejtram)',
-		'Drukowane ekologicznymi i bezzapachowymi atramentami',
-		'Zadrukowane brzegi obrazu',
-		'Obraz jest gotowy do zawieszenia na ścianie',
-	],
-	poster: [
-		' Wysokiej jakości powlekany papier plakatowy 200g',
-		'Duża odporność druku na promienie słoneczne',
-		'Druk atramentami eco-solwentowymi',
-		'Wydruk sprzedawany bez ramki',
-	],
-	'premium-print': [
-		'  Półmatowy, gruby i wytrzymały papier 265g',
-		'Druk atramentowy z zastosowaniem 11 atramentów w trybie najwyższej jakości',
-		'Mocne, nasycone kolory',
-		'Wydruk sprzedawany bez ramki',
-	],
+    '12-pigment print in highest quality mode',
+    'Each print has classic white margins all around',
+    'Print is sold without a frame',
+],
+'painting-on-canvas': [
+    'Very sturdy canvas with a distinct painterly texture, 380g',
+    'Canvas is stretched on a wooden painting frame (called stretcher bars)',
+    'Printed with eco-friendly and odorless inks',
+    'Edges of the image are printed',
+    'The painting is ready to hang on the wall',
+],
+'poster': [
+	'High-quality coated poster paper, 200g',
+	'High resistance to sunlight exposure',
+	'Printed with eco-solvent inks',
+	'Print is sold without a frame',
+],
+'premium-print': [
+	'Semi-matte, thick, and durable paper, 265g',
+	'Inkjet printing using 11 inks in the highest quality mode',
+	'Vibrant, saturated colors',
+	'Print is sold without a frame',
+],
 };
 
 const VariationCharacteristics = ({ variationMaterial }: Props) => {

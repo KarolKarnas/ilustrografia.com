@@ -237,7 +237,7 @@ const ProfilePage = () => {
 										{order.createdAt.substring(0, 10)}
 									</div>
 									<div className='basis-1/12'>
-										{order.totalPrice.toFixed(2)}zł
+										${order.totalPrice.toFixed(2)}
 									</div>
 									<div className='basis-2/12 flex items-center justify-center'>
 										{order.isPaid ? (
