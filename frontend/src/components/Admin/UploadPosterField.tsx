@@ -74,7 +74,7 @@ const UploadPosterField = ({options, setOptions}: Props) => {
 									type='text'
 									required
 									placeholder='Enter Poster Image URL'
-									value={options && options.material['poster'].images[0]}
+									value={options.material['poster'].images[0]}
 									onChange={(e) => {
 										const updatedOptions = {
 											...options,

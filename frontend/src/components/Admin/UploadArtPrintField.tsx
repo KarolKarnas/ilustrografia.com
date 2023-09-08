@@ -75,7 +75,7 @@ const UploadArtPrintField = ({options, setOptions}: Props) => {
 									type='text'
 									required
 									placeholder='Enter Art Print Image URL'
-									value={options && options.material['art-print'].images[0]}
+									value={options.material['art-print'].images[0]}
 									onChange={(e) => {
 										const updatedOptions = {
 											...options,

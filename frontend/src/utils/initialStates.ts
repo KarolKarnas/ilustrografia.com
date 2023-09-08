@@ -10,50 +10,50 @@ export const productOptionsInitial: ProductOptions = {
 		optionName: '', // You can provide a default option name here
 		'art-print': {
 			title: '',
-			images: [],
+			images: [''],
 		},
 		'painting-on-canvas': {
 			title: '',
-			images: [],
+			images: [''],
 		},
 		poster: {
 			title: '',
-			images: [],
+			images: [''],
 		},
 		'premium-print': {
 			title: '',
-			images: [],
+			images: [''],
 		},
 	},
 	size: {
 		optionName: '', // You can provide a default option name here
 		s20x30: {
 			title: '',
-			images: [],
+			images: [''],
 		},
 		s20x40: {
 			title: '',
-			images: [],
+			images: [''],
 		},
 		s30x40: {
 			title: '',
-			images: [],
+			images: [''],
 		},
 		s40x60: {
 			title: '',
-			images: [],
+			images: [''],
 		},
 		s50x70: {
 			title: '',
-			images: [],
+			images: [''],
 		},
 		s60x90: {
 			title: '',
-			images: [],
+			images: [''],
 		},
 		s70x100: {
 			title: '',
-			images: [],
+			images: [''],
 		},
 	},
 };

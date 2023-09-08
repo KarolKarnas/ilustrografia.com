@@ -8,18 +8,15 @@ import Message from '../../components/Message';
 import { SyntheticEvent, useState, useEffect } from 'react';
 import {
 	Category,
-	Product,
 	ProductOptions,
 	Rating,
 	Tag,
 	Variation,
 } from '../../types/Product';
-import { toCheckProduct } from '../../utils/typeCheck';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 import { toast } from 'react-toastify';
 
-import _ from 'lodash';
 import TagsForm from '../../components/Admin/TagsForm';
 import CategoriesForm from '../../components/Admin/CategoriesForm';
 import {
@@ -41,7 +38,7 @@ const ProductEditScreen = () => {
 	const { slug: productSlug } = useParams();
 	const navigate = useNavigate();
 
-	const [product, setProduct] = useState<Product>();
+	// const [product, setProduct] = useState<Product>();
 
 	const [_id, set_Id] = useState('');
 	const [name, setName] = useState('');
@@ -49,36 +46,40 @@ const ProductEditScreen = () => {
 	const [rating, setRating] = useState<Rating>(ratingInitial);
 	const [categories, setCategories] = useState<Category[]>([]);
 	const [tags, setTags] = useState<Tag[]>([]);
-	const [images, setImages] = useState<string[]>([]);
+	const [images, setImages] = useState<string[]>(['']);
 	const [options, setOptions] = useState<ProductOptions>(productOptionsInitial);
 	const [statistics, setStatistics] = useState<string[]>([]);
 	const [variations, setVariations] = useState<Variation[]>([]);
 
-	const { data, isLoading, refetch, error } =
-		useGetProductDetailsQuery(productSlug);
+	if (!productSlug) {
+		return <div>No slug provided</div>;
+	}
+	const {
+		data: product,
+		isLoading,
+		refetch,
+		error,
+	} = useGetProductDetailsQuery(productSlug);
 
 	const [updateProduct, { isLoading: loadingUpdate, error: updateError }] =
 		useUpdateProductMutation();
 
 	useEffect(() => {
 		if (!isLoading) {
-			const typedProduct = toCheckProduct(data);
-			setProduct(typedProduct);
-
-			if (typedProduct) {
-				set_Id(typedProduct._id);
-				setName(typedProduct.name);
-				setSlug(typedProduct.slug);
-				setRating(typedProduct.rating);
-				setCategories(typedProduct.categories);
-				setTags(typedProduct.tags);
-				setImages(typedProduct.images);
-				setOptions(typedProduct.options);
-				setVariations(typedProduct.variations);
-				setStatistics(typedProduct.statistics);
+			if (product) {
+				set_Id(product._id);
+				setName(product.name);
+				setSlug(product.slug);
+				setRating(product.rating);
+				setCategories(product.categories);
+				setTags(product.tags);
+				setImages(product.images);
+				setOptions(product.options);
+				setVariations(product.variations);
+				setStatistics(product.statistics);
 			}
 		}
-	}, [data]);
+	}, [product]);
 
 	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();
@@ -101,8 +102,9 @@ const ProductEditScreen = () => {
 				statistics,
 			}).unwrap();
 			toast.success('product updated successfully');
-			const updatedProduct = await refetch()
-			setProduct(toCheckProduct(updatedProduct.data))
+			refetch();
+			// const updatedProduct = await refetch()
+			// setProduct(toCheckProduct(updatedProduct.data))
 			navigate(`/admin/product-list/${slug}/edit`);
 		} catch (error) {
 			toast.error(getError(error as ApiError));

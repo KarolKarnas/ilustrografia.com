@@ -32,12 +32,15 @@ import ProductEditScreen from './pages/Admin/ProductEditPage';
 import UserListPage from './pages/Admin/UserListPage';
 import UserEditPage from './pages/Admin/UserEditPage';
 
+import ProductSpecial from './pages/ProductPage/ProductSpecial';
+
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path='/' element={<App />}>
 			<Route index={true} path='/' element={<HomePage />} />
 			<Route path='/shop/:slug' element={<ProductPage />} />
+			<Route path='/special' element={<ProductSpecial />} />
 			<Route path='/cart' element={<CartPage />} />
 			<Route path='/login' element={<LoginPage />} />
 			<Route path='/register' element={<RegistrationPage />} />

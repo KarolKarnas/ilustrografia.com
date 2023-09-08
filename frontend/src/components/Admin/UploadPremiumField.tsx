@@ -74,7 +74,7 @@ const UploadPremiumField = ({options, setOptions}: Props) => {
 									type='text'
 									required
 									placeholder='Enter Premium Print Image URL'
-									value={options && options.material['premium-print'].images[0]}
+									value={options.material['premium-print'].images[0]}
 									onChange={(e) => {
 										const updatedOptions = {
 											...options,

@@ -32,11 +32,11 @@ const NumberReviewsField = ({ rating, setRating }: Props) => {
 						type='number'
 						required
 						placeholder='Enter Number of Reviews'
-						value={rating?.numReviews}
+						value={rating.numReviews}
 						onChange={(e) =>
 							setRating({
 								...rating,
-								rating: rating?.rating || 0,
+								rating: rating.rating || 0,
 								numReviews: Number(e.target.value),
 							})
 						}

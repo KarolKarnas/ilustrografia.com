@@ -74,7 +74,7 @@ const UploadCanvasField = ({options, setOptions}: Props) => {
 									type='text'
 									required
 									placeholder='Enter Canvas Image URL'
-									value={options && options.material['painting-on-canvas'].images[0]}
+									value={options.material['painting-on-canvas'].images[0]}
 									onChange={(e) => {
 										const updatedOptions = {
 											...options,

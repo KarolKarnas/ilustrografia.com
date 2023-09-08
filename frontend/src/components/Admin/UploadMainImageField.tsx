@@ -55,7 +55,7 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
 						type='text'
 						required
 						placeholder='Enter Main image url'
-						value={images && images[0]}
+						value={images[0]}
 						onChange={(e) => setImages([e.target.value])}
 						// onChange={(e) => setNewStatistic(e.target.value)}
 					/>
