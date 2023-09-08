@@ -82,7 +82,8 @@ export interface Review {
 }
 
 export interface ProductUser {
-	user: mongoose.Schema.Types.ObjectId;
+	// user: mongoose.Schema.Types.ObjectId;
+	user: mongoose.Types.ObjectId;
 	name: string;
 	slug: string;
 	reviews?: ReviewUser[];

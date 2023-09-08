@@ -4,8 +4,8 @@ export const products: ProductNoId[] = [
 		name: 'Basilisk',
 		slug: 'basilisk',
 		rating: {
-			rating: 5,
-			numReviews: 20,
+			rating: 0,
+			numReviews: 0,
 		},
 		categories: [
 			{
@@ -279,8 +279,8 @@ export const products: ProductNoId[] = [
 		name: 'Forest Bobo',
 		slug: 'forest-bobo',
 		rating: {
-			rating: 3.9,
-			numReviews: 144,
+			rating: 0,
+			numReviews: 0,
 		},
 		categories: [
 			{
@@ -558,8 +558,8 @@ export const products: ProductNoId[] = [
 		name: 'Spring Nymph',
 		slug: 'spring-nymph',
 		rating: {
-			rating: 5,
-			numReviews: 123,
+			rating: 0,
+			numReviews: 0,
 		},
 		categories: [
 			{

@@ -253,7 +253,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 // @access  Private
 const createProductReview = asyncHandler(async (req, res) => {
 	const reqUser = checkHaveUser(req);
-	console.log(reqUser.user);
+	// console.log(reqUser.user);
 	const typedBody = toCheckedReview(req.body);
 	const { rating, comment } = typedBody;
 

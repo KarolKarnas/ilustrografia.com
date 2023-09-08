@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -10,15 +10,25 @@ import {
 	Product,
 	SizeOptionNoName,
 } from '../../types/Product';
-import { useGetProductDetailsQuery } from '../../slices/productsApiSlice';
+import {
+	useGetProductDetailsQuery,
+	useCreateProductReviewMutation,
+} from '../../slices/productsApiSlice';
 import VariationDescription from './VariationDescription';
 import { Variation } from '../../types/Product';
 import { addToCart } from '../../slices/cartSlice';
 import VariationCharacteristics from './VariationCharacteristics';
 import { toast } from 'react-toastify';
 import ToastLink from '../../components/ToastLink';
+import { RootState } from '../../store';
+
+import * as Form from '@radix-ui/react-form';
+import ReviewForm from './ReviewForm';
+import { toCheckProduct } from '../../utils/typeCheck';
+
 
 const ProductPage = () => {
+	const [product, setProduct] = useState<Product>();
 	const { slug } = useParams();
 	const [searchParams, setSearchParams] = useSearchParams();
 
@@ -27,47 +37,59 @@ const ProductPage = () => {
 
 	const [qty, setQty] = useState(1);
 	const [variation, setVariation] = useState<Variation>();
-	console.log(variation)
+	console.log(variation);
 
 	// if (!slug) {
 	// 	return <div>No slug provided</div>;
 	// }
-	const { data: product, isLoading, error } = useGetProductDetailsQuery(slug);
+	const { data, isLoading, error } = useGetProductDetailsQuery(slug);
+
+	const [createProductReview, { isLoading: loadingProductReview }] =
+		useCreateProductReviewMutation();
+
+	const { userInfo } = useSelector((state: RootState) => state.auth);
 
 	const getVariation = (material: string, size: string) => {
-		return _.find(product.variations, { options: { material, size } });
+		return _.find(product?.variations, { options: { material, size } });
 	};
 
 	useEffect(() => {
 		if (!isLoading) {
-			if (searchParams) {
+			const typedProduct = toCheckProduct(data);
+			setProduct(typedProduct);
+			if (searchParams && typedProduct) { // Check if typedProduct is defined
 				const material = searchParams.get('material');
 				const size = searchParams.get('size');
 				if (material && size) {
-					setVariation(getVariation(material, size));
+					const variation = getVariation(material, size);
+					setVariation(variation);
 				} else {
-					setVariation(product.variations[0]);
+					setVariation(typedProduct.variations[0]);
 				}
 			}
 		}
-	}, [isLoading, product]);
+	}, [isLoading, data]);
 
 	useEffect(() => {
-		if (variation) {
+		if (variation && product) { // Check if variation and product are defined
 			setSearchParams({
 				material: variation.options.material,
 				size: variation.options.size,
 			});
 		}
-	}, [variation]);
+	}, [variation, product]);
 
-	if (isLoading) {
+		if (isLoading) {
 		return <div>Loading...</div>;
 	}
-
+	
 	if (error) {
 		<div>{getError(error as ApiError)}</div>;
 	}
+	
+	if (!product) {
+	return <div>Loading...</div>;
+}
 	// console.log(product);
 	// console.log(variation);
 	// console.log(qty);
@@ -101,7 +123,7 @@ const ProductPage = () => {
 
 	for (const property in sizesByMaterial) {
 		const names = sizesByMaterial[property];
-		const titles = names.map((name) => product.options.size[name].title);
+		const titles = names.map((name) => product.options.size[name as keyof SizeOptionNoName].title);
 		sizesByMaterialTitle[property] = titles;
 	}
 
@@ -172,13 +194,13 @@ const ProductPage = () => {
 			const pathnameWithQuery =
 				window.location.pathname + window.location.search;
 			const variationName = `${product.name} ${
-				product.options.material[variation.options.material].title
-			} ${product.options.size[variation.options.size].title}`;
+				product.options.material[variation.options.material as keyof MaterialOptionNoName].title
+			} ${product.options.size[variation.options.size as keyof SizeOptionNoName].title}`;
 			dispatch(
 				addToCart({
 					...variation,
 					qty,
-					image: product.options.material[variation.options.material].images[0],
+					image: product.options.material[variation.options.material as keyof MaterialOptionNoName].images[0],
 					variationName,
 					pathnameWithQuery,
 				})
@@ -196,7 +218,7 @@ const ProductPage = () => {
 						<img
 							src={
 								variation &&
-								product.options.material[variation.options.material].images[0]
+								product.options.material[variation.options.material as keyof MaterialOptionNoName].images[0]
 							}
 							alt={product.slug}
 						/>
@@ -226,8 +248,8 @@ const ProductPage = () => {
 						<h1 className=' text-3xl mb-2'>
 							{product.name}{' '}
 							<span className='text-xl'>
-								{product.options.material[variation.options.material].title}{' '}
-								{product.options.size[variation.options.size].title}
+								{product.options.material[variation.options.material as keyof MaterialOptionNoName].title}{' '}
+								{product.options.size[variation.options.size as keyof SizeOptionNoName].title}
 							</span>
 						</h1>
 						{/* SIZES */}
@@ -239,7 +261,7 @@ const ProductPage = () => {
 										key={option}
 										className={`${
 											option ===
-											product.options.size[variation.options.size].title
+											product.options.size[variation.options.size as keyof SizeOptionNoName].title
 												? 'bg-red-200 text-white border-red-400 '
 												: ''
 										}font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white`}
@@ -259,7 +281,7 @@ const ProductPage = () => {
 										key={option}
 										className={`${
 											option ===
-											product.options.material[variation.options.material].title
+											product.options.material[variation.options.material as keyof MaterialOptionNoName].title
 												? 'bg-red-200 text-white border-red-400 '
 												: ''
 										}font-light text-sm border border-black p-0.5 hover:border-red-400 hover:bg-red-200 hover:text-white`}
@@ -327,6 +349,61 @@ const ProductPage = () => {
 								variationMaterial={variation.options.material}
 							/>
 						}
+
+						{userInfo && 	<div>{product.reviews?.[0].comment}</div>
+			// 				<Form.Root className='w-full' onSubmit={(e) => handleSubmitReview(e)}>
+			// 				<div className='flex flex-col'>
+			// 					<h3>Add Review</h3>
+			// 					{product.reviews?.map((review, index) => (
+			// 						<div key={index} className='flex items-center'>
+			// 							{review.comment}
+			// 						</div>
+			// 					))}
+			// 				</div>
+			// <Form.Field className='flex flex-col' name='ratingRating'>
+			// 	<div className='flex items-baseline justify-between'>
+			// 		<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
+			// 			Rating (0-5)
+			// 		</Form.Label>
+			// 		<Form.Message className='text-md text-red-400' match='valueMissing'>
+			// 			Please enter Rating
+			// 		</Form.Message>
+			// 		<Form.Message
+			// 			className='text-md text-red-400'
+			// 			match={(value) => Number(value) < 0 || Number(value) > 5}
+			// 		>
+			// 			Please provide a valid Rating
+			// 		</Form.Message>
+			// 	</div>
+			// 	<Form.Control asChild>
+			// 		<input
+			// 			className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
+			// 			type='number'
+			// 			required
+			// 			placeholder='Enter rating'
+			// 			value={rating?.rating}
+			// 			onChange={(e) =>
+			// 				setRating({
+			// 					...rating,
+			// 					rating: Number(e.target.value),
+			// 					numReviews: rating?.numReviews || 0,
+			// 				})
+			// 			}
+			// 		/>
+			// 	</Form.Control>
+			// </Form.Field>
+
+		// 	<Form.Submit asChild>
+		// 		<button
+		// 			// add disabled styling
+		// 			className='bg-zinc-900 text-white hover:bg-red-200 hover:cursor-pointer w-full text-center py-2  mt-5'
+		// 			// disabled={isLoading}
+		// 		>
+		// 			Add Review
+		// 		</button>
+		// 	</Form.Submit>
+		// </Form.Root>
+		}
 					</div>
 				</div>
 			</>

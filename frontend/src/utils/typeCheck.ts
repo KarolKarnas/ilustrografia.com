@@ -5,6 +5,7 @@ import {
 	Product,
 	ProductOptions,
 	Rating,
+	ReviewUser,
 	ShippingAddress,
 	Tag,
 	Variation,
@@ -494,6 +495,52 @@ const parseVariations = (variations: unknown): Variation[] => {
 	return typedVariations;
 };
 
+
+const isValidReviewUser = (object: unknown): boolean => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data in Review');
+	}
+
+	const variationObject = object as ReviewUser; // Type assertion
+
+	const requiredProperties = ['user', 'name', 'rating', 'comment'];
+
+	const missingProperties = requiredProperties.filter(
+		(prop) => !(prop in variationObject)
+	);
+	if (missingProperties.length === 0) {
+		if (
+			parseStringKey('user',variationObject.user) &&
+			parseStringKey('name', variationObject.name) &&
+			parseNumberKey('rating', variationObject.rating) &&
+			parseStringKey('comment', variationObject.comment)
+		) {
+			return true;
+		}
+		return true;
+	} else {
+		throw new Error(
+			`Incorrect data: the following fields are missing in Review: ${missingProperties.join(
+				', '
+			)}`
+		);
+	}
+};
+
+
+const parseReviewsUser = (reviews: unknown): ReviewUser[] => {
+	if (!reviews || !isArray(reviews)) {
+		throw new Error('Incorrect or missing reviews');
+	}
+	const typedReviewsUser = reviews as ReviewUser[];
+	typedReviewsUser.forEach((review: ReviewUser) => {
+		if (!isValidReviewUser(review)) {
+			throw new Error('Incorrect or missing Review');
+		}
+	});
+	return typedReviewsUser;
+};
+
 export const toCheckProduct = (object: unknown): Product => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data in Product');
@@ -524,9 +571,9 @@ export const toCheckProduct = (object: unknown): Product => {
 			statistics: parseArrayStrings('statistics', object.statistics),
 		};
 
-		// if ('statistics' in object) {
-		// 	checkedProduct.statistics = parseArrayStrings('statistics',object.statistics);
-		// }
+		if ('reviews' in object) {
+			checkedProduct.reviews = parseReviewsUser(object.reviews);
+		}
 		return checkedProduct;
 	}
 	throw new Error('Incorrect data: some fields are missing in Product');

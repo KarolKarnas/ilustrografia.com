@@ -69,10 +69,23 @@ export interface ProductOptions {
 	size: SizeOption;
 }
 
+export interface ReviewUser {
+	user: string;
+	name: string;
+	rating: number;
+	comment: string;
+}
+
+export interface Review {
+	rating: number;
+	comment: string;
+}
+
 export interface Product {
 	_id: string;
 	name: string;
 	slug: string;
+	reviews?: ReviewUser[];
 	rating: Rating;
 	categories: Category[];
 	tags: Tag[];
