@@ -38,11 +38,12 @@ const ProductListPage = () => {
 	// };
 
 	const handleDeleteProduct = async (slug: string) => {
-		console.log(`delete ${slug}`);
+		// console.log(`delete ${slug}`);
 
 		if (window.confirm(`Are you sure you want to delete ${slug}?`)) {
 			try {
-				await deleteProduct(slug);
+				const res = await deleteProduct(slug);
+				console.log(res)
 				refetch();
 				toast.success(`Product ${slug} deleted successfully`);
 			} catch (error) {

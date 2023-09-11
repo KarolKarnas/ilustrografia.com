@@ -24,8 +24,8 @@ const UploadArtPrintField = ({ options, setOptions }: Props) => {
 			const formData = new FormData();
 			formData.append('image', e.target.files[0]);
 			try {
+
 				const res = await uploadProductImage(formData).unwrap();
-				// console.log(res);
 				toast.success(res.message);
 
 				const updatedOptions = {

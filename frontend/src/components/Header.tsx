@@ -24,7 +24,7 @@ const Header = () => {
 
 	const { cartItems } = useAppSelector((state) => state.cart);
 
-	console.log(cartItems)
+	// console.log(cartItems)
 	const { userInfo } = useAppSelector((state) => state.auth);
 
 	const dispatch = useAppDispatch();

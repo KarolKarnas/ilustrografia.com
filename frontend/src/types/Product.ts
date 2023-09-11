@@ -110,6 +110,10 @@ export interface Product {
 	statistics: string[];
 }
 
+export interface ProductVariationOptionalId extends Omit<Product, 'variations'> {
+	variations: VariationOptionalId[];
+}
+
 export interface ShippingAddress {
 	address: string;
 	city: string;
