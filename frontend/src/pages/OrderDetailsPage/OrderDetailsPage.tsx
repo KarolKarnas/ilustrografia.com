@@ -1,5 +1,4 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+// import { useAppSelector } from '../../slices/reduxHooks';
 import {
 	PayPalButtons,
 	PayPalButtonsComponentProps,
@@ -16,19 +15,26 @@ import {
 } from '../../slices/ordersApiSlice';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
-import { toCheckOrder } from '../../utils/typeCheck';
 import Message from '../../components/Message';
-import { useEffect, useState } from 'react';
-import { Order } from '../../types/Order';
+import { useEffect } from 'react';
 
 const OrderDetailsPage = () => {
-	const [order, setOrder] = useState<Order>();
 	const { id: orderId } = useParams();
 
-	const { data, refetch, error, isLoading } = useGetOrderDetailsQuery(orderId);
+	if (!orderId) {
+		return <div>No orderId provided</div>;
+	}
+
+	const {
+		data: order,
+		refetch,
+		error,
+		isLoading,
+	} = useGetOrderDetailsQuery(orderId);
 
 	const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
-	const [deliverOrder, { isLoading: loadingDeliver }] = useDeliverOrderMutation();
+	const [deliverOrder, { isLoading: loadingDeliver }] =
+		useDeliverOrderMutation();
 
 	const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
@@ -37,19 +43,6 @@ const OrderDetailsPage = () => {
 		isLoading: loadingPayPal,
 		error: errorPayPal,
 	} = useGetPaypalClientIdQuery({});
-
-	// console.log(paypal);
-
-	const { userInfo } = useSelector((state: RootState) => state.auth);
-
-	useEffect(() => {
-		if (!isLoading) {
-			const order: Order = toCheckOrder(data);
-			setOrder(order);
-		}
-	}, [isLoading]);
-
-	// console.log(order);
 
 	useEffect(() => {
 		if (!errorPayPal && !loadingPayPal && paypal.clientId) {
@@ -74,26 +67,28 @@ const OrderDetailsPage = () => {
 		}
 	}, [errorPayPal, loadingPayPal, order, paypal, paypalDispatch]);
 
-	const onApproveTest = async () => {
-		await payOrder({
-			orderId,
-			details: {
-				id: 'helloId',
-				status: 'statusss',
-				update_time: 'time is good',
-				payer: { email_address: 'test@tes.com' },
-			},
-		});
-		refetch().then((value) => setOrder(toCheckOrder(value.data)));
+	// const onApproveTest = async () => {
+	// 	await payOrder({
+	// 		orderId,
+	// 		details: {
+	// 			id: 'helloId',
+	// 			status: 'statusss',
+	// 			update_time: 'time is good',
+	// 			payer: { email_address: 'test@tes.com' },
+	// 		},
+	// 	});
+	// 	refetch();
 
-		toast.success('Order is paid');
-	};
+	// 	toast.success('Order is paid');
+	// };
 
 	const handleDelivered = async () => {
 		try {
-			await deliverOrder(order?._id);
-			refetch().then((value) => setOrder(toCheckOrder(value.data)));
-			toast.success('Order is Delivered!');
+			if (order) {
+				await deliverOrder(order?._id);
+				refetch();
+				toast.success('Order is Delivered!');
+			}
 		} catch (err) {
 			toast.error(getError(err as ApiError));
 		}
@@ -119,7 +114,7 @@ const OrderDetailsPage = () => {
 			return actions.order!.capture().then(async function (details) {
 				try {
 					await payOrder({ orderId, details });
-					refetch().then((value) => setOrder(toCheckOrder(value.data)));
+					refetch();
 					toast.success('Order is paid');
 				} catch (err) {
 					toast.error(getError(err as ApiError));
@@ -216,8 +211,8 @@ const OrderDetailsPage = () => {
 										</Link>
 
 										<div className='basis-2/12'>
-											{variation.qty} x ${variation.price} ={' '}
-											${variation.price * variation.qty}
+											{variation.qty} x ${variation.price} = $
+											{variation.price * variation.qty}
 										</div>
 									</div>
 									<hr className=' h-px mx-auto my-3 w-10/12'></hr>

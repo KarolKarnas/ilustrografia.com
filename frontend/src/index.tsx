@@ -17,7 +17,7 @@ import CartPage from './pages/CartPage/CartPage';
 
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './slices/store';
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import ShippingPage from './pages/ShippingPage/ShippingPage';
@@ -27,20 +27,18 @@ import OrderDetailsPage from './pages/OrderDetailsPage/OrderDetailsPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 import OrderListPage from './pages/Admin/OrderListPage';
-import ProductListPage from './pages/Admin/ProductListPage'; 
+import ProductListPage from './pages/Admin/ProductListPage';
 import ProductEditScreen from './pages/Admin/ProductEditPage';
 import UserListPage from './pages/Admin/UserListPage';
 import UserEditPage from './pages/Admin/UserEditPage';
-
-import ProductSpecial from './pages/ProductPage/ProductSpecial';
-
+import ShopPage from './pages/ShopPage/ShopPage';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path='/' element={<App />}>
 			<Route index={true} path='/' element={<HomePage />} />
 			<Route path='/shop/:slug' element={<ProductPage />} />
-			<Route path='/special' element={<ProductSpecial />} />
+			<Route path='/shop' element={<ShopPage />} />
 			<Route path='/cart' element={<CartPage />} />
 			<Route path='/login' element={<LoginPage />} />
 			<Route path='/register' element={<RegistrationPage />} />
@@ -54,7 +52,10 @@ const router = createBrowserRouter(
 			<Route path='' element={<AdminRoute />}>
 				<Route path='/admin/order-list' element={<OrderListPage />} />
 				<Route path='/admin/product-list' element={<ProductListPage />} />
-				<Route path='/admin/product-list/:slug/edit' element={<ProductEditScreen />} />
+				<Route
+					path='/admin/product-list/:slug/edit'
+					element={<ProductEditScreen />}
+				/>
 				<Route path='/admin/user-list' element={<UserListPage />} />
 				<Route path='/admin/user-list/:id/edit' element={<UserEditPage />} />
 			</Route>

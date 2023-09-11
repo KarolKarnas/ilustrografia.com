@@ -6,21 +6,16 @@ import { toast } from 'react-toastify';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 
-
 type Props = {
-  options: ProductOptions;
-  setOptions: React.Dispatch<React.SetStateAction<ProductOptions>>
+	options: ProductOptions;
+	setOptions: React.Dispatch<React.SetStateAction<ProductOptions>>;
+};
 
-}
-
-const UploadCanvasField = ({options, setOptions}: Props) => {
-
+const UploadCanvasField = ({ options, setOptions }: Props) => {
 	const [uploadProductImage, { isLoading: loadingUpload }] =
-  useUploadProductImageMutation();
+		useUploadProductImageMutation();
 
-	const uploadCanvasFileHandler = async (
-		e: ChangeEvent<HTMLInputElement>
-	) => {
+	const uploadCanvasFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files === null) {
 			console.log('no file selected');
 		} else {
@@ -48,81 +43,69 @@ const UploadCanvasField = ({options, setOptions}: Props) => {
 		}
 	};
 
-  return (
-    <>
-						<Form.Field className='flex flex-col' name='canvasImageUrl'>
-							<div className='flex items-baseline justify-between'>
-								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-									Canvas Image URL
-								</Form.Label>
-								<Form.Message
-									className='text-md text-red-400'
-									match='valueMissing'
-								>
-									Canvas Please enter Image URL
-								</Form.Message>
-								<Form.Message
-									className='text-md text-red-400'
-									match='typeMismatch'
-								>
-									Please provide a Canvas Image URL
-								</Form.Message>
-							</div>
-							<Form.Control asChild>
-								<input
-									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-									type='text'
-									required
-									placeholder='Enter Canvas Image URL'
-									value={options.material['painting-on-canvas'].images[0]}
-									onChange={(e) => {
-										const updatedOptions = {
-											...options,
-											material: {
-												...options.material,
-												'painting-on-canvas': {
-													...options.material['painting-on-canvas'],
-													images: [e.target.value],
-												},
-											},
-										};
-										// Set the updated options object in the state
-										setOptions(updatedOptions);
-									}}
-								/>
-							</Form.Control>
-						</Form.Field>
+	return (
+		<>
+			<Form.Field className='flex flex-col' name='canvasImageUrl'>
+				<div className='flex items-baseline justify-between'>
+					<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
+						Canvas Image URL
+					</Form.Label>
+					<Form.Message className='text-md text-red-400' match='valueMissing'>
+						Canvas Please enter Image URL
+					</Form.Message>
+					<Form.Message className='text-md text-red-400' match='typeMismatch'>
+						Please provide a Canvas Image URL
+					</Form.Message>
+				</div>
+				<Form.Control asChild>
+					<input
+						className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
+						type='text'
+						required
+						placeholder='Enter Canvas Image URL'
+						value={options.material['painting-on-canvas'].images[0]}
+						onChange={(e) => {
+							const updatedOptions = {
+								...options,
+								material: {
+									...options.material,
+									'painting-on-canvas': {
+										...options.material['painting-on-canvas'],
+										images: [e.target.value],
+									},
+								},
+							};
+							// Set the updated options object in the state
+							setOptions(updatedOptions);
+						}}
+					/>
+				</Form.Control>
+			</Form.Field>
 
-						<Form.Field className='flex flex-col' name='uploadCanvasImage'>
-							<div className='flex items-baseline justify-between'>
-								<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
-									Add Product Canvas Image
-								</Form.Label>
-								<Form.Message
-									className='text-md text-red-400'
-									match='valueMissing'
-								>
-									Please enter Product Canvas Image
-								</Form.Message>
-								<Form.Message
-									className='text-md text-red-400'
-									match='typeMismatch'
-								>
-									Please provide a Product Canvas Image
-								</Form.Message>
-							</div>
-							<Form.Control asChild>
-								<input
-									className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
-									type='file'
-									// required
-									// placeholder='Enter Number of Reviews'
-									// value={rating?.numReviews}
-									onChange={uploadCanvasFileHandler}
-								/>
-							</Form.Control>
-						</Form.Field>
-            </>
-  )
-}
-export default UploadCanvasField
+			<Form.Field className='flex flex-col' name='uploadCanvasImage'>
+				<div className='flex items-baseline justify-between'>
+					<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>
+						Add Product Canvas Image
+					</Form.Label>
+					<Form.Message className='text-md text-red-400' match='valueMissing'>
+						Please enter Product Canvas Image
+					</Form.Message>
+					<Form.Message className='text-md text-red-400' match='typeMismatch'>
+						Please provide a Product Canvas Image
+					</Form.Message>
+				</div>
+				<Form.Control asChild>
+					<input
+						className='w-full inline-flex items-center justify-center rounded-none text-zinc-600 bg-slate-200 border-solid border border-zinc-500 p-2 focus:rounded-none focus:outline-dashed focus:outline-red-300 '
+						type='file'
+						// required
+						// placeholder='Enter Number of Reviews'
+						// value={rating?.numReviews}
+						onChange={uploadCanvasFileHandler}
+					/>
+				</Form.Control>
+			</Form.Field>
+		</>
+	);
+};
+export default UploadCanvasField;

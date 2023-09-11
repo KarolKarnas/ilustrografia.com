@@ -18,7 +18,7 @@ const ProductListPage = () => {
 
 	const { data, isLoading, error, refetch } = useGetProductsQuery({});
 
-	console.log(data)
+	console.log(data);
 
 	const [createProduct, { isLoading: loadingCreate }] =
 		useCreateProductMutation();
@@ -39,10 +39,10 @@ const ProductListPage = () => {
 	const createProductHandler = async () => {
 		if (window.confirm('Are you sure you want to create a new product?')) {
 			try {
-				await createProduct({});			
+				await createProduct({});
 				const newProducts = await refetch();
 				setProducts(toCheckProducts(newProducts.data));
-				toast.success(`Product created successfully`)
+				toast.success(`Product created successfully`);
 			} catch (error) {
 				toast.error(getError(error as ApiError));
 			}
@@ -61,12 +61,11 @@ const ProductListPage = () => {
 				await deleteProduct(slug);
 				const newProducts = await refetch();
 				setProducts(toCheckProducts(newProducts.data));
-				toast.success(`Product ${slug} deleted successfully`)
+				toast.success(`Product ${slug} deleted successfully`);
 			} catch (error) {
 				toast.error(getError(error as ApiError));
 			}
 		}
-
 	};
 
 	return (

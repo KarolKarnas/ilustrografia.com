@@ -29,15 +29,14 @@ const UserListPage = () => {
 
 	const handleDeleteUser = async (id: string) => {
 		if (window.confirm('Are you sure you want to delete the user?')) {
-				try {
-					await deleteUser(id).unwrap();
-					const updatedUsers = await refetch();
-					setUsers(toCheckUsers(updatedUsers.data));
-					toast.success(`User deleted successfully`);
-				} catch (error) {
-					toast.error(getError(error as ApiError));
-				}
-			
+			try {
+				await deleteUser(id).unwrap();
+				const updatedUsers = await refetch();
+				setUsers(toCheckUsers(updatedUsers.data));
+				toast.success(`User deleted successfully`);
+			} catch (error) {
+				toast.error(getError(error as ApiError));
+			}
 		}
 	};
 

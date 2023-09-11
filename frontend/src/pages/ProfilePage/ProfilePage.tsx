@@ -1,15 +1,12 @@
 import * as Form from '@radix-ui/react-form';
 import { SyntheticEvent, useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../slices/reduxHooks';
 import { setCredentials } from '../../slices/authSlice';
 
 import { useUpdateProfileMutation } from '../../slices/usersApiSlice';
 import { useGetMyOrdersQuery } from '../../slices/ordersApiSlice';
-import { RootState } from '../../store';
 import { Link } from 'react-router-dom';
-import { Order } from '../../types/Order';
-import { toCheckOrders } from '../../utils/typeCheck';
 import { FaTimes } from 'react-icons/fa';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
@@ -19,30 +16,22 @@ const ProfilePage = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
-	const [orders, setOrders] = useState<Order[]>();
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
-	const { userInfo } = useSelector((state: RootState) => state.auth);
+	const { userInfo } = useAppSelector((state) => state.auth);
 
 	const [updateProfile, { isLoading: loadingUpdateProfile, error }] =
 		useUpdateProfileMutation();
 
-	const { data, isLoading, isError } = useGetMyOrdersQuery({});
+	const { data: orders, isLoading, isError } = useGetMyOrdersQuery();
 
-	console.log(userInfo);
 
 	useEffect(() => {
-		if (!isLoading) {
-			const orders: Order[] = toCheckOrders(data);
-			console.log(orders);
-			setOrders(orders);
+		if (userInfo) {
+			setName(userInfo.name);
+			setEmail(userInfo.email);
 		}
-	}, [isLoading]);
-
-	useEffect(() => {
-		setName(userInfo.name);
-		setEmail(userInfo.email);
 	}, [userInfo]);
 
 	const handleSubmit = async (e: SyntheticEvent) => {
@@ -52,7 +41,7 @@ const ProfilePage = () => {
 		} else {
 			try {
 				const res = await updateProfile({
-					_id: userInfo._id,
+					_id: userInfo?._id,
 					name,
 					email,
 					password,
@@ -63,14 +52,8 @@ const ProfilePage = () => {
 				toast.error(getError(error as ApiError));
 			}
 		}
-		// console.log('hello');
-
-		// updateProfile({_id: userInfo._id, name, email, password })
 	};
 
-	// if (!orders) {
-	// 	return <div>No Orders</div>;
-	// }
 
 	return (
 		<div className='flex flex-col items-center w-full'>

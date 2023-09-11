@@ -342,7 +342,7 @@ export const checkHaveUser = (object: unknown): RequestUser => {
 	const userObject = object as RequestUser;
 
 	if ('user' in userObject) {
-		console.log(userObject);
+		// console.log(userObject);
 		return userObject;
 	}
 

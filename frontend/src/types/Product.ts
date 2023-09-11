@@ -13,7 +13,7 @@ export interface Tag {
 	slug: string;
 }
 
-interface TitleImages {
+export interface TitleImages {
 	title: string;
 	images: string[];
 }
@@ -24,7 +24,17 @@ export interface Options {
 
 export interface Variation {
 	productSlug: string;
-	options: Options
+	options: Options;
+	SKU: string;
+	price: number;
+	countInStock: number;
+	tags: Tag[];
+	// images: string[]
+	_id: string;
+}
+export interface VariationOptionalId {
+	productSlug: string;
+	options: Options;
 	SKU: string;
 	price: number;
 	countInStock: number;
@@ -34,7 +44,7 @@ export interface Variation {
 }
 
 export interface VariationCart extends Variation {
-	_id: string;
+	// _id: string;
 	qty: number;
 	image: string;
 	variationName: string;
@@ -51,6 +61,8 @@ export interface MaterialOption {
 
 export type MaterialOptionNoName = Omit<MaterialOption, 'optionName'>;
 
+export type MaterialOptionNoNameKeys = keyof MaterialOptionNoName;
+
 export interface SizeOption {
 	optionName: string;
 	s20x30: TitleImages;
@@ -64,12 +76,15 @@ export interface SizeOption {
 
 export type SizeOptionNoName = Omit<SizeOption, 'optionName'>;
 
+export type SizeOptionNoNameKeys = keyof SizeOptionNoName;
+
 export interface ProductOptions {
 	material: MaterialOption;
 	size: SizeOption;
 }
 
 export interface ReviewUser {
+	createdAt: string;
 	user: string;
 	name: string;
 	rating: number;
@@ -108,6 +123,6 @@ export interface CartState {
 	shippingPrice: number;
 	taxPrice: number;
 	totalPrice: number;
-	shippingAddress?: ShippingAddress;
-	paymentMethod?: string;
+	shippingAddress: ShippingAddress;
+	paymentMethod: string;
 }

@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '../../slices/reduxHooks';
 import { SyntheticEvent, useEffect, useState } from 'react';
-import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
@@ -14,21 +14,24 @@ import {
 	useGetProductDetailsQuery,
 	useCreateProductReviewMutation,
 } from '../../slices/productsApiSlice';
-import VariationDescription from './VariationDescription';
+// import VariationDescription from './VariationDescription';
 import { Variation } from '../../types/Product';
 import { addToCart } from '../../slices/cartSlice';
-import VariationCharacteristics from './VariationCharacteristics';
+// import VariationCharacteristics from './VariationCharacteristics';
 import { toast } from 'react-toastify';
 import ToastLink from '../../components/ToastLink';
 
 import * as Form from '@radix-ui/react-form';
 import Rating from '../../components/Rating';
 
-const ProductPage = () => {
+interface Props {
+	// product: Product;
+	slug: string;
+}
+
+const ProductPage = ({ slug }: Props) => {
 	const [reviewRating, setReviewRating] = useState(0);
 	const [reviewComment, setReviewComment] = useState('');
-	// const [userInfo, setUserInfo] = useState<UserInfo>()
-	const { slug } = useParams();
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const dispatch = useAppDispatch();
@@ -211,7 +214,6 @@ const ProductPage = () => {
 			dispatch(
 				addToCart({
 					...variation,
-					_id: variation._id!,
 					qty,
 					image:
 						product.options.material[
@@ -246,6 +248,11 @@ const ProductPage = () => {
 			<>
 				<div className='flex gap-20 my-5 justify-center'>
 					<div className='w-4/12'>
+						{/* {product.variations.map((variation, index)=> {
+console.log(variation)
+              
+              return (<div key={index}>{variation.SKU}</div>);
+            })} */}
 						<img
 							src={
 								variation &&
@@ -386,20 +393,6 @@ const ProductPage = () => {
 						) : null}
 						<hr className=' h-px mx-auto my-3'></hr>
 
-						{
-							<div className='leading-tight font-light text-zinc-500 text-sm'>
-								<VariationDescription
-									variationMaterial={variation.options.material}
-								/>{' '}
-								<hr className=' h-px mx-auto my-3'></hr>
-							</div>
-						}
-
-						{
-							<VariationCharacteristics
-								variationMaterial={variation.options.material}
-							/>
-						}
 						{product.reviews ? (
 							<div className='flex flex-col gap-4 '>
 								<h3>Add Review</h3>

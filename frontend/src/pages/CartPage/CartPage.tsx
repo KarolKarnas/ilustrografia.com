@@ -1,19 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../slices/reduxHooks';
 import { FaTrash } from 'react-icons/fa';
-import { CartState } from '../../types/Product';
-import { RootState } from '../../store';
 import { addToCart, removeFromCart } from '../../slices/cartSlice';
 import { VariationCart } from '../../types/Product';
 
 const CartPage = () => {
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
-	const cart: CartState = useSelector(
-		(state: RootState): CartState => state.cart
-	);
-	const { cartItems } = cart;
-	// console.log(cartItems);
+	const dispatch = useAppDispatch();
+	const { cartItems } = useAppSelector((state) => state.cart);
 
 	const checkoutHandler = () => {
 		navigate('/login?redirect=/shipping');

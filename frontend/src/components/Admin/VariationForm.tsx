@@ -2,12 +2,12 @@ import * as Form from '@radix-ui/react-form';
 import * as Select from '@radix-ui/react-select';
 import { SyntheticEvent, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Product, Variation } from '../../types/Product';
+import { Product, VariationOptionalId } from '../../types/Product';
 import { FaChevronDown, FaEdit, FaTrash } from 'react-icons/fa';
 
 type Props = {
-  variations: Variation[];
-  setVariations: React.Dispatch<React.SetStateAction<Variation[]>>;
+  variations: VariationOptionalId[];
+  setVariations: React.Dispatch<React.SetStateAction<VariationOptionalId[]>>;
   slug: string;
   product: Product;
 }

@@ -1,13 +1,11 @@
 import * as Form from '@radix-ui/react-form';
 import { SyntheticEvent, useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../slices/reduxHooks';
 
 import { useRegisterMutation } from '../../slices/usersApiSlice';
 import { setCredentials } from '../../slices/authSlice';
 import { toast } from 'react-toastify';
-import { RootState } from '../../store';
-import { UserInfo } from '../../types/User';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 
@@ -17,15 +15,12 @@ const RegistrationPage = () => {
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
 	const [register, { isLoading }] = useRegisterMutation();
 
-	//type on destructuring
-	const { userInfo }: { userInfo: UserInfo | null } = useSelector(
-		(state: RootState) => state.auth
-	);
+	const { userInfo } = useAppSelector((state) => state.auth);
 
 	const { search } = useLocation();
 	const sp = new URLSearchParams(search);

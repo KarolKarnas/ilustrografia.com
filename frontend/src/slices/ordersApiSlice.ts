@@ -1,16 +1,17 @@
 import { apiSlice } from './apiSlice';
 import { ORDERS_URL, PAYPAL_URL } from '../constants';
+import { Order, OrderData } from '../types/Order';
 
 export const ordersApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		createOrder: builder.mutation({
+		createOrder: builder.mutation<Order, OrderData>({
 			query: (order) => ({
 				url: ORDERS_URL,
 				method: 'POST',
 				body: { ...order },
 			}),
 		}),
-		getOrderDetails: builder.query({
+		getOrderDetails: builder.query<Order, string>({
 			query: (orderId) => ({
 				url: `${ORDERS_URL}/${orderId}`,
 			}),
@@ -28,19 +29,19 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
 			}),
 			keepUnusedDataFor: 5,
 		}),
-		getMyOrders: builder.query({
+		getMyOrders: builder.query<Order[], void>({
 			query: () => ({
 				url: `${ORDERS_URL}/my`,
 			}),
 			keepUnusedDataFor: 5,
 		}),
-		getAllOrders: builder.query({
+		getAllOrders: builder.query<Order[], void>({
 			query: () => ({
 				url: `${ORDERS_URL}`,
 			}),
 			keepUnusedDataFor: 5,
 		}),
-		deliverOrder: builder.mutation({
+		deliverOrder: builder.mutation<Order, string>({
 			query: (orderId) => ({
 				url: `${ORDERS_URL}/${orderId}/deliver`,
 				method: 'PUT',

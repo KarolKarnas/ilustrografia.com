@@ -1,38 +1,25 @@
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../slices/reduxHooks';
 import CheckoutSteps from '../../components/CheckoutSteps';
 import { useCreateOrderMutation } from '../../slices/ordersApiSlice';
 import { clearCartItems } from '../../slices/cartSlice';
-import { RootState } from '../../store';
-import { CartState } from '../../types/Product';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 
 const PlaceOrderPage = () => {
 	const navigate = useNavigate();
 
-	const cart: CartState = useSelector(
-		(state: RootState): CartState => state.cart
-	);
+	const cart = useAppSelector((state) => state.cart);
 
 	// console.log(cart);
 
 	const [createOrder, { isLoading, error }] = useCreateOrderMutation();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const placeOrderHandler = async () => {
 		try {
-			// console.log({
-			// 	orderItems: cart.cartItems,
-			// 	shippingAddress: cart.shippingAddress,
-			// 	paymentMethod: cart.paymentMethod,
-			// 	itemsPrice: cart.itemsPrice,
-			// 	shippingPrice: cart.shippingPrice,
-			// 	taxPrice: cart.taxPrice,
-			// 	totalPrice: cart.totalPrice,
-			// });
 			const res = await createOrder({
 				orderItems: cart.cartItems,
 				shippingAddress: cart.shippingAddress,
@@ -42,7 +29,6 @@ const PlaceOrderPage = () => {
 				taxPrice: cart.taxPrice,
 				totalPrice: cart.totalPrice,
 			}).unwrap();
-			// console.log(res);
 			dispatch(clearCartItems({}));
 			navigate(`/order/${res._id}`);
 		} catch (error) {
@@ -108,7 +94,8 @@ const PlaceOrderPage = () => {
 											</Link>
 
 											<div className='basis-2/12'>
-												{variation.qty} x ${variation.price} = ${variation.price * variation.qty}
+												{variation.qty} x ${variation.price} = $
+												{variation.price * variation.qty}
 											</div>
 										</div>
 										<hr className=' h-px mx-auto my-3'></hr>

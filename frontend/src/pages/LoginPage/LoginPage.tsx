@@ -1,13 +1,11 @@
 import * as Form from '@radix-ui/react-form';
 import { SyntheticEvent, useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../slices/reduxHooks';
 
 import { useLoginMutation } from '../../slices/usersApiSlice';
 import { setCredentials } from '../../slices/authSlice';
 import { toast } from 'react-toastify';
-import { RootState } from '../../store';
-import { UserInfo } from '../../types/User';
 import CheckoutSteps from '../../components/CheckoutSteps';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
@@ -16,15 +14,12 @@ const LoginPage = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
 	const [login, { isLoading }] = useLoginMutation();
 
-	//type on destructuring
-	const { userInfo }: { userInfo: UserInfo | null } = useSelector(
-		(state: RootState) => state.auth
-	);
+	const { userInfo } = useAppSelector((state) => state.auth);
 
 	const { search } = useLocation();
 	const sp = new URLSearchParams(search);
@@ -41,7 +36,7 @@ const LoginPage = () => {
 		// console.log('hello');
 		try {
 			const res = await login({ email, password }).unwrap();
-			console.log(res)
+			console.log(res);
 			dispatch(setCredentials({ ...res }));
 			navigate(redirect);
 		} catch (error) {
@@ -50,7 +45,7 @@ const LoginPage = () => {
 	};
 	return (
 		<div className='flex flex-col items-center w-full'>
-			<CheckoutSteps step1={true} step2={false} step3={false} step4={false}/>
+			<CheckoutSteps step1={true} step2={false} step3={false} step4={false} />
 			<h1 className='text-3xl font-bold text-center mt-5'>Login</h1>
 			<Form.Root className='w-4/12' onSubmit={(e) => handleSubmit(e)}>
 				<Form.Field className='flex flex-col' name='email'>
@@ -100,18 +95,21 @@ const LoginPage = () => {
 				</Form.Field>
 				<Form.Submit asChild>
 					<button
-          // add disabled styling
+						// add disabled styling
 						className='bg-zinc-900 text-white hover:bg-red-200 hover:cursor-pointer w-full text-center py-2  mt-5'
 						disabled={isLoading}
 					>
 						Login
 					</button>
 				</Form.Submit>
-				{isLoading && (<div>Loading...</div>)}
+				{isLoading && <div>Loading...</div>}
 			</Form.Root>
 			<p>
 				New customer?{' '}
-				<Link className='text-red-700' to={redirect ? `/register?redirect=${redirect}` : '/register'}>
+				<Link
+					className='text-red-700'
+					to={redirect ? `/register?redirect=${redirect}` : '/register'}
+				>
 					Register
 				</Link>
 			</p>

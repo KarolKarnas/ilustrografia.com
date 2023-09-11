@@ -10,10 +10,8 @@ type Props = {
 	setImages: React.Dispatch<React.SetStateAction<string[]>>;
 };
 const UploadMainImageField = ({ images, setImages }: Props) => {
-
 	const [uploadProductImage, { isLoading: loadingUpload }] =
 		useUploadProductImageMutation();
-
 
 	const uploadFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files === null) {
@@ -61,7 +59,6 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
 					/>
 				</Form.Control>
 			</Form.Field>
-
 
 			<Form.Field className='flex flex-col' name='uploadMainImage'>
 				<div className='flex items-baseline justify-between'>

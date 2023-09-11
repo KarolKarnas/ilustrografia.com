@@ -11,7 +11,7 @@ import {
 	ProductOptions,
 	Rating,
 	Tag,
-	Variation,
+	VariationOptionalId
 } from '../../types/Product';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
@@ -49,7 +49,7 @@ const ProductEditScreen = () => {
 	const [images, setImages] = useState<string[]>(['']);
 	const [options, setOptions] = useState<ProductOptions>(productOptionsInitial);
 	const [statistics, setStatistics] = useState<string[]>([]);
-	const [variations, setVariations] = useState<Variation[]>([]);
+	const [variations, setVariations] = useState<VariationOptionalId[]>([]);
 
 	if (!productSlug) {
 		return <div>No slug provided</div>;

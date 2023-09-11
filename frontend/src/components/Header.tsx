@@ -1,10 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux';
+
+import { useAppDispatch, useAppSelector } from '../slices/reduxHooks';
 import { useNavigate } from 'react-router-dom';
 import { VariationCart } from '../types/Product';
-import { RootState } from '../store';
 
 import { GrCart, GrUser, GrFavorite } from 'react-icons/gr';
-import {FaUserAltSlash} from 'react-icons/fa'
+import { FaUserAltSlash } from 'react-icons/fa';
 
 import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa';
 
@@ -19,10 +19,12 @@ import Dropdown from './Dropdown';
 const Header = () => {
 	const [isActive, setIsActive] = useState(false);
 
-	const { cartItems } = useSelector((state: RootState) => state.cart);
-	const { userInfo } = useSelector((state: RootState) => state.auth);
+	const { cartItems } = useAppSelector((state) => state.cart);
 
-	const dispatch = useDispatch();
+	console.log(cartItems)
+	const { userInfo } = useAppSelector((state) => state.auth);
+
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
 	const [logoutApiCall] = useLogoutMutation();
@@ -115,13 +117,13 @@ const Header = () => {
 						)}
 					</Link>
 					<div className='w-10 px-3'>
-					{userInfo ? (
-						<Dropdown userInfo={userInfo} handleLogout={handleLogout} />
-					) : (
-						<Link to={'/login'}>
-							<FaUserAltSlash />
-						</Link>
-					)}
+						{userInfo ? (
+							<Dropdown userInfo={userInfo} handleLogout={handleLogout} />
+						) : (
+							<Link to={'/login'}>
+								<FaUserAltSlash />
+							</Link>
+						)}
 					</div>
 					<GrFavorite />
 				</div>
@@ -212,9 +214,9 @@ const Header = () => {
 };
 export default Header;
 
-
-
-				{/* <Link to={'/profile'}>{userInfo.name}</Link>
+{
+	/* <Link to={'/profile'}>{userInfo.name}</Link>
 							<p className='hover:cursor-pointer' onClick={handleLogout}>
 								Logout
-							</p> */}
+							</p> */
+}

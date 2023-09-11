@@ -1,27 +1,21 @@
 import * as Form from '@radix-ui/react-form';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import { SyntheticEvent, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../slices/reduxHooks';
 import { useNavigate } from 'react-router-dom';
-import { RootState } from '../../store';
 
 import { addPaymentMethod } from '../../slices/cartSlice';
-import { CartState } from '../../types/Product';
 import CheckoutSteps from '../../components/CheckoutSteps';
 
 const PaymentPage = () => {
-	const cart: CartState = useSelector(
-		(state: RootState): CartState => state.cart
-	);
-	const { shippingAddress } = cart;
-	const currentPaymentMethod = cart.paymentMethod;
+	const { shippingAddress, paymentMethod: currentPaymentMethod } = useAppSelector((state) => state.cart)
 
 	//set current payment
 	const [paymentMethod, setPaymentMethod] = useState(
 		currentPaymentMethod || 'PayPal'
 	);
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
 	useEffect(() => {

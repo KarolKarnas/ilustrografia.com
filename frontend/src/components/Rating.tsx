@@ -2,7 +2,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
 interface Props {
   rating: number,
-  numReviews: number
+  numReviews?: number
 }
 
 const Rating = ({ rating, numReviews } : Props) => {
