@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react';
 import {
 	useGetUsersQuery,
 	useDeleteUserMutation,
 } from '../../slices/usersApiSlice';
-import { toCheckUsers } from '../../utils/typeCheck';
 import { UserInfo } from '../../types/User';
 import { Link } from 'react-router-dom';
 import { FaTrash, FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
@@ -12,27 +10,17 @@ import { toast } from 'react-toastify';
 import { ApiError } from '../../types/ApiError';
 
 const UserListPage = () => {
-	const [users, setUsers] = useState<UserInfo[]>([]);
-	const { data, isLoading, error, refetch } = useGetUsersQuery({});
+
+	const { data: users, isLoading, error, refetch } = useGetUsersQuery();
 	console.log(users);
 
 	const [deleteUser] = useDeleteUserMutation();
-
-	useEffect(() => {
-		if (!isLoading) {
-			const typedUsers: UserInfo[] = toCheckUsers(data);
-			// console.log(typedUsers);
-			setUsers(typedUsers);
-		}
-	}, [isLoading]);
-	// }, [isLoading, loadingCreate]);
 
 	const handleDeleteUser = async (id: string) => {
 		if (window.confirm('Are you sure you want to delete the user?')) {
 			try {
 				await deleteUser(id).unwrap();
-				const updatedUsers = await refetch();
-				setUsers(toCheckUsers(updatedUsers.data));
+				refetch();			
 				toast.success(`User deleted successfully`);
 			} catch (error) {
 				toast.error(getError(error as ApiError));

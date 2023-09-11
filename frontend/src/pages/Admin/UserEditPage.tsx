@@ -6,8 +6,6 @@ import {
 	useUpdateUserMutation,
 } from '../../slices/usersApiSlice';
 import { useState, useEffect, SyntheticEvent } from 'react';
-import { UserInfo } from '../../types/User';
-import { parseUserInfo } from '../../utils/typeCheck';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 import Message from '../../components/Message';
@@ -17,33 +15,29 @@ import { toast } from 'react-toastify';
 
 const UserEditPage = () => {
 	const { id } = useParams();
-	const [user, setUser] = useState<UserInfo>();
-
-	// console.log(user);
 
 	const [userId, setUserId] = useState('');
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [isAdmin, setIsAdmin] = useState(false);
 
-	const { data, isLoading, refetch, error } = useGetUserDetailsQuery(id);
+	if (!id) {
+		return <div>No id provided</div>;
+	}
+
+	const { data: user, isLoading, refetch, error } = useGetUserDetailsQuery(id);
 
 	const [updateUser, { isLoading: loadingUpdate, error: updateError }] =
 		useUpdateUserMutation();
 
 	useEffect(() => {
-		if (!isLoading) {
-			const typedUser = parseUserInfo(data);
-			setUser(typedUser);
-
-			if (typedUser) {
-				setUserId(typedUser._id);
-				setName(typedUser.name);
-				setEmail(typedUser.email);
-				setIsAdmin(typedUser.isAdmin);
-			}
+		if (!isLoading && user) {
+			setUserId(user._id);
+			setName(user.name);
+			setEmail(user.email);
+			setIsAdmin(user.isAdmin);
 		}
-	}, [data]);
+	}, [user]);
 
 	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();
@@ -53,10 +47,9 @@ const UserEditPage = () => {
 		}
 
 		try {
-			await updateUser({ userId, name, email, isAdmin }).unwrap();
+			await updateUser({ _id: userId, name, email, isAdmin }).unwrap();
+			refetch();
 			toast.success('user updated successfully');
-			const updatedUser = await refetch();
-			setUser(parseUserInfo(updatedUser.data));
 		} catch (error) {
 			toast.error(getError(error as ApiError));
 		}

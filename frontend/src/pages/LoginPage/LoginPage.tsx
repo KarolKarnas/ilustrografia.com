@@ -33,10 +33,9 @@ const LoginPage = () => {
 
 	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();
-		// console.log('hello');
 		try {
 			const res = await login({ email, password }).unwrap();
-			console.log(res);
+			// console.log(res);
 			dispatch(setCredentials({ ...res }));
 			navigate(redirect);
 		} catch (error) {

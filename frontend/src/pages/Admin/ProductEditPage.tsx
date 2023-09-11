@@ -103,8 +103,6 @@ const ProductEditScreen = () => {
 			}).unwrap();
 			toast.success('product updated successfully');
 			refetch();
-			// const updatedProduct = await refetch()
-			// setProduct(toCheckProduct(updatedProduct.data))
 			navigate(`/admin/product-list/${slug}/edit`);
 		} catch (error) {
 			toast.error(getError(error as ApiError));

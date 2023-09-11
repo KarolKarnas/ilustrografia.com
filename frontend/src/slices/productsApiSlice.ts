@@ -5,7 +5,7 @@ import { Product } from '../types/Product';
 
 export const productsApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		getProducts: builder.query({
+		getProducts: builder.query<Product[], void>({
 			query: () => ({
 				url: PRODUCTS_URL,
 			}),
@@ -18,13 +18,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
 			}),
 			keepUnusedDataFor: 5,
 		}),
-		getProductSpecialDetails: builder.query<Product, string>({
-			query: (slug) => ({
-				url: `${PRODUCTS_URL}/${slug}`,
-			}),
-			keepUnusedDataFor: 5,
-		}),
-		createProduct: builder.mutation({
+		createProduct: builder.mutation<Product, void>({
 			query: () => ({
 				url: `${PRODUCTS_URL}`,
 				method: 'POST',
@@ -63,5 +57,5 @@ export const productsApiSlice = apiSlice.injectEndpoints({
 	}),
 });
 
-export const { useGetProductsQuery, useGetProductDetailsQuery, useCreateProductMutation, useUpdateProductMutation, useUploadProductImageMutation, useDeleteProductMutation, useCreateProductReviewMutation, useGetProductSpecialDetailsQuery } =
+export const { useGetProductsQuery, useGetProductDetailsQuery, useCreateProductMutation, useUpdateProductMutation, useUploadProductImageMutation, useDeleteProductMutation, useCreateProductReviewMutation } =
 	productsApiSlice;

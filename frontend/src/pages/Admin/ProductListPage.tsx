@@ -1,24 +1,17 @@
-import { useEffect, useState } from 'react';
 import { Product } from '../../types/Product';
 import {
 	useGetProductsQuery,
 	useCreateProductMutation,
 	useDeleteProductMutation,
 } from '../../slices/productsApiSlice';
-import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-
-import { toCheckProduct, toCheckProducts } from '../../utils/typeCheck';
 import { toast } from 'react-toastify';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 
 const ProductListPage = () => {
-	const [products, setProducts] = useState<Product[]>();
-
-	const { data, isLoading, error, refetch } = useGetProductsQuery({});
-
-	console.log(data);
+	const { data: products, isLoading, error, refetch } = useGetProductsQuery();
 
 	const [createProduct, { isLoading: loadingCreate }] =
 		useCreateProductMutation();
@@ -26,22 +19,13 @@ const ProductListPage = () => {
 	const [deleteProduct, { isLoading: loadingDelete }] =
 		useDeleteProductMutation();
 
-	useEffect(() => {
-		if (!isLoading) {
-			const typedProducts = toCheckProducts(data);
-			// console.log(typedProducts);
-			setProducts(typedProducts);
-		}
-	}, [isLoading, loadingCreate]);
-
 	// console.log(products);
 
 	const createProductHandler = async () => {
 		if (window.confirm('Are you sure you want to create a new product?')) {
 			try {
-				await createProduct({});
-				const newProducts = await refetch();
-				setProducts(toCheckProducts(newProducts.data));
+				await createProduct();
+				refetch();
 				toast.success(`Product created successfully`);
 			} catch (error) {
 				toast.error(getError(error as ApiError));
@@ -59,8 +43,7 @@ const ProductListPage = () => {
 		if (window.confirm(`Are you sure you want to delete ${slug}?`)) {
 			try {
 				await deleteProduct(slug);
-				const newProducts = await refetch();
-				setProducts(toCheckProducts(newProducts.data));
+				refetch();
 				toast.success(`Product ${slug} deleted successfully`);
 			} catch (error) {
 				toast.error(getError(error as ApiError));

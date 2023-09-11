@@ -13,7 +13,7 @@ import ShopProductComponent from './ShopProductComponent';
 import ShopVariation from './ShopVariation';
 
 const ShopPage = () => {
-	const { data: products, isLoading, error } = useGetProductsQuery({});
+	const { data: products, isLoading, error } = useGetProductsQuery();
 
 	// 	if (isLoading) {
 	// 		return <div>Loading...</div>;

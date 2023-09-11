@@ -38,7 +38,7 @@ const RegistrationPage = () => {
 			toast.error('Password do not match');
 		} else {
 			try {
-				const res = await register({ name, email, password }).unwrap();
+				const res = await register({ name, email, password}).unwrap();
 				dispatch(setCredentials({ ...res }));
 				navigate(redirect);
 			} catch (error) {

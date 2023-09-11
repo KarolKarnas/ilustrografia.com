@@ -22,8 +22,6 @@ const StatisticsForm = ({ statistics, setStatistics }: Props) => {
 	const handleDeleteStatistic = (index: number) => {
 		const updatedStatistics = statistics.filter((_statistic, i) => i !== index);
 		setStatistics(updatedStatistics);
-		// setCategoryName('');
-		// refetch().then((value) => setProduct(toCheckProduct(value.data)));
 	};
 	return (
 		<Form.Root className='w-full' onSubmit={(e) => handleSubmitStatistic(e)}>

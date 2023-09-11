@@ -6,7 +6,7 @@ import { useGetProductsQuery } from '../../slices/productsApiSlice';
 import { Product } from '../../types/Product';
 
 const HomePage = () => {
-	const { data: products, isLoading, error } = useGetProductsQuery({});
+	const { data: products, isLoading, error } = useGetProductsQuery();
 
 	// console.log(products)
 	return isLoading ? (

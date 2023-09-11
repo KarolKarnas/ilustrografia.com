@@ -28,8 +28,6 @@ const CategoriesForm = ({ categories, setCategories }: Props) => {
 	const handleDeleteCategory = (index: number) => {
 		const updatedCategories = categories.filter((_category, i) => i !== index);
 		setCategories(updatedCategories);
-		// setCategoryName('');
-		// refetch().then((value) => setProduct(toCheckProduct(value.data)));
 	};
 	return (
 		<Form.Root className='w-full' onSubmit={(e) => handleSubmitCategory(e)}>

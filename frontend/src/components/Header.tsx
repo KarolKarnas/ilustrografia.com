@@ -15,6 +15,9 @@ import logo from './assets/logo-ilustrografia.png';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
 import Dropdown from './Dropdown';
+import { toast } from 'react-toastify';
+import { getError } from '../utils/utils';
+import { ApiError } from '../types/ApiError';
 
 const Header = () => {
 	const [isActive, setIsActive] = useState(false);
@@ -35,11 +38,12 @@ const Header = () => {
 
 	const handleLogout = async () => {
 		try {
-			await logoutApiCall(null).unwrap();
+			const res = await logoutApiCall(null).unwrap();
 			dispatch(logout(null));
 			navigate('/login');
-		} catch (err) {
-			console.log(err);
+			toast.success(`${res.message}`)
+		} catch (error) {
+			toast.error(getError(error as ApiError));
 		}
 	};
 
