@@ -22,7 +22,7 @@ const HomePage = () => {
 				These are our products:
 			</h2>
 			{/* <ProjectGroup /> */}
-			<div className='flex'>
+			<div className='flex dark:bg-slate-600'>
 				{products &&
 					products.map((product: Product) => (
 						<div key={product._id}>

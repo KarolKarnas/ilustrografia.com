@@ -1,4 +1,3 @@
-
 import { useAppDispatch, useAppSelector } from '../slices/reduxHooks';
 import { useNavigate } from 'react-router-dom';
 import { VariationCart } from '../types/Product';
@@ -15,6 +14,7 @@ import logo from './assets/logo-ilustrografia.png';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
 import Dropdown from './Dropdown';
+import ThemeSwitcher from './ThemeSwitcher';
 import { toast } from 'react-toastify';
 import { getError } from '../utils/utils';
 import { ApiError } from '../types/ApiError';
@@ -41,14 +41,14 @@ const Header = () => {
 			const res = await logoutApiCall(null).unwrap();
 			dispatch(logout(null));
 			navigate('/login');
-			toast.success(`${res.message}`)
+			toast.success(`${res.message}`);
 		} catch (error) {
 			toast.error(getError(error as ApiError));
 		}
 	};
 
 	return (
-		<header className='w-full bg-slate-100 py-2'>
+		<header className='w-full dark:bg-slate-500  bg-slate-100  py-2'>
 			<nav className='flex items-center justify-around'>
 				<div className='hidden lg:flex gap-x-3 items-center w-20'>
 					<Link
@@ -106,7 +106,8 @@ const Header = () => {
 						Contact
 					</Link>
 				</div>
-				<div className='hidden lg:flex gap-x-3 w-30'>
+				<div className='hidden lg:flex lg:items-center gap-x-3 w-30'>
+					<ThemeSwitcher />
 					<Link className=' relative' to={'/cart'}>
 						<GrCart />
 						{cartItems.length > 0 && (
