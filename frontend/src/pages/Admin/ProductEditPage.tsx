@@ -89,7 +89,7 @@ const ProductEditScreen = () => {
 		}
 		try {
 			await updateProduct({
-				// productSlug,
+				productSlug,
 				name,
 				slug,
 				rating,

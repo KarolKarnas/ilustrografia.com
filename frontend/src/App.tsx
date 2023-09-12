@@ -9,6 +9,7 @@ const App = () => {
 	// console.log(projects);
 	return (
 		<div className='flex flex-col justify-between overflow-hidden min-h-screen'>
+
 			<ToastContainer
 				position='top-center'
 				autoClose={5000}
@@ -22,10 +23,11 @@ const App = () => {
 				theme='light'
 			/>
 			<Header />
-			<main className=' min-w-screen min-h-screen  flex flex-col items-center justify-start'>
+			<main className=' flex flex-col flex-auto min-w-screen items-center justify-start'>
 				<Outlet />
 			</main>
 			<Footer />
+
 		</div>
 	);
 };

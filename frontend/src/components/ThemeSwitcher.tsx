@@ -59,8 +59,7 @@ const ThemeSwitcher: React.FC = (): JSX.Element => {
   }, []);
 
    const handleChangeTheme = () => {
-    console.log(activeTheme)
-    console.log('first')
+    // console.log(activeTheme)
     activeTheme === 'light' ? setDarkTheme() : setLightTheme()
    }
 

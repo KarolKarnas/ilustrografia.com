@@ -111,6 +111,7 @@ export interface Product {
 }
 
 export interface ProductVariationOptionalId extends Omit<Product, 'variations'> {
+	productSlug?: string;
 	variations: VariationOptionalId[];
 }
 

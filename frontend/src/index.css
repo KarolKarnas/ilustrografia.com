@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply min-h-screen transition-colors duration-500 bg-red-50 dark:bg-slate-700
+  }
+}
+
 
 /* Hamburger Menu */
 .hamburger {

@@ -14,7 +14,7 @@ const HomePage = () => {
 	) : error ? (
 		<div>{getError(error as ApiError)}</div>
 	) : (
-		<>
+		<div className='w-10/12'>
 			<h1 className='text-3xl font-bold text-center mt-5'>
 				Welcome to ilustrografia
 			</h1>
@@ -22,15 +22,15 @@ const HomePage = () => {
 				These are our products:
 			</h2>
 			{/* <ProjectGroup /> */}
-			<div className='flex dark:bg-slate-600'>
+			<div className='grid grid-cols-5 dark:bg-slate-600'>
 				{products &&
 					products.map((product: Product) => (
-						<div key={product._id}>
+						<div  key={product._id}>
 							<div className='bg-red-200 m-2'>
 								<h4 className='p-2 italic'>{product.name}</h4>
 								<Link to={`shop/${product.slug}`}>
 									<img
-										className='h-80 hover:cursor-pointer hover:scale-110 transition duration-300'
+										className='hover:cursor-pointer hover:scale-110 transition duration-500'
 										src={product.images[0]}
 										alt={`${product.slug}-${product.categories[0].slug}`}
 									/>
@@ -45,7 +45,7 @@ const HomePage = () => {
 						</div>
 					))}
 			</div>
-		</>
+		</div>
 	);
 };
 export default HomePage;

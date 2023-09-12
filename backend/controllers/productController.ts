@@ -200,6 +200,8 @@ const updateProduct = asyncHandler(async (req, res) => {
 		}
 	}
 
+	console.log(req.params.slug);
+
 	// if (slug !== req.params.slug) {
 	// 	const slugs = await ProductModel.find({ slug });
 	// 	if (slugs.length !== 0) {
@@ -211,6 +213,8 @@ const updateProduct = asyncHandler(async (req, res) => {
 	// }
 
 	const product = await ProductModel.findOne({ slug: req.params.slug });
+
+	// console.log(product);
 
 	if (product) {
 		product.name = name;
@@ -224,6 +228,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 		product.statistics = statistics;
 
 		const updatedProduct = await product.save();
+		console.log(updatedProduct);
 		res.json(updatedProduct);
 	} else {
 		res.status(404);
@@ -287,7 +292,7 @@ const createProductReview = asyncHandler(async (req, res) => {
 		}
 
 		await product.save();
-		return res.status(201).json({ message: 'Review added'});
+		return res.status(201).json({ message: 'Review added' });
 	} else {
 		res.status(404);
 		throw new Error('Product not found');

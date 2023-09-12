@@ -48,7 +48,7 @@ const Header = () => {
 	};
 
 	return (
-		<header className='w-full dark:bg-slate-500  bg-slate-100  py-2'>
+		<header className='w-full transition-colors duration-500 bg-slate-100 dark:bg-slate-500    py-2'>
 			<nav className='flex items-center justify-around'>
 				<div className='hidden lg:flex gap-x-3 items-center w-20'>
 					<Link
