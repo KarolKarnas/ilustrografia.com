@@ -6,8 +6,6 @@ import { useGetProductsQuery } from '../../slices/productsApiSlice';
 import { Product } from '../../types/Product';
 
 const Filter = () => {
-	// const [filteredImages, setFilterImages] = useState<string[] | null>(null);
-
 	const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 	const [active, setActive] = useState<string | boolean>(false);
 

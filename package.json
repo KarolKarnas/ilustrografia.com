@@ -1,0 +1,13 @@
+{
+  "name": "ilustrografia.pl",
+  "version": "1.0.0",
+  "description": "Rebuild with MERN stack plus TypeScript of my shop www.ilustrografia.pl, originally build with Wordpress + WooCommerce",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd backend && npm install && npm run build  && cd ../frontend && npm install && npm run build",
+    "start": "TG_ALLOW_MIXED=ALLOW node backend/build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
