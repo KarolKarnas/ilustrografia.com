@@ -12,6 +12,10 @@ export const products: ProductNoId[] = [
 				name: 'Neo-Slavic Census',
 				slug: 'neo-slavic-census',
 			},
+			{
+				name: 'Basilisks of Warsaw',
+				slug: 'basilisks-of-warsaw',
+			}
 		],
 		tags: [{ name: '', slug: '' }],
 		images: ['/images/neo-slavic-census/basilisk-1.jpg'],

@@ -1,103 +1,104 @@
-import Rating from '../../components/Rating';
 import _ from 'lodash';
-import { Link } from 'react-router-dom';
+import * as RadioGroup from '@radix-ui/react-radio-group';
+import { useState } from 'react';
+// import { useParams, useSearchParams } from 'react-router-dom';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 import { useGetProductsQuery } from '../../slices/productsApiSlice';
-import {
-	MaterialOptionNoName,
-	Product,
-	SizeOptionNoName,
-} from '../../types/Product';
-import ShopProductComponent from './ShopProductComponent';
-import ShopVariation from './ShopVariation';
+import { Product } from '../../types/Product';
+import ProductMain from '../../components/ProductMain';
 
 const ShopPage = () => {
+	const [productsFiltered, setProductsFiltered] = useState<Product[] | null>(
+		null
+	);
+
 	const { data: products, isLoading, error } = useGetProductsQuery();
 
-	// 	if (isLoading) {
-	// 		return <div>Loading...</div>;
-	// 	}
+	const allCategories = _.flatMap(products, (product) => product.categories);
 
-	//   const variations = []
+	const uniqueCategories = _.uniqBy(allCategories, 'slug');
 
-	// 	const getVariation = (product: Product, material: string, size: string) => {
-	// 		return _.find(product.variations, { options: { material, size } });
-	// 	};
+	const filterProducts = (slug: string) => {
+		const filteredProducts = _.filter(products, (product) => {
+			return _.some(product.categories, { slug: slug });
+		});
+		setProductsFiltered(filteredProducts);
+	};
 
-	// 	const getSizesForMaterialFromProduct = (
-	// 		product: Product,
-	// 		material: string
-	// 	) => {
-	// 		const sizes = _.uniq(
-	// 			product.variations
-	// 				.filter((variation) => variation.options.material === material)
-	// 				.map((variation) => variation.options.size)
-	// 		);
-	// 		return sizes;
-	// 	};
-
-	// 	products.forEach((product: Product) => {
-	// 		const materialValues = _.uniq(
-	// 			_.map(product.variations, 'options.material')
-	// 		);
-
-	// 		const sizeValues = _.uniq(_.map(product.variations, 'options.size'));
-
-	//     const sizesByMaterial: { [key: string]: string[] } = {};
-
-	//     materialValues.forEach((material: string) => {
-	//       sizesByMaterial[`${material}`] = getSizesForMaterialFromProduct(
-	//         product,
-	//         material
-	//       );
-	//     });
-
-	//     const sizesByMaterialTitle: { [key: string]: string[] } = {};
-
-	//     for (const property in sizesByMaterial) {
-	//       const names = sizesByMaterial[property];
-	//       const titles = names.map(
-	//         (name) => product.options.size[name as keyof SizeOptionNoName].title
-	//       );
-	//       sizesByMaterialTitle[property] = titles;
-	//     }
-
-	//     const materialTitle = materialValues.map(
-	//       (name) => product.options.material[name as keyof MaterialOptionNoName].title
-	//     );
-	//     //TITLE_TO_NAME_MATERIAL
-	//     const titleToNameMaterial: { [key: string]: string } = {};
-
-	//     materialTitle.forEach(
-	//       (title, index) => (titleToNameMaterial[title] = materialValues[index])
-	//     );
-
-	//     const sizeTitle = sizeValues.map(
-	//       (name) => product.options.size[name as keyof SizeOptionNoName].title
-	//     );
-
-	//     //TITLE_TO_NAME_SIZE
-	//     const titleToNameSize: { [key: string]: string } = {};
-
-	//     sizeTitle.forEach(
-	//       (title, index) => (titleToNameSize[title] = sizeValues[index])
-	//     );
-
-	// console.log(sizeTitle)
-
-	// 		return (<div>hello</div>)
-	// 	});
-
-	// console.log(products)
 	return isLoading ? (
 		<div>Loading...</div>
 	) : error ? (
 		<div>{getError(error as ApiError)}</div>
 	) : (
-		<>
+		<div>
 			<h1 className='text-3xl font-bold text-center mt-5'>SHOP</h1>
+
 			<div className='flex'>
+				<div className='w-2/12 p-2'>
+					<h3 className='font-fondamento font-semibold text-lg'>Categories</h3>
+					<RadioGroup.Root
+						className='flex flex-col gap-4'
+						defaultValue={''}
+						aria-label='payment-method'
+					>
+						<div className='flex items-center'>
+							{' '}
+							<RadioGroup.Item
+								className='w-6 h-6 rounded-full shadow-red-500 shadow-lg'
+								value={''}
+								id='r1'
+								onClick={() => setProductsFiltered(null)}
+							>
+								<RadioGroup.Indicator className='flex items-center justify-center w-full h-full relative after:content-[""] after:block after:w-2 after:h-2 after:rounded-lg after:bg-red-300' />
+							</RadioGroup.Item>
+							<label
+								className=' text-slate-800 pl-4 text-md leading-4'
+								htmlFor='r1'
+							>
+								Show All
+							</label>
+						</div>
+						{uniqueCategories.map((category, index) => (
+							<div key={index} className='flex items-center'>
+								{' '}
+								<RadioGroup.Item
+									className='w-6 h-6 rounded-full shadow-red-500 shadow-lg'
+									value={category.slug}
+									id='r1'
+									onClick={(e) => filterProducts(e.currentTarget.value)}
+								>
+									<RadioGroup.Indicator className='flex items-center justify-center w-full h-full relative after:content-[""] after:block after:w-2 after:h-2 after:rounded-lg after:bg-red-300' />
+								</RadioGroup.Item>
+								<label
+									className=' text-slate-800 pl-4 text-md leading-4'
+									htmlFor='r1'
+								>
+									{category.name}
+								</label>
+							</div>
+						))}
+					</RadioGroup.Root>
+				</div>
+				<div className='w-10/12'>
+					<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 dark:bg-slate-600'>
+						{productsFiltered
+							? productsFiltered?.map((product: Product) => (
+									<ProductMain key={product._id} product={product} />
+							  ))
+							: products?.map((product: Product) => (
+									<ProductMain key={product._id} product={product} />
+							  ))}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+};
+export default ShopPage;
+
+{
+	/* <div className='flex'>
 				{' '}
 				{products &&
 					products.map((product: Product) => (
@@ -117,17 +118,11 @@ const ShopPage = () => {
 							))}
 						</div>
 					))}
-			</div>
-			{/* <ProjectGroup /> */}
-			{/* <div className='flex'>
-				{products &&
-					products.map((product: Product) => (
-						<div key={product._id}>
-							<ShopProductComponent slug={product.slug} />
-						</div>
-					))}
-			</div> */}
-		</>
-	);
-};
-export default ShopPage;
+			</div> */
+}
+
+{
+	/* <button className='font-light text-sm border border-black px-6 py-2 hover:border-red-400 hover:bg-red-200 hover:text-white' onClick={handleResetCategories}>
+Reset
+</button> */
+}

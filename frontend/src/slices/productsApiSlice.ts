@@ -18,6 +18,12 @@ export const productsApiSlice = apiSlice.injectEndpoints({
 			}),
 			keepUnusedDataFor: 5,
 		}),
+		getProductsByCategory: builder.query<Product[], string>({
+			query: (category) => ({
+				url: `${PRODUCTS_URL}/categories/${category}`,
+			}),
+			keepUnusedDataFor: 5,
+		}),
 		createProduct: builder.mutation<Product, void>({
 			query: () => ({
 				url: `${PRODUCTS_URL}`,

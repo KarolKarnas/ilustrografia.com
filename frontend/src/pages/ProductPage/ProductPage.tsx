@@ -28,7 +28,10 @@ const ProductPage = () => {
 	const [reviewRating, setReviewRating] = useState(0);
 	const [reviewComment, setReviewComment] = useState('');
 	// const [userInfo, setUserInfo] = useState<UserInfo>()
-	const { slug } = useParams();
+	const params = useParams();
+	const slug = params.slug
+
+	console.log(params)
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const dispatch = useAppDispatch();

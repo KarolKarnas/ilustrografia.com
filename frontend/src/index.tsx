@@ -32,6 +32,7 @@ import ProductEditScreen from './pages/Admin/ProductEditPage';
 import UserListPage from './pages/Admin/UserListPage';
 import UserEditPage from './pages/Admin/UserEditPage';
 import ShopPage from './pages/ShopPage/ShopPage';
+import IllustrationsPage from './pages/IllustrationsPage/IllustrationsPage';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -42,6 +43,8 @@ const router = createBrowserRouter(
 			<Route path='/cart' element={<CartPage />} />
 			<Route path='/login' element={<LoginPage />} />
 			<Route path='/register' element={<RegistrationPage />} />
+			<Route path='/illustrations' element={<IllustrationsPage />} />
+
 			<Route path='' element={<PrivateRoute />}>
 				<Route path='/shipping' element={<ShippingPage />} />
 				<Route path='/payment' element={<PaymentPage />} />

@@ -21,7 +21,6 @@ const getProducts = asyncHandler(async (_req, res) => {
 // @route   GET /api/products/:slug
 // @access  Public
 const getProductBySlug = asyncHandler(async (req, res) => {
-	console.log('first');
 	const product = await ProductModel.findOne({ slug: req.params.slug });
 	if (product) {
 		res.json(product);
@@ -35,12 +34,12 @@ const getProductBySlug = asyncHandler(async (req, res) => {
 // @route   GET /api/products/categories/:category
 // @access  Public
 const getProductsByCategory = asyncHandler(async (req, res) => {
-	const product = await ProductModel.find({ categories: { $elemMatch: { slug: req.params.category } } });
-	if (product) {
-		res.json(product);
+	const products = await ProductModel.find({ categories: { $elemMatch: { slug: req.params.category } } });
+	if (products) {
+		res.json(products);
 	} else {
 		res.status(404);
-		throw new Error(`Products not found`);
+		throw new Error(`Products with category not found`);
 	}
 });
 
@@ -77,8 +76,8 @@ const createProduct = asyncHandler(async (req, res) => {
 		},
 		categories: [
 			{
-				name: 'Nowosłowiański Spis Powszechny',
-				slug: 'nowoslowianski-spis-powszechny',
+				name: 'Sample Product',
+				slug: 'sample-product',
 			},
 		],
 		tags: [{ name: '', slug: '' }],

@@ -1,32 +1,41 @@
+import _ from 'lodash';
 import { useEffect, useState } from 'react';
-import { Project } from '../../_types';
-import projectService from '../../services/projectService';
 
 import { Link } from 'react-router-dom';
+import { useGetProductsQuery } from '../../slices/productsApiSlice';
+import { Product } from '../../types/Product';
 
 const Filter = () => {
-	const [projects, setProjects] = useState<Project[]>([]);
-	const [active, setActive] = useState('all');
+	// const [filteredImages, setFilterImages] = useState<string[] | null>(null);
+
+	const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+	const [active, setActive] = useState<string | boolean>(false);
+
+	console.log(active);
+
+	const { data: products, isLoading, error } = useGetProductsQuery();
+	const allCategories = _.flatMap(products, (product) => product.categories);
+	const uniqueCategories = _.uniqBy(allCategories, 'slug');
 
 	useEffect(() => {
-		const fetchProjects = async () => {
-			const projects = await projectService.getAll();
-			setProjects(projects);
-		};
-		fetchProjects();
-	}, []);
+		if (products) {
+			setFilteredProducts(products);
+		}
+	}, [products]);
 
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		const btnValue = e.currentTarget.value;
-		// console.log(btnValue)
 		setActive(btnValue);
-		// console.log(active);
-		// const newFilterImages = images.filter((item) => item.category === btnValue);
-		// if (btnValue === "all") {
-		//   setFilterImages(images);
-		// } else {
-		//   setFilterImages(newFilterImages);
-		// }
+		if (products) {
+			const newFilterProducts = _.filter(products, (product) => {
+				return _.some(product.categories, { slug: btnValue });
+			});
+			if (btnValue === 'all') {
+				setFilteredProducts(products);
+			} else {
+				setFilteredProducts(newFilterProducts);
+			}
+		}
 	};
 
 	return (
@@ -37,42 +46,36 @@ const Filter = () => {
 					onClick={handleClick}
 					value={'all'}
 					className={`${
-						active === 'all' ? 'bg-red-500 text-red-50' : ''
+						active === 'all' ? 'bg-red-200 text-red-50' : ''
 					} py-2 px-5 rounded-3xl border-[1px] transition-all duration-300 hover:bg-red-500 hover:text-red-50 border-solid border-red-500 text-red-500 `}
 				>
 					All
 				</button>
 
-				{projects.map((project) => {
-					const value = project.shortName;
+				{uniqueCategories.map((category, index) => {
+					const value = category.slug;
 					return (
 						<button
 							onClick={handleClick}
-							key={project._id}
+							key={index}
 							value={value}
 							className={` ${
-								active === value ? 'bg-red-500 text-red-50' : ''
+								active === value ? 'bg-red-200 text-red-50' : ''
 							} py-2 px-5 rounded-3xl border-[1px] transition-all duration-300 hover:bg-red-500 hover:text-red-50 border-solid border-red-500 text-red-500 `}
 						>
-							{project.name}
+							{category.name}
 						</button>
 					);
 				})}
 			</div>
 			{/* IMAGES */}
 			<div className='grid grid-cols-3 gap-5 w-8/12'>
-				{projects.map((project) =>
-					project.creatures.map((creature) => (
-						<Link
-							key={creature._id}
-							to={`/projects/${project.shortName}/${creature.shortName}`}
-						>
-							<img
-								src={`/images/${project.shortName}/${creature.shortName}/post/${creature.shortName}-1.jpg`}
-							/>
+				{filteredProducts &&
+					filteredProducts.map((product, index) => (
+						<Link key={index} to={`/test}`}>
+							<img src={product.images[0]} />
 						</Link>
-					))
-				)}
+					))}
 			</div>
 		</div>
 	);

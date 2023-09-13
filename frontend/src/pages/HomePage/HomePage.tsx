@@ -4,6 +4,7 @@ import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 import { useGetProductsQuery } from '../../slices/productsApiSlice';
 import { Product } from '../../types/Product';
+import ProductMain from '../../components/ProductMain';
 
 const HomePage = () => {
 	const { data: products, isLoading, error } = useGetProductsQuery();
@@ -25,24 +26,8 @@ const HomePage = () => {
 			<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 dark:bg-slate-600'>
 				{products &&
 					products.map((product: Product) => (
-						<div  key={product._id}>
-							<div className='bg-red-200 m-2'>
-								<h4 className='p-2 italic'>{product.name}</h4>
-								<Link to={`shop/${product.slug}`}>
-									<img
-										className='hover:cursor-pointer hover:scale-110 transition duration-500'
-										src={product.images[0]}
-										alt={`${product.slug}-${product.categories[0].slug}`}
-									/>
-								</Link>
-								<div className='p-2'>
-									<Rating
-										rating={product.rating.rating}
-										numReviews={product.rating.numReviews}
-									/>
-								</div>
-							</div>
-						</div>
+						<ProductMain key={product._id} product={product}/>
+
 					))}
 			</div>
 		</div>

@@ -7,7 +7,7 @@ interface Props {
 }
 
 const ShopVariation = ({ variation, images, variationImage }: Props) => {
-	console.log(images);
+	// console.log(images);
 	return (
 		<>
 			{' '}
