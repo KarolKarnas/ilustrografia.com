@@ -21,6 +21,7 @@ const getProducts = asyncHandler(async (_req, res) => {
 // @route   GET /api/products/:slug
 // @access  Public
 const getProductBySlug = asyncHandler(async (req, res) => {
+	console.log('first');
 	const product = await ProductModel.findOne({ slug: req.params.slug });
 	if (product) {
 		res.json(product);
@@ -30,18 +31,31 @@ const getProductBySlug = asyncHandler(async (req, res) => {
 	}
 });
 
-//not used
-const getVariantBySlugAndSku = asyncHandler(async (req, res) => {
-	const product = await ProductModel.findOne(
-		{ slug: req.params.slug, 'variations.SKU': req.params.sku },
-		{ 'variations.$': 1 }
-	);
+// @desc    Fetch products of category
+// @route   GET /api/products/categories/:category
+// @access  Public
+const getProductsByCategory = asyncHandler(async (req, res) => {
+	const product = await ProductModel.find({ categories: { $elemMatch: { slug: req.params.category } } });
 	if (product) {
 		res.json(product);
 	} else {
-		res.status(404).json({ message: 'Product Not Found' });
+		res.status(404);
+		throw new Error(`Products not found`);
 	}
 });
+
+//not used
+// const getVariantBySlugAndSku = asyncHandler(async (req, res) => {
+// 	const product = await ProductModel.findOne(
+// 		{ slug: req.params.slug, 'variations.SKU': req.params.sku },
+// 		{ 'variations.$': 1 }
+// 	);
+// 	if (product) {
+// 		res.json(product);
+// 	} else {
+// 		res.status(404).json({ message: 'Product Not Found' });
+// 	}
+// });
 
 // @desc    Create a product
 // @route   POST /api/products
@@ -302,9 +316,9 @@ const createProductReview = asyncHandler(async (req, res) => {
 export {
 	getProducts,
 	getProductBySlug,
-	getVariantBySlugAndSku,
 	createProduct,
 	updateProduct,
 	deleteProduct,
 	createProductReview,
+	getProductsByCategory,
 };

@@ -15,14 +15,14 @@ const HomePage = () => {
 		<div>{getError(error as ApiError)}</div>
 	) : (
 		<div className='w-10/12'>
-			<h1 className='text-3xl font-bold text-center mt-5'>
+			<h1 className='text-3xl font-cormorant-infant font-bold text-center mt-5'>
 				Welcome to ilustrografia
 			</h1>
 			<h2 className='text-xl font-bold text-center underline mb-10'>
 				These are our products:
 			</h2>
 			{/* <ProjectGroup /> */}
-			<div className='grid grid-cols-5 dark:bg-slate-600'>
+			<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 dark:bg-slate-600'>
 				{products &&
 					products.map((product: Product) => (
 						<div  key={product._id}>

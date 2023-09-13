@@ -278,7 +278,7 @@ const ProductPage = () => {
 							</Link>{' '}
 							/{' '}
 						</p>
-						<h1 className=' text-3xl'>
+						<h1 className=' text-3xl font-fondamento'>
 							{product.name}{' '}
 							<span className='text-xl'>
 								{

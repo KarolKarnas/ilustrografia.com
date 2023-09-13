@@ -7,7 +7,7 @@ interface Props {
 
 const Rating = ({ rating, numReviews } : Props) => {
   return (
-    <div className='flex'>
+    <div className='flex items-center'>
       <span className='text-yellow-300'>
         {rating >= 1 ? (
           <FaStar />
@@ -53,7 +53,7 @@ const Rating = ({ rating, numReviews } : Props) => {
           <FaRegStar />
         )}
       </span>
-      <span className=' font-bold'>{numReviews && `${numReviews} reviews`}</span>
+      <span className=' font-bold ml-2'>{numReviews && `${numReviews} reviews`}</span>
     </div>
   );
 };
