@@ -37,11 +37,11 @@ app.use('/api/users', userRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/upload', uploadRouter);
 
-// app.get('/api/config/paypal', (_req, res) =>
-// 	res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
-// );
+app.get('/api/config/paypal', (_req, res) =>
+	res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
+);
 
-// console.log(process.env.NODE_ENV);
+console.log(process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === 'production') {
 	app.use('../../uploads', express.static('/var/data/uploads'));
