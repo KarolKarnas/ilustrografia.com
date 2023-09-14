@@ -15,6 +15,17 @@ export const theme = {
 		animation: {
 			'spin-slow': 'spin 3s linear infinite',
 		},
+		spacing: {
+			128: '32rem',
+			192: '48rem',
+			256: '64rem',
+		},
+		dropShadow: {
+			hero: [
+				'4px 4px 10px rgba(0, 0, 0, 0.95)',
+				'2px 1px 0px rgba(0, 0, 0, 0.55)',
+			],
+		},
 	},
 };
 export const plugins = [];
