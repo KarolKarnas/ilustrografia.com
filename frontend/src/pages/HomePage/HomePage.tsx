@@ -1,17 +1,17 @@
-import Rating from '../../components/Rating';
 import { Link } from 'react-router-dom';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 import { useGetProductsQuery } from '../../slices/productsApiSlice';
 import { Product } from '../../types/Product';
 import ProductMain from '../../components/ProductMain';
+import Spinner from '../../components/Spinner';
 
 const HomePage = () => {
 	const { data: products, isLoading, error } = useGetProductsQuery();
 
 	// console.log(products)
 	return isLoading ? (
-		<div>Loading...</div>
+		<Spinner />
 	) : error ? (
 		<div>{getError(error as ApiError)}</div>
 	) : (

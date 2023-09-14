@@ -33,6 +33,7 @@ import UserListPage from './pages/Admin/UserListPage';
 import UserEditPage from './pages/Admin/UserEditPage';
 import ShopPage from './pages/ShopPage/ShopPage';
 import IllustrationsPage from './pages/IllustrationsPage/IllustrationsPage';
+import ContactPage from './pages/ContactPage/ContactPage';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -44,6 +45,7 @@ const router = createBrowserRouter(
 			<Route path='/login' element={<LoginPage />} />
 			<Route path='/register' element={<RegistrationPage />} />
 			<Route path='/illustrations' element={<IllustrationsPage />} />
+			<Route path='/contact' element={<ContactPage />} />
 
 			<Route path='' element={<PrivateRoute />}>
 				<Route path='/shipping' element={<ShippingPage />} />
