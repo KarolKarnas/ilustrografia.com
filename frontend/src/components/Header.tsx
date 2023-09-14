@@ -18,6 +18,7 @@ import ThemeSwitcher from './ThemeSwitcher';
 import { toast } from 'react-toastify';
 import { getError } from '../utils/utils';
 import { ApiError } from '../types/ApiError';
+import { resetCart } from '../slices/cartSlice';
 
 const Header = () => {
 	const [isActive, setIsActive] = useState(false);
@@ -40,6 +41,7 @@ const Header = () => {
 		try {
 			const res = await logoutApiCall(null).unwrap();
 			dispatch(logout(null));
+			dispatch(resetCart())
 			navigate('/login');
 			toast.success(`${res.message}`);
 		} catch (error) {
