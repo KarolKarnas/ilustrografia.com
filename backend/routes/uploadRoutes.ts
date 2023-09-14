@@ -30,7 +30,7 @@ function fileFilter(
 	if (extname && mimetype) {
 		cb(null, true);
 	} else {
-		cb({ name: 'Error', message: 'Images only!' });
+		return cb(new Error('Invalid file type, images only!'));
 	}
 }
 
