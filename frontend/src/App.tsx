@@ -1,12 +1,32 @@
+import { useEffect } from 'react';
+import { useAppDispatch } from './slices/reduxHooks';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { logout } from './slices/authSlice';
 // import ProductGroup from './components/ProductGroup';
 // import projects from './products';
+
+
 const App = () => {
 	// console.log(projects);
+
+	const dispatch = useAppDispatch()
+  useEffect(() => {
+    const expirationTime = localStorage.getItem('expirationTime');
+    if (expirationTime) {
+      const currentTime = new Date().getTime();
+
+      if (currentTime > Number(expirationTime)) {
+        dispatch(logout(null));
+      }
+    }
+  }, [dispatch]);
+
+
 	return (
 		<div className='flex flex-col justify-between overflow-hidden min-h-screen'>
 
