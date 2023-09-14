@@ -8,7 +8,6 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier-plugin-tailwindcss",
     "prettier"
   ],
   "plugins": ["react", "@typescript-eslint"],

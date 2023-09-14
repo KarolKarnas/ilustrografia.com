@@ -5,6 +5,8 @@ import { useGetProductsQuery } from "../../slices/productsApiSlice";
 import { Product } from "../../types/Product";
 import ProductMain from "../../components/ProductMain";
 import Spinner from "../../components/Spinner";
+import SocialLinks from "../../components/SocialLinks";
+import Button from "../../components/Button";
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
@@ -15,11 +17,25 @@ const HomePage = () => {
   ) : error ? (
     <div>{getError(error as ApiError)}</div>
   ) : (
-    <div className="w-10/12">
-      <div className="  flex h-screen flex-col  items-center justify-center bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192">
-        <h1 className="  mt-5 text-center font-cormorant-infant text-5xl font-bold text-red-400 drop-shadow-hero">
+    <div className="w-11/12">
+      <div
+        className=" mt-5 flex
+       h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192 "
+      >
+        <h1 className=" tracking-hero font-montserrat  text-center text-lg font-semibold uppercase text-red-400 drop-shadow-hero">
           · Ilustrografia ·
         </h1>
+        <h3 className="  text-center font-cormorant-infant text-8xl font-semibold italic text-white drop-shadow-hero">
+          Reality Full of Magic
+        </h3>
+        <div className="flex gap-8 my-8">
+          <Button text={'shop'} color={'red'} link={'/shop'}/>
+          <Button text={'about us'} color={'white'} link={'/about-us'}/>
+        </div>
+
+        <div className="flex items-center gap-x-2">
+          <SocialLinks />
+        </div>
       </div>
       <h2 className="  mb-10 text-center text-xl font-bold underline">
         These are our products:
