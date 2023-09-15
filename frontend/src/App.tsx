@@ -28,7 +28,7 @@ const App = () => {
 
 
 	return (
-		<div className='flex flex-col justify-between overflow-hidden min-h-screen bg-red-50 dark:bg-slate-700'>
+		<div className='flex flex-col justify-between overflow-hidden min-h-screen bg-red-50 dark:bg-jet'>
 
 			<ToastContainer
 				position='top-center'
@@ -43,7 +43,7 @@ const App = () => {
 				theme='light'
 			/>
 			<Header />
-			<main className=' flex flex-col flex-auto min-w-screen items-center justify-center bg-red-50 dark:bg-slate-700'>
+			<main className=' flex flex-col flex-auto min-w-screen items-center justify-center bg-red-50 dark:bg-jet'>
 				<Outlet />
 			</main>
 			<Footer />

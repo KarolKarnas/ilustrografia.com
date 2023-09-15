@@ -13,8 +13,8 @@ const Dropdown = ({ userInfo, handleLogout }: Props) => {
 	return (
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger asChild>
-				<div className='hover:cursor-pointer w-5 '>
-					<FaUserAlt className='text-green-300  hover:text-red-300' />
+				<div className=' '>
+					<FaUserAlt className='' />
 				</div>
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Portal>

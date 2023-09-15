@@ -2,10 +2,17 @@ import { useAppDispatch, useAppSelector } from "../slices/reduxHooks";
 import { useNavigate } from "react-router-dom";
 import { VariationCart } from "../types/Product";
 
-import { GrCart, GrUser, GrFavorite } from "react-icons/gr";
-import { FaUserAltSlash } from "react-icons/fa";
+import {
+  FaUserAltSlash,
+  FaUserAlt,
+  FaFacebook,
+  FaInstagram,
+  FaTiktok,
+  FaYoutube,
+} from "react-icons/fa";
+import { FaCartShopping, FaHeart } from "react-icons/fa6";
 
-import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
+import { IconContext } from "react-icons/lib";
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -49,24 +56,31 @@ const Header = () => {
       toast.error(getError(error as ApiError));
     }
   };
+  // dark:hover:text-red-200
 
   return (
-    <header className="w-full bg-slate-100 py-2 transition-colors duration-500    dark:bg-slate-500">
-      <nav className="flex items-center justify-around">
-        <div className="hidden w-20 items-center gap-x-3 lg:flex">
+    <header className="bg-red-50 dark:bg-eerie-black dark:text-ivory  w-full py-4 transition-colors    duration-500">
+      <nav className="flex items-center justify-evenly">
+        <div className="hidden w-30 items-center gap-x-3 lg:flex">
           <SocialLinks />
         </div>
-        <div className="hidden items-center gap-x-10 lg:flex">
-          <Link className="hover:border-b hover:border-black" to="/">
+        <div className="hidden items-center gap-x-4 lg:gap-x-10 lg:flex">
+          <Link
+            className="hover:border-black dark:hover:border-ivory hover:border-b"
+            to="/"
+          >
             Home
           </Link>
           <Link
-            className="hover:border-b hover:border-black"
+            className="hover:border-black dark:hover:border-ivory hover:border-b"
             to="/illustrations"
           >
             Illustrations
           </Link>
-          <Link className="hover:border-b hover:border-black" to="/projects">
+          <Link
+            className="hover:border-black dark:hover:border-ivory hover:border-b"
+            to="/projects"
+          >
             Projects
           </Link>
           <Link to="/">
@@ -76,32 +90,29 @@ const Header = () => {
               alt="logo-ilustrografia"
             />
           </Link>
-          <Link className="hover:border-b hover:border-black" to="/shop">
+          <Link
+            className="hover:border-black dark:hover:border-ivory hover:border-b"
+            to="/shop"
+          >
             Shop
           </Link>
-          <Link className="hover:border-b hover:border-black" to="/about-us">
+          <Link
+            className="hover:border-black dark:hover:border-ivory hover:border-b"
+            to="/about-us"
+          >
             About
           </Link>
-          <Link className="hover:border-b hover:border-black" to="/contact">
+          <Link
+            className="hover:border-black dark:hover:border-ivory hover:border-b"
+            to="/contact"
+          >
             Contact
           </Link>
         </div>
         <div className="w-30 hidden gap-x-3 lg:flex lg:items-center">
           <ThemeSwitcher />
-          <Link className=" relative" to={"/cart"}>
-            <GrCart />
-            {cartItems.length > 0 && (
-              <span className="absolute bottom-2 left-2  -mr-6 object-right-top ">
-                <div className="inline-flex items-center rounded-full border-2 border-white bg-red-500 px-1.5 py-0.5 text-xs font-semibold leading-4 text-white">
-                  {cartItems.reduce(
-                    (acc: number, item: VariationCart) => acc + item.qty,
-                    0,
-                  )}
-                </div>
-              </span>
-            )}
-          </Link>
-          <div className="w-10 px-3">
+
+          <div className="bg-red-400 text-ivory cursor-pointer rounded-3xl p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
             {userInfo ? (
               <Dropdown userInfo={userInfo} handleLogout={handleLogout} />
             ) : (
@@ -110,7 +121,29 @@ const Header = () => {
               </Link>
             )}
           </div>
-          <GrFavorite />
+
+          <Link
+            to={"/favorite"}
+            className="bg-red-400 text-ivory cursor-pointer rounded-3xl p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+          >
+            <FaHeart />
+          </Link>
+          <Link
+            className=" bg-red-400 text-ivory relative rounded-3xl p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+            to={"/cart"}
+          >
+            <FaCartShopping />
+            {cartItems.length > 0 && (
+              <span className="absolute bottom-5 left-5  -mr-6 object-right-top ">
+                <div className=" bg-red-600 text-white inline-flex items-center rounded-full px-1.5 py-0.5 text-xs font-semibold leading-4">
+                  {cartItems.reduce(
+                    (acc: number, item: VariationCart) => acc + item.qty,
+                    0,
+                  )}
+                </div>
+              </span>
+            )}
+          </Link>
         </div>
 
         {/* <div className="md:hidden"> */}
@@ -137,7 +170,7 @@ const Header = () => {
           id="menu"
           className={
             isActive
-              ? "absolute bottom-0 left-0 top-0 flex min-h-screen w-full flex-col items-center space-y-8 self-end bg-slate-100 py-1 pt-40 text-lg uppercase text-black opacity-100"
+              ? "bg-slate-100 text-black absolute bottom-0 left-0 top-0 flex min-h-screen w-full flex-col items-center space-y-8 self-end py-1 pt-40 text-lg uppercase opacity-100"
               : "hidden"
           }
         >
@@ -151,25 +184,25 @@ const Header = () => {
           <div className="flex w-20 items-center justify-center gap-x-3">
             <Link
               to="https://www.facebook.com/ilustrografiaPL/"
-              className="rounded-3xl bg-red-300 p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+              className="bg-red-300 rounded-3xl p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
             >
               <FaFacebook className="text-white" />
             </Link>
             <Link
               to="https://www.instagram.com/ilustrografia.pl/"
-              className="rounded-3xl bg-red-300 p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+              className="bg-red-300 rounded-3xl p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
             >
               <FaInstagram className="text-white" />
             </Link>
             <Link
               to="https://www.facebook.com/ilustrografiaPL/"
-              className="rounded-3xl bg-red-300 p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+              className="bg-red-300 rounded-3xl p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
             >
               <FaTiktok className="text-white" />
             </Link>{" "}
             <Link
               to="https://www.youtube.com/channel/UCH4ljdai9HnOYcKVHWnJ6ng"
-              className="rounded-3xl bg-red-300 p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+              className="bg-red-300 rounded-3xl p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
             >
               <FaYoutube className="text-white" />
             </Link>
@@ -185,12 +218,12 @@ const Header = () => {
           </div>
           <div className="flex w-20 gap-x-3">
             <Link to={"/cart"}>
-              <GrCart />
+              <FaCartShopping />
             </Link>
             <Link to={"/login"}>
-              <GrUser />
+              <FaUserAlt />
             </Link>
-            <GrFavorite />
+            <FaHeart />
           </div>
         </div>
       </nav>

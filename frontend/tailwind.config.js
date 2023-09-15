@@ -12,7 +12,15 @@ export const theme = {
     montserrat: ["Montserrat", "sans-serif"],
     sans: ["lato", ..._fontFamily.serif],
   },
+
   extend: {
+    colors: {
+      jet: "#343232",
+      "eerie-black": "#1D1C1C",
+      "outer-space": "#46494C",
+      ivory: "#F6F7EB",
+      "dark-red": "#714042",
+    },
     animation: {
       "spin-slow": "spin 3s linear infinite",
     },
@@ -26,10 +34,19 @@ export const theme = {
         "4px 4px 10px rgba(0, 0, 0, 0.95)",
         "2px 1px 0px rgba(0, 0, 0, 0.55)",
       ],
+      aberration: [
+        "1px 1px 0px rgba(252, 115, 121, 0.95)",
+        "-1px -1px 0px rgba(92, 255, 246, 0.95)",
+      ],
+      moon: ["2px 2px 10px rgba(255, 255, 255, 0.95)"],
+      sun: ["4px 4px 10px rgba(252, 115, 121, 0.95)"],
     },
     letterSpacing: {
       hero: "1em",
     },
+    fontSize: {
+      '2xs': "0.6rem",
+    }
   },
 };
 export const plugins = [];
