@@ -1,18 +1,6 @@
-import {
-  FaUserAlt,
-  FaFacebook,
-  FaInstagram,
-  FaTiktok,
-  FaYoutube,
-} from "react-icons/fa";
-import { FaCartShopping, FaHeart } from "react-icons/fa6";
+
 import AppLinks from "./AppLinks";
-
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
-import logo from "./assets/logo-ilustrografia.png";
-
 import SocialLinks from "./SocialLinks";
 import MainLinks from "./MainLinks";
 
@@ -22,6 +10,10 @@ const Header = () => {
   const handleClick = () => {
     setIsActive(!isActive);
   };
+
+  const handleMobileClick = () => {
+    setIsActive(!isActive);
+  }
 
   return (
     <header className="bg-red-50 text-eerie-black dark:bg-eerie-black dark:text-ivory  w-full py-4 transition-colors    duration-500">
@@ -67,6 +59,7 @@ const Header = () => {
               ? "bg-red-50 text-eerie-black dark:bg-eerie-black dark:text-ivory absolute bottom-0 left-0 top-0 z-30 flex min-h-screen w-full flex-col items-center space-y-8 self-end py-1 pt-40 text-lg uppercase"
               : "hidden"
           }
+          onClick={handleMobileClick}
         >
           <MainLinks mobile={true} />
           <div className="w-30 flex items-center gap-x-3">

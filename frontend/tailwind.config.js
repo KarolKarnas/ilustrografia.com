@@ -38,6 +38,9 @@ export const theme = {
         "1px 1px 0px rgba(252, 115, 121, 0.95)",
         "-1px -1px 0px rgba(92, 255, 246, 0.95)",
       ],
+      'red-heading': [
+        "1px 0px 0px rgba(252, 115, 121, 0.95)",
+      ],
       moon: ["2px 2px 10px rgba(255, 255, 255, 0.95)"],
       sun: ["4px 4px 10px rgba(252, 115, 121, 0.95)"],
     },
@@ -46,6 +49,12 @@ export const theme = {
     },
     fontSize: {
       '2xs': "0.6rem",
+    },
+    invert: {
+      25: '.25',
+      50: '.5',
+      75: '.75',
+      90: '.90',
     }
   },
 };
