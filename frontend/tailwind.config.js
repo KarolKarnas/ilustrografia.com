@@ -42,7 +42,7 @@ export const theme = {
       sun: ["4px 4px 10px rgba(252, 115, 121, 0.95)"],
     },
     letterSpacing: {
-      hero: "1em",
+      hero: "0.8em",
     },
     fontSize: {
       '2xs': "0.6rem",
