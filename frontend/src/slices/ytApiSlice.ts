@@ -10,7 +10,7 @@ export const ytApiSlice = apiSlice.injectEndpoints({
         url: NEO_SLAVIC_URL,
       }),
       providesTags: ["Playlist"],
-      keepUnusedDataFor: 5,
+      // keepUnusedDataFor: 5,
     }),
   }),
 });

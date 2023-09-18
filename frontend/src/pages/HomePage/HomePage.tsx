@@ -11,44 +11,78 @@ import { useEffect, useState } from "react";
 import YouTubeEmbed from "../../components/YouTubeEmbed";
 import { useGetNeoSlavicQuery } from "../../slices/ytApiSlice";
 import Slider from "../../components/Slider";
+import LatestVideos from "../../components/LatestVideos";
+import Message from "../../components/Message";
+
+const useMouseMove = (onMouseMove: (event: MouseEvent) => void) => {
+  useEffect(() => {
+    document.addEventListener("mousemove", onMouseMove);
+
+    return () => {
+      document.removeEventListener("mousemove", onMouseMove);
+    };
+  }, [onMouseMove]);
+};
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
-
   const {
     data: ytSearch,
     isLoading: ytSearchLoading,
     error: ytSearchError,
   } = useGetNeoSlavicQuery();
 
-  console.log(ytSearch);
+  // console.log(ytSearchError);
 
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  // console.log(ytSearch);
 
-  useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      setMousePos({ x: event.clientX, y: event.clientY });
-    };
+  console.log(products);
 
-    window.addEventListener("mousemove", handleMouseMove);
+  useMouseMove((e) => {
+    const magic = document.getElementById("magic");
+    const brush = document.getElementById("brush");
 
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
+    if (magic) {
+      magic.style.transform = `translateX(${
+        (e.clientX - 1000) / 4
+      }px) translateY(${(e.clientY - 200) / 4}px)`;
+    }
+    if (brush) {
+      brush.style.transform = `translateX(${
+        (e.clientX - 700) / -6
+      }px) translateY(${(e.clientY - 400) / -10}px)`;
+    }
+  });
 
-  // console.log(products)
   return isLoading ? (
     <Spinner />
   ) : error ? (
     <div>{getError(error as ApiError)}</div>
   ) : (
     <div className="w-11/12">
+      <h3 id="test"></h3>
+      {/* <div className="flex w-3/4 justify-center">
+        {ytSearchLoading ? (
+          <Spinner />
+        ) : (
+          ytSearch &&  <Slider youtubeItems={ytSearch?.items} />
+        )}
+      </div> */}
 
+      <div className="flex w-3/4 justify-center">
+        {ytSearchLoading ? (
+          <Spinner />
+        ) : ytSearchError ? (
+          <Message
+            variant="bad"
+            message={getError(ytSearchError as ApiError)}
+            // message={ytSearchError.data.message}
+          />
+        ) : (
+          ytSearch && <LatestVideos youtubeItems={ytSearch.items} />
+        )}
 
-
-{ytSearchLoading ? <Spinner /> : <Slider youtubeItems={ytSearch?.items} />}
-
+      </div>
       <div
         className=" mt-5 flex
        h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192 "
@@ -68,16 +102,13 @@ const HomePage = () => {
             <SocialLinks />
           </div>
         </div>
-      S</div>
+        S
+      </div>
 
       <div className="flex">
         <div className="w-1/4">
           <img
-            style={{
-              transform: `translateX(${(mousePos.x - 1000) / 4}px) translateY(${
-                (mousePos.y - 200) / 4
-              }px)`,
-            }}
+            id="magic"
             className=" dark:invert-90 "
             src="/images/addons/magic.png"
             alt=""
@@ -108,11 +139,7 @@ const HomePage = () => {
         </div>
         <div className="w-1/4">
           <img
-            style={{
-              transform: `translateX(${(mousePos.x - 700) / -6}px) translateY(${
-                (mousePos.y - 400) / -10
-              }px)`,
-            }}
+            id="brush"
             className=" dark:invert-90"
             src="/images/addons/brush.png"
             alt=""
