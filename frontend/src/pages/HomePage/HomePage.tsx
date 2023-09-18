@@ -8,12 +8,21 @@ import Spinner from "../../components/Spinner";
 import SocialLinks from "../../components/SocialLinks";
 import Button from "../../components/Button";
 import { useEffect, useState } from "react";
+import YouTubeEmbed from "../../components/YouTubeEmbed";
+import { useGetNeoSlavicQuery } from "../../slices/ytApiSlice";
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
 
+  const {
+    data: playlist,
+    isLoading: loadingPlaylist,
+    error: playlistError,
+  } = useGetNeoSlavicQuery();
+
+  console.log(playlist);
+
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  console.log(mousePos);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -34,15 +43,20 @@ const HomePage = () => {
     <div>{getError(error as ApiError)}</div>
   ) : (
     <div className="w-11/12">
+      {/* {ytNewest && ytNewest.map((item, index) => {
+        <YouTubeEmbed key={index}  embedId={item.etag}/>
+      })} */}
+
+      <YouTubeEmbed embedId="ffyp1oD0N6E" />
       <div
         className=" mt-5 flex
        h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192 "
       >
-        <div className=" flex flex-col items-center justify-center p-2">
-          <span className=" md:text-md text-red-400  text-center font-montserrat text-xs font-semibold uppercase tracking-hero drop-shadow-hero">
+        <div className=" flex flex-col items-center justify-center  p-2">
+          <span className=" md:text-md text-center  font-montserrat text-xs font-semibold uppercase tracking-hero text-red-400 drop-shadow-hero">
             · Ilustrografia ·
           </span>
-          <h1 className="  text-white my-2 text-center font-cormorant-infant text-6xl font-semibold italic drop-shadow-hero md:text-8xl">
+          <h1 className="  my-2 text-center font-cormorant-infant text-5xl font-semibold italic text-white drop-shadow-hero md:text-8xl">
             Reality Full of Magic
           </h1>
           <div className="my-8 flex gap-8">
@@ -69,17 +83,17 @@ const HomePage = () => {
           />
         </div>
         <div className="flex w-2/4 flex-col items-center justify-center">
-          <span className=" md:text-md text-red-400  mb-4 text-center font-montserrat text-xs font-semibold uppercase  tracking-hero drop-shadow-lg">
+          <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-400 drop-shadow-lg">
             · Ilustrografia ·
           </span>
-          <h3 className=" text-eerie-black  dark:text-ivory drop-shadow-red-heading my-2  mb-4 text-center font-cormorant-infant text-3xl font-semibold italic dark:drop-shadow-xl md:text-6xl ">
+          <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
             Greetings, Wanderer!
           </h3>
-          <strong className=" text-eerie-black dark:text-ivory mb-5 text-center">
+          <strong className=" mb-5 text-center text-eerie-black dark:text-ivory">
             No doubt you&apos;re pondering what extraordinary place you&apos;ve
             stumbled upon, aren&apos;t you?{" "}
           </strong>
-          <span className=" text-eerie-black dark:text-ivory mb-8 text-center">
+          <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
             Ilustrografia is a magical endeavor that intertwines the artful
             mystery of painting, the enthralling narrative power, and the
             enchanting force of photography. We set forth into the uncharted,
@@ -87,7 +101,7 @@ const HomePage = () => {
             limitation is imagination, and when it comes to imagination, there
             are no boundaries.
           </span>
-          <strong className="text-eerie-black dark:text-ivory drop-shadow-red-heading text-center font-cormorant-infant  text-2xl font-semibold italic dark:drop-shadow-lg">
+          <strong className="text-center font-cormorant-infant text-2xl font-semibold italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
             Will you muster the courage to venture with us?
           </strong>
         </div>
@@ -105,7 +119,7 @@ const HomePage = () => {
         </div>
       </div>
       {/* <ProjectGroup /> */}
-      <div className="dark:bg-slate-600 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 dark:bg-slate-600 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products &&
           products.map((product: Product) => (
             <ProductMain key={product._id} product={product} />

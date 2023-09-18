@@ -11,6 +11,7 @@ import productRouter from './routes/productRoutes';
 import userRouter from './routes/userRoutes';
 import orderRouter from './routes/orderRoutes';
 import uploadRouter from './routes/uploadRoutes';
+import ytRouter from './routes/ytRoutes';
 import { errorHandler, notFound } from './middleware/errorMiddleware';
 
 const PORT = process.env.PORT || 5000;
@@ -36,6 +37,7 @@ app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/upload', uploadRouter);
+app.use('/api/videos', ytRouter);
 
 app.get('/api/config/paypal', (_req, res) =>
 	res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
