@@ -10,17 +10,18 @@ import Button from "../../components/Button";
 import { useEffect, useState } from "react";
 import YouTubeEmbed from "../../components/YouTubeEmbed";
 import { useGetNeoSlavicQuery } from "../../slices/ytApiSlice";
+import Slider from "../../components/Slider";
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
 
   const {
-    data: playlist,
-    isLoading: loadingPlaylist,
-    error: playlistError,
+    data: ytSearch,
+    isLoading: ytSearchLoading,
+    error: ytSearchError,
   } = useGetNeoSlavicQuery();
 
-  console.log(playlist);
+  console.log(ytSearch);
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -43,11 +44,11 @@ const HomePage = () => {
     <div>{getError(error as ApiError)}</div>
   ) : (
     <div className="w-11/12">
-      {/* {ytNewest && ytNewest.map((item, index) => {
-        <YouTubeEmbed key={index}  embedId={item.etag}/>
-      })} */}
 
-      <YouTubeEmbed embedId="ffyp1oD0N6E" />
+
+
+{ytSearchLoading ? <Spinner /> : <Slider youtubeItems={ytSearch?.items} />}
+
       <div
         className=" mt-5 flex
        h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192 "
@@ -67,7 +68,7 @@ const HomePage = () => {
             <SocialLinks />
           </div>
         </div>
-      </div>
+      S</div>
 
       <div className="flex">
         <div className="w-1/4">

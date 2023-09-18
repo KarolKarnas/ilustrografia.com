@@ -6,7 +6,7 @@ import asyncHandler from '../middleware/asyncHandler';
 
 const getNeoSlavicVideos = asyncHandler(async (_req, res) => {
 	const apiRes = await fetch(
-		`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=25&playlistId=${process.env.PLAYLIST_NEO_SLAVIC_CENSUS}&key=${process.env.YOUTUBE_API}`
+		`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${process.env.CHANNEL_API}&maxResults=10&order=date&type=video&key=${process.env.YOUTUBE_API}`
 	);
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	const youtube = await apiRes.json();
@@ -17,5 +17,11 @@ const getNeoSlavicVideos = asyncHandler(async (_req, res) => {
 		throw new Error(`Playlist Data not found`);
 	}
 });
+
+// const apiRes2 = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${process.env.CHANNEL_API}&maxResults=10&order=date&type=video&key=${process.env.YOUTUBE_API}`;
+
+// const apiRes = await fetch(
+// 	`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=25&playlistId=${process.env.PLAYLIST_NEO_SLAVIC_CENSUS}&key=${process.env.YOUTUBE_API}`
+// );
 
 export { getNeoSlavicVideos };

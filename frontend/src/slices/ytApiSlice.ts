@@ -1,11 +1,11 @@
 import { NEO_SLAVIC_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
 
-import { YouTubePlaylistItem } from "../types/Yt";
+import { SearchListResponse } from "../types/Yt";
 
 export const ytApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getNeoSlavic: builder.query<YouTubePlaylistItem, void>({
+    getNeoSlavic: builder.query<SearchListResponse, void>({
       query: () => ({
         url: NEO_SLAVIC_URL,
       }),
