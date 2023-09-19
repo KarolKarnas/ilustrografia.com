@@ -11,7 +11,6 @@ const getNeoSlavicVideos = asyncHandler(async (_req, res) => {
 		const apiRes = await fetch(
 			`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${process.env.CHANNEL_API}&maxResults=3&order=date&type=video&key=${process.env.YOUTUBE_API}`
 		);
-
 		if (!apiRes.ok) {
 			throw new Error(`Failed to fetch data from YouTube API`);
 		}

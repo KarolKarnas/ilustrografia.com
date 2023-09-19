@@ -7,11 +7,11 @@
 	"scripts": {
 		"tsc": "tsc",
 		"build": "tsc",
-		"dev": "tsx index.ts",
+		"dev": "tsx watch index.ts",
 		"lint": "eslint --ext .ts .",
 		"start": "node build/index.js",
-		"data:import": "ts-node-dev seeder.ts",
-		"data:destroy": "ts-node-dev seeder.ts -d"
+		"data:import": "tsx seeder.ts",
+		"data:destroy": "tsx seeder.ts -d"
 	},
 	"author": "",
 	"license": "ISC",
