@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { useGetNeoSlavicQuery } from "../../slices/ytApiSlice";
 import LatestVideos from "../../components/LatestVideos";
 import Message from "../../components/Message";
+import ProductVariations from "../../components/ProductVariations";
 
 const useMouseMove = (onMouseMove: (event: MouseEvent) => void) => {
   useEffect(() => {
@@ -51,27 +52,7 @@ const HomePage = () => {
     <div>{getError(error as ApiError)}</div>
   ) : (
     <div className="w-11/12">
-      <div
-        className=" mt-5 flex
-       h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192 "
-      >
-        <div className=" flex flex-col items-center justify-center  p-2">
-          <span className=" md:text-md text-center  font-montserrat text-xs font-semibold uppercase tracking-hero text-red-400 drop-shadow-hero">
-            · Ilustrografia ·
-          </span>
-          <h1 className="  my-2 text-center font-cormorant-infant text-5xl font-semibold italic text-white drop-shadow-hero md:text-8xl">
-            Reality Full of Magic
-          </h1>
-          <div className="my-8 flex gap-8">
-            <Button text={"shop"} color={"red"} link={"/shop"} />
-            <Button text={"about us"} color={"white"} link={"/about-us"} />
-          </div>
-          <div className="flex items-center gap-x-2">
-            <SocialLinks />
-          </div>
-        </div>
-        S
-      </div>
+      
 
       <div className="flex">
         <div className="w-1/4">
@@ -123,7 +104,7 @@ const HomePage = () => {
             · Ilustrografia ·
           </span>
           <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
-            Look!
+            Watch! Newest animations!
           </h3>
           <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
             Our latest creative wonders are now live on YouTube, waiting to
@@ -151,6 +132,36 @@ const HomePage = () => {
           ytSearch && <LatestVideos youtubeItems={ytSearch.items} />
         )}
       </div>
+
+      <div className=" grid grid-cols-1 gap-8 rounded-xl bg-cool-pink  px-8 py-16 dark:bg-outer-space sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
+        {products &&
+          products.map((product: Product) => (
+            <ProductVariations key={product._id} product={product} />
+          ))}
+      </div>
+      <div
+        className=" mt-5 flex
+       h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192 "
+      >
+        <div className=" flex flex-col items-center justify-center  p-2">
+          <span className=" md:text-md text-center  font-montserrat text-xs font-semibold uppercase tracking-hero text-red-400 drop-shadow-hero">
+            · Ilustrografia ·
+          </span>
+          <h1 className="  my-2 text-center font-cormorant-infant text-5xl font-semibold italic text-white drop-shadow-hero md:text-8xl">
+            Reality Full of Magic
+          </h1>
+          <div className="my-8 flex gap-8">
+            <Button text={"shop"} color={"red"} link={"/shop"} />
+            <Button text={"about us"} color={"white"} link={"/about-us"} />
+          </div>
+          <div className="flex items-center gap-x-2">
+            <SocialLinks />
+          </div>
+        </div>
+        S
+      </div>
+
+
 
       {/* <ProjectGroup /> */}
       <div className="grid grid-cols-1 dark:bg-slate-600 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

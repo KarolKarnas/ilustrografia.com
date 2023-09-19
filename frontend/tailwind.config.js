@@ -18,8 +18,11 @@ export const theme = {
       jet: "#343232",
       "eerie-black": "#1D1C1C",
       "outer-space": "#46494C",
+      "fair-space": "#cccaca",
       ivory: "#F6F7EB",
       "dark-red": "#714042",
+      "cool-red": "#B26E63",
+      "cool-pink": "#C29892",
     },
     animation: {
       "spin-slow": "spin 3s linear infinite",
@@ -38,9 +41,7 @@ export const theme = {
         "1px 1px 0px rgba(252, 115, 121, 0.95)",
         "-1px -1px 0px rgba(92, 255, 246, 0.95)",
       ],
-      'red-heading': [
-        "1px 0px 0px rgba(252, 115, 121, 0.95)",
-      ],
+      "red-heading": ["1px 0px 0px rgba(252, 115, 121, 0.95)"],
       moon: ["2px 2px 10px rgba(255, 255, 255, 0.95)"],
       sun: ["4px 4px 10px rgba(252, 115, 121, 0.95)"],
     },
@@ -48,16 +49,14 @@ export const theme = {
       hero: "0.8em",
     },
     fontSize: {
-      '2xs': "0.6rem",
+      "2xs": "0.6rem",
     },
     invert: {
-      25: '.25',
-      50: '.5',
-      75: '.75',
-      90: '.90',
-    }
+      25: ".25",
+      50: ".5",
+      75: ".75",
+      90: ".90",
+    },
   },
 };
-export const plugins = [
-  require('@tailwindcss/aspect-ratio')
-];
+export const plugins = [require("@tailwindcss/aspect-ratio")];
