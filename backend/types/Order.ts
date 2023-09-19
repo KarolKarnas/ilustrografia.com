@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { VariationCart } from './Product';
+import { VariationCart } from './Product.ts';
 
 //add sku
 // interface OrderItems {

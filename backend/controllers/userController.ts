@@ -1,5 +1,5 @@
-import asyncHandler from '../middleware/asyncHandler';
-import UserModel from '../models/userModel';
+import asyncHandler from '../middleware/asyncHandler.ts';
+import UserModel from '../models/userModel.ts';
 import { Request, Response } from 'express';
 import {
 	toCheckUser,
@@ -7,7 +7,7 @@ import {
 	checkHaveUser,
 	toCheckUserUpdate,
 	parseUserInfoOptions,
-} from '../utils/typeUtils';
+} from '../utils/typeUtils.ts';
 import {
 	UserSchemaMethod,
 	CheckUser,
@@ -15,8 +15,8 @@ import {
 	UserId,
 	UserUpdate,
 	RequestUser,
-} from '../types/User';
-import generateToken from '../utils/generateToken';
+} from '../types/User.ts';
+import generateToken from '../utils/generateToken.ts';
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login

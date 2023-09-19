@@ -1,13 +1,13 @@
 // import { Request, Response } from 'express';
-import asyncHandler from '../middleware/asyncHandler';
-import OrderModel from '../models/orderModel';
-import { Order, OrderData, OrderUpdateReq } from '../types/Order';
+import asyncHandler from '../middleware/asyncHandler.ts';
+import OrderModel from '../models/orderModel.ts';
+import { Order, OrderData, OrderUpdateReq } from '../types/Order.ts';
 import {
 	checkHaveUser,
 	toCheckOrderData,
 	toReqOrderUpdate,
-} from '../utils/typeUtils';
-import { RequestUser } from '../types/User';
+} from '../utils/typeUtils.ts';
+import { RequestUser } from '../types/User.ts';
 
 // @desc    Create new order
 // @route   POST /api/orders

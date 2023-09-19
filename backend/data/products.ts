@@ -1,4 +1,4 @@
-import { ProductNoId } from '../types/Product';
+import { ProductNoId } from '../types/Product.ts';
 export const products: ProductNoId[] = [
 	{
 		name: 'Basilisk',

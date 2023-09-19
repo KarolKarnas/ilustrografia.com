@@ -2,13 +2,16 @@
 	"compilerOptions": {
 		"target": "ES6",
 		"outDir": "./build/",
-		"module": "commonjs",
+		"module": "nodenext",
 		"strict": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
 		"esModuleInterop": true,
-		"noErrorTruncation": true
+		"noErrorTruncation": true,
+		"declaration": true,
+		"emitDeclarationOnly": true,
+		"allowImportingTsExtensions": true
 	}
 }

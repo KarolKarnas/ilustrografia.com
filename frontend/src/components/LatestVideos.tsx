@@ -8,14 +8,14 @@ export type Props = {
 const LatestVideos = ({ youtubeItems }: Props) => {
   console.log(youtubeItems);
   return (
-    <div className="w-full min-w-full">
+    // <div className="w-full min-w-full">
       
-      <div className="flex  min-w-full">
+      <div className="flex justify-evenly min-w-full">
         {youtubeItems.map((item, index) => (
           <YouTubeEmbed key={index} embedId={item.id.videoId} />
         ))}
       </div>
-    </div>
+    // </div>
   );
 };
 export default LatestVideos;

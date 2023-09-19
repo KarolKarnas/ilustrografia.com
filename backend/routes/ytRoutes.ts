@@ -1,5 +1,5 @@
 import express from 'express';
-import { getNeoSlavicVideos } from '../controllers/ytController';
+import { getNeoSlavicVideos } from '../controllers/ytController.ts';
 
 const router = express.Router();
 
