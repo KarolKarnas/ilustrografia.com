@@ -51,8 +51,27 @@ const HomePage = () => {
   ) : error ? (
     <div>{getError(error as ApiError)}</div>
   ) : (
-    <div className="w-11/12">
-      
+    <div className="my-10 flex w-11/12 flex-col gap-y-20">
+      <div
+        className=" mt-5 flex
+       h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192 "
+      >
+        <div className=" flex flex-col items-center justify-center  p-2">
+          <span className=" md:text-md text-center  font-montserrat text-xs font-semibold uppercase tracking-hero text-red-400 drop-shadow-hero">
+            · Ilustrografia ·
+          </span>
+          <h1 className="  my-2 text-center font-cormorant-infant text-5xl font-semibold italic text-white drop-shadow-hero md:text-8xl">
+            Reality Full of Magic
+          </h1>
+          <div className="my-8 flex gap-8">
+            <Button text={"shop"} color={"red"} link={"/shop"} />
+            <Button text={"about us"} color={"white"} link={"/about-us"} />
+          </div>
+          <div className="flex items-center gap-x-2">
+            <SocialLinks />
+          </div>
+        </div>
+      </div>
 
       <div className="flex">
         <div className="w-1/4">
@@ -98,7 +117,7 @@ const HomePage = () => {
 
       {/* Latest animations */}
 
-      <div className="my-3 flex flex-col items-center  rounded-xl bg-red-200 py-16  dark:bg-outer-space">
+      <div className="my-3 flex flex-col items-center  rounded-xl bg-red-200 pb-32 pt-16  dark:bg-outer-space">
         <div className="mb-8 flex w-1/2 flex-col items-center">
           <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-400 drop-shadow-lg">
             · Ilustrografia ·
@@ -133,35 +152,41 @@ const HomePage = () => {
         )}
       </div>
 
-      <div className=" grid grid-cols-1 gap-8 rounded-xl bg-cool-pink  px-8 py-16 dark:bg-outer-space sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
-        {products &&
-          products.map((product: Product) => (
-            <ProductVariations key={product._id} product={product} />
-          ))}
-      </div>
-      <div
-        className=" mt-5 flex
-       h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192 "
-      >
-        <div className=" flex flex-col items-center justify-center  p-2">
-          <span className=" md:text-md text-center  font-montserrat text-xs font-semibold uppercase tracking-hero text-red-400 drop-shadow-hero">
+      {/* Product grid */}
+
+      <div className=" bg-cool-pink flex flex-col items-center justify-center rounded-xl px-8  py-16 dark:bg-dark-red  ">
+        <div className="mb-8 flex w-1/2 flex-col items-center">
+          <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-400 drop-shadow-lg">
             · Ilustrografia ·
           </span>
-          <h1 className="  my-2 text-center font-cormorant-infant text-5xl font-semibold italic text-white drop-shadow-hero md:text-8xl">
-            Reality Full of Magic
-          </h1>
-          <div className="my-8 flex gap-8">
-            <Button text={"shop"} color={"red"} link={"/shop"} />
-            <Button text={"about us"} color={"white"} link={"/about-us"} />
-          </div>
-          <div className="flex items-center gap-x-2">
-            <SocialLinks />
-          </div>
+          <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
+            Explore Our Enchanting Prints!
+          </h3>
+          <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
+            Step into a world of art and enchantment with Ilustrografia&apos;s
+            unique prints. Each one is more than just an image; it&apos;s a
+            gateway to a realm of imagination and wonder. From Basilisks to
+            Spring Nymphs and Forest Bobos, our prints add a touch of magic to
+            your everyday life. Hang them on your walls and unlock extraordinary
+            abilities. Crush walnuts effortlessly, master local topography, or
+            even disrupt picnics with mischievous charm. Our prints aren&apos;t
+            just art; they&apos;re keys to new experiences. Choose from our
+            premium Fine Art Prints (Giclée), textured Canvas prints, or
+            eco-friendly Poster prints. Whichever you select, you&apos;re
+            investing in perfection that will last for generations.
+          </span>
+          <strong className="text-center font-cormorant-infant text-2xl font-semibold italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
+          Discover the enchantment. Explore our prints today
+          </strong>
         </div>
-        S
+
+        <div className=" grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 ">
+          {products &&
+            products.map((product: Product) => (
+              <ProductVariations key={product._id} product={product} />
+            ))}
+        </div>
       </div>
-
-
 
       {/* <ProjectGroup /> */}
       <div className="grid grid-cols-1 dark:bg-slate-600 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
