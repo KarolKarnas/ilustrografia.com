@@ -3,6 +3,6 @@ import { getNeoSlavicVideos } from '../controllers/ytController';
 
 const router = express.Router();
 
-router.route('/neo-slavic-census').get(getNeoSlavicVideos);
+router.route('/neo-slavic-census/:qty').get(getNeoSlavicVideos);
 
 export default router;

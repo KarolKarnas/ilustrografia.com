@@ -27,7 +27,7 @@ const HomePage = () => {
     data: ytSearch,
     isLoading: ytSearchLoading,
     error: ytSearchError,
-  } = useGetNeoSlavicQuery();
+  } = useGetNeoSlavicQuery(3);
 
   useMouseMove((e) => {
     const magic = document.getElementById("magic");
@@ -117,22 +117,27 @@ const HomePage = () => {
 
       {/* Latest animations */}
 
-      <div className="flex flex-col items-center my-3  bg-red-200 rounded-xl py-16  dark:bg-outer-space">
-        <div className="w-1/2 flex flex-col items-center mb-8">
+      <div className="my-3 flex flex-col items-center  rounded-xl bg-red-200 py-16  dark:bg-outer-space">
+        <div className="mb-8 flex w-1/2 flex-col items-center">
           <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-400 drop-shadow-lg">
             · Ilustrografia ·
           </span>
           <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
-              Look!
-            </h3>
+            Look!
+          </h3>
           <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
-          Our latest creative wonders are now live on YouTube, waiting to transport you to new worlds and evoke a sense of wonder. Don&apos;t miss out on the magic – click the link below to watch our latest YouTube videos and embark on an unforgettable visual journey with us. Subscribe to stay updated, and let your imagination run wild!
-            </span>
-            <strong className="text-center font-cormorant-infant text-2xl font-semibold italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
-            Have you ever experienced the magic of animated storytelling? Ilustrografia&apos;s animations are a journey into wonder. Will you join us?
-            </strong>
+            Our latest creative wonders are now live on YouTube, waiting to
+            transport you to new worlds and evoke a sense of wonder. Don&apos;t
+            miss out on the magic – click the link below to watch our latest
+            YouTube videos and embark on an unforgettable visual journey with
+            us. Subscribe to stay updated, and let your imagination run wild!
+          </span>
+          <strong className="text-center font-cormorant-infant text-2xl font-semibold italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
+            Have you ever experienced the magic of animated storytelling?
+            Ilustrografia&apos;s animations are a journey into wonder. Will you
+            join us?
+          </strong>
         </div>
-
 
         {ytSearchLoading ? (
           <Spinner />

@@ -19,10 +19,11 @@ import axios from 'axios';
 // 	}
 // });
 
-const getNeoSlavicVideos = asyncHandler(async (_req, res) => {
+const getNeoSlavicVideos = asyncHandler(async (req, res) => {
+	const qtyYtMovies = req.params.qty;
 	try {
 		const apiRes = await axios.get(
-			`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${process.env.CHANNEL_API}&maxResults=6&order=date&type=video&key=${process.env.YOUTUBE_API}`
+			`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${process.env.CHANNEL_API}&maxResults=${qtyYtMovies}&order=date&type=video&key=${process.env.YOUTUBE_API}`
 		);
 
 		// if (!apiRes.ok) {
