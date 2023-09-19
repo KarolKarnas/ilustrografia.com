@@ -1,17 +1,19 @@
 {
 	"compilerOptions": {
-		"target": "ES6",
+		"target": "ES2015",
 		"outDir": "./build/",
-		"module": "nodenext",
+		"module": "ESNext",
+		"esModuleInterop": true,
+		"moduleResolution": "Node",
 		"strict": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
-		"esModuleInterop": true,
 		"noErrorTruncation": true,
 		"declaration": true,
 		"emitDeclarationOnly": true,
-		"allowImportingTsExtensions": true
+		"allowImportingTsExtensions": true,
+		// "forceConsistentCasingInFileNames": true,
 	}
 }
