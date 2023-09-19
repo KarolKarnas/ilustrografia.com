@@ -8,8 +8,8 @@ import {
 	updateProduct,
 	deleteProduct,
 	createProductReview,
-} from '../controllers/productController.ts';
-import { admin, protect } from '../middleware/authMiddleware.ts';
+} from '../controllers/productController';
+import { admin, protect } from '../middleware/authMiddleware';
 
 const router = express.Router();
 

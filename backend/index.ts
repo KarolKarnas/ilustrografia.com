@@ -3,21 +3,16 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import { fileURLToPath } from 'url';
 
 dotenv.config();
-import connectDB from './config/db.ts';
+import connectDB from './config/db';
 
-import productRouter from './routes/productRoutes.ts';
-import userRouter from './routes/userRoutes.ts';
-import orderRouter from './routes/orderRoutes.ts';
-import uploadRouter from './routes/uploadRoutes.ts';
-import ytRouter from './routes/ytRoutes.ts';
-import { errorHandler, notFound } from './middleware/errorMiddleware.ts';
-
-const __filename = fileURLToPath(import.meta.url);
-
-const __dirname = path.dirname(__filename);
+import productRouter from './routes/productRoutes';
+import userRouter from './routes/userRoutes';
+import orderRouter from './routes/orderRoutes';
+import uploadRouter from './routes/uploadRoutes';
+import ytRouter from './routes/ytRoutes';
+import { errorHandler, notFound } from './middleware/errorMiddleware';
 
 const PORT = process.env.PORT || 5000;
 
@@ -31,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Cookie parser middleware
 app.use(cookieParser());
-console.log('first');
+
 // app.get('/ping', (_req, res) => {
 // 	console.log('someone pinged here');
 // 	res.send('pong');
@@ -48,7 +43,7 @@ app.get('/api/config/paypal', (_req, res) =>
 	res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
 );
 
-// console.log(process.env.NODE_ENV);
+console.log(process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === 'production') {
 	app.use('../../uploads', express.static('/var/data/uploads'));

@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken';
 import { JwtPayload } from 'jsonwebtoken';
-import asyncHandler from './asyncHandler.ts';
-import UserModel from '../models/userModel.ts';
-import { parseStringKey } from '../utils/typeUtils.ts';
+import asyncHandler from './asyncHandler';
+import UserModel from '../models/userModel';
+import { parseStringKey } from '../utils/typeUtils';
 import { Request, Response, NextFunction } from 'express';
 // import { toUserNoPassword } from '../types/utils';
-import { UserNoPassword } from '../types/User.ts';
+import { UserNoPassword } from '../types/User';
 
 interface CustomRequest extends Request {
 	user?: UserNoPassword; // Change UserModel to the actual type of user model

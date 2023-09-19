@@ -9,8 +9,8 @@ import {
 	deleteUser,
 	getUserById,
 	updateUser,
-} from '../controllers/userController.ts';
-import { admin, protect } from '../middleware/authMiddleware.ts';
+} from '../controllers/userController';
+import { admin, protect } from '../middleware/authMiddleware';
 
 const router = express.Router();
 

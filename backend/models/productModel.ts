@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { ProductUser, ReviewUser } from '../types/Product.ts';
+import { ProductUser, ReviewUser } from '../types/Product';
 
 const reviewSchema = new mongoose.Schema<ReviewUser>(
 	{

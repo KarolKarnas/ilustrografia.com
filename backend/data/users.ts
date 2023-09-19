@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import { User } from '../types/User.ts';
+import { User } from '../types/User';
 
 const users: User[] = [
 	{

@@ -1,12 +1,12 @@
-import asyncHandler from '../middleware/asyncHandler.ts';
-import ProductModel from '../models/productModel.ts';
-import { RequestUser } from '../types/User.ts';
+import asyncHandler from '../middleware/asyncHandler';
+import ProductModel from '../models/productModel';
+import { RequestUser } from '../types/User';
 import {
 	checkHaveUser,
 	// checkHaveUserReview,
 	toCheckedProduct,
 	toCheckedReview,
-} from '../utils/typeUtils.ts';
+} from '../utils/typeUtils';
 import { v4 as uuidv4 } from 'uuid';
 
 // @desc    Fetch all products
@@ -34,9 +34,7 @@ const getProductBySlug = asyncHandler(async (req, res) => {
 // @route   GET /api/products/categories/:category
 // @access  Public
 const getProductsByCategory = asyncHandler(async (req, res) => {
-	const products = await ProductModel.find({
-		categories: { $elemMatch: { slug: req.params.category } },
-	});
+	const products = await ProductModel.find({ categories: { $elemMatch: { slug: req.params.category } } });
 	if (products) {
 		res.json(products);
 	} else {
