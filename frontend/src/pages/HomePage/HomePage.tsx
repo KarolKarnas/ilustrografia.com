@@ -69,7 +69,7 @@ const HomePage = () => {
         )}
       </div> */}
 
-      <div className="flex w-3/4 justify-center">
+     
         {ytSearchLoading ? (
           <Spinner />
         ) : ytSearchError ? (
@@ -82,7 +82,7 @@ const HomePage = () => {
           ytSearch && <LatestVideos youtubeItems={ytSearch.items} />
         )}
 
-      </div>
+     
       <div
         className=" mt-5 flex
        h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192 "
