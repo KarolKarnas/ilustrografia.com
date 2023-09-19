@@ -1,10 +1,10 @@
 import dotenv from 'dotenv';
-import users from './data/users.ts';
-import { products } from './data/products.ts';
-import User from './models/userModel.ts';
-import Product from './models/productModel.ts';
-import Order from './models/orderModel.ts';
-import connectDB from './config/db.ts';
+import users from './data/users';
+import { products } from './data/products';
+import User from './models/userModel';
+import Product from './models/productModel';
+import Order from './models/orderModel';
+import connectDB from './config/db';
 
 dotenv.config();
 
