@@ -4,7 +4,7 @@ import {
 	OrderData,
 	ShippingAddress,
 	OrderUpdateReq,
-} from '../types/Order.ts';
+} from '../types/Order';
 import {
 	Category,
 	Options,
@@ -16,7 +16,7 @@ import {
 	Tag,
 	Variation,
 	VariationCart,
-} from '../types/Product.ts';
+} from '../types/Product';
 import {
 	CheckUser,
 	CheckUserWithName,
@@ -24,7 +24,7 @@ import {
 	RequestUserReview,
 	UserInfoOptions,
 	UserUpdate,
-} from '../types/User.ts';
+} from '../types/User';
 
 const isString = (text: unknown): text is string => {
 	return typeof text === 'string' || text instanceof String;
