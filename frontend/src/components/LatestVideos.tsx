@@ -10,12 +10,12 @@ const LatestVideos = ({ youtubeItems }: Props) => {
   return (
     // <div className="w-full min-w-full">
 
-    <div className="flex justify-evenly min-w-full">
-    {youtubeItems.map((item, index) => (
-      <YouTubeEmbed key={index} embedId={item.id.videoId} />
-    ))}
-  </div>
-// </div>
+    <div className=" grid md:grid-cols-2 xl:grid-cols-3 min-w-full gap-y-10  ">
+      {youtubeItems.map((item, index) => (
+        <YouTubeEmbed key={index} embedId={item.id.videoId} />
+      ))}
+    </div>
+    // </div>
   );
 };
 export default LatestVideos;

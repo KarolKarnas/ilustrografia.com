@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 import { useGetProductsQuery } from "../../slices/productsApiSlice";
@@ -7,10 +6,8 @@ import ProductMain from "../../components/ProductMain";
 import Spinner from "../../components/Spinner";
 import SocialLinks from "../../components/SocialLinks";
 import Button from "../../components/Button";
-import { useEffect, useState } from "react";
-import YouTubeEmbed from "../../components/YouTubeEmbed";
+import { useEffect } from "react";
 import { useGetNeoSlavicQuery } from "../../slices/ytApiSlice";
-import Slider from "../../components/Slider";
 import LatestVideos from "../../components/LatestVideos";
 import Message from "../../components/Message";
 
@@ -31,12 +28,6 @@ const HomePage = () => {
     isLoading: ytSearchLoading,
     error: ytSearchError,
   } = useGetNeoSlavicQuery();
-
-  // console.log(ytSearchError);
-
-  // console.log(ytSearch);
-
-  console.log(products);
 
   useMouseMove((e) => {
     const magic = document.getElementById("magic");
@@ -60,29 +51,6 @@ const HomePage = () => {
     <div>{getError(error as ApiError)}</div>
   ) : (
     <div className="w-11/12">
-      <h3 id="test"></h3>
-      {/* <div className="flex w-3/4 justify-center">
-        {ytSearchLoading ? (
-          <Spinner />
-        ) : (
-          ytSearch &&  <Slider youtubeItems={ytSearch?.items} />
-        )}
-      </div> */}
-
-     
-        {ytSearchLoading ? (
-          <Spinner />
-        ) : ytSearchError ? (
-          <Message
-            variant="bad"
-            message={getError(ytSearchError as ApiError)}
-            // message={ytSearchError.data.message}
-          />
-        ) : (
-          ytSearch && <LatestVideos youtubeItems={ytSearch.items} />
-        )}
-
-     
       <div
         className=" mt-5 flex
        h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192 "
@@ -146,6 +114,39 @@ const HomePage = () => {
           />
         </div>
       </div>
+
+      {/* Latest animations */}
+
+      <div className="flex flex-col items-center my-3  bg-red-200 rounded-xl py-16  dark:bg-outer-space">
+        <div className="w-1/2 flex flex-col items-center mb-8">
+          <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-400 drop-shadow-lg">
+            · Ilustrografia ·
+          </span>
+          <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
+              Look!
+            </h3>
+          <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
+          Our latest creative wonders are now live on YouTube, waiting to transport you to new worlds and evoke a sense of wonder. Don&apos;t miss out on the magic – click the link below to watch our latest YouTube videos and embark on an unforgettable visual journey with us. Subscribe to stay updated, and let your imagination run wild!
+            </span>
+            <strong className="text-center font-cormorant-infant text-2xl font-semibold italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
+            Have you ever experienced the magic of animated storytelling? Ilustrografia&apos;s animations are a journey into wonder. Will you join us?
+            </strong>
+        </div>
+
+
+        {ytSearchLoading ? (
+          <Spinner />
+        ) : ytSearchError ? (
+          <Message
+            variant="bad"
+            message={getError(ytSearchError as ApiError)}
+            // message={ytSearchError.data.message}
+          />
+        ) : (
+          ytSearch && <LatestVideos youtubeItems={ytSearch.items} />
+        )}
+      </div>
+
       {/* <ProjectGroup /> */}
       <div className="grid grid-cols-1 dark:bg-slate-600 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products &&
