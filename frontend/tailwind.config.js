@@ -59,4 +59,4 @@ export const theme = {
     },
   },
 };
-export const plugins = [require("@tailwindcss/aspect-ratio")];
+export const plugins = [];

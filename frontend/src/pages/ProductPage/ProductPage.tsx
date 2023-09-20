@@ -31,9 +31,7 @@ const ProductPage = () => {
 	const params = useParams();
 	const slug = params.slug
 
-	console.log(params)
 	const [searchParams, setSearchParams] = useSearchParams();
-	console.log(searchParams)
 
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();

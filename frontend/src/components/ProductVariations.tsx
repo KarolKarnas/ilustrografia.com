@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import ToastLink from "../components/ToastLink";
 
 import Rating from "../components/Rating";
+import { Link } from "react-router-dom";
 
 type Props = {
   product: Product;
@@ -20,17 +21,29 @@ type Props = {
 
 const ProductPage = ({ product }: Props) => {
   const dispatch = useAppDispatch();
+  const [url, setUrl] = useState<string>(`/shop/${product.slug}`);
 
   const [qty, setQty] = useState(1);
   const [variation, setVariation] = useState<Variation>();
+
+  console.log(variation);
 
   const getVariation = (material: string, size: string) => {
     return _.find(product?.variations, { options: { material, size } });
   };
 
   useEffect(() => {
+    setUrl(
+      `/shop/${product.slug}?material=${variation?.options.material}&size=${variation?.options.size}`,
+    );
+  }, [variation]);
+
+  useEffect(() => {
     if (product) {
       setVariation(product.variations[0]);
+      setUrl(
+        `/shop/${product.slug}?material=${variation?.options.material}&size=${variation?.options.size}`,
+      );
     }
   }, [product]);
 
@@ -135,8 +148,8 @@ const ProductPage = ({ product }: Props) => {
 
   const addToCartHandler = () => {
     if (variation) {
-      const pathnameWithQuery =
-        window.location.pathname + window.location.search;
+      // const pathnameWithQuery =
+      //   window.location.pathname + window.location.search;
       const variationName = `${product.name} ${
         product.options.material[
           variation.options.material as MaterialOptionNoNameKeys
@@ -155,7 +168,7 @@ const ProductPage = ({ product }: Props) => {
               variation.options.material as MaterialOptionNoNameKeys
             ].images[0],
           variationName,
-          pathnameWithQuery,
+          pathnameWithQuery: url,
         }),
       );
       toast.success(<ToastLink product={variationName} />);
@@ -165,7 +178,7 @@ const ProductPage = ({ product }: Props) => {
 
   if (variation) {
     return (
-      <div className="flex rounded-xl flex-col items-center justify-center bg-red-100 dark:bg-fair-space shadow-xl">
+      <div className="flex flex-col items-center justify-center rounded-xl bg-red-100 shadow-xl dark:bg-fair-space">
         <div className="relative h-full w-full">
           <div className="absolute top-5 flex w-full flex-col items-center justify-center">
             <h1 className=" font-fondamento text-xl drop-shadow-md">
@@ -192,15 +205,18 @@ const ProductPage = ({ product }: Props) => {
         </div>
 
         <div className="w-full">
-          <img className=" rounded-t-lg"
-            src={
-              variation &&
-              product.options.material[
-                variation.options.material as MaterialOptionNoNameKeys
-              ].images[0]
-            }
-            alt={product.slug}
-          />
+          <Link to={url}>
+            <img
+              className=" rounded-t-lg"
+              src={
+                variation &&
+                product.options.material[
+                  variation.options.material as MaterialOptionNoNameKeys
+                ].images[0]
+              }
+              alt={product.slug}
+            />
+          </Link>
         </div>
 
         {/* SIZES */}
@@ -251,9 +267,8 @@ const ProductPage = ({ product }: Props) => {
           </div>
         </div>
 
-
-        <div className="py-3">
-          <div className="flex justify-around w-full">
+        <div className="py-3 w-full">
+          <div className="flex w-full justify-around">
             {/* <div>Price ${variation?.price}</div> */}
             {/* select quantity */}
             <div className="flex gap-2">
@@ -272,24 +287,32 @@ const ProductPage = ({ product }: Props) => {
               </select>
             </div>
             <div>
-              Price: <strong className=" text-lg">${variation?.price * qty}</strong>
+              Price:{" "}
+              <strong className=" text-lg">${variation?.price * qty}</strong>
             </div>
           </div>
-          
-          <button
-            onClick={addToCartHandler}
-            className={`${
-              variation?.countInStock === 0
-                ? "bg-zinc-100 text-zinc-300"
-                : "bg-outer-space text-white hover:bg-red-200"
-            }   my-2 px-32  py-1`}
-            disabled={variation?.countInStock === 0}
-          >
-            Add to Cart
-          </button>
+          <div className="flex w-full justify-around">
+            <Link to={url}>
+              <button
+                className={` my-2 bg-dark-red px-16  py-1 text-white  hover:bg-red-200`}
+              >
+                Details
+              </button>
+            </Link>
+
+            <button
+              onClick={addToCartHandler}
+              className={`${
+                variation?.countInStock === 0
+                  ? "bg-zinc-100 text-zinc-300"
+                  : "bg-outer-space text-white hover:bg-red-200"
+              }   my-2 px-10  py-`}
+              disabled={variation?.countInStock === 0}
+            >
+              Add to Cart
+            </button>
+          </div>
         </div>
-
-
       </div>
     );
   } else {

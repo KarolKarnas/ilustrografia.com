@@ -154,7 +154,7 @@ const HomePage = () => {
 
       {/* Product grid */}
 
-      <div className=" bg-cool-pink flex flex-col items-center justify-center rounded-xl px-8  py-16 dark:bg-dark-red  ">
+      <div className=" flex flex-col items-center justify-center rounded-xl bg-cool-pink px-8  py-16 dark:bg-dark-red  ">
         <div className="mb-8 flex w-1/2 flex-col items-center">
           <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-400 drop-shadow-lg">
             · Ilustrografia ·
@@ -176,7 +176,7 @@ const HomePage = () => {
             investing in perfection that will last for generations.
           </span>
           <strong className="text-center font-cormorant-infant text-2xl font-semibold italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
-          Discover the enchantment. Explore our prints today
+            Discover the enchantment. Explore our prints today
           </strong>
         </div>
 
