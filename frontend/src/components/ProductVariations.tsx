@@ -26,7 +26,7 @@ const ProductPage = ({ product }: Props) => {
   const [qty, setQty] = useState(1);
   const [variation, setVariation] = useState<Variation>();
 
-  console.log(variation);
+  // console.log(variation);
 
   const getVariation = (material: string, size: string) => {
     return _.find(product?.variations, { options: { material, size } });

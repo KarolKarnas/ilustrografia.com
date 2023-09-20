@@ -247,16 +247,18 @@ const ProductPage = () => {
 		return (
 			<>
 				<div className='flex gap-20 my-5 justify-center'>
-					<div className='w-4/12'>
-						<img
-							src={
-								variation &&
-								product.options.material[
-									variation.options.material as MaterialOptionNoNameKeys
-								].images[0]
-							}
-							alt={product.slug}
-						/>
+					<div className='w-4/12 '>
+						<div className='w-4/12 fixed top-36'>
+							<img
+								src={
+									variation &&
+									product.options.material[
+										variation.options.material as MaterialOptionNoNameKeys
+									].images[0]
+								}
+								alt={product.slug}
+							/>
+						</div>
 					</div>
 					<div className='w-4/12'>
 						{/* BREADCRUMBS */}

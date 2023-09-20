@@ -70,7 +70,7 @@ const Filter = () => {
 			<div className='grid grid-cols-3 gap-5 w-8/12'>
 				{filteredProducts &&
 					filteredProducts.map((product, index) => (
-						<Link key={index} to={`/test}`}>
+						<Link key={index} to={`/illustrations/${product.slug}`}>
 							<img src={product.images[0]} />
 						</Link>
 					))}

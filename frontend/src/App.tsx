@@ -7,6 +7,7 @@ import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { logout } from './slices/authSlice';
+import GoToTop from './components/GoToTop';
 // import ProductGroup from './components/ProductGroup';
 // import projects from './products';
 
@@ -43,8 +44,9 @@ const App = () => {
 				theme='light'
 			/>
 			<Header />
-			<main className=' flex flex-col flex-auto min-w-screen items-center justify-center bg-red-50 dark:bg-jet'>
+			<main className=' flex flex-col flex-auto min-w-screen items-center bg-red-50 dark:bg-jet'>
 				<Outlet />
+				<GoToTop />
 			</main>
 			<Footer />
 

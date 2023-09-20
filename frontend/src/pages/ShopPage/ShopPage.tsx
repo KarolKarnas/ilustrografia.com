@@ -6,7 +6,7 @@ import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
 import { useGetProductsQuery } from '../../slices/productsApiSlice';
 import { Product } from '../../types/Product';
-import ProductMain from '../../components/ProductMain';
+import ProductVariations from '../../components/ProductVariations';
 
 const ShopPage = () => {
 	const [productsFiltered, setProductsFiltered] = useState<Product[] | null>(
@@ -84,10 +84,10 @@ const ShopPage = () => {
 					<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 dark:bg-slate-600'>
 						{productsFiltered
 							? productsFiltered?.map((product: Product) => (
-									<ProductMain key={product._id} product={product} />
+									<ProductVariations key={product._id} product={product} />
 							  ))
 							: products?.map((product: Product) => (
-									<ProductMain key={product._id} product={product} />
+									<ProductVariations key={product._id} product={product} />
 							  ))}
 					</div>
 				</div>
