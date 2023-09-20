@@ -1,6 +1,20 @@
 import { ProductNoId } from '../types/Product';
 export const products: ProductNoId[] = [
 	{
+		details: {
+			latinName: 'Reprivatus Camenisus',
+			ytLink: 'u8d6Pbykjgg',
+			occurrence: 'Warsaw / Old Town / Krzywe Koło Street',
+			story: `In the heart of Warsaw resides a tale of ancient vengeance, kept alive by the enigmatic figure of Anna Bronkiewicz-Faltz, the last surviving basilisk.
+
+Centuries ago, Warsaw was a city filled with legends, and the Basilisk of Warsaw was one of its most sinister. It was said to have the power to kill with a single gaze and turn people into stone. Yet, in reality, basilisks were a humanoid race that settled in European cities.
+
+However, fear led to their downfall. Johan Faltz, a prosperous magnate, joined the hunt for the basilisk, leading to tragedy. His wife, Anna, survived and vowed revenge. Disguised as a beggar, she wandered the streets, focusing her anger on Krzywe Koło Street.
+
+Anna's revenge simmered beneath her beggarly facade. She sought to reclaim her family's wealth and make the descendants of the hunters pay. While her beggarly form was common, she could transform into her true basilisk shape when needed. Those who encountered her learned that offering gold coins could briefly engage her.
+
+The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a tale of vengeance, the power of anger, and a city haunted by its history. Beware if you encounter her, for her grand revenge plan awaits the right moment to unfold.`,
+		},
 		name: 'Basilisk',
 		slug: 'basilisk',
 		rating: {
@@ -15,7 +29,7 @@ export const products: ProductNoId[] = [
 			{
 				name: 'Basilisks of Warsaw',
 				slug: 'basilisks-of-warsaw',
-			}
+			},
 		],
 		tags: [{ name: '', slug: '' }],
 		images: ['/images/neo-slavic-census/basilisk-1.jpg'],
@@ -280,6 +294,15 @@ export const products: ProductNoId[] = [
 	},
 	//BOBO
 	{
+		details: {
+			latinName: 'Vampus Trampus',
+			ytLink: 'enO_H99fqv8',
+			occurrence:
+				'The entire Slavic lands, the remnants of ancient forests, especially the entrances to expressways, or the Borowy Circles.',
+			story: `As you know, dear Slavs, there aren't many vampire species left in Slavic lands. It's not easy to come across these undead creatures anymore, especially since the more attractive and elegant types of vampires, born from humans, have mostly emigrated to America, pursuing careers or seeking other pleasures in the New World. As for the wild, unclassifiable creatures created by divine will in the early days of history, they either perished or went unnoticed and disappeared on their own.
+
+If you were to seek a vampire, it would be easiest to encounter a Forest Bobo. This species predates the human race and did not originate from a cursed human corpse. However, it bears a striking resemblance to humans. We'll delve into this curiosity a bit later. But thanks to the fact that Forest Bobos are not repulsive in appearance and do not overly bother Slavic communities, you can still encounter them in the wild.`,
+		},
 		name: 'Forest Bobo',
 		slug: 'forest-bobo',
 		rating: {
@@ -305,9 +328,7 @@ export const products: ProductNoId[] = [
 				optionName: 'Material',
 				'art-print': {
 					title: 'Art Print',
-					images: [
-						'/images/neo-slavic-census/forest-bobo-art-print-1.jpg',
-					],
+					images: ['/images/neo-slavic-census/forest-bobo-art-print-1.jpg'],
 				},
 				'painting-on-canvas': {
 					title: 'Painting On Canvas',
@@ -321,9 +342,7 @@ export const products: ProductNoId[] = [
 				},
 				'premium-print': {
 					title: 'Premium Print',
-					images: [
-						'/images/neo-slavic-census/forest-bobo-premium-print-1.jpg',
-					],
+					images: ['/images/neo-slavic-census/forest-bobo-premium-print-1.jpg'],
 				},
 			},
 			size: {
@@ -559,6 +578,11 @@ export const products: ProductNoId[] = [
 	},
 	// NIMFA WIOSENNA
 	{
+		details: {
+			story: `As you know, dear Slavs, there aren't many vampire species left in Slavic lands. It's not easy to come across these undead creatures anymore, especially since the more attractive and elegant types of vampires, born from humans, have mostly emigrated to America, pursuing careers or seeking other pleasures in the New World. As for the wild, unclassifiable creatures created by divine will in the early days of history, they either perished or went unnoticed and disappeared on their own.
+
+If you were to seek a vampire, it would be easiest to encounter a Forest Bobo. This species predates the human race and did not originate from a cursed human corpse. However, it bears a striking resemblance to humans. We'll delve into this curiosity a bit later. But thanks to the fact that Forest Bobos are not repulsive in appearance and do not overly bother Slavic communities, you can still encounter them in the wild.`,
+		},
 		name: 'Spring Nymph',
 		slug: 'spring-nymph',
 		rating: {

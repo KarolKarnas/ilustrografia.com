@@ -16,6 +16,7 @@ import {
 	Tag,
 	Variation,
 	VariationCart,
+	Details,
 } from '../types/Product';
 import {
 	CheckUser,
@@ -469,7 +470,33 @@ export const parseRating = (object: unknown): Rating => {
 		};
 		return options;
 	}
-	throw new Error('Incorrect data: some fields are missing in Options ');
+	throw new Error('Incorrect data: some fields are missing in Rating ');
+};
+
+export const parseDetails = (object: unknown): Details => {
+	if (!object || typeof object !== 'object') {
+		throw new Error('Incorrect or missing data in Details');
+	}
+
+	if ('story' in object) {
+		const details: Details = {
+			story: parseStringKey('story', object.story),
+		};
+
+		if ('occurrence' in object) {
+			details.occurrence = parseStringKey('occurrence', object.occurrence);
+		}
+
+		if ('latinName' in object) {
+			details.latinName = parseStringKey('latinName', object.latinName);
+		}
+
+		if ('ytLink' in object) {
+			details.ytLink = parseStringKey('ytLink', object.ytLink);
+		}
+		return details;
+	}
+	throw new Error('Incorrect data: some fields are missing in Details ');
 };
 
 export const isValidCategory = (object: unknown): boolean => {
@@ -616,6 +643,7 @@ export const toCheckedProduct = (object: unknown): Product => {
 	}
 	if (
 		'_id' in object &&
+		'details' in object &&
 		'name' in object &&
 		'slug' in object &&
 		'rating' in object &&
@@ -628,6 +656,7 @@ export const toCheckedProduct = (object: unknown): Product => {
 	) {
 		const checkedProduct: Product = {
 			_id: parseStringKey('_id', object._id),
+			details: parseDetails(object.details),
 			name: parseStringKey('name', object.name),
 			slug: parseStringKey('slug', object.slug),
 			rating: parseRating(object.rating),

@@ -41,6 +41,7 @@ const ProductEditScreen = () => {
 	// const [product, setProduct] = useState<Product>();
 
 	const [_id, set_Id] = useState('');
+	const [details, setDetails] = useState({story: 'test'})
 	const [name, setName] = useState('');
 	const [slug, setSlug] = useState('');
 	const [rating, setRating] = useState<Rating>(ratingInitial);
@@ -89,6 +90,7 @@ const ProductEditScreen = () => {
 		}
 		try {
 			await updateProduct({
+				details,
 				productSlug,
 				name,
 				slug,

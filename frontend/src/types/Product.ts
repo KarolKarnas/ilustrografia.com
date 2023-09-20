@@ -22,6 +22,14 @@ export interface Options {
 	size: string;
 }
 
+export interface Details {
+	latinName?: string,
+	story: string,
+	ytLink?: string,
+	occurrence?: string,
+
+}
+
 export interface Variation {
 	productSlug: string;
 	options: Options;
@@ -98,6 +106,7 @@ export interface Review {
 
 export interface Product {
 	_id: string;
+	details: Details,
 	name: string;
 	slug: string;
 	reviews?: ReviewUser[];

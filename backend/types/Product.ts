@@ -81,9 +81,18 @@ export interface Review {
 	comment: string;
 }
 
+export interface Details {
+	latinName?: string,
+	story: string,
+	ytLink?: string,
+	occurrence?: string,
+
+}
+
 export interface ProductUser {
 	// user: mongoose.Schema.Types.ObjectId;
 	user: mongoose.Types.ObjectId;
+	details: Details,
 	name: string;
 	slug: string;
 	reviews?: ReviewUser[];
@@ -98,6 +107,7 @@ export interface ProductUser {
 
 export interface Product {
 	_id: string;
+	details: Details,
 	name: string;
 	slug: string;
 	reviews?: ReviewUser[];

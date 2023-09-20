@@ -24,6 +24,13 @@ const productSchema = new mongoose.Schema<ProductUser>(
 			require: true,
 			ref: 'User',
 		},
+		details: {
+			latinName: {type: String},
+			story: {type: String},
+			ytLink: {type: String},
+			occurrence: {type: String}
+
+		},
 		name: { type: String },
 		slug: { type: String },
 		reviews: [reviewSchema],
