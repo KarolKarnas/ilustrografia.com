@@ -17,9 +17,12 @@ import { Link } from "react-router-dom";
 
 type Props = {
   product: Product;
+  variationNum?: number;
+  material?: string;
+  size?: string;
 };
 
-const ProductPage = ({ product }: Props) => {
+const ProductPage = ({ product, variationNum, material, size }: Props) => {
   const dispatch = useAppDispatch();
   const [url, setUrl] = useState<string>(`/shop/${product.slug}`);
 
@@ -40,7 +43,18 @@ const ProductPage = ({ product }: Props) => {
 
   useEffect(() => {
     if (product) {
-      setVariation(product.variations[0]);
+      // if (variationNum) {
+      //   setVariation(product.variations[variationNum]);
+      // } else {
+
+      // }
+      if (material && size) {
+        // console.log(material, size);
+        const currentVariation = getVariation(material, size);
+        setVariation(currentVariation);
+      } else {
+        setVariation(product.variations[0]);
+      }
       setUrl(
         `/shop/${product.slug}?material=${variation?.options.material}&size=${variation?.options.size}`,
       );
@@ -178,7 +192,7 @@ const ProductPage = ({ product }: Props) => {
 
   if (variation) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-xl bg-red-100 shadow-xl dark:bg-fair-space">
+      <div className="flex flex-col items-center justify-center rounded-xl bg-red-100 drop-shadow-aberration dark:bg-fair-space">
         <div className="relative h-full w-full">
           <div className="absolute top-5 flex w-full flex-col items-center justify-center">
             <h1 className=" font-fondamento text-xl drop-shadow-md">
@@ -267,7 +281,7 @@ const ProductPage = ({ product }: Props) => {
           </div>
         </div>
 
-        <div className="py-3 w-full">
+        <div className="w-full py-3">
           <div className="flex w-full justify-around">
             {/* <div>Price ${variation?.price}</div> */}
             {/* select quantity */}
@@ -306,7 +320,7 @@ const ProductPage = ({ product }: Props) => {
                 variation?.countInStock === 0
                   ? "bg-zinc-100 text-zinc-300"
                   : "bg-outer-space text-white hover:bg-red-200"
-              }   my-2 px-10  py-`}
+              }   py- my-2  px-10`}
               disabled={variation?.countInStock === 0}
             >
               Add to Cart

@@ -32,7 +32,7 @@ const GoToTop = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-2 right-3">
+    <div className="fixed bottom-3 right-3">
       <button
         type="button"
         onClick={scrollToTop}

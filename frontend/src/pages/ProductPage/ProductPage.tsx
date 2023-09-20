@@ -67,8 +67,8 @@ const ProductPage = () => {
 			const size = searchParams.get('size');
 			if (material && size) {
 				// console.log(material, size);
-				const variation = getVariation(material, size);
-				setVariation(variation);
+				const currentVariation = getVariation(material, size);
+				setVariation(currentVariation);
 			} else {
 				setVariation(product.variations[0]);
 			}
@@ -246,7 +246,7 @@ const ProductPage = () => {
 	if (variation) {
 		return (
 			<>
-				<div className='flex gap-20 my-5 justify-center'>
+				<div className='flex gap-20 my-5 justify-center w-full'>
 					<div className='w-4/12 '>
 						<div className='w-4/12 fixed top-36'>
 							<img
@@ -344,7 +344,7 @@ const ProductPage = () => {
 										{option}
 									</button>
 								);
-							})}
+							})} 
 						</div>
 						<div className='flex justify-evenly'>
 							<div>SKU {variation?.SKU}</div>

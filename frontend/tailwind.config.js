@@ -38,8 +38,8 @@ export const theme = {
         "2px 1px 0px rgba(0, 0, 0, 0.55)",
       ],
       aberration: [
-        "1px 1px 0px rgba(252, 115, 121, 0.95)",
-        "-1px -1px 0px rgba(92, 255, 246, 0.95)",
+        "5px 5px 7px rgba(252, 115, 121, 0.95)",
+        "-5px -5px 7px rgba(92, 255, 246, 0.95)",
       ],
       "red-heading": ["1px 0px 0px rgba(252, 115, 121, 0.95)"],
       moon: ["2px 2px 10px rgba(255, 255, 255, 0.95)"],
