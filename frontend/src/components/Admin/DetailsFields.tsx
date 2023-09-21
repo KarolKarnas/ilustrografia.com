@@ -2,6 +2,7 @@ import { Details } from "../../types/Product";
 import * as Form from "@radix-ui/react-form";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import InputField from "./InputField";
 
 type DetailsProps = {
   details: Details;
@@ -41,7 +42,7 @@ const DetailsFields = ({
         <Form.Control asChild>
           <textarea
             required
-            className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 h-64 "
+            className="inline-flex h-64 w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
             placeholder="Enter the Story"
             value={story}
             onChange={(e) => {
@@ -49,11 +50,10 @@ const DetailsFields = ({
               setStory(newStory);
               setDetails({ ...details, story: newStory });
             }}
-
           />
         </Form.Control>
       </Form.Field>
-      <Form.Field className="flex flex-col" name="latinName">
+      {/* <Form.Field className="flex flex-col" name="latinName">
         <div className="flex items-baseline justify-between">
           <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
             Latin Name
@@ -79,8 +79,33 @@ const DetailsFields = ({
             }}
           />
         </Form.Control>
-      </Form.Field>
-      <Form.Field className="flex flex-col" name="ytLink">
+      </Form.Field> */}
+      <InputField
+        shortName={"latinName"}
+        name={"Latin Name"}
+        onChangeFun={(e) => {
+          const newLatinName = e.target.value;
+          setLatinName(newLatinName);
+          setDetails({ ...details, latinName: newLatinName });
+        }}
+        value={latinName}
+        required={false}
+      />
+
+      <InputField
+        shortName={"ytLink"}
+        name={"Youtube Link"}
+        onChangeFun={(e) => {
+          const newYtLink = e.target.value;
+          setYtLink(newYtLink);
+          setDetails({ ...details, ytLink: newYtLink });
+        }}
+        value={ytLink}
+        required={false}
+      />
+
+
+      {/* <Form.Field className="flex flex-col" name="ytLink">
         <div className="flex items-baseline justify-between">
           <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
             Youtube Link
@@ -106,11 +131,11 @@ const DetailsFields = ({
             }}
           />
         </Form.Control>
-      </Form.Field>
+      </Form.Field> */}
       <Form.Field className="flex flex-col" name="occurrence">
         <div className="flex items-baseline justify-between">
           <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
-            Youtube Occurrence
+            Occurrence
           </Form.Label>
           <Form.Message className="text-md text-red-400" match="valueMissing">
             Please enter your Occurrence

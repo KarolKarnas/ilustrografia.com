@@ -95,7 +95,12 @@ const ProductEditScreen = () => {
 		}
 		try {
 			await updateProduct({
-				details,
+				details: {
+					story: (details.story).trim(),
+					ytLink: (details.ytLink)?.trim(),
+					latinName: (details.latinName)?.trim(),
+					occurrence:( details.occurrence)?.trim()
+				},
 				productSlug,
 				name,
 				slug,

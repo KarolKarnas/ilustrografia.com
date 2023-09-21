@@ -20,9 +20,9 @@ const CategoriesForm = ({ categories, setCategories }: Props) => {
 			setCategoryName('');
 			return toast.error('Just empty spaces here...');
 		}
-		const categorySlug = _.kebabCase(categoryName);
+		const categorySlug = _.kebabCase(categoryName.trim());
 		//duplicate Category here
-		setCategories([...categories, { name: categoryName, slug: categorySlug }]);
+		setCategories([...categories, { name: categoryName.trim(), slug: categorySlug }]);
 	};
 
 	const handleDeleteCategory = (index: number) => {
