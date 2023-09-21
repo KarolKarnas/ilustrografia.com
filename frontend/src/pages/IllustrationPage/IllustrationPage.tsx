@@ -67,7 +67,7 @@ const IllustrationPage = () => {
         <div className="n w-5/12">
           <img src={product?.images[0]} alt={product?.slug} />
         </div>
-        <div className="w-4/12">
+        <div className="w-4/12 dark:text-ivory">
           <h1 className=" font-fondamento text-3xl mb-1">{product?.name}</h1>
 
           {product.details.latinName ? (
@@ -88,7 +88,7 @@ const IllustrationPage = () => {
               <YouTubeEmbed embedId={product.details.ytLink} />
             </div>
           ) : null}
-          <p className="w-full">{product.details.story}</p>
+          <p className="w-full whitespace-pre-line first-letter:text-2xl first-letter:bg-red-400 first-letter:text-ivory first-letter:font-fondamento first-letter:py-2 first-letter:px-5 first-line:leading-10">{product.details.story}</p>
         </div>
       </div>
       <div className=" flex flex-col items-center justify-center rounded-xl bg-cool-pink px-8  py-16 dark:bg-dark-red  ">
