@@ -102,8 +102,8 @@ const ProductEditScreen = () => {
 					occurrence:( details.occurrence)?.trim()
 				},
 				productSlug,
-				name,
-				slug,
+				name: name.trim(),
+				slug: slug.trim(),
 				rating,
 				categories,
 				tags,

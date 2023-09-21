@@ -228,7 +228,7 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
                   variation.options.material as MaterialOptionNoNameKeys
                 ].images[0]
               }
-              alt={product.slug}
+              alt={`${product.slug}-${variation.options.material}`}
             />
           </Link>
         </div>

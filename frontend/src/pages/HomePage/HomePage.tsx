@@ -79,7 +79,7 @@ const HomePage = () => {
             id="magic"
             className=" dark:invert-90 "
             src="/images/addons/magic.png"
-            alt=""
+            alt="magic energy"
           />
         </div>
         <div className="flex w-2/4 flex-col items-center justify-center">
@@ -110,7 +110,7 @@ const HomePage = () => {
             id="brush"
             className=" dark:invert-90"
             src="/images/addons/brush.png"
-            alt=""
+            alt="brush with paint dots"
           />
         </div>
       </div>

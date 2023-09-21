@@ -18,8 +18,8 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
 		name: 'Basilisk',
 		slug: 'basilisk',
 		rating: {
-			rating: 0,
-			numReviews: 0,
+			rating: 5,
+			numReviews: 2,
 		},
 		categories: [
 			{
@@ -321,8 +321,8 @@ For this is how Mother Nature works, and we must not interfere with her will.
 		name: 'Forest Bobo',
 		slug: 'forest-bobo',
 		rating: {
-			rating: 0,
-			numReviews: 0,
+			rating: 5,
+			numReviews: 3,
 		},
 		categories: [
 			{
@@ -611,8 +611,8 @@ For this is how Mother Nature works, and we must not interfere with her will.
 		name: 'Shopping Baba',
 		slug: 'shopping-baba',
 		rating: {
-			rating: 0,
-			numReviews: 0,
+			rating: 4.5,
+			numReviews: 2,
 		},
 		categories: [
 			{
@@ -924,8 +924,8 @@ Will she choose your campfire tomorrow as well?
 		name: 'Wetlinka Goddess',
 		slug: 'wetlinka-goddess',
 		rating: {
-			rating: 0,
-			numReviews: 0,
+			rating: 4.9,
+			numReviews: 12,
 		},
 		categories: [
 			{
@@ -1216,8 +1216,8 @@ Will she choose your campfire tomorrow as well?
 		name: 'Spring Nymph',
 		slug: 'spring-nymph',
 		rating: {
-			rating: 0,
-			numReviews: 0,
+			rating: 4.2,
+			numReviews: 7,
 		},
 		categories: [
 			{

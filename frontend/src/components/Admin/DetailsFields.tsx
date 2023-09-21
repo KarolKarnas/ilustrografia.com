@@ -2,7 +2,7 @@ import { Details } from "../../types/Product";
 import * as Form from "@radix-ui/react-form";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
-import InputField from "./InputField";
+import InputTextField from "./InputTextField";
 
 type DetailsProps = {
   details: Details;
@@ -30,19 +30,19 @@ const DetailsFields = ({
   return (
     <>
       {" "}
-      <Form.Field className="" name="story">
-        <div className="flex items-baseline justify-between">
-          <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
+      <Form.Field name="story">
+       
+          <Form.Label className=" form-label">
             Story
           </Form.Label>
-          <Form.Message className="text-md text-red-400" match="valueMissing">
+          <Form.Message className="form-message" match="valueMissing">
             Please enter story of the Creature
           </Form.Message>
-        </div>
+      
         <Form.Control asChild>
           <textarea
             required
-            className="inline-flex h-64 w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
+            className="input-text h-64"
             placeholder="Enter the Story"
             value={story}
             onChange={(e) => {
@@ -53,34 +53,8 @@ const DetailsFields = ({
           />
         </Form.Control>
       </Form.Field>
-      {/* <Form.Field className="flex flex-col" name="latinName">
-        <div className="flex items-baseline justify-between">
-          <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
-            Latin Name
-          </Form.Label>
-          <Form.Message className="text-md text-red-400" match="valueMissing">
-            Please enter your Latin Name
-          </Form.Message>
 
-          <Form.Message className="text-md text-red-400" match="typeMismatch">
-            Please provide a valid Latin Name
-          </Form.Message>
-        </div>
-        <Form.Control asChild>
-          <input
-            className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
-            type="text"
-            placeholder="Enter latin name"
-            value={latinName}
-            onChange={(e) => {
-              const newLatinName = e.target.value;
-              setLatinName(newLatinName);
-              setDetails({ ...details, latinName: newLatinName });
-            }}
-          />
-        </Form.Control>
-      </Form.Field> */}
-      <InputField
+      <InputTextField
         shortName={"latinName"}
         name={"Latin Name"}
         onChangeFun={(e) => {
@@ -92,7 +66,7 @@ const DetailsFields = ({
         required={false}
       />
 
-      <InputField
+      <InputTextField
         shortName={"ytLink"}
         name={"Youtube Link"}
         onChangeFun={(e) => {
@@ -104,61 +78,19 @@ const DetailsFields = ({
         required={false}
       />
 
-
-      {/* <Form.Field className="flex flex-col" name="ytLink">
-        <div className="flex items-baseline justify-between">
-          <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
-            Youtube Link
-          </Form.Label>
-          <Form.Message className="text-md text-red-400" match="valueMissing">
-            Please enter your Youtube Link
-          </Form.Message>
-
-          <Form.Message className="text-md text-red-400" match="typeMismatch">
-            Please provide a valid Youtube Link
-          </Form.Message>
-        </div>
-        <Form.Control asChild>
-          <input
-            className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
-            type="text"
-            placeholder="Enter Youtube Link"
-            value={ytLink}
-            onChange={(e) => {
-              const newYtLink = e.target.value;
-              setYtLink(newYtLink);
-              setDetails({ ...details, ytLink: newYtLink });
-            }}
-          />
-        </Form.Control>
-      </Form.Field> */}
-      <Form.Field className="flex flex-col" name="occurrence">
-        <div className="flex items-baseline justify-between">
-          <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
-            Occurrence
-          </Form.Label>
-          <Form.Message className="text-md text-red-400" match="valueMissing">
-            Please enter your Occurrence
-          </Form.Message>
-
-          <Form.Message className="text-md text-red-400" match="typeMismatch">
-            Please provide a valid Occurrence Link
-          </Form.Message>
-        </div>
-        <Form.Control asChild>
-          <input
-            className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
-            type="text"
-            placeholder="Enter Occurrence of the Creature"
-            value={occurrence}
-            onChange={(e) => {
-              const newOccurrence = e.target.value;
-              setOccurrence(newOccurrence);
-              setDetails({ ...details, occurrence: newOccurrence });
-            }}
-          />
-        </Form.Control>
-      </Form.Field>
+      
+      <InputTextField
+        shortName={"occurrence"}
+        name={"Occurrence"}
+        onChangeFun={(e) => {
+          const newOccurrence = e.target.value;
+          setOccurrence(newOccurrence);
+          setDetails({ ...details, occurrence: newOccurrence });
+        }}
+        value={occurrence}
+        required={false}
+      />
+    
     </>
   );
 };

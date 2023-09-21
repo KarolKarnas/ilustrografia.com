@@ -4,6 +4,7 @@ import { useUploadProductImageMutation } from '../../slices/productsApiSlice';
 import { toast } from 'react-toastify';
 import { getError } from '../../utils/utils';
 import { ApiError } from '../../types/ApiError';
+// import InputTextField from './InputTextField';
 
 type Props = {
 	images: string[];
@@ -32,6 +33,15 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
 
 	return (
 		<>
+
+{/* <InputTextField
+        shortName={"mainImageUrl"}
+        name={"Main Image URL"}
+        onChangeFun={(e) => setImages([e.target.value])}
+        value={images[0]}
+        required={false}
+      /> */}
+		
 			<Form.Field className='flex flex-col' name='mainImageUrl'>
 				<div className='flex items-baseline justify-between'>
 					<Form.Label className=' text-lg font-semibold leading-8 text-zinc-600'>

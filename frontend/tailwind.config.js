@@ -13,6 +13,9 @@ export const theme = {
     sans: ["lato", ..._fontFamily.serif],
   },
 
+
+
+
   extend: {
     colors: {
       jet: "#343232",
