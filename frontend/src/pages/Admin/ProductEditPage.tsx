@@ -8,6 +8,7 @@ import Message from '../../components/Message';
 import { SyntheticEvent, useState, useEffect } from 'react';
 import {
 	Category,
+	Details,
 	ProductOptions,
 	Rating,
 	Tag,
@@ -33,6 +34,7 @@ import NameField from '../../components/Admin/NameField';
 import UploadCanvasField from '../../components/Admin/UploadCanvasField';
 import UploadPosterField from '../../components/Admin/UploadPosterField';
 import UploadPremiumField from '../../components/Admin/UploadPremiumField';
+import DetailsFields from '../../components/Admin/DetailsFields';
 
 const ProductEditScreen = () => {
 	const { slug: productSlug } = useParams();
@@ -41,7 +43,7 @@ const ProductEditScreen = () => {
 	// const [product, setProduct] = useState<Product>();
 
 	const [_id, set_Id] = useState('');
-	const [details, setDetails] = useState({story: 'test'})
+	const [details, setDetails] = useState<Details>({story:''})
 	const [name, setName] = useState('');
 	const [slug, setSlug] = useState('');
 	const [rating, setRating] = useState<Rating>(ratingInitial);
@@ -51,6 +53,8 @@ const ProductEditScreen = () => {
 	const [options, setOptions] = useState<ProductOptions>(productOptionsInitial);
 	const [statistics, setStatistics] = useState<string[]>([]);
 	const [variations, setVariations] = useState<VariationOptionalId[]>([]);
+
+// console.log(details)
 
 	if (!productSlug) {
 		return <div>No slug provided</div>;
@@ -68,6 +72,7 @@ const ProductEditScreen = () => {
 	useEffect(() => {
 		if (!isLoading) {
 			if (product) {
+				setDetails(product.details)
 				set_Id(product._id);
 				setName(product.name);
 				setSlug(product.slug);
@@ -138,6 +143,7 @@ const ProductEditScreen = () => {
 							setName={setName}
 							setSlug={setSlug}
 						/>
+						<DetailsFields setDetails={setDetails} details={details} />
 						<RatingField rating={rating} setRating={setRating} />
 						<NumberReviewsField rating={rating} setRating={setRating} />
 						<UploadMainImageField images={images} setImages={setImages} />

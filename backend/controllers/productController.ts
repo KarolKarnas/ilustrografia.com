@@ -191,6 +191,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 	const typedProduct = toCheckedProduct(req.body);
 
 	const {
+		details,
 		name,
 		slug,
 		rating,
@@ -213,7 +214,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 		}
 	}
 
-	console.log(req.params.slug);
+	// console.log(req.params.slug);
 
 	// if (slug !== req.params.slug) {
 	// 	const slugs = await ProductModel.find({ slug });
@@ -230,6 +231,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 	// console.log(product);
 
 	if (product) {
+		product.details= details,
 		product.name = name;
 		product.slug = slug;
 		product.rating = rating;
@@ -241,7 +243,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 		product.statistics = statistics;
 
 		const updatedProduct = await product.save();
-		console.log(updatedProduct);
+		// console.log(updatedProduct);
 		res.json(updatedProduct);
 	} else {
 		res.status(404);
