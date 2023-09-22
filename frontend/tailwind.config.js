@@ -13,20 +13,17 @@ export const theme = {
     sans: ["lato", ..._fontFamily.serif],
   },
 
-
-
-
   extend: {
     colors: {
       jet: "#343232",
+      "black-magic": "#020101",
       "eerie-black": "#1D1C1C",
       "outer-space": "#46494C",
       "angel-space": "#343638",
-      // jet: "#343232",
-      // "eerie-black": "#1D1C1C",
-      // "outer-space": "#46494C",
+      "moon-dust": "#F0F0F0",
       "fair-space": "#cccaca",
       ivory: "#F6F7EB",
+      "red-magic": "#EA6052",
       "dark-red": "#714042",
       "cool-red": "#B26E63",
       "cool-pink": "#C29892",
@@ -39,16 +36,22 @@ export const theme = {
       192: "48rem",
       256: "64rem",
     },
+    boxShadow: {
+      hero: ["2px 80px 28px -44px rgba(0,0,0,0.3)"],
+      "small-hero": ["2px 60px 60px -44px rgba(0,0,0,0.3)"],
+      "small-hero-reverse": ["2px -60px 60px -44px rgba(0,0,0,0.3)"],
+    },
     dropShadow: {
       hero: [
         "4px 4px 10px rgba(0, 0, 0, 0.95)",
         "2px 1px 0px rgba(0, 0, 0, 0.55)",
       ],
+      product: ["3px 3px 2px rgba(0, 0, 0, 0.65)"],
       aberration: [
-        "2px 2px 2px rgba(0, 0, 0, 0.65)",
-        // "-5px -5px 7px rgba(92, 255, 246, 0.95)",
+        "5px 5px 7px rgba(252, 115, 121, 0.95)",
+        "-5px -5px 7px rgba(92, 255, 246, 0.95)",
       ],
-      "red-heading": ["1px 0px 0px rgba(252, 115, 121, 0.95)"],
+      "red-heading": ["1px 1px 0px rgba(204, 178, 175, 0.95)"],
       moon: ["2px 2px 10px rgba(255, 255, 255, 0.95)"],
       sun: ["4px 4px 10px rgba(252, 115, 121, 0.95)"],
     },

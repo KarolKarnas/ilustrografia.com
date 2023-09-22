@@ -19,7 +19,7 @@ const NameField = ({ updateError, name, setName, setSlug }: Props) => {
     <>
       <Form.Field name="name">
         <Form.Label className=" form-label">Name</Form.Label>
-        <Form.Message className="text-md text-red-400" match="valueMissing">
+        <Form.Message className="text-md text-red-magic" match="valueMissing">
           Please enter your name
         </Form.Message>
         {updateError && (

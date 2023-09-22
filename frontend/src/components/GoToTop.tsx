@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaRegHandPointer } from "react-icons/fa";
 
-
 const GoToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -37,7 +36,7 @@ const GoToTop = () => {
         type="button"
         onClick={scrollToTop}
         className={`    ${isVisible ? "opacity-100" : "opacity-0"}
-          inline-flex items-center rounded-full bg-red-400 p-3 text-white shadow-sm transition duration-500 hover:bg-red-500 focus:outline-none drop-shadow-xl `}
+          bg-red-magic inline-flex items-center rounded-full p-3 text-white shadow-sm drop-shadow-xl transition duration-500 hover:bg-red-500 focus:outline-none `}
       >
         <FaRegHandPointer className="h-6 w-6" aria-hidden="true" />
       </button>

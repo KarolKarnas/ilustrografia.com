@@ -8,7 +8,7 @@ const YouTubeEmbed = ({ embedId } : YouTubeEmbedProps) => {
 
     <div>
     <iframe
-      className=" w-[350px] h-[200px] md:w-96 md:h-[216px]  xl:w-128 xl:h-[288px] mx-auto drop-shadow-aberration"
+      className=" w-[350px] h-[200px] md:w-96 md:h-[216px]  xl:w-128 xl:h-[288px] mx-auto shadow-small-hero"
       src={`https://www.youtube.com/embed/${embedId}`}
       title="YouTube video player"
       frameBorder={0}

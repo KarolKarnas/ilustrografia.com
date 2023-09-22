@@ -53,11 +53,11 @@ const HomePage = () => {
   ) : (
     <div className="my-10 flex w-11/12 flex-col gap-y-20">
       <div
-        className=" mt-5 flex
-       h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192 "
+        className=" shadow-hero mt-5
+       flex h-screen flex-col items-center  justify-center rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192"
       >
         <div className=" flex flex-col items-center justify-center  p-2">
-          <span className=" md:text-md text-center  font-montserrat text-xs font-semibold uppercase tracking-hero text-red-400 drop-shadow-hero">
+          <span className=" md:text-md text-red-magic  text-center font-montserrat text-xs font-semibold uppercase tracking-hero drop-shadow-hero">
             · Ilustrografia ·
           </span>
           <h1 className="  my-2 text-center font-cormorant-infant text-5xl font-semibold italic text-white drop-shadow-hero md:text-8xl">
@@ -83,7 +83,7 @@ const HomePage = () => {
           />
         </div>
         <div className="flex w-2/4 flex-col items-center justify-center">
-          <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-400 drop-shadow-lg">
+          <span className=" md:text-md text-red-magic  mb-4 text-center font-montserrat text-xs font-semibold uppercase  tracking-hero drop-shadow-lg">
             · Ilustrografia ·
           </span>
           <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
@@ -117,21 +117,21 @@ const HomePage = () => {
 
       {/* Latest animations */}
 
-      <div className="my-3 flex flex-col items-center  rounded-xl bg-[#F0F0F0] pb-32 pt-16  dark:bg-zinc-800 drop-shadow-xl">
+      <div className="bg-moon-dust shadow-hero my-3 flex  flex-col items-center rounded-xl px-16 pb-32 pt-16 dark:bg-zinc-800">
         <div className="mb-8 flex w-1/2 flex-col items-center">
-          <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-400 drop-shadow-lg">
+          <span className=" md:text-md text-red-magic  mb-4 text-center font-montserrat text-xs font-semibold uppercase  tracking-hero drop-shadow-lg">
             · Ilustrografia ·
           </span>
           <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
-            Watch! Newest animations!
+            Our newest animations!
           </h3>
-          <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
+          {/* <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
             Our latest creative wonders are now live on YouTube, waiting to
             transport you to new worlds and evoke a sense of wonder. Don&apos;t
             miss out on the magic – click the link below to watch our latest
             YouTube videos and embark on an unforgettable visual journey with
             us. Subscribe to stay updated, and let your imagination run wild!
-          </span>
+          </span> */}
           <strong className="text-center font-cormorant-infant text-2xl font-semibold italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
             Have you ever experienced the magic of animated storytelling?
             Ilustrografia&apos;s animations are a journey into wonder. Will you
@@ -154,9 +154,9 @@ const HomePage = () => {
 
       {/* Product grid */}
 
-      <div className=" flex flex-col items-center justify-center rounded-xl bg-cool-pink px-44  py-16 dark:bg-angel-space  ">
+      <div className=" dark:bg-angel-space bg-moon-dust shadow-hero flex flex-col items-center justify-center rounded-xl  px-44 py-16  ">
         <div className="mb-8 flex w-1/2 flex-col items-center">
-          <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-400 drop-shadow-lg">
+          <span className=" md:text-md text-red-magic  mb-4 text-center font-montserrat text-xs font-semibold uppercase  tracking-hero drop-shadow-lg">
             · Ilustrografia ·
           </span>
           <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
@@ -189,12 +189,12 @@ const HomePage = () => {
       </div>
 
       {/* <ProjectGroup /> */}
-      <div className="grid grid-cols-1 dark:bg-slate-600 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {/* <div className="grid grid-cols-1 dark:bg-slate-600 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products &&
           products.map((product: Product) => (
             <ProductMain key={product._id} product={product} />
           ))}
-      </div>
+      </div> */}
     </div>
   );
 };

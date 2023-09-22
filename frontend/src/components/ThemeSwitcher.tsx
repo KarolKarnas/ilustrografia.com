@@ -50,9 +50,7 @@ const ThemeSwitcher: React.FC = (): JSX.Element => {
         <div className="relative">
           <button
             ref={switcherButton}
-            className={`  ${
-              activeTheme === "light" ? "text-yellow-100" : "text-ivory"
-            } bg-red-400  rounded-3xl p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 `}
+            className={`  bg-red-magic rounded-3xl  p-2 text-ivory transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 `}
             type="button"
             id="themeSwitcher"
             aria-expanded="false"

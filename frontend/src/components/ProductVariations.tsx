@@ -192,7 +192,7 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
 
   if (variation) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-xl bg-red-100 drop-shadow-aberration dark:bg-fair-space">
+      <div className="shadow-small-hero flex flex-col items-center justify-center rounded-xl bg-ivory dark:bg-fair-space">
         <div className="relative h-full w-full">
           <div className="absolute top-5 flex w-full flex-col items-center justify-center">
             <h1 className=" font-fondamento text-xl drop-shadow-md">
@@ -211,10 +211,10 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
               </span>
             </h1>
             {/* RATING */}
-            <Rating
+            {/* <Rating
               rating={product.rating.rating}
               numReviews={product.rating.numReviews}
-            />
+            /> */}
           </div>
         </div>
 
@@ -248,9 +248,9 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
                       product.options.size[
                         variation.options.size as SizeOptionNoNameKeys
                       ].title
-                        ? "border-red-400 bg-red-200 text-white "
+                        ? "border-red-magic bg-red-200 text-white "
                         : ""
-                    }font-light border border-black p-1 text-2xs hover:border-red-400 hover:bg-red-200 hover:text-white`}
+                    }font-light hover:border-red-magic border border-black p-1 text-2xs hover:bg-red-200 hover:text-white`}
                   >
                     {option}
                   </button>
@@ -269,9 +269,9 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
                       product.options.material[
                         variation.options.material as MaterialOptionNoNameKeys
                       ].title
-                        ? "border-red-400 bg-red-200 text-white "
+                        ? "border-red-magic bg-red-200 text-white "
                         : ""
-                    }font-light border border-black  p-1 text-xs hover:border-red-400 hover:bg-red-200 hover:text-white`}
+                    }font-light hover:border-red-magic border  border-black p-1 text-xs hover:bg-red-200 hover:text-white`}
                   >
                     {option}
                   </button>
@@ -281,9 +281,40 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
           </div>
         </div>
 
-        <div className="w-full py-3">
-          <div className="flex w-full justify-around">
-            {/* <div>Price ${variation?.price}</div> */}
+        <div className="w-full pt-2 pb-5">
+          <div className="flex w-full flex-col items-center justify-center gap-1">
+    
+         
+            <div>
+              <span className="uppercase text-xs  mr-2">Price:</span>
+              <strong className=" font-cormorant-infant text-2xl font-light">${variation?.price * qty}</strong>
+            </div>
+
+            <button
+              onClick={addToCartHandler}
+              className={`${
+                variation?.countInStock === 0
+                  ? "bg-zinc-100 text-zinc-300"
+                  : "bg-black-magic text-ivory hover:bg-red-magic"
+              }   px-16  py-2 uppercase text-xs font-semibold transition-colors duration-300`}
+              disabled={variation?.countInStock === 0}
+            >
+              Add to Cart
+            </button>
+          </div>
+
+
+        </div>
+      </div>
+    );
+  } else {
+    return <div>No variation</div>;
+  }
+};
+export default ProductPage;
+
+
+        {/* <div>Price ${variation?.price}</div> */}
             {/* select quantity */}
             {/* <div className="flex gap-2">
               <div>
@@ -300,43 +331,16 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
                 ))}
               </select>
             </div> */}
-            <div>
-              Price:{" "}
-              <strong className=" text-lg">${variation?.price * qty}</strong>
-            </div>
 
-            <button
-              onClick={addToCartHandler}
-              className={`${
-                variation?.countInStock === 0
-                  ? "bg-zinc-100 text-zinc-300"
-                  : "bg-outer-space text-white hover:bg-red-200"
-              }   py- my-2  px-10`}
-              disabled={variation?.countInStock === 0}
-            >
-              Add to Cart
-            </button>
-
-          </div>
-
-
-
+                      {/* 
           <div className="flex w-full justify-around">
-            {/* <Link to={url}>
+            <Link to={url}>
               <button
                 className={` my-2 bg-dark-red px-16  py-1 text-white  hover:bg-red-200`}
               >
                 Details
               </button>
-            </Link> */}
+            </Link>
 
       
-          </div>
-        </div>
-      </div>
-    );
-  } else {
-    return <div>No variation</div>;
-  }
-};
-export default ProductPage;
+          </div> */}
