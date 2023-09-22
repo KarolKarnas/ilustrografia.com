@@ -51,7 +51,7 @@ const HomePage = () => {
   ) : error ? (
     <div>{getError(error as ApiError)}</div>
   ) : (
-    <div className="my-10 flex w-11/12 flex-col gap-y-20">
+    <div className="my-10 flex w-full p-2 md:w-11/12 flex-col gap-y-20">
       <div
         className=" shadow-hero mt-5
        flex h-screen flex-col items-center  justify-center rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192"
@@ -154,7 +154,7 @@ const HomePage = () => {
 
       {/* Product grid */}
 
-      <div className=" dark:bg-angel-space bg-moon-dust shadow-hero flex flex-col items-center justify-center rounded-xl  px-44 py-16  ">
+      <div className=" dark:bg-angel-space bg-moon-dust shadow-hero flex flex-col items-center justify-center rounded-xl px-2 md:px-24 lg:px-16 xl:px-10 2xl:px-36 py-16  ">
         <div className="mb-8 flex w-1/2 flex-col items-center">
           <span className=" md:text-md text-red-magic  mb-4 text-center font-montserrat text-xs font-semibold uppercase  tracking-hero drop-shadow-lg">
             · Ilustrografia ·
@@ -180,7 +180,7 @@ const HomePage = () => {
           </strong>
         </div>
 
-        <div className=" grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 ">
+        <div className=" grid grid-cols-1 gap-16 lg:grid-cols-2 xl:grid-cols-3 ">
           {products &&
             products.map((product: Product) => (
               <ProductVariations key={product._id} product={product} />

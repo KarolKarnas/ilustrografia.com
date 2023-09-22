@@ -192,10 +192,10 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
 
   if (variation) {
     return (
-      <div className="shadow-small-hero flex flex-col items-center justify-center rounded-xl bg-ivory dark:bg-fair-space">
+      <div className="shadow-small-hero flex flex-col items-center justify-center rounded-xl bg-ivory dark:bg-fair-space hover:scale-110 hover:translate-y-[-1rem] transition-transform duration-500">
         <div className="relative h-full w-full">
           <div className="absolute top-5 flex w-full flex-col items-center justify-center">
-            <h1 className=" font-cormorant-infant font-semibold text-xl drop-shadow-md">
+            <h1 className=" font-cormorant-infant text-xl font-semibold italic drop-shadow-md">
               {product.name}{" "}
               <span className="text-sm">
                 {
@@ -250,7 +250,7 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
                       ].title
                         ? "border-red-magic bg-red-magic bg-opacity-90 text-white shadow-sm "
                         : ""
-                    }font-light hover:border-red-magic hover:bg-red-magic border border-black p-1 text-xs transition hover:bg-opacity-70 hover:text-white`}
+                    }font-light hover:border-red-magic hover:bg-red-magic border border-black p-0.5 md:p-1 text-xs transition hover:bg-opacity-70 hover:text-white`}
                   >
                     {option}
                   </button>
@@ -271,7 +271,7 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
                       ].title
                         ? "border-red-magic bg-red-magic bg-opacity-90 text-white shadow-sm "
                         : ""
-                    }font-light hover:border-red-magic hover:bg-red-magic border border-black p-1 text-xs transition hover:bg-opacity-70 hover:text-white`}
+                    }font-light hover:border-red-magic hover:bg-red-magic border border-black p-0.5 md:p-1 text-xs transition hover:bg-opacity-70 hover:text-white`}
                   >
                     {option}
                   </button>
