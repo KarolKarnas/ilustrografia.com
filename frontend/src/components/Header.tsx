@@ -16,7 +16,7 @@ const Header = () => {
   }
 
   return (
-    <header className="bg-red-50 text-eerie-black dark:bg-eerie-black dark:text-ivory  w-full py-4 transition-colors    duration-500">
+    <header className="bg-red-50 text-eerie-black dark:bg-[#020101] dark:text-ivory  w-full py-4 transition-colors    duration-500">
       <nav className="flex items-center justify-evenly">
         <div className="w-30 hidden items-center gap-x-3 lg:flex">
           <SocialLinks />

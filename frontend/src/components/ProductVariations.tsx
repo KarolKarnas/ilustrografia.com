@@ -285,7 +285,7 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
           <div className="flex w-full justify-around">
             {/* <div>Price ${variation?.price}</div> */}
             {/* select quantity */}
-            <div className="flex gap-2">
+            {/* <div className="flex gap-2">
               <div>
                 {variation.countInStock > 0 ? "In Stock" : "Out Of Stock"}
               </div>
@@ -299,20 +299,11 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
                   </option>
                 ))}
               </select>
-            </div>
+            </div> */}
             <div>
               Price:{" "}
               <strong className=" text-lg">${variation?.price * qty}</strong>
             </div>
-          </div>
-          <div className="flex w-full justify-around">
-            <Link to={url}>
-              <button
-                className={` my-2 bg-dark-red px-16  py-1 text-white  hover:bg-red-200`}
-              >
-                Details
-              </button>
-            </Link>
 
             <button
               onClick={addToCartHandler}
@@ -325,6 +316,21 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
             >
               Add to Cart
             </button>
+
+          </div>
+
+
+
+          <div className="flex w-full justify-around">
+            {/* <Link to={url}>
+              <button
+                className={` my-2 bg-dark-red px-16  py-1 text-white  hover:bg-red-200`}
+              >
+                Details
+              </button>
+            </Link> */}
+
+      
           </div>
         </div>
       </div>

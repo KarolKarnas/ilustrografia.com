@@ -28,7 +28,7 @@ const MainLinks = ({mobile} : Props) => {
           </Link>
           <Link to="/" className={ mobile ? 'hidden' : ''}>
             <img
-              className="h-20 duration-300 hover:-translate-y-1 hover:scale-105"
+              className="h-20 duration-300 hover:-translate-y-1 hover:scale-105 dark:invert"
               src={logo}
               alt="logo-ilustrografia"
             />

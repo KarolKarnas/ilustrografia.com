@@ -41,7 +41,7 @@ const AppLinks = () => {
     <>
      <ThemeSwitcher />
 
-<div className={`${userInfo? 'bg-green-400' : 'bg-red-400' } text-ivory cursor-pointer rounded-3xl p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110`}>
+<div className={` bg-red-400 text-ivory cursor-pointer rounded-3xl p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110`}>
   {userInfo ? (
     <Dropdown userInfo={userInfo} handleLogout={handleLogout} />
   ) : (

@@ -117,7 +117,7 @@ const HomePage = () => {
 
       {/* Latest animations */}
 
-      <div className="my-3 flex flex-col items-center  rounded-xl bg-red-200 pb-32 pt-16  dark:bg-outer-space">
+      <div className="my-3 flex flex-col items-center  rounded-xl bg-[#F0F0F0] pb-32 pt-16  dark:bg-zinc-800 drop-shadow-xl">
         <div className="mb-8 flex w-1/2 flex-col items-center">
           <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-400 drop-shadow-lg">
             · Ilustrografia ·
@@ -154,7 +154,7 @@ const HomePage = () => {
 
       {/* Product grid */}
 
-      <div className=" flex flex-col items-center justify-center rounded-xl bg-cool-pink px-8  py-16 dark:bg-dark-red  ">
+      <div className=" flex flex-col items-center justify-center rounded-xl bg-cool-pink px-44  py-16 dark:bg-angel-space  ">
         <div className="mb-8 flex w-1/2 flex-col items-center">
           <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-400 drop-shadow-lg">
             · Ilustrografia ·
@@ -180,7 +180,7 @@ const HomePage = () => {
           </strong>
         </div>
 
-        <div className=" grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 ">
+        <div className=" grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 ">
           {products &&
             products.map((product: Product) => (
               <ProductVariations key={product._id} product={product} />
