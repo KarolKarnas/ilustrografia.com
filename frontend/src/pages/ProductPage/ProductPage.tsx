@@ -303,54 +303,62 @@ const ProductPage = () => {
               rating={product.rating.rating}
               numReviews={product.rating.numReviews}
             />
-            {/* SIZES */}
-            <div className="mt-2 flex gap-1">
-              {sizesByMaterialTitle[variation.options.material].map(
-                (option) => (
-                  <button
-                    onClick={handleChangeSize}
-                    key={option}
-                    className={`${
-                      option ===
-                      product.options.size[
-                        variation.options.size as SizeOptionNoNameKeys
-                      ].title
-                        ? "border-red-magic bg-red-200 text-white "
+            <div className="flex flex-col gap-1">
+              {/* SIZES */}
+              <div className="mt-2 flex gap-1">
+                {sizesByMaterialTitle[variation.options.material].map(
+                  (option) => (
+                    <button
+                      onClick={handleChangeSize}
+                      key={option}
+                      className={`${
+                        option ===
+                        product.options.size[
+                          variation.options.size as SizeOptionNoNameKeys
+                        ].title
+                        ? "border-red-magic bg-red-magic bg-opacity-90 text-white shadow-sm "
                         : ""
-                    }font-light hover:border-red-magic border border-black p-0.5 text-sm hover:bg-red-200 hover:text-white`}
-                  >
-                    {option}
-                  </button>
-                ),
-              )}
-            </div>
-            <hr className=" mx-auto my-3 h-px"></hr>
-            {/* Materials */}
-            <div className="flex gap-1">
-              {materialTitle.map((option) => {
-                return (
-                  <button
-                    onClick={handleChangeMaterial}
-                    key={option}
-                    className={`${
-                      option ===
-                      product.options.material[
-                        variation.options.material as MaterialOptionNoNameKeys
-                      ].title
-                        ? "border-red-magic bg-red-200 text-white "
+                    }font-light hover:border-red-magic hover:bg-red-magic border border-black p-1 text-xs transition hover:bg-opacity-70 hover:text-white`}
+                    >
+                      {option}
+                    </button>
+                  ),
+                )}
+              </div>
+              {/* <hr className=" mx-auto my-3 h-px"></hr> */}
+              
+              {/* Materials */}
+              <div className="flex gap-1">
+                {materialTitle.map((option) => {
+                  return (
+                    <button
+                      onClick={handleChangeMaterial}
+                      key={option}
+                      className={`${
+                        option ===
+                        product.options.material[
+                          variation.options.material as MaterialOptionNoNameKeys
+                        ].title
+                        ? "border-red-magic bg-red-magic bg-opacity-90 text-white shadow-sm "
                         : ""
-                    }font-light hover:border-red-magic border border-black p-0.5 text-sm hover:bg-red-200 hover:text-white`}
-                  >
-                    {option}
-                  </button>
-                );
-              })}
+                    }font-light hover:border-red-magic hover:bg-red-magic border border-black p-1 text-xs transition hover:bg-opacity-70 hover:text-white`}
+                    >
+                      {option}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
+
+
             <div className="flex justify-evenly">
               <div>SKU {variation?.SKU}</div>
               <div>Price ${variation?.price}</div>
               <div>Price ${variation?.price * qty}</div>
             </div>
+
+
+
             <hr className=" mx-auto my-3 h-px"></hr>
             {/* select quantity */}
             <div className="flex justify-around">

@@ -22,7 +22,7 @@ export const theme = {
       "angel-space": "#343638",
       "moon-dust": "#F0F0F0",
       "fair-space": "#cccaca",
-      ivory: "#F6F7EB",
+      ivory: "#fbfbfb",
       "red-magic": "#EA6052",
       "dark-red": "#714042",
       "cool-red": "#B26E63",

@@ -7,6 +7,8 @@ const ThemeSwitcher: React.FC = (): JSX.Element => {
   const switcherButton = useRef<HTMLButtonElement>(null);
 
   const [activeTheme, setActiveTheme] = useState<string>("light");
+  //rerender component
+  const [flag, setFlag] = useState<boolean>(false);
 
   const setDarkTheme = () => {
     document.documentElement.classList.add("dark");
@@ -33,7 +35,8 @@ const ThemeSwitcher: React.FC = (): JSX.Element => {
     } else {
       setLightTheme();
     }
-  }, []);
+    setFlag(!flag)
+  }, [flag]);
 
   const handleChangeTheme = () => {
     // console.log(activeTheme)
@@ -44,7 +47,6 @@ const ThemeSwitcher: React.FC = (): JSX.Element => {
     <>
       <div
         // className="fixed right-5 bottom-5 z-[9999]"
-        id="theme-switcher"
         ref={switcher}
       >
         <div className="relative">

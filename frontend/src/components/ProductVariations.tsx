@@ -195,7 +195,7 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
       <div className="shadow-small-hero flex flex-col items-center justify-center rounded-xl bg-ivory dark:bg-fair-space">
         <div className="relative h-full w-full">
           <div className="absolute top-5 flex w-full flex-col items-center justify-center">
-            <h1 className=" font-fondamento text-xl drop-shadow-md">
+            <h1 className=" font-cormorant-infant font-semibold text-xl drop-shadow-md">
               {product.name}{" "}
               <span className="text-sm">
                 {
@@ -248,9 +248,9 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
                       product.options.size[
                         variation.options.size as SizeOptionNoNameKeys
                       ].title
-                        ? "border-red-magic bg-red-200 text-white "
+                        ? "border-red-magic bg-red-magic bg-opacity-90 text-white shadow-sm "
                         : ""
-                    }font-light hover:border-red-magic border border-black p-1 text-2xs hover:bg-red-200 hover:text-white`}
+                    }font-light hover:border-red-magic hover:bg-red-magic border border-black p-1 text-xs transition hover:bg-opacity-70 hover:text-white`}
                   >
                     {option}
                   </button>
@@ -269,9 +269,9 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
                       product.options.material[
                         variation.options.material as MaterialOptionNoNameKeys
                       ].title
-                        ? "border-red-magic bg-red-200 text-white "
+                        ? "border-red-magic bg-red-magic bg-opacity-90 text-white shadow-sm "
                         : ""
-                    }font-light hover:border-red-magic border  border-black p-1 text-xs hover:bg-red-200 hover:text-white`}
+                    }font-light hover:border-red-magic hover:bg-red-magic border border-black p-1 text-xs transition hover:bg-opacity-70 hover:text-white`}
                   >
                     {option}
                   </button>
@@ -281,13 +281,13 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
           </div>
         </div>
 
-        <div className="w-full pt-2 pb-5">
+        <div className="w-full pb-5 pt-2">
           <div className="flex w-full flex-col items-center justify-center gap-1">
-    
-         
-            <div>
-              <span className="uppercase text-xs  mr-2">Price:</span>
-              <strong className=" font-cormorant-infant text-2xl font-light">${variation?.price * qty}</strong>
+            <div className=" font-montserrat">
+              <span className="mr-2 text-xs  uppercase">Price:</span>
+              <strong className=" text-2xl font-light">
+                ${variation?.price * qty}
+              </strong>
             </div>
 
             <button
@@ -295,15 +295,13 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
               className={`${
                 variation?.countInStock === 0
                   ? "bg-zinc-100 text-zinc-300"
-                  : "bg-black-magic text-ivory hover:bg-red-magic"
-              }   px-16  py-2 uppercase text-xs font-semibold transition-colors duration-300`}
+                  : "bg-black-magic hover:bg-red-magic text-ivory"
+              }   px-16  py-2 text-xs font-semibold uppercase transition-colors duration-300`}
               disabled={variation?.countInStock === 0}
             >
               Add to Cart
             </button>
           </div>
-
-
         </div>
       </div>
     );
@@ -313,10 +311,14 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
 };
 export default ProductPage;
 
-
-        {/* <div>Price ${variation?.price}</div> */}
-            {/* select quantity */}
-            {/* <div className="flex gap-2">
+{
+  /* <div>Price ${variation?.price}</div> */
+}
+{
+  /* select quantity */
+}
+{
+  /* <div className="flex gap-2">
               <div>
                 {variation.countInStock > 0 ? "In Stock" : "Out Of Stock"}
               </div>
@@ -330,9 +332,11 @@ export default ProductPage;
                   </option>
                 ))}
               </select>
-            </div> */}
+            </div> */
+}
 
-                      {/* 
+{
+  /* 
           <div className="flex w-full justify-around">
             <Link to={url}>
               <button
@@ -343,4 +347,5 @@ export default ProductPage;
             </Link>
 
       
-          </div> */}
+          </div> */
+}
