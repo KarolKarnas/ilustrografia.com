@@ -1,62 +1,28 @@
-import React, { useRef, useEffect, useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa6";
-// import clsx from "clsx";
+import { useAppDispatch, useAppSelector } from "../slices/reduxHooks";
+import { setTheme } from "../slices/themeSlice";
 
-const ThemeSwitcher: React.FC = (): JSX.Element => {
-  const switcher = useRef<HTMLDivElement | null>(null);
-  const switcherButton = useRef<HTMLButtonElement>(null);
 
-  const [activeTheme, setActiveTheme] = useState<string>("light");
-  //rerender component
-  const [flag, setFlag] = useState<boolean>(false);
+const ThemeSwitcher = () => {
 
-  const setDarkTheme = () => {
-    document.documentElement.classList.add("dark");
-    localStorage.theme = "dark";
+  const activeTheme = useAppSelector((state) => state.theme);
+  const dispatch = useAppDispatch();
 
-    setActiveTheme("dark");
-  };
-
-  const setLightTheme = () => {
-    document.documentElement.classList.remove("dark");
-    localStorage.theme = "light";
-
-    setActiveTheme("light");
-  };
-
-  useEffect(() => {
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      setDarkTheme();
-    } else {
-      setLightTheme();
-    }
-    setFlag(!flag)
-  }, [flag]);
-
-  const handleChangeTheme = () => {
-    // console.log(activeTheme)
-    activeTheme === "light" ? setDarkTheme() : setLightTheme();
-  };
+  console.log(activeTheme)
 
   return (
     <>
       <div
-        // className="fixed right-5 bottom-5 z-[9999]"
-        ref={switcher}
+  
       >
         <div className="relative">
           <button
-            ref={switcherButton}
-            className={`  bg-red-magic rounded-3xl  p-2 text-ivory transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 `}
+   
+            className={`  rounded-3xl bg-red-magic  p-2 text-ivory transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 `}
             type="button"
             id="themeSwitcher"
             aria-expanded="false"
-            onClick={() => handleChangeTheme()}
+            onClick={() => dispatch(setTheme())}
           >
             {activeTheme === "light" ? <FaSun /> : <FaMoon />}
           </button>

@@ -1,6 +1,9 @@
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
-import { useGetProductsQuery } from "../../slices/productsApiSlice";
+import {
+  useGetProductsByCategoryQuery,
+  useGetProductsQuery,
+} from "../../slices/productsApiSlice";
 import { Product } from "../../types/Product";
 import ProductMain from "../../components/ProductMain";
 import Spinner from "../../components/Spinner";
@@ -24,6 +27,14 @@ const useMouseMove = (onMouseMove: (event: MouseEvent) => void) => {
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
+  const {
+    data: neoSlavicProducts,
+    isLoading: isLoadingNeoSlavic,
+    error: errorNeoSlavic,
+  } = useGetProductsByCategoryQuery("neo-slavic-census");
+
+  console.log(neoSlavicProducts);
+
   const {
     data: ytSearch,
     isLoading: ytSearchLoading,
@@ -51,13 +62,47 @@ const HomePage = () => {
   ) : error ? (
     <div>{getError(error as ApiError)}</div>
   ) : (
-    <div className="my-10 flex w-full p-2 md:w-11/12 flex-col gap-y-20">
+    <div className="my-10 flex w-full flex-col gap-y-20 p-2 md:w-11/12">
+      {/* Neo-slavic grid */}
+      <div className=" flex flex-col items-center justify-center rounded-xl bg-moon-dust px-2 py-16 shadow-hero dark:bg-angel-space md:px-24 lg:px-16 xl:px-10 2xl:px-36  ">
+        <div className="mb-8 flex w-1/2 flex-col items-center">
+          <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-magic drop-shadow-lg">
+            · Ilustrografia ·
+          </span>
+          <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
+            Neo-slavic census
+          </h3>
+          <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
+            Step into a world of art and enchantment with Ilustrografia
+          </span>
+          <strong className="text-center font-cormorant-infant text-2xl font-semibold italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
+            Discover the enchantment. Explore our prints today
+          </strong>
+        </div>
+
+        <div className=" grid grid-cols-1 gap-16 lg:grid-cols-2 xl:grid-cols-3 ">
+          {isLoadingNeoSlavic ? (
+            <Spinner />
+          ) : errorNeoSlavic ? (
+            <div>{getError(errorNeoSlavic as ApiError)}</div>
+          ) : (
+            neoSlavicProducts &&
+            neoSlavicProducts.map((product: Product) => (
+              <ProductVariations key={product._id} product={product} />
+            ))
+          )}
+        </div>
+      </div>
+      
+
+
+      
       <div
-        className=" shadow-hero mt-5
-       flex h-screen flex-col items-center  justify-center rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat md:h-192"
+        className=" mt-5 flex
+       h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat shadow-hero md:h-192"
       >
         <div className=" flex flex-col items-center justify-center  p-2">
-          <span className=" md:text-md text-red-magic  text-center font-montserrat text-xs font-semibold uppercase tracking-hero drop-shadow-hero">
+          <span className=" md:text-md text-center  font-montserrat text-xs font-semibold uppercase tracking-hero text-red-magic drop-shadow-hero">
             · Ilustrografia ·
           </span>
           <h1 className="  my-2 text-center font-cormorant-infant text-5xl font-semibold italic text-white drop-shadow-hero md:text-8xl">
@@ -72,7 +117,6 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-
       <div className="flex">
         <div className="w-1/4">
           <img
@@ -83,7 +127,7 @@ const HomePage = () => {
           />
         </div>
         <div className="flex w-2/4 flex-col items-center justify-center">
-          <span className=" md:text-md text-red-magic  mb-4 text-center font-montserrat text-xs font-semibold uppercase  tracking-hero drop-shadow-lg">
+          <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-magic drop-shadow-lg">
             · Ilustrografia ·
           </span>
           <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
@@ -114,12 +158,10 @@ const HomePage = () => {
           />
         </div>
       </div>
-
       {/* Latest animations */}
-
-      <div className="bg-moon-dust shadow-hero my-3 flex  flex-col items-center rounded-xl px-16 pb-32 pt-16 dark:bg-zinc-800">
+      <div className="my-3 flex flex-col items-center  rounded-xl bg-moon-dust px-16 pb-32 pt-16 shadow-hero dark:bg-zinc-800">
         <div className="mb-8 flex w-1/2 flex-col items-center">
-          <span className=" md:text-md text-red-magic  mb-4 text-center font-montserrat text-xs font-semibold uppercase  tracking-hero drop-shadow-lg">
+          <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-magic drop-shadow-lg">
             · Ilustrografia ·
           </span>
           <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
@@ -139,7 +181,7 @@ const HomePage = () => {
           </strong>
         </div>
 
-        {ytSearchLoading ? (
+        {/* {ytSearchLoading ? (
           <Spinner />
         ) : ytSearchError ? (
           <Message
@@ -149,14 +191,12 @@ const HomePage = () => {
           />
         ) : (
           ytSearch && <LatestVideos youtubeItems={ytSearch.items} />
-        )}
+        )} */}
       </div>
-
       {/* Product grid */}
-
-      <div className=" dark:bg-angel-space bg-moon-dust shadow-hero flex flex-col items-center justify-center rounded-xl px-2 md:px-24 lg:px-16 xl:px-10 2xl:px-36 py-16  ">
+      <div className=" flex flex-col items-center justify-center rounded-xl bg-moon-dust px-2 py-16 shadow-hero dark:bg-angel-space md:px-24 lg:px-16 xl:px-10 2xl:px-36  ">
         <div className="mb-8 flex w-1/2 flex-col items-center">
-          <span className=" md:text-md text-red-magic  mb-4 text-center font-montserrat text-xs font-semibold uppercase  tracking-hero drop-shadow-lg">
+          <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-magic drop-shadow-lg">
             · Ilustrografia ·
           </span>
           <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
@@ -187,7 +227,6 @@ const HomePage = () => {
             ))}
         </div>
       </div>
-
       {/* <ProjectGroup /> */}
       {/* <div className="grid grid-cols-1 dark:bg-slate-600 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products &&

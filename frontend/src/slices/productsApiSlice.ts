@@ -72,6 +72,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
 export const {
 	useGetProductsQuery,
 	useGetProductDetailsQuery,
+	useGetProductsByCategoryQuery,
 	useCreateProductMutation,
 	useUpdateProductMutation,
 	useUploadProductImageMutation,
