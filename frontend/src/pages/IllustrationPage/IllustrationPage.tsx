@@ -76,7 +76,7 @@ const IllustrationPage = () => {
   ) : error ? (
     <div>{getError(error as ApiError)}</div>
   ) : (
-    <div className="flex w-11/12 flex-col">
+    <div className="flex w-11/12 flex-col gap-16">
       <div className="my-5 flex w-full justify-center gap-20">
         <div className="n w-5/12">
           <img src={product?.images[0]} alt={product?.slug} />

@@ -23,7 +23,7 @@ const ProductsSectionGrid = ({ products, isLoading, error }: Props) => {
           · Ilustrografia ·
         </span>
         <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
-        {products && products[0].categories[0].name}
+        {products && products[0].categories[0].name} Products
         </h3>
         <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
           Step into a world of art and enchantment with Ilustrografia

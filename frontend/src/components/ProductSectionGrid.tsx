@@ -1,5 +1,6 @@
 import { Product } from "../types/Product";
 import ProductVariations from "./ProductVariations";
+import Button from "./Button";
 
 type Props = {
   product?: Product;
@@ -21,7 +22,7 @@ const ProductsSectionGrid = ({
         </h3>
       </div>
 
-      <div className=" grid grid-cols-1 gap-12 lg:grid-cols-2 xl:grid-cols-4 ">
+      <div className=" grid grid-cols-1 gap-12 lg:grid-cols-2 xl:grid-cols-4 mb-16 ">
         {materialValues && product && sizesByMaterial
           ? materialValues.map((material, index) => (
               <ProductVariations
@@ -33,6 +34,8 @@ const ProductsSectionGrid = ({
             ))
           : null}
       </div>
+      <Button text={`More ${product && product.categories[0].name} Products`} color={"red"} link={`/shop/?category=${product && product.categories[0].slug}`} />
+      
     </div>
   );
 };
