@@ -5,7 +5,7 @@ import AppLinks from "./AppLinks";
 
 const Footer = () => {
   return (
-    <div className=" dark:bg-black-magic mt-20 flex  w-full items-start justify-evenly  bg-ivory py-16   shadow-2xl transition-colors    duration-500 dark:text-ivory">
+    <div className=" dark:bg-black-magic mt-20 flex flex-col justify-center items-center gap-20 md:gap-0 md:flex-row  w-full md:items-start md:justify-evenly  bg-ivory py-16   shadow-2xl transition-colors    duration-500 dark:text-ivory">
       <div className=" flex  w-64 flex-col items-center justify-center">
         {" "}
         <span className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-2xl ">

@@ -16,6 +16,8 @@ type Props = {
 };
 
 const IllustrationsSectionGrid = ({ products, isLoading, error, colNum }: Props) => {
+
+  console.log(products)
   return (
     <div className=" flex flex-col items-center justify-center rounded-xl bg-moon-dust px-2 py-16 shadow-hero dark:bg-angel-space md:px-24 lg:px-16 xl:px-10 2xl:px-24  ">
       <div className="mb-8 flex w-1/2 flex-col items-center">

@@ -69,7 +69,8 @@ const Filter = () => {
 				})}
 			</div>
 			{/* IMAGES */}
-		{filteredProducts &&	<IllustrationsSectionGrid products={filteredProducts} colNum={4} />}
+		{/* {filteredProducts &&	<IllustrationsSectionGrid products={filteredProducts} colNum={4} />} */}
+		
 			<div className='grid grid-cols-3 gap-5 w-8/12'>
 
 				{filteredProducts &&
