@@ -4,12 +4,14 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGetProductsQuery } from '../../slices/productsApiSlice';
 import { Product } from '../../types/Product';
+import IllustrationsSectionGrid from '../../components/IllustrationsSectionGrid';
 
 const Filter = () => {
 	const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 	const [active, setActive] = useState<string | boolean>(false);
 
-	console.log(active);
+	// console.log(active);
+	console.log(filteredProducts)
 
 	const { data: products, isLoading, error } = useGetProductsQuery();
 	const allCategories = _.flatMap(products, (product) => product.categories);
@@ -67,7 +69,9 @@ const Filter = () => {
 				})}
 			</div>
 			{/* IMAGES */}
+		{filteredProducts &&	<IllustrationsSectionGrid products={filteredProducts} colNum={4} />}
 			<div className='grid grid-cols-3 gap-5 w-8/12'>
+
 				{filteredProducts &&
 					filteredProducts.map((product, index) => (
 						<Link key={index} to={`/illustrations/${product.slug}`}>

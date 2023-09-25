@@ -12,9 +12,10 @@ type Props = {
   products: Product[] | undefined;
   isLoading?: boolean;
   error?: FetchBaseQueryError | SerializedError;
+  colNum?: number
 };
 
-const IllustrationsSectionGrid = ({ products, isLoading, error }: Props) => {
+const IllustrationsSectionGrid = ({ products, isLoading, error, colNum }: Props) => {
   return (
     <div className=" flex flex-col items-center justify-center rounded-xl bg-moon-dust px-2 py-16 shadow-hero dark:bg-angel-space md:px-24 lg:px-16 xl:px-10 2xl:px-24  ">
       <div className="mb-8 flex w-1/2 flex-col items-center">
@@ -29,7 +30,7 @@ const IllustrationsSectionGrid = ({ products, isLoading, error }: Props) => {
         </strong>
       </div>
 
-      <div className=" grid grid-cols-1 gap-16 lg:grid-cols-2 xl:grid-cols-4 mb-16">
+      <div className={` mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2 ${colNum ? `xl:grid-cols-${colNum}` : 'xl:grid-cols-3'}`}>
         {isLoading ? (
           <Spinner />
         ) : error ? (
@@ -38,13 +39,21 @@ const IllustrationsSectionGrid = ({ products, isLoading, error }: Props) => {
           products &&
           products.map((product, index) => (
             <Link key={index} to={`/illustrations/${product.slug}`}>
-              <img src={product.images[0]} />
+              <div className=" relative ">
+                <div className="absolute flex justify-center items-center h-full w-full transform bg-black text-ivory font-montserrat text-xl bg-opacity-0 hover:bg-opacity-60 text-opacity-0 hover:text-opacity-100 transition duration-500">
+                  {product.name}
+                </div>
+                <img src={product.images[0]} className=" aspect-square object-cover  "/>
+              </div>
             </Link>
           ))
         )}
-
       </div>
-<Button text={`About ${products && products[0].categories[0].name}`} color={"red"} link={`/projects/${products && products[0].categories[0].slug}`} />
+      <Button
+        text={`About ${products && products[0].categories[0].name}`}
+        color={"red"}
+        link={`/projects/${products && products[0].categories[0].slug}`}
+      />
     </div>
   );
 };

@@ -168,7 +168,7 @@ const HomePage = () => {
         )} */}
       </div>
 
-      <IllustrationsSectionGrid products={neoSlavicProducts} />
+      <IllustrationsSectionGrid products={neoSlavicProducts} colNum={4} />
 
 
       <ProductsSectionGrid products={neoSlavicProducts} isLoading={isLoadingNeoSlavic} error={errorNeoSlavic}/>
