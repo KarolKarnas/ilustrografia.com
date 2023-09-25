@@ -11,13 +11,13 @@ const updateTheme = (newState: string) => {
 };
 
 const initialState =
-JSON.parse(localStorage.theme) === "dark"
+localStorage.theme && JSON.parse(localStorage.theme) === "dark"
     ? "dark"
-    : JSON.parse(localStorage.theme) === "light"
+    : localStorage.theme && JSON.parse(localStorage.theme) === "light"
     ? "light"
     : window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
-    : "light";
+    : "light"
 
 updateTheme(initialState);
 

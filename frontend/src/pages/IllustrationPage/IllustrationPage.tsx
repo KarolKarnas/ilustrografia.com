@@ -1,12 +1,16 @@
 import { useParams } from "react-router-dom";
 import _ from "lodash";
-import { useGetProductDetailsQuery } from "../../slices/productsApiSlice";
+import { useGetProductDetailsQuery, useGetProductsByCategoryQuery } from "../../slices/productsApiSlice";
 import Spinner from "../../components/Spinner";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 import YouTubeEmbed from "../../components/YouTubeEmbed";
 import ProductVariations from "../../components/ProductVariations";
 import { Product } from "../../types/Product";
+import ProductSectionGrid from "../../components/ProductSectionGrid";
+import ProductsSectionGrid from "../../components/ProductsSectionGrid";
+
+import IllustrationsSectionGrid from "../../components/IllustrationsSectionGrid";
 
 const IllustrationPage = () => {
   const params = useParams();
@@ -22,17 +26,27 @@ const IllustrationPage = () => {
     error,
   } = useGetProductDetailsQuery(slug);
 
-  // console.log(product?.variations)
+  console.log(product?.categories[0].slug)
+  const {
+    data: categoryProducts,
+    isLoading: isLoadingCategory,
+    error: errorCategory,
+  } = useGetProductsByCategoryQuery(`${product?.categories[0].slug}`);
+
+  console.log(categoryProducts)
+
 
   if (!product) {
     return <Spinner />;
   }
 
-  const materialValues = _.uniq(_.map(product?.variations, "options.material"));
-  console.log(materialValues);
+  const materialValues: string[] = _.uniq(_.map(product?.variations, "options.material"));
+  // console.log(materialValues);
 
-  const sizeValues = _.uniq(_.map(product?.variations, "options.size"));
-  console.log(sizeValues);
+
+
+  const sizeValues: string[] = _.uniq(_.map(product?.variations, "options.size"));
+  // console.log(sizeValues);
 
   const getSizesForMaterialFromProduct = (
     product: Product,
@@ -55,7 +69,7 @@ const IllustrationPage = () => {
     );
   });
 
-  console.log(sizesByMaterial);
+  // console.log(sizesByMaterial);
 
   return isLoading ? (
     <Spinner />
@@ -93,19 +107,11 @@ const IllustrationPage = () => {
           </p>
         </div>
       </div>
-      <div className=" flex flex-col items-center justify-center rounded-xl bg-cool-pink px-8  py-16 dark:bg-dark-red  ">
-        <div className=" grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 ">
-          {materialValues.map((material, index) => (
-            <ProductVariations
-              key={index}
-              product={product}
-              material={material}
-              size={sizesByMaterial[material][0]}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
+<ProductSectionGrid product={product} materialValues={materialValues} sizesByMaterial={sizesByMaterial}/>
+
+{categoryProducts && <IllustrationsSectionGrid products={categoryProducts}/> }
+
+   </div>
   );
 };
 export default IllustrationPage;

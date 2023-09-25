@@ -8,8 +8,6 @@ const ThemeSwitcher = () => {
   const activeTheme = useAppSelector((state) => state.theme);
   const dispatch = useAppDispatch();
 
-  console.log(activeTheme)
-
   return (
     <>
       <div

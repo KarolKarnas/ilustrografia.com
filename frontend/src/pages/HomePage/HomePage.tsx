@@ -14,6 +14,7 @@ import { useGetNeoSlavicQuery } from "../../slices/ytApiSlice";
 import LatestVideos from "../../components/LatestVideos";
 import Message from "../../components/Message";
 import ProductVariations from "../../components/ProductVariations";
+import ProductsSectionGrid from "../../components/ProductsSectionGrid";
 
 const useMouseMove = (onMouseMove: (event: MouseEvent) => void) => {
   useEffect(() => {
@@ -32,6 +33,11 @@ const HomePage = () => {
     isLoading: isLoadingNeoSlavic,
     error: errorNeoSlavic,
   } = useGetProductsByCategoryQuery("neo-slavic-census");
+  const {
+    data: fantasyProducts,
+    isLoading: isLoadingFantasy,
+    error: errorFantasy,
+  } = useGetProductsByCategoryQuery("fantasy-illustrations");
 
   console.log(neoSlavicProducts);
 
@@ -63,40 +69,13 @@ const HomePage = () => {
     <div>{getError(error as ApiError)}</div>
   ) : (
     <div className="my-10 flex w-full flex-col gap-y-20 p-2 md:w-11/12">
-      {/* Neo-slavic grid */}
-      <div className=" flex flex-col items-center justify-center rounded-xl bg-moon-dust px-2 py-16 shadow-hero dark:bg-angel-space md:px-24 lg:px-16 xl:px-10 2xl:px-36  ">
-        <div className="mb-8 flex w-1/2 flex-col items-center">
-          <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-magic drop-shadow-lg">
-            · Ilustrografia ·
-          </span>
-          <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
-            Neo-slavic census
-          </h3>
-          <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
-            Step into a world of art and enchantment with Ilustrografia
-          </span>
-          <strong className="text-center font-cormorant-infant text-2xl font-semibold italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
-            Discover the enchantment. Explore our prints today
-          </strong>
-        </div>
 
-        <div className=" grid grid-cols-1 gap-16 lg:grid-cols-2 xl:grid-cols-3 ">
-          {isLoadingNeoSlavic ? (
-            <Spinner />
-          ) : errorNeoSlavic ? (
-            <div>{getError(errorNeoSlavic as ApiError)}</div>
-          ) : (
-            neoSlavicProducts &&
-            neoSlavicProducts.map((product: Product) => (
-              <ProductVariations key={product._id} product={product} />
-            ))
-          )}
-        </div>
-      </div>
+
+      <ProductsSectionGrid products={neoSlavicProducts} isLoading={isLoadingNeoSlavic} error={errorNeoSlavic}/>
+
+      <ProductsSectionGrid products={fantasyProducts} isLoading={isLoadingNeoSlavic} error={errorNeoSlavic}/>
       
-
-
-      
+     
       <div
         className=" mt-5 flex
        h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat shadow-hero md:h-192"
@@ -116,7 +95,7 @@ const HomePage = () => {
             <SocialLinks />
           </div>
         </div>
-      </div>
+      P</div>
       <div className="flex">
         <div className="w-1/4">
           <img
