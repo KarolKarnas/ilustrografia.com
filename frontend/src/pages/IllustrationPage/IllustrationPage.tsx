@@ -5,13 +5,11 @@ import Spinner from "../../components/Spinner";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 import YouTubeEmbed from "../../components/YouTubeEmbed";
-import ProductVariations from "../../components/ProductVariations";
+
 import { Product } from "../../types/Product";
-import ProductSectionGrid from "../../components/ProductSectionGrid";
-import ProductsSectionGrid from "../../components/ProductsSectionGrid";
+
 import ProductGrid from "../../components/ProductGrid";
 
-import IllustrationsSectionGrid from "../../components/IllustrationsSectionGrid";
 import SectionMain from "../../components/SectionMain";
 import SectionMainTitles from "../../components/SectionMainTitles";
 import IllustrationsGrid from "../../components/IllustrationsGrid";
@@ -119,8 +117,6 @@ const IllustrationPage = () => {
 
 </SectionMain>
 
-{/* <ProductSectionGrid product={product} materialValues={materialValues} sizesByMaterial={sizesByMaterial}/> */}
-
 
 <SectionMain color="second">
         <SectionMainTitles
@@ -144,7 +140,6 @@ const IllustrationPage = () => {
         />
       </SectionMain>
 
-{/* {categoryProducts && <IllustrationsSectionGrid products={categoryProducts}/> } */}
 
    </div>
   );

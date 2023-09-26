@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGetProductsQuery } from '../../slices/productsApiSlice';
 import { Product } from '../../types/Product';
-import IllustrationsSectionGrid from '../../components/IllustrationsSectionGrid';
+
 
 const Filter = () => {
 	const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);

@@ -9,7 +9,7 @@ import { Product } from "../../types/Product";
 import ProductVariations from "../../components/ProductVariations";
 import { useSearchParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";
-import ProductsSectionGrid from "../../components/ProductsSectionGrid";
+
 
 const ShopPage = () => {
   const [productsFiltered, setProductsFiltered] = useState<Product[] | null>(

@@ -4,8 +4,7 @@ import {
   useGetProductsByCategoryQuery,
   useGetProductsQuery,
 } from "../../slices/productsApiSlice";
-import { Product } from "../../types/Product";
-import ProductMain from "../../components/ProductMain";
+
 import Spinner from "../../components/Spinner";
 import SocialLinks from "../../components/SocialLinks";
 import Button from "../../components/Button";
@@ -13,11 +12,8 @@ import { useEffect } from "react";
 import { useGetNeoSlavicQuery } from "../../slices/ytApiSlice";
 import LatestVideos from "../../components/LatestVideos";
 import Message from "../../components/Message";
-import ProductVariations from "../../components/ProductVariations";
-import ProductsSectionGrid from "../../components/ProductsSectionGrid";
-import IllustrationsSectionGrid from "../../components/IllustrationsSectionGrid";
+
 import SectionMain from "../../components/SectionMain";
-import { Link } from "react-router-dom";
 import SectionMainTitles from "../../components/SectionMainTitles";
 import IllustrationsGrid from "../../components/IllustrationsGrid";
 import ProductsGrid from "../../components/ProductsGrid";
