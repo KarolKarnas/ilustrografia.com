@@ -16,6 +16,11 @@ import Message from "../../components/Message";
 import ProductVariations from "../../components/ProductVariations";
 import ProductsSectionGrid from "../../components/ProductsSectionGrid";
 import IllustrationsSectionGrid from "../../components/IllustrationsSectionGrid";
+import SectionMain from "../../components/SectionMain";
+import { Link } from "react-router-dom";
+import SectionMainTitles from "../../components/SectionMainTitles";
+import IllustrationsGrid from "../../components/IllustrationsGrid";
+import ProductsGrid from "../../components/ProductsGrid";
 
 const useMouseMove = (onMouseMove: (event: MouseEvent) => void) => {
   useEffect(() => {
@@ -89,7 +94,7 @@ const HomePage = () => {
             <SocialLinks />
           </div>
         </div>
-        P
+        P S
       </div>
       <div className="flex">
         <div className="w-1/4">
@@ -139,7 +144,7 @@ const HomePage = () => {
             · Ilustrografia ·
           </span>
           <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
-            Our newest animations!
+            Our latest animations!
           </h3>
           {/* <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
             Our latest creative wonders are now live on YouTube, waiting to
@@ -168,60 +173,53 @@ const HomePage = () => {
         )}
       </div>
 
-      <IllustrationsSectionGrid
-        products={neoSlavicProducts}
-        aspectRatio="4/5"
-      />
+      <SectionMain>
+        <SectionMainTitles
+          heading={`${
+            neoSlavicProducts && neoSlavicProducts[0].categories[0].name
+          } Products`}
+          main={
+            "   Step into a world of art and enchantment with Ilustrografia"
+          }
+          strong={`Discover the enchantment. Explore our prints today:`}
+        />
+        <ProductsGrid products={neoSlavicProducts} hideVariations={false} />
+      </SectionMain>
 
-      <ProductsSectionGrid
+      <SectionMain color="second">
+        <SectionMainTitles
+          heading={fantasyProducts && fantasyProducts[0].categories[0].name}
+          main={
+            "   Step into a world of art and enchantment with Ilustrografia"
+          }
+          strong=" Illustrations and Stories:"
+        />
+
+        <IllustrationsGrid products={fantasyProducts} colNum={3} />
+
+        <Button
+          text={`About ${
+            fantasyProducts && fantasyProducts[0].categories[0].name
+          }`}
+          color={"black"}
+          link={`/projects/${
+            fantasyProducts && fantasyProducts[0].categories[0].slug
+          }`}
+        />
+      </SectionMain>
+
+      {/* <ProductsSectionGrid
         products={neoSlavicProducts}
         isLoading={isLoadingNeoSlavic}
         error={errorNeoSlavic}
-        
       />
 
       <ProductsSectionGrid
         products={fantasyProducts}
         isLoading={isLoadingNeoSlavic}
         error={errorNeoSlavic}
-      />
-
-      {/* Product grid */}
+      /> */}
     </div>
   );
 };
 export default HomePage;
-
-// <div className=" flex flex-col items-center justify-center rounded-xl bg-moon-dust px-2 py-16 shadow-hero dark:bg-angel-space md:px-24 lg:px-16 xl:px-10 2xl:px-36  ">
-// <div className="mb-8 flex w-1/2 flex-col items-center">
-//   <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-magic drop-shadow-lg">
-//     · Ilustrografia ·
-//   </span>
-//   <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
-//     Explore Our Enchanting Prints!
-//   </h3>
-//   <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
-//     Step into a world of art and enchantment with Ilustrografia&apos;s
-//     unique prints. Each one is more than just an image; it&apos;s a
-//     gateway to a realm of imagination and wonder. From Basilisks to
-//     Spring Nymphs and Forest Bobos, our prints add a touch of magic to
-//     your everyday life. Hang them on your walls and unlock extraordinary
-//     abilities. Crush walnuts effortlessly, master local topography, or
-//     even disrupt picnics with mischievous charm. Our prints aren&apos;t
-//     just art; they&apos;re keys to new experiences. Choose from our
-//     premium Fine Art Prints (Giclée), textured Canvas prints, or
-//     eco-friendly Poster prints. Whichever you select, you&apos;re
-//     investing in perfection that will last for generations.
-//   </span>
-//   <strong className="text-center font-cormorant-infant text-2xl font-semibold italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
-//     Discover the enchantment. Explore our prints today
-//   </strong>
-// </div>
-
-// <div className=" grid grid-cols-1 gap-16 lg:grid-cols-2 xl:grid-cols-3 ">
-//   {products &&
-//     products.map((product: Product) => (
-//       <ProductVariations key={product._id} product={product} />
-//     ))}
-// </div>
-// </div>

@@ -9,8 +9,13 @@ import ProductVariations from "../../components/ProductVariations";
 import { Product } from "../../types/Product";
 import ProductSectionGrid from "../../components/ProductSectionGrid";
 import ProductsSectionGrid from "../../components/ProductsSectionGrid";
+import ProductGrid from "../../components/ProductGrid";
 
 import IllustrationsSectionGrid from "../../components/IllustrationsSectionGrid";
+import SectionMain from "../../components/SectionMain";
+import SectionMainTitles from "../../components/SectionMainTitles";
+import IllustrationsGrid from "../../components/IllustrationsGrid";
+import Button from "../../components/Button";
 
 const IllustrationPage = () => {
   const params = useParams();
@@ -26,14 +31,14 @@ const IllustrationPage = () => {
     error,
   } = useGetProductDetailsQuery(slug);
 
-  console.log(product?.categories[0].slug)
+  // console.log(product?.categories[0].slug)
   const {
     data: categoryProducts,
     isLoading: isLoadingCategory,
     error: errorCategory,
   } = useGetProductsByCategoryQuery(`${product?.categories[0].slug}`);
 
-  console.log(categoryProducts)
+  // console.log(categoryProducts)
 
 
   if (!product) {
@@ -107,9 +112,39 @@ const IllustrationPage = () => {
           </p>
         </div>
       </div>
-<ProductSectionGrid product={product} materialValues={materialValues} sizesByMaterial={sizesByMaterial}/>
 
-{categoryProducts && <IllustrationsSectionGrid products={categoryProducts}/> }
+<SectionMain >
+
+<ProductGrid product={product} materialValues={materialValues} sizesByMaterial={sizesByMaterial} />
+
+</SectionMain>
+
+{/* <ProductSectionGrid product={product} materialValues={materialValues} sizesByMaterial={sizesByMaterial}/> */}
+
+
+<SectionMain color="second">
+        <SectionMainTitles
+          heading={categoryProducts && categoryProducts[0].categories[0].name}
+          main={
+            "   Step into a world of art and enchantment with Ilustrografia"
+          }
+          strong=" Illustrations and Stories:"
+        />
+
+        <IllustrationsGrid products={categoryProducts} />
+
+        <Button
+          text={`About ${
+            categoryProducts && categoryProducts[0].categories[0].name
+          }`}
+          color={"black"}
+          link={`/projects/${
+            categoryProducts && categoryProducts[0].categories[0].slug
+          }`}
+        />
+      </SectionMain>
+
+{/* {categoryProducts && <IllustrationsSectionGrid products={categoryProducts}/> } */}
 
    </div>
   );

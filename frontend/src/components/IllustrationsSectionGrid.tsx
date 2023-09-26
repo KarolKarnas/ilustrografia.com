@@ -23,7 +23,7 @@ const IllustrationsSectionGrid = ({
   colNum,
   aspectRatio,
 }: Props) => {
-  console.log(products);
+
 
 
   
@@ -31,7 +31,7 @@ const IllustrationsSectionGrid = ({
     <div className=" flex flex-col items-center justify-center rounded-xl bg-moon-dust px-2 py-16 shadow-hero dark:bg-angel-space md:px-24 lg:px-16 xl:px-10 2xl:px-24  ">
       <div className="mb-8 flex w-1/2 flex-col items-center">
         <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-5xl ">
-          {products && products[0].categories[0].name}
+          {products?.[0]?.categories?.[0]?.name}
         </h3>
         {/* <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
           Step into a world of art and enchantment with Ilustrografia
@@ -70,9 +70,9 @@ const IllustrationsSectionGrid = ({
         )}
       </div>
       <Button
-        text={`About ${products && products[0].categories[0].name}`}
+        text={`About ${products?.[0]?.categories?.[0]?.name}`}
         color={"black"}
-        link={`/projects/${products && products[0].categories[0].slug}`}
+        link={`/projects/${products?.[0]?.categories?.[0]?.name}`}
       />
     </div>
   );
