@@ -20,9 +20,10 @@ type Props = {
   variationNum?: number;
   material?: string;
   size?: string;
+  hideVariations?: boolean;
 };
 
-const ProductPage = ({ product, variationNum, material, size }: Props) => {
+const ProductPage = ({ product, variationNum, material, size, hideVariations }: Props) => {
   const dispatch = useAppDispatch();
   const [url, setUrl] = useState<string>(`/shop/${product.slug}`);
 
@@ -192,8 +193,8 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
 
   if (variation) {
     return (
-      <div className="shadow-small-hero flex flex-col items-center justify-center rounded-xl bg-ivory dark:bg-fair-space hover:scale-110 hover:translate-y-[-1rem] transition-transform duration-500">
-        <div className="relative h-full w-full">
+      <div className="flex flex-col items-center justify-center rounded-xl bg-ivory shadow-small-hero transition-transform duration-500 hover:translate-y-[-1rem] hover:scale-110 dark:bg-fair-space">
+        <div className={`${hideVariations ? 'hidden' : 'relative  h-full w-full' } `}>
           <div className="absolute top-5 flex w-full flex-col items-center justify-center">
             <h1 className=" font-cormorant-infant text-xl font-semibold italic drop-shadow-md">
               {product.name}{" "}
@@ -221,7 +222,7 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
         <div className="w-full">
           <Link to={url}>
             <img
-              className=" rounded-t-lg"
+              className= {`${hideVariations ? 'rounded-lg' : 'rounded-t-lg' } `}
               src={
                 variation &&
                 product.options.material[
@@ -235,7 +236,7 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
 
         {/* SIZES */}
 
-        <div className="relative h-full w-full">
+        <div className={`${hideVariations ? 'hidden' : 'relative  h-full w-full' } `}>
           <div className="absolute bottom-2 flex w-full flex-col items-center justify-center gap-y-2">
             <div className="flex gap-1">
               {sizesByMaterialTitle[variation.options.material].map(
@@ -250,7 +251,7 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
                       ].title
                         ? "border-red-magic bg-red-magic bg-opacity-90 text-white shadow-sm "
                         : ""
-                    }font-light hover:border-red-magic hover:bg-red-magic border border-black p-0.5 md:p-1 text-xs transition hover:bg-opacity-70 hover:text-white`}
+                    }font-light border border-black p-0.5 text-xs transition hover:border-red-magic hover:bg-red-magic hover:bg-opacity-70 hover:text-white md:p-1`}
                   >
                     {option}
                   </button>
@@ -271,7 +272,7 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
                       ].title
                         ? "border-red-magic bg-red-magic bg-opacity-90 text-white shadow-sm "
                         : ""
-                    }font-light hover:border-red-magic hover:bg-red-magic border border-black p-0.5 md:p-1 text-xs transition hover:bg-opacity-70 hover:text-white`}
+                    }font-light border border-black p-0.5 text-xs transition hover:border-red-magic hover:bg-red-magic hover:bg-opacity-70 hover:text-white md:p-1`}
                   >
                     {option}
                   </button>
@@ -281,7 +282,7 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
           </div>
         </div>
 
-        <div className="w-full pb-5 pt-2">
+        <div className={`${hideVariations ? 'hidden' : 'w-full pb-5 pt-2'}`}>
           <div className="flex w-full flex-col items-center justify-center gap-1">
             <div className=" font-montserrat">
               <span className="mr-2 text-xs  uppercase">Price:</span>
@@ -295,7 +296,7 @@ const ProductPage = ({ product, variationNum, material, size }: Props) => {
               className={`${
                 variation?.countInStock === 0
                   ? "bg-zinc-100 text-zinc-300"
-                  : "bg-black-magic hover:bg-red-magic text-ivory"
+                  : "bg-black-magic text-ivory hover:bg-red-magic"
               }   px-16  py-2 text-xs font-semibold uppercase transition-colors duration-300`}
               disabled={variation?.countInStock === 0}
             >

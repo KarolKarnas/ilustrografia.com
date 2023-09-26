@@ -177,6 +177,7 @@ const HomePage = () => {
         products={neoSlavicProducts}
         isLoading={isLoadingNeoSlavic}
         error={errorNeoSlavic}
+        
       />
 
       <ProductsSectionGrid

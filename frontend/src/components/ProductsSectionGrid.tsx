@@ -41,7 +41,7 @@ const ProductsSectionGrid = ({ products, isLoading, error }: Props) => {
         ) : (
           products &&
           products.map((product: Product) => (
-            <ProductVariations key={product._id} product={product}  />
+            <ProductVariations key={product._id} product={product} hideVariations={false}  />
           ))
         )}
       </div>
