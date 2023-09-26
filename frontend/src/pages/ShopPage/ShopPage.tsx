@@ -9,6 +9,7 @@ import { Product } from "../../types/Product";
 import ProductVariations from "../../components/ProductVariations";
 import { useSearchParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";
+import ProductsGrid from "../../components/ProductsGrid";
 
 
 const ShopPage = () => {
@@ -53,10 +54,10 @@ const ShopPage = () => {
   ) : error ? (
     <div>{getError(error as ApiError)}</div>
   ) : (
-    <div>
+    <div className="px-24">
       <h1 className="mt-5 text-center text-3xl font-bold">SHOP</h1>
 
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <div className="w-2/12 p-2">
           <h3 className="font-fondamento text-lg font-semibold">Categories</h3>
           <RadioGroup.Root
@@ -109,8 +110,9 @@ const ShopPage = () => {
         </div>
         <div className="w-10/12">
 
+        <ProductsGrid products={productsFiltered || products} hideVariations={false} />
         {/* {productsFiltered && <ProductsSectionGrid products={productsFiltered}/>} */}
-          <div className="grid grid-cols-1 dark:bg-slate-600 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {/* <div className="grid grid-cols-1 dark:bg-slate-600 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {productsFiltered
               ? productsFiltered?.map((product: Product) => (
                   <ProductVariations key={product._id} product={product} />
@@ -118,40 +120,12 @@ const ShopPage = () => {
               : products?.map((product: Product) => (
                   <ProductVariations key={product._id} product={product} />
                 ))}
-          </div>
+          </div> */}
+
+
         </div>
       </div>
     </div>
   );
 };
 export default ShopPage;
-
-{
-  /* <div className='flex'>
-				{' '}
-				{products &&
-					products.map((product: Product) => (
-						<div key={product._id}>
-							{product.variations.map((variation, index) => (
-								<div key={index}>
-									<ShopVariation
-										variation={variation}
-										images={product.images}
-										variationImage={
-											product.options.material[
-												variation.options.material as keyof MaterialOptionNoName
-											]
-										}
-									/>
-								</div>
-							))}
-						</div>
-					))}
-			</div> */
-}
-
-{
-  /* <button className='font-light text-sm border border-black px-6 py-2 hover:border-red-magic hover:bg-red-200 hover:text-white' onClick={handleResetCategories}>
-Reset
-</button> */
-}

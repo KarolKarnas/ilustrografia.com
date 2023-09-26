@@ -9,7 +9,7 @@ import ProductVariations from "./ProductVariations";
 
 
 type Props = {
-  products: Product[] | undefined;
+  products: Product[] | undefined | null;
   isLoading?: boolean;
   error?: FetchBaseQueryError | SerializedError;
   colNum?: number;

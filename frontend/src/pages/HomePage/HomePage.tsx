@@ -41,8 +41,6 @@ const HomePage = () => {
     error: errorFantasy,
   } = useGetProductsByCategoryQuery("fantasy-illustrations");
 
-  console.log(neoSlavicProducts);
-
   const {
     data: ytSearch,
     isLoading: ytSearchLoading,
@@ -168,15 +166,36 @@ const HomePage = () => {
           ytSearch && <LatestVideos youtubeItems={ytSearch.items} />
         )}
       </div>
+      {/* Neo Slavic Illustration */}
+      <SectionMain color="second">
+        <SectionMainTitles
+          heading={neoSlavicProducts && neoSlavicProducts[0].categories[0].name}
+          main={
+            "   Step into a world of art and enchantment with Ilustrografia"
+          }
+          strong=" Illustrations and Stories:"
+        />
 
+        <IllustrationsGrid products={neoSlavicProducts} colNum={4} />
+
+        <Button
+          text={`About ${
+            neoSlavicProducts && neoSlavicProducts[0].categories[0].name
+          }`}
+          color={"black"}
+          link={`/projects/${
+            neoSlavicProducts && neoSlavicProducts[0].categories[0].slug
+          }`}
+        />
+      </SectionMain>
+
+      {/* Neo Slavic Project */}
       <SectionMain>
         <SectionMainTitles
           heading={`${
             neoSlavicProducts && neoSlavicProducts[0].categories[0].name
           } Products`}
-          main={
-            "   Step into a world of art and enchantment with Ilustrografia"
-          }
+          main={`A unique illustrated guide that will introduce you to completely forgotten or hitherto completely unknown inhabitants of our Slavic lands. You could say it's something like a bestiary, but some of the personalities included in this List would strongly object to being called "beasts.`}
           strong={`Discover the enchantment. Explore our prints today:`}
         />
         <ProductsGrid products={neoSlavicProducts} hideVariations={false} />
