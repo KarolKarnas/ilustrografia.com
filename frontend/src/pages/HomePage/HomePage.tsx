@@ -70,7 +70,6 @@ const HomePage = () => {
     <div>{getError(error as ApiError)}</div>
   ) : (
     <div className="my-10 flex w-full flex-col gap-y-20 p-2 md:w-11/12">
-
       <div
         className=" mt-5 flex
        h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat shadow-hero md:h-192"
@@ -90,7 +89,8 @@ const HomePage = () => {
             <SocialLinks />
           </div>
         </div>
-      P</div>
+        P
+      </div>
       <div className="flex">
         <div className="w-1/4">
           <img
@@ -155,7 +155,7 @@ const HomePage = () => {
           </strong>
         </div>
 
-        {/* {ytSearchLoading ? (
+        {ytSearchLoading ? (
           <Spinner />
         ) : ytSearchError ? (
           <Message
@@ -165,24 +165,31 @@ const HomePage = () => {
           />
         ) : (
           ytSearch && <LatestVideos youtubeItems={ytSearch.items} />
-        )} */}
+        )}
       </div>
 
-      <IllustrationsSectionGrid products={neoSlavicProducts} colNum={4} />
+      <IllustrationsSectionGrid
+        products={neoSlavicProducts}
+        aspectRatio="4/5"
+      />
 
+      <ProductsSectionGrid
+        products={neoSlavicProducts}
+        isLoading={isLoadingNeoSlavic}
+        error={errorNeoSlavic}
+      />
 
-      <ProductsSectionGrid products={neoSlavicProducts} isLoading={isLoadingNeoSlavic} error={errorNeoSlavic}/>
-
-      <ProductsSectionGrid products={fantasyProducts} isLoading={isLoadingNeoSlavic} error={errorNeoSlavic}/>
+      <ProductsSectionGrid
+        products={fantasyProducts}
+        isLoading={isLoadingNeoSlavic}
+        error={errorNeoSlavic}
+      />
 
       {/* Product grid */}
-
-
     </div>
   );
 };
 export default HomePage;
-
 
 // <div className=" flex flex-col items-center justify-center rounded-xl bg-moon-dust px-2 py-16 shadow-hero dark:bg-angel-space md:px-24 lg:px-16 xl:px-10 2xl:px-36  ">
 // <div className="mb-8 flex w-1/2 flex-col items-center">

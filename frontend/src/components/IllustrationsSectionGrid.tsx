@@ -12,12 +12,21 @@ type Props = {
   products: Product[] | undefined;
   isLoading?: boolean;
   error?: FetchBaseQueryError | SerializedError;
-  colNum?: number
+  colNum?: number;
+  aspectRatio?: string;
 };
 
-const IllustrationsSectionGrid = ({ products, isLoading, error, colNum }: Props) => {
+const IllustrationsSectionGrid = ({
+  products,
+  isLoading,
+  error,
+  colNum,
+  aspectRatio,
+}: Props) => {
+  console.log(products);
 
-  console.log(products)
+
+  
   return (
     <div className=" flex flex-col items-center justify-center rounded-xl bg-moon-dust px-2 py-16 shadow-hero dark:bg-angel-space md:px-24 lg:px-16 xl:px-10 2xl:px-24  ">
       <div className="mb-8 flex w-1/2 flex-col items-center">
@@ -32,7 +41,11 @@ const IllustrationsSectionGrid = ({ products, isLoading, error, colNum }: Props)
         </strong>
       </div>
 
-      <div className={` mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2 ${colNum ? `xl:grid-cols-${colNum}` : 'xl:grid-cols-3'}`}>
+      <div
+        className={`${
+          colNum === 3 ? "xl:grid-cols-3" : colNum === 5 ? "xl:grid-cols-5" : "xl:grid-cols-4"
+        } mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2 `}
+      >
         {isLoading ? (
           <Spinner />
         ) : error ? (
@@ -42,10 +55,15 @@ const IllustrationsSectionGrid = ({ products, isLoading, error, colNum }: Props)
           products.map((product, index) => (
             <Link key={index} to={`/illustrations/${product.slug}`}>
               <div className=" relative ">
-                <div className="absolute flex justify-center items-center h-full w-full transform bg-black text-ivory font-montserrat text-xl bg-opacity-0 hover:bg-opacity-60 text-opacity-0 hover:text-opacity-100 transition duration-500">
+                <div className="absolute flex h-full w-full transform items-center justify-center bg-black bg-opacity-0 font-montserrat text-xl text-ivory text-opacity-0 transition duration-500 hover:bg-opacity-60 hover:text-opacity-100">
                   {product.name}
                 </div>
-                <img src={product.images[0]} className=" aspect-square object-cover  "/>
+                <img
+                  src={product.images[0]}
+                  className={`${
+                    aspectRatio === '4/5' ? `aspect-[4/5]` : "aspect-square"
+                  } object-cover`}
+                />
               </div>
             </Link>
           ))
@@ -53,7 +71,7 @@ const IllustrationsSectionGrid = ({ products, isLoading, error, colNum }: Props)
       </div>
       <Button
         text={`About ${products && products[0].categories[0].name}`}
-        color={"red"}
+        color={"black"}
         link={`/projects/${products && products[0].categories[0].slug}`}
       />
     </div>
