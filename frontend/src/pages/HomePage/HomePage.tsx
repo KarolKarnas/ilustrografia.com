@@ -18,16 +18,7 @@ import SectionMainTitles from "../../components/SectionMainTitles";
 import IllustrationsGrid from "../../components/IllustrationsGrid";
 import ProductsGrid from "../../components/ProductsGrid";
 import IconDivider from "../../components/IconDivider";
-
-const useMouseMove = (onMouseMove: (event: MouseEvent) => void) => {
-  useEffect(() => {
-    document.addEventListener("mousemove", onMouseMove);
-
-    return () => {
-      document.removeEventListener("mousemove", onMouseMove);
-    };
-  }, [onMouseMove]);
-};
+import ImageMouseMoving from "../../components/ImageMouseMoving";
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
@@ -48,34 +39,15 @@ const HomePage = () => {
     error: ytSearchError,
   } = useGetNeoSlavicQuery(3);
 
-  useMouseMove((e) => {
-    const magic = document.getElementById("magic");
-    const brush = document.getElementById("brush");
-
-    if (magic) {
-      magic.style.transform = `translateX(${
-        (e.clientX - 1000) / 4
-      }px) translateY(${(e.clientY - 200) / 4}px)`;
-    }
-    if (brush) {
-      brush.style.transform = `translateX(${
-        (e.clientX - 700) / -6
-      }px) translateY(${(e.clientY - 400) / -10}px)`;
-    }
-  });
-
   return isLoading ? (
     <Spinner />
   ) : error ? (
     <div>{getError(error as ApiError)}</div>
   ) : (
     <div className="my-10 flex w-full flex-col gap-y-20 p-2 md:w-11/12">
-
-
-
       <div
-        className=" mt-5 flex
-       h-screen flex-col items-center justify-center  rounded-3xl bg-hero bg-cover bg-center bg-no-repeat shadow-hero md:h-192"
+        className=" bg-hero mt-5
+       flex h-screen flex-col items-center  justify-center rounded-3xl bg-cover bg-center bg-no-repeat shadow-hero md:h-192"
       >
         <div className=" flex flex-col items-center justify-center  p-2">
           <span className=" md:text-md text-center  font-montserrat text-xs font-semibold uppercase tracking-hero text-red-magic drop-shadow-hero">
@@ -93,16 +65,12 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+
       <div className="flex">
-        <div className="w-1/4">
-          <img
-            id="magic"
-            className=" dark:invert-90 "
-            src="/images/addons/magic.png"
-            alt="magic energy"
-          />
+        <div className="hidden md:block w-1/4">
+          <ImageMouseMoving id={"magic"} src={"/images/addons/magic.png"} />
         </div>
-        <div className="flex w-2/4 flex-col items-center justify-center">
+        <div className="flex w-full flex-col items-center justify-center px-2 md:w-2/4">
           <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-magic drop-shadow-lg">
             · Ilustrografia ·
           </span>
@@ -125,15 +93,15 @@ const HomePage = () => {
             Will you muster the courage to venture with us?
           </strong>
         </div>
-        <div className="w-1/4">
-          <img
-            id="brush"
-            className=" dark:invert-90"
-            src="/images/addons/brush.png"
-            alt="brush with paint dots"
+        <div className="hidden md:block w-1/4">
+          <ImageMouseMoving
+            id={"brush"}
+            src={"/images/addons/brush.png"}
+            reverse={true}
           />
         </div>
       </div>
+
       {/* Latest animations */}
       <div className="my-3 flex flex-col items-center  rounded-xl bg-moon-dust px-16 pb-32 pt-16 shadow-hero dark:bg-zinc-800">
         <div className="mb-8 flex w-1/2 flex-col items-center">
