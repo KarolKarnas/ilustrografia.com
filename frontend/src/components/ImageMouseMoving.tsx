@@ -1,12 +1,16 @@
 import { useMouseMove } from "../hooks/componentHooks";
+import { v4 as uuidv4 } from 'uuid';
+
 
 type Props = {
-  id: string;
+ 
   src: string;
   reverse?: boolean;
 };
 
-const ImageMouseMoving = ({ id, src, reverse }: Props) => {
+const ImageMouseMoving = ({ src, reverse }: Props) => {
+
+  const id = uuidv4()
   useMouseMove((e) => {
     const image = document.getElementById(id);
 
@@ -25,7 +29,7 @@ const ImageMouseMoving = ({ id, src, reverse }: Props) => {
     }
   });
   return (
-    <img id={id} className=" dark:invert-90 " src={src} alt={`magic visual element`} />
+    <img id={id} className=" dark:invert-90" src={src} alt={`magic visual element`} />
   );
 };
 export default ImageMouseMoving;

@@ -17,7 +17,7 @@ const SectionMainTitles = ({heading, main, strong, icon} : Props) => {
       <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-5xl ">
         {heading}
       </h3>
-     { icon ? <IconDivider icon={icon} /> : null}
+     {/* { icon ? <IconDivider icon={icon} /> : null} */}
 
       <span className=" mb-8 text-center text-eerie-black dark:text-ivory">
       {main}

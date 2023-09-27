@@ -17,6 +17,9 @@ export const theme = {
     backgroundImage: {
       hero: "url('../public/images/neo-slavic-creatures.jpg')",
       'neo-slavic': "url('../public/images/neo-slavic-creatures.jpg')",
+      'fantasy-illustrations': "url('../public/images/neo-slavic-creatures.jpg')",
+      // 'neo-slavic': "url('../public/images/addons/neo-slavic-census.jpg')",
+      // 'fantasy-illustrations': "url('../public/images/addons/fantasy-illustrations.jpg')",
     },
 
     colors: {
@@ -40,6 +43,7 @@ export const theme = {
     spacing: {
       128: "32rem",
       192: "48rem",
+      224: "56rem",
       256: "64rem",
     },
     boxShadow: {

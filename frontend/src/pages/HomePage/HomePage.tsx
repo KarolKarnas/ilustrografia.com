@@ -15,10 +15,18 @@ import Message from "../../components/Message";
 
 import SectionMain from "../../components/SectionMain";
 import SectionMainTitles from "../../components/SectionMainTitles";
+import MainTitlesWrapper from "../../components/MainTitlesWrapper";
 import IllustrationsGrid from "../../components/IllustrationsGrid";
 import ProductsGrid from "../../components/ProductsGrid";
 import IconDivider from "../../components/IconDivider";
 import ImageMouseMoving from "../../components/ImageMouseMoving";
+import MainHeading from "../../components/primitives/MainHeading";
+import HeadingAccent from "../../components/primitives/HeadingAccent";
+import { FaDragon, FaPaintbrush } from "react-icons/fa6";
+import { FaPaintBrush, FaShoppingBasket } from "react-icons/fa";
+import MainText from "../../components/primitives/MainText";
+import MainStrongText from "../../components/primitives/MainStrongText";
+
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
@@ -46,8 +54,8 @@ const HomePage = () => {
   ) : (
     <div className="my-10 flex w-full flex-col gap-y-20 p-2 md:w-11/12">
       <div
-        className=" bg-hero mt-5
-       flex h-screen flex-col items-center  justify-center rounded-3xl bg-cover bg-center bg-no-repeat shadow-hero md:h-192"
+        className=" md:h-196
+       flex h-screen flex-col items-center  justify-center rounded-3xl bg-hero bg-cover bg-center bg-no-repeat shadow-hero lg:h-224"
       >
         <div className=" flex flex-col items-center justify-center  p-2">
           <span className=" md:text-md text-center  font-montserrat text-xs font-semibold uppercase tracking-hero text-red-magic drop-shadow-hero">
@@ -67,8 +75,8 @@ const HomePage = () => {
       </div>
 
       <div className="flex">
-        <div className="hidden md:block w-1/4">
-          <ImageMouseMoving id={"magic"} src={"/images/addons/magic.png"} />
+        <div className="hidden w-1/4 md:flex md:justify-center md:items-center">
+          <ImageMouseMoving src={"/images/addons/magic.png"} />
         </div>
         <div className="flex w-full flex-col items-center justify-center px-2 md:w-2/4">
           <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-magic drop-shadow-lg">
@@ -93,10 +101,9 @@ const HomePage = () => {
             Will you muster the courage to venture with us?
           </strong>
         </div>
-        <div className="hidden md:block w-1/4">
+        <div className="hidden w-1/4 md:flex md:justify-center md:items-center">
           <ImageMouseMoving
-            id={"brush"}
-            src={"/images/addons/brush.png"}
+             src={"/images/addons/brush.png"}
             reverse={true}
           />
         </div>
@@ -138,17 +145,22 @@ const HomePage = () => {
         )}
       </div>
       {/* Neo Slavic Illustration */}
-      <SectionMain color="second">
-        <SectionMainTitles
-          heading={neoSlavicProducts && neoSlavicProducts[0].categories[0].name}
-          main={
-            "   Step into a world of art and enchantment with Ilustrografia"
-          }
-          strong=" Illustrations and Stories:"
-          icon="brush"
-        />
+      {/* <SectionMain color="second">
+        <MainTitlesWrapper>
+          <HeadingAccent>· Ilustrografia ·</HeadingAccent>
+          <MainHeading>
+            {neoSlavicProducts && neoSlavicProducts[0].categories[0].name}
+          </MainHeading>
+          <IconDivider>
+            <FaPaintbrush />
+          </IconDivider>
+          <MainText>
+            Step into a world of art and enchantment with Ilustrografia
+          </MainText>
+          <MainStrongText>Illustrations and Stories:</MainStrongText>
+        </MainTitlesWrapper>
 
-        <IllustrationsGrid products={neoSlavicProducts} colNum={4} />
+        <IllustrationsGrid products={neoSlavicProducts} />
 
         <Button
           text={`About ${
@@ -159,42 +171,130 @@ const HomePage = () => {
             neoSlavicProducts && neoSlavicProducts[0].categories[0].slug
           }`}
         />
-      </SectionMain>
+      </SectionMain> */}
 
       {/* Neo Slavic Project */}
       <SectionMain url="neo-slavic">
-        <SectionMainTitles
-          heading={`${
-            neoSlavicProducts && neoSlavicProducts[0].categories[0].name
-          } Products`}
-          main={`A unique illustrated guide that will introduce you to completely forgotten or hitherto completely unknown inhabitants of our Slavic lands. You could say it's something like a bestiary, but some of the personalities included in this List would strongly object to being called "beasts.`}
-          strong={`Discover the enchantment. Explore our prints today:`}
-          icon="dragon"
-        />
+        <MainTitlesWrapper>
+          <HeadingAccent>· Ilustrografia ·</HeadingAccent>
+          <MainHeading>
+            {`${neoSlavicProducts && neoSlavicProducts[0].categories[0].name}`}
+          </MainHeading>
+          <IconDivider>
+            <FaDragon />
+          </IconDivider>
+          <div className="mb-5 flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-20 py-10">
+            <MainText>
+              {`A unique illustrated guide that will introduce you to completely forgotten or hitherto completely unknown inhabitants of our Slavic lands. You could say it's something like a bestiary, but some of the personalities included in this List would strongly object to being called "beasts.`}
+            </MainText>
+
+            <Button
+              text={`About ${
+                neoSlavicProducts && neoSlavicProducts[0].categories[0].name
+              }`}
+              color={"black"}
+              link={`/projects/${
+                neoSlavicProducts && neoSlavicProducts[0].categories[0].slug
+              }`}
+            />
+          </div>
+          <MainStrongText>Illustrations and Stories:</MainStrongText>
+        </MainTitlesWrapper>
+
+        <IllustrationsGrid products={neoSlavicProducts} colNum={4} />
+
+        <MainTitlesWrapper>
+          <IconDivider>
+            <FaPaintBrush />
+          </IconDivider>
+
+          <MainStrongText>{`Explore our Neo-Slavic prints today:`}</MainStrongText>
+        </MainTitlesWrapper>
+
         <ProductsGrid products={neoSlavicProducts} hideVariations={false} />
       </SectionMain>
 
-      <SectionMain color="second">
+      <div className="flex my-16">
+        <div className="hidden w-1/4 md:flex md:justify-center md:items-center">
+          <ImageMouseMoving src={"/images/addons/quotation-mark-1.png"} />
+        </div>
+        <div className="flex w-full flex-col items-center justify-center px-2 md:w-2/4">
+          <p className=" my-2  mb-4 text-center font-cormorant-infant  font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-3xl ">
+            {`  It is important that we have some secret, some mysteries, some personal and unrecognizable element in our lives. If anyone has not experienced that, he really hasn't experienced anything essential. For me, the world has always been infinite and ungraspable from the very beginning`}
+          </p>
+
+          <strong className="text-center font-cormorant-infant text-xl font-light italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
+            Carl Gustav Jung
+          </strong>
+        </div>
+        <div className="hidden w-1/4 md:flex md:justify-center md:items-center">
+          <ImageMouseMoving
+          
+            src={"/images/addons/quotation-mark-2.png"}
+            reverse={true}
+          />
+        </div>
+      </div>
+
+      {/* Fantasy Illustrations Project */}
+      <SectionMain url="fantasy-illustrations">
+        <MainTitlesWrapper>
+          <HeadingAccent>· Ilustrografia ·</HeadingAccent>
+          <MainHeading>
+            {`${
+              fantasyProducts && fantasyProducts[0].categories[0].name
+            } Products`}
+          </MainHeading>
+          <IconDivider>
+            <FaPaintBrush />
+          </IconDivider>
+          <div className="mb-5 flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-20 py-10">
+            <MainText>
+              {`Projects full of magic and mystery. Worlds both known and unknown. Characters sublime, majestic, and enigmatic.`}
+            </MainText>
+
+            <Button
+              text={`About ${
+                fantasyProducts && fantasyProducts[0].categories[0].name
+              }`}
+              color={"black"}
+              link={`/projects/${
+                fantasyProducts && fantasyProducts[0].categories[0].slug
+              }`}
+            />
+          </div>
+          <MainStrongText>{`Illustrations and Stories:
+         `}</MainStrongText>
+        </MainTitlesWrapper>
+        <IllustrationsGrid products={fantasyProducts} colNum={3} />
+
+        <MainTitlesWrapper>
+          <IconDivider>
+            <FaPaintBrush />
+          </IconDivider>
+
+          <MainStrongText>{`Unveil the magic:`}</MainStrongText>
+        </MainTitlesWrapper>
+
+        <ProductsGrid
+          products={fantasyProducts}
+          hideVariations={false}
+          colNum={3}
+        />
+      </SectionMain>
+
+      {/* Fantasy Illustrations */}
+      {/* <SectionMain color="second">
         <SectionMainTitles
           heading={fantasyProducts && fantasyProducts[0].categories[0].name}
           main={
             "   Step into a world of art and enchantment with Ilustrografia"
           }
-          strong=" Illustrations and Stories:"
+          strong=" Unveil the magic Illustrations and Stories:"
         />
 
         <IllustrationsGrid products={fantasyProducts} colNum={3} />
-
-        <Button
-          text={`About ${
-            fantasyProducts && fantasyProducts[0].categories[0].name
-          }`}
-          color={"black"}
-          link={`/projects/${
-            fantasyProducts && fantasyProducts[0].categories[0].slug
-          }`}
-        />
-      </SectionMain>
+      </SectionMain> */}
 
       {/* <ProductsSectionGrid
         products={neoSlavicProducts}
