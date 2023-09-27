@@ -17,6 +17,7 @@ import SectionMain from "../../components/SectionMain";
 import SectionMainTitles from "../../components/SectionMainTitles";
 import IllustrationsGrid from "../../components/IllustrationsGrid";
 import ProductsGrid from "../../components/ProductsGrid";
+import IconDivider from "../../components/IconDivider";
 
 const useMouseMove = (onMouseMove: (event: MouseEvent) => void) => {
   useEffect(() => {
@@ -69,9 +70,12 @@ const HomePage = () => {
     <div>{getError(error as ApiError)}</div>
   ) : (
     <div className="my-10 flex w-full flex-col gap-y-20 p-2 md:w-11/12">
+
+
+
       <div
         className=" mt-5 flex
-       h-screen flex-col items-center justify-center  rounded-3xl bg-[url('../public/images/neo-slavic-creatures.jpg')] bg-cover bg-center bg-no-repeat shadow-hero md:h-192"
+       h-screen flex-col items-center justify-center  rounded-3xl bg-hero bg-cover bg-center bg-no-repeat shadow-hero md:h-192"
       >
         <div className=" flex flex-col items-center justify-center  p-2">
           <span className=" md:text-md text-center  font-montserrat text-xs font-semibold uppercase tracking-hero text-red-magic drop-shadow-hero">
@@ -88,7 +92,6 @@ const HomePage = () => {
             <SocialLinks />
           </div>
         </div>
-        P S
       </div>
       <div className="flex">
         <div className="w-1/4">
@@ -174,6 +177,7 @@ const HomePage = () => {
             "   Step into a world of art and enchantment with Ilustrografia"
           }
           strong=" Illustrations and Stories:"
+          icon="brush"
         />
 
         <IllustrationsGrid products={neoSlavicProducts} colNum={4} />
@@ -190,13 +194,14 @@ const HomePage = () => {
       </SectionMain>
 
       {/* Neo Slavic Project */}
-      <SectionMain>
+      <SectionMain url="neo-slavic">
         <SectionMainTitles
           heading={`${
             neoSlavicProducts && neoSlavicProducts[0].categories[0].name
           } Products`}
           main={`A unique illustrated guide that will introduce you to completely forgotten or hitherto completely unknown inhabitants of our Slavic lands. You could say it's something like a bestiary, but some of the personalities included in this List would strongly object to being called "beasts.`}
           strong={`Discover the enchantment. Explore our prints today:`}
+          icon="dragon"
         />
         <ProductsGrid products={neoSlavicProducts} hideVariations={false} />
       </SectionMain>

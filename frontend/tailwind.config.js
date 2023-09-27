@@ -14,6 +14,11 @@ export const theme = {
   },
 
   extend: {
+    backgroundImage: {
+      hero: "url('../public/images/neo-slavic-creatures.jpg')",
+      'neo-slavic': "url('../public/images/neo-slavic-creatures.jpg')",
+    },
+
     colors: {
       jet: "#343232",
       "black-magic": "#020101",
