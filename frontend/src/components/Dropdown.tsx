@@ -13,7 +13,7 @@ const Dropdown = ({ userInfo, handleLogout }: Props) => {
 	return (
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger asChild>
-				<div className=' '>
+				<div className='bg-red-magic cursor-pointer rounded-3xl p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110 '>
 					<FaUserAlt className='' />
 				</div>
 			</DropdownMenu.Trigger>

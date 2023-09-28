@@ -11,7 +11,7 @@ const YouTubeEmbed = ({ embedId, center }: YouTubeEmbedProps) => {
       <iframe
         className={`${
           center ? "mx-auto" : ""
-        } h-[200px] w-[350px] shadow-hero transition-transform  duration-500 md:h-[216px]  md:w-96 md:hover:translate-y-[-1rem] md:hover:scale-110 xl:h-[250px] xl:w-[450px]`}
+        } h-[200px] w-[350px] shadow-hero transition-transform  duration-500 md:h-[216px]  md:w-96 md:hover:translate-y-[-1rem] md:hover:scale-110 xl:h-[220px] xl:w-[400px]`}
         src={`https://www.youtube.com/embed/${embedId}`}
         title="YouTube video player"
         frameBorder={0}

@@ -38,17 +38,15 @@ const AppLinks = () => {
     <>
       <ThemeSwitcher />
 
-      <div
-        className={` bg-red-magic cursor-pointer rounded-3xl p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110`}
-      >
+
         {userInfo ? (
           <Dropdown userInfo={userInfo} handleLogout={handleLogout} />
         ) : (
-          <Link to={"/login"}>
+          <Link to={"/login"} className="bg-red-magic cursor-pointer rounded-3xl p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110">
             <FaUserAltSlash />
           </Link>
         )}
-      </div>
+
 
       <Link
         to={"/favorite"}
@@ -56,6 +54,8 @@ const AppLinks = () => {
       >
         <FaHeart />
       </Link>
+
+      
       <Link
         className=" bg-red-magic relative rounded-3xl p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
         to={"/cart"}

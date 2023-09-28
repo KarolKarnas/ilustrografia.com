@@ -110,7 +110,7 @@ const HomePage = () => {
           <IconDivider>
             <FaDragon />
           </IconDivider>
-          <div className=" flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-20 py-10">
+          <div className=" flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-5 md:px-20  py-10">
             <MainText alwaysLight>
               {`A unique illustrated guide that will introduce you to completely forgotten or hitherto completely unknown inhabitants of our Slavic lands. You could say it's something like a bestiary, but some of the personalities included in this List would strongly object to being called "beasts.`}
             </MainText>
@@ -141,7 +141,7 @@ const HomePage = () => {
         <ProductsGrid products={neoSlavicProducts} hideVariations={false} isLoading={isLoadingNeoSlavic} error={errorNeoSlavic} />
       </SectionMain>
 
-      <div className="my-16 flex">
+      <div className="mt-5 md:my-16 flex">
         <div className="hidden w-1/4 md:flex md:items-center md:justify-center">
           <ImageMouseMoving src={"/images/addons/quotation-mark-1.png"} />
         </div>
@@ -174,7 +174,7 @@ const HomePage = () => {
           <IconDivider>
             <FaDragon />
           </IconDivider>
-          <div className="flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-20 py-10">
+          <div className="flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-5 md:px-20 py-10">
             <MainText alwaysLight>
               {`Projects full of magic and mystery. Worlds both known and unknown. Characters sublime, majestic, and enigmatic.`}
             </MainText>
