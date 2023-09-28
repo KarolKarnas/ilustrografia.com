@@ -7,7 +7,7 @@ type Props = {
 
 const HeadingAccent = ({children} : Props) => {
   return (
-    <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-magic drop-shadow-lg">
+    <span role="contentinfo" className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-magic drop-shadow-lg">
     {children}
   </span>
   )

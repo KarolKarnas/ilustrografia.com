@@ -28,7 +28,6 @@ import MainText from "../../components/primitives/MainText";
 import MainStrongText from "../../components/primitives/MainStrongText";
 
 const HomePage = () => {
- 
   const {
     data: neoSlavicProducts,
     isLoading: isLoadingNeoSlavic,
@@ -46,7 +45,8 @@ const HomePage = () => {
     error: ytSearchError,
   } = useGetNeoSlavicQuery(3);
 
-  return  <div className="my-10 flex w-full flex-col gap-y-20 p-2 md:w-11/12">
+  return (
+    <div className="my-10 flex w-full flex-col gap-y-20 p-2 md:w-11/12">
       <div
         className=" md:h-196
        flex h-screen flex-col items-center  justify-center rounded-3xl bg-hero bg-cover bg-center bg-no-repeat shadow-hero lg:h-224"
@@ -110,7 +110,7 @@ const HomePage = () => {
           <IconDivider>
             <FaDragon />
           </IconDivider>
-          <div className=" flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-5 md:px-20  py-10">
+          <div className=" flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-5 py-10  md:px-20">
             <MainText alwaysLight>
               {`A unique illustrated guide that will introduce you to completely forgotten or hitherto completely unknown inhabitants of our Slavic lands. You could say it's something like a bestiary, but some of the personalities included in this List would strongly object to being called "beasts.`}
             </MainText>
@@ -128,7 +128,12 @@ const HomePage = () => {
         </MainTitlesWrapper>
         <MainStrongText alwaysLight>Illustrations and Stories:</MainStrongText>
 
-        <IllustrationsGrid products={neoSlavicProducts} colNum={4} isLoading={isLoadingNeoSlavic} error={errorNeoSlavic} />
+        <IllustrationsGrid
+          products={neoSlavicProducts}
+          colNum={4}
+          isLoading={isLoadingNeoSlavic}
+          error={errorNeoSlavic}
+        />
 
         <IconDivider>
           <FaPaintBrush />
@@ -138,10 +143,15 @@ const HomePage = () => {
           alwaysLight
         >{`Explore our Neo-Slavic prints today:`}</MainStrongText>
 
-        <ProductsGrid products={neoSlavicProducts} hideVariations={false} isLoading={isLoadingNeoSlavic} error={errorNeoSlavic} />
+        <ProductsGrid
+          products={neoSlavicProducts}
+          hideVariations={false}
+          isLoading={isLoadingNeoSlavic}
+          error={errorNeoSlavic}
+        />
       </SectionMain>
 
-      <div className="mt-5 md:my-16 flex">
+      <div className="mt-5 flex md:my-16">
         <div className="hidden w-1/4 md:flex md:items-center md:justify-center">
           <ImageMouseMoving src={"/images/addons/quotation-mark-1.png"} />
         </div>
@@ -174,7 +184,7 @@ const HomePage = () => {
           <IconDivider>
             <FaDragon />
           </IconDivider>
-          <div className="flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-5 md:px-20 py-10">
+          <div className="flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-5 py-10 md:px-20">
             <MainText alwaysLight>
               {`Projects full of magic and mystery. Worlds both known and unknown. Characters sublime, majestic, and enigmatic.`}
             </MainText>
@@ -192,7 +202,12 @@ const HomePage = () => {
         </MainTitlesWrapper>
         <MainStrongText alwaysLight>{`Illustrations and Stories:
          `}</MainStrongText>
-        <IllustrationsGrid products={fantasyProducts} colNum={3} isLoading={isLoadingFantasy} error={errorFantasy}/>
+        <IllustrationsGrid
+          products={fantasyProducts}
+          colNum={3}
+          isLoading={isLoadingFantasy}
+          error={errorFantasy}
+        />
 
         <IconDivider>
           <FaPaintBrush />
@@ -204,7 +219,8 @@ const HomePage = () => {
           products={fantasyProducts}
           hideVariations={false}
           colNum={3}
-          isLoading={isLoadingFantasy} error={errorFantasy}
+          isLoading={isLoadingFantasy}
+          error={errorFantasy}
         />
       </SectionMain>
 
@@ -217,14 +233,15 @@ const HomePage = () => {
           <IconDivider>
             <FaDragon />
           </IconDivider>
-          <div className=" flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-20 py-10">
-          <MainText alwaysLight>
-            Our latest creative wonders are now live on YouTube, waiting to
-            transport you to new worlds and evoke a sense of wonder. Don&apos;t
-            miss out on the magic – click the link below to watch our latest
-            YouTube videos and embark on an unforgettable visual journey with
-            us. Subscribe to stay updated, and let your imagination run wild!
-          </MainText>
+          <div className="  flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-20 py-10">
+            <MainText alwaysLight>
+              Our latest creative wonders are now live on YouTube, waiting to
+              transport you to new worlds and evoke a sense of wonder.
+              Don&apos;t miss out on the magic – click the link below to watch
+              our latest YouTube videos and embark on an unforgettable visual
+              journey with us. Subscribe to stay updated, and let your
+              imagination run wild!
+            </MainText>
           </div>
         </MainTitlesWrapper>
         <MainStrongText> Will you join us?</MainStrongText>
@@ -241,6 +258,6 @@ const HomePage = () => {
         )}
       </SectionMain>
     </div>
- 
+  );
 };
 export default HomePage;
