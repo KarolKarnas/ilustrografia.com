@@ -6,26 +6,26 @@ const SocialLinks = () => {
     <>
       {" "}
       <Link
-        className="bg-red-magic rounded-3xl bg-opacity-60 p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        className="bg-red-magic rounded-3xl bg-opacity-60 p-2 transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
         to={"https://www.facebook.com/ilustrografiaPL/"}
       >
         <FaFacebook className="text-white" />
       </Link>
       <Link
         to={"https://www.instagram.com/ilustrografia.pl/"}
-        className="bg-red-magic rounded-3xl bg-opacity-60 p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        className="bg-red-magic rounded-3xl bg-opacity-60 p-2 transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
       >
         <FaInstagram className="text-white" />
       </Link>
       <Link
         to={"https://www.facebook.com/ilustrografiaPL/"}
-        className="bg-red-magic rounded-3xl bg-opacity-60 p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        className="bg-red-magic rounded-3xl bg-opacity-60 p-2 transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
       >
         <FaTiktok className="text-white" />
       </Link>{" "}
       <Link
         to="https://www.youtube.com/channel/UCH4ljdai9HnOYcKVHWnJ6ng"
-        className="bg-red-magic rounded-3xl bg-opacity-60 p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        className="bg-red-magic rounded-3xl bg-opacity-60 p-2 transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
       >
         <FaYoutube className="text-white" />
       </Link>

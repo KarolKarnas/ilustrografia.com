@@ -16,10 +16,9 @@ export const theme = {
   extend: {
     backgroundImage: {
       hero: "url('../public/images/neo-slavic-creatures.jpg')",
-      'neo-slavic': "url('../public/images/neo-slavic-creatures.jpg')",
-      'fantasy-illustrations': "url('../public/images/neo-slavic-creatures.jpg')",
-      // 'neo-slavic': "url('../public/images/addons/neo-slavic-census.jpg')",
-      // 'fantasy-illustrations': "url('../public/images/addons/fantasy-illustrations.jpg')",
+      "neo-slavic": "url('../public/images/addons/neo-slavic-census.jpg')",
+      "fantasy-illustrations":
+        "url('../public/images/addons/fantasy-illustrations.jpg')",
     },
 
     colors: {

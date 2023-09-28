@@ -2,11 +2,12 @@ import { ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
+  alwaysLight?: boolean;
 };
 
-const MainText = ({ children }: Props) => {
+const MainText = ({ children, alwaysLight }: Props) => {
   return (
-    <span className="text-center text-eerie-black dark:text-ivory ">
+    <span className={`${alwaysLight ? 'text-ivory' : ' text-eerie-black dark:text-ivory'}  text-center`} >
       {children}
     </span>
   );

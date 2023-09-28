@@ -16,7 +16,7 @@ const ThemeSwitcher = () => {
         <div className="relative">
           <button
    
-            className={`  rounded-3xl bg-red-magic  p-2 text-ivory transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 `}
+            className={`  rounded-3xl bg-red-magic  p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110 `}
             type="button"
             id="themeSwitcher"
             aria-expanded="false"

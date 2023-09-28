@@ -36,7 +36,7 @@ const GoToTop = () => {
         type="button"
         onClick={scrollToTop}
         className={`    ${isVisible ? "opacity-100" : "opacity-0"}
-          bg-red-magic inline-flex items-center rounded-full p-3 text-white shadow-sm drop-shadow-xl transition duration-500 hover:bg-red-500 focus:outline-none `}
+          bg-red-magic inline-flex items-center rounded-full p-3 text-white shadow-sm drop-shadow-xl transition duration-500 md:hover:bg-red-500 md:focus:outline-none z-50 `}
       >
         <FaRegHandPointer className="h-6 w-6" aria-hidden="true" />
       </button>

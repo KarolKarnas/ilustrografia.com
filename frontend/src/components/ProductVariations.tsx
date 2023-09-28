@@ -23,7 +23,13 @@ type Props = {
   hideVariations?: boolean;
 };
 
-const ProductPage = ({ product, variationNum, material, size, hideVariations }: Props) => {
+const ProductPage = ({
+  product,
+  variationNum,
+  material,
+  size,
+  hideVariations,
+}: Props) => {
   const dispatch = useAppDispatch();
   const [url, setUrl] = useState<string>(`/shop/${product.slug}`);
 
@@ -193,8 +199,12 @@ const ProductPage = ({ product, variationNum, material, size, hideVariations }: 
 
   if (variation) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-xl bg-ivory shadow-small-hero transition-transform duration-500 hover:translate-y-[-1rem] hover:scale-110 dark:bg-fair-space">
-        <div className={`${hideVariations ? 'hidden' : 'relative  h-full w-full' } `}>
+      <div className="flex flex-col items-center justify-center rounded-xl bg-ivory shadow-small-hero transition-transform duration-500 dark:bg-fair-space md:hover:translate-y-[-1rem] md:hover:scale-110">
+        <div
+          className={`${
+            hideVariations ? "hidden" : "relative  h-full w-full"
+          } `}
+        >
           <div className="absolute top-5 flex w-full flex-col items-center justify-center">
             <h1 className=" font-cormorant-infant text-xl font-semibold italic drop-shadow-md">
               {product.name}{" "}
@@ -222,7 +232,7 @@ const ProductPage = ({ product, variationNum, material, size, hideVariations }: 
         <div className="w-full">
           <Link to={url}>
             <img
-              className= {`${hideVariations ? 'rounded-lg' : 'rounded-t-lg' } `}
+              className={`${hideVariations ? "rounded-lg" : "rounded-t-lg"} `}
               src={
                 variation &&
                 product.options.material[
@@ -236,7 +246,11 @@ const ProductPage = ({ product, variationNum, material, size, hideVariations }: 
 
         {/* SIZES */}
 
-        <div className={`${hideVariations ? 'hidden' : 'relative  h-full w-full' } `}>
+        <div
+          className={`${
+            hideVariations ? "hidden" : "relative  h-full w-full"
+          } `}
+        >
           <div className="absolute bottom-2 flex w-full flex-col items-center justify-center gap-y-2">
             <div className="flex gap-1">
               {sizesByMaterialTitle[variation.options.material].map(
@@ -282,7 +296,7 @@ const ProductPage = ({ product, variationNum, material, size, hideVariations }: 
           </div>
         </div>
 
-        <div className={`${hideVariations ? 'hidden' : 'w-full pb-5 pt-2'}`}>
+        <div className={`${hideVariations ? "hidden" : "w-full pb-5 pt-2"}`}>
           <div className="flex w-full flex-col items-center justify-center gap-1">
             <div className=" font-montserrat">
               <span className="mr-2 text-xs  uppercase">Price:</span>
