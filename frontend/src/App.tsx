@@ -27,7 +27,8 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex min-h-screen flex-col justify-between overflow-hidden">
+    // <div className="flex min-h-screen flex-col justify-between overflow-hidden">
+    <>
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -41,12 +42,12 @@ const App = () => {
         theme="light"
       />
       <Header />
-      <main className=" min-w-screen flex flex-auto flex-col items-center  ">
+      <main className=" min-w-screen flex flex-auto flex-col items-center overflow-clip  ">
         <Outlet />
         <GoToTop />
       </main>
       <Footer />
-    </div>
+    </>
   );
 };
 export default App;

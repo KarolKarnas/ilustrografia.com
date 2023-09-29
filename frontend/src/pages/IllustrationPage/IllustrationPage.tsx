@@ -81,8 +81,8 @@ const IllustrationPage = () => {
   ) : (
     <div className="flex w-11/12 flex-col gap-16">
       <div className="my-5 flex w-full justify-center gap-20">
-        <div className="n w-5/12">
-          <img src={product?.images[0]} alt={product?.slug} />
+        <div className=" w-5/12">
+          <img className="md:sticky md:top-8 " src={product?.images[0]} alt={product?.slug} />
         </div>
         <div className="w-4/12 dark:text-ivory">
           <h1 className=" mb-1 font-fondamento text-3xl">{product?.name}</h1>
@@ -120,7 +120,7 @@ const IllustrationPage = () => {
 
 <SectionMain color="second">
         <SectionMainTitles
-          heading={categoryProducts && categoryProducts[0].categories[0].name}
+          heading={categoryProducts && categoryProducts[0]?.categories[0]?.name}
           main={
             "   Step into a world of art and enchantment with Ilustrografia"
           }
@@ -131,11 +131,11 @@ const IllustrationPage = () => {
 
         <Button
           text={`About ${
-            categoryProducts && categoryProducts[0].categories[0].name
+            categoryProducts && categoryProducts[0]?.categories[0]?.name
           }`}
           color={"black"}
           link={`/projects/${
-            categoryProducts && categoryProducts[0].categories[0].slug
+            categoryProducts && categoryProducts[0]?.categories[0]?.slug
           }`}
         />
       </SectionMain>

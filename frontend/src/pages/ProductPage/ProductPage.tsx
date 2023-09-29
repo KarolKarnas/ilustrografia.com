@@ -248,8 +248,8 @@ const ProductPage = () => {
       <>
         <div className="my-5 flex w-full justify-center gap-20">
           <div className="w-4/12 ">
-            <div className="fixed top-36 w-4/12">
-              <img
+            
+              <img className="md:sticky md:top-8  "
                 src={
                   variation &&
                   product.options.material[
@@ -258,7 +258,7 @@ const ProductPage = () => {
                 }
                 alt={`${product.slug}-${variation.options.material}`}
               />
-            </div>
+        
           </div>
           <div className="w-4/12">
             {/* BREADCRUMBS */}
