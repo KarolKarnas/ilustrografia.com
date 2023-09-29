@@ -1,29 +1,23 @@
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
-import {
-  useGetProductsByCategoryQuery,
-  useGetProductsQuery,
-} from "../../slices/productsApiSlice";
+import { useGetProductsByCategoryQuery } from "../../slices/productsApiSlice";
 
 import Spinner from "../../components/Spinner";
 import SocialLinks from "../../components/SocialLinks";
 import Button from "../../components/Button";
-import { useEffect } from "react";
 import { useGetNeoSlavicQuery } from "../../slices/ytApiSlice";
 import LatestVideos from "../../components/LatestVideos";
 import Message from "../../components/Message";
 
 import SectionMain from "../../components/SectionMain";
-import SectionMainTitles from "../../components/SectionMainTitles";
 import MainTitlesWrapper from "../../components/MainTitlesWrapper";
 import IllustrationsGrid from "../../components/IllustrationsGrid";
 import ProductsGrid from "../../components/ProductsGrid";
-import IconDivider from "../../components/IconDivider";
+import IconDivider from "../../components/primitives/IconDivider";
 import ImageMouseMoving from "../../components/ImageMouseMoving";
 import MainHeading from "../../components/primitives/MainHeading";
 import HeadingAccent from "../../components/primitives/HeadingAccent";
 import { FaDragon, FaPaintbrush } from "react-icons/fa6";
-import { FaPaintBrush, FaShoppingBasket } from "react-icons/fa";
 import MainText from "../../components/primitives/MainText";
 import MainStrongText from "../../components/primitives/MainStrongText";
 
@@ -136,7 +130,7 @@ const HomePage = () => {
         />
 
         <IconDivider>
-          <FaPaintBrush />
+          <FaPaintbrush />
         </IconDivider>
 
         <MainStrongText
@@ -210,7 +204,7 @@ const HomePage = () => {
         />
 
         <IconDivider>
-          <FaPaintBrush />
+          <FaPaintbrush />
         </IconDivider>
 
         <MainStrongText alwaysLight>{`Unveil the magic:`}</MainStrongText>

@@ -68,12 +68,13 @@
 
 /* dropdown */
 
-/* .DropdownMenuContent {
-  animation-duration: 0.6s;
+.DropdownMenuContent {
+  animation-duration: 1.0s;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 .DropdownMenuContent[data-side='top'] {
   animation-name: slideUp;
+  
 }
 .DropdownMenuContent[data-side='bottom'] {
   animation-name: slideDown;
@@ -99,4 +100,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-} */
+}
