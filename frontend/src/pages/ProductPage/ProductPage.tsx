@@ -249,7 +249,7 @@ const ProductPage = () => {
         <div className="my-5 flex w-full justify-center gap-20">
           <div className="w-4/12 ">
             
-              <img className="md:sticky md:top-8  "
+              <img className="md:sticky md:top-8 shadow-hero "
                 src={
                   variation &&
                   product.options.material[

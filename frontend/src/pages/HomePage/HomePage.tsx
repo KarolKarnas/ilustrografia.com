@@ -40,7 +40,7 @@ const HomePage = () => {
   } = useGetNeoSlavicQuery(3);
 
   return (
-    <div className="my-10 flex w-full flex-col gap-y-20 p-2 md:w-11/12">
+    <div className=" flex w-full flex-col gap-y-20 p-2 md:w-11/12">
       <div
         className=" md:h-196
        flex h-screen flex-col items-center  justify-center rounded-3xl bg-hero bg-cover bg-center bg-no-repeat shadow-hero lg:h-224"

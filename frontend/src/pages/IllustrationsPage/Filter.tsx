@@ -39,9 +39,9 @@ const Filter = () => {
   };
 
   return (
-    <div className="flex px-24 flex-col items-center justify-center">
+    <div className="flex px-24 flex-col items-center justify-center gap-10">
       {/* BUTTONS */}
-      <div className="my-10 flex gap-5">
+      <div className="flex gap-5">
         <button
           onClick={handleClick}
           value={"all"}

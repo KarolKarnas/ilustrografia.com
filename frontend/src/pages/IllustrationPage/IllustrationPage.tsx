@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import _ from "lodash";
-import { useGetProductDetailsQuery, useGetProductsByCategoryQuery } from "../../slices/productsApiSlice";
+import {
+  useGetProductDetailsQuery,
+  useGetProductsByCategoryQuery,
+} from "../../slices/productsApiSlice";
 import Spinner from "../../components/Spinner";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
@@ -14,6 +17,10 @@ import SectionMain from "../../components/SectionMain";
 import SectionMainTitles from "../../components/SectionMainTitles";
 import IllustrationsGrid from "../../components/IllustrationsGrid";
 import Button from "../../components/Button";
+import MainTitlesWrapper from "../../components/MainTitlesWrapper";
+import MainHeading from "../../components/primitives/MainHeading";
+import HeadingAccent from "../../components/primitives/HeadingAccent";
+import MainStrongText from "../../components/primitives/MainStrongText";
 
 const IllustrationPage = () => {
   const params = useParams();
@@ -38,17 +45,18 @@ const IllustrationPage = () => {
 
   // console.log(categoryProducts)
 
-
   if (!product) {
     return <Spinner />;
   }
 
-  const materialValues: string[] = _.uniq(_.map(product?.variations, "options.material"));
+  const materialValues: string[] = _.uniq(
+    _.map(product?.variations, "options.material"),
+  );
   // console.log(materialValues);
 
-
-
-  const sizeValues: string[] = _.uniq(_.map(product?.variations, "options.size"));
+  const sizeValues: string[] = _.uniq(
+    _.map(product?.variations, "options.size"),
+  );
   // console.log(sizeValues);
 
   const getSizesForMaterialFromProduct = (
@@ -82,7 +90,11 @@ const IllustrationPage = () => {
     <div className="flex w-11/12 flex-col gap-16">
       <div className="my-5 flex w-full justify-center gap-20">
         <div className=" w-5/12">
-          <img className="md:sticky md:top-8 " src={product?.images[0]} alt={product?.slug} />
+          <img
+            className="shadow-hero md:sticky md:top-8"
+            src={product?.images[0]}
+            alt={product?.slug}
+          />
         </div>
         <div className="w-4/12 dark:text-ivory">
           <h1 className=" mb-1 font-fondamento text-3xl">{product?.name}</h1>
@@ -105,31 +117,29 @@ const IllustrationPage = () => {
               <YouTubeEmbed embedId={product.details.ytLink} />
             </div>
           ) : null}
-          <p className="first-letter:bg-red-magic w-full whitespace-pre-line first-letter:px-5 first-letter:py-2 first-letter:font-fondamento first-letter:text-2xl first-letter:text-ivory first-line:leading-10">
+          <p className="w-full whitespace-pre-line first-letter:bg-red-magic first-letter:px-5 first-letter:py-2 first-letter:font-fondamento first-letter:text-2xl first-letter:text-ivory first-line:leading-10">
             {product.details.story}
           </p>
         </div>
       </div>
 
-<SectionMain >
+      <SectionMain>
+        <MainTitlesWrapper>
+          <MainStrongText>{product.name} Products:</MainStrongText>
+        </MainTitlesWrapper>
 
-<ProductGrid product={product} materialValues={materialValues} sizesByMaterial={sizesByMaterial} />
-
-</SectionMain>
-
-
-<SectionMain color="second">
-        <SectionMainTitles
-          heading={categoryProducts && categoryProducts[0]?.categories[0]?.name}
-          main={
-            "   Step into a world of art and enchantment with Ilustrografia"
-          }
-          strong=" Illustrations and Stories:"
+        <ProductGrid
+          product={product}
+          materialValues={materialValues}
+          sizesByMaterial={sizesByMaterial}
         />
+      </SectionMain>
 
+      <SectionMain color="second">
+        <MainStrongText>{product.name} Products:</MainStrongText>
         <IllustrationsGrid products={categoryProducts} />
 
-        <Button
+        {/* <Button
           text={`About ${
             categoryProducts && categoryProducts[0]?.categories[0]?.name
           }`}
@@ -137,11 +147,9 @@ const IllustrationPage = () => {
           link={`/projects/${
             categoryProducts && categoryProducts[0]?.categories[0]?.slug
           }`}
-        />
+        /> */}
       </SectionMain>
-
-
-   </div>
+    </div>
   );
 };
 export default IllustrationPage;

@@ -29,7 +29,7 @@ const ImageMouseMoving = ({ src, reverse }: Props) => {
     }
   });
   return (
-    <img id={id} className=" dark:invert-90" src={src} alt={`magic visual element`} />
+    <img id={id} className="dark:invert-90" src={src} alt={`magic visual element`} />
   );
 };
 export default ImageMouseMoving;

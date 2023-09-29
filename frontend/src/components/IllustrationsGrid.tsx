@@ -39,7 +39,7 @@ const IllustrationsGrid = ({
         products &&
         products.map((product, index) => (
           <Link key={index} to={`/illustrations/${product.slug}`}>
-            <div className=" relative ">
+            <div className=" relative shadow-small-hero ">
               <div className="absolute flex h-full w-full transform items-center justify-center bg-black bg-opacity-0 font-montserrat text-xl text-ivory text-opacity-0 transition duration-500 hover:bg-opacity-60 hover:text-opacity-100">
                 {product.name}
               </div>

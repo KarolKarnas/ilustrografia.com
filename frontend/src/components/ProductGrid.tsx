@@ -34,7 +34,7 @@ const ProductGrid = ({
         : colNum === 5
         ? "xl:grid-cols-5"
         : "xl:grid-cols-4"
-    } mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2 `}
+    } grid grid-cols-1 gap-8 lg:grid-cols-2 `}
   >
 
           {materialValues && product && sizesByMaterial

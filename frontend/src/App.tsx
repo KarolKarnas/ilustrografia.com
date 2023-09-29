@@ -42,7 +42,7 @@ const App = () => {
         theme="light"
       />
       <Header />
-      <main className=" min-w-screen flex flex-auto flex-col items-center overflow-clip  ">
+      <main className=" min-w-screen flex flex-auto flex-col items-center overflow-clip pt-10 pb-20  ">
         <Outlet />
         <GoToTop />
       </main>

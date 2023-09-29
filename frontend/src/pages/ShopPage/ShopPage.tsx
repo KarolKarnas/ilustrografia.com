@@ -55,7 +55,7 @@ const ShopPage = () => {
     <div>{getError(error as ApiError)}</div>
   ) : (
     <div className="px-24">
-      <h1 className="mt-5 text-center text-3xl font-bold">SHOP</h1>
+      {/* <h1 className="text-center text-3xl font-bold">SHOP</h1> */}
 
       <div className="flex flex-col md:flex-row">
         <div className="w-2/12 p-2">
@@ -110,7 +110,7 @@ const ShopPage = () => {
         </div>
         <div className="w-10/12">
 
-        <ProductsGrid products={productsFiltered || products} hideVariations={false} />
+        <ProductsGrid products={productsFiltered || products} hideVariations={false} colNum={3} />
         {/* {productsFiltered && <ProductsSectionGrid products={productsFiltered}/>} */}
           {/* <div className="grid grid-cols-1 dark:bg-slate-600 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {productsFiltered
