@@ -54,11 +54,11 @@ const ShopPage = () => {
   ) : (
   
       <div className="flex flex-col md:flex-row w-full px-2 lg:px-24">
-        <div className="w-full md:w-3/12 lg:w-2/12 p-2 ">
+        <div className="w-full md:w-3/12 lg:w-2/12 p-2 md:p-0 ">
 {/* FILTERS */}
 
-          <div className="mb-5">
-            <h3 className="mb-4 font-fondamento text-lg font-semibold dark:text-ivory">
+          <div className="mb-5 md:sticky md:top-8">
+            <h3 className="mb-4 font-fondamento text-lg font-semibold dark:text-ivory ">
               Categories
             </h3>
             <RadioGroup.Root
@@ -69,7 +69,7 @@ const ShopPage = () => {
               <div className="flex items-center">
                 {" "}
                 <RadioGroup.Item
-               className={`h-6 w-6 rounded-full  bg-ivory shadow-lg shadow-red-magic`}
+               className={`h-5 w-5 rounded-full bg-ivory border border-red-magic`}
                   value={""}
                   id="r-all"
                   onClick={() => filterProducts("all")}
@@ -91,7 +91,7 @@ const ShopPage = () => {
                 <div key={index} className="flex items-center">
                   {" "}
                   <RadioGroup.Item
-                    className={`h-6 w-6 rounded-full bg-ivory shadow-lg shadow-red-magic`}
+                    className={`h-5 w-5 rounded-full bg-ivory border border-red-magic`}
                     value={category.slug}
                     id={`r${index}`}
                     checked={searchParams.get("category") === category.slug}

@@ -315,7 +315,7 @@ const ProductPage = ({
               }   px-16  py-2 text-xs font-semibold uppercase transition-colors duration-300`}
               disabled={variation?.countInStock === 0}
             >
-              Add to Cart
+                       {variation.countInStock > 0 ? "Add to Cart" : "Out Of Stock"}
             </button>
           </div>
         </div>

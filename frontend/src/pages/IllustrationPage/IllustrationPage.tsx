@@ -90,7 +90,7 @@ const IllustrationPage = () => {
           />
         </div>
         <div className="w-full md:w-4/12 dark:text-ivory">
-          <h1 className=" mb-1 mt-16 md:mt-0 font-fondamento text-3xl">{product?.name}</h1>
+          <h1 className=" mb-1 mt-16 md:mt-0 font-fondamento text-3xl">The {product?.name}</h1>
 
           {product.details.latinName ? (
             <span className=" mb-1 font-fondamento text-xl">

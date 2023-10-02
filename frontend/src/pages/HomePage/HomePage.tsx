@@ -113,7 +113,7 @@ const HomePage = () => {
               text={`About ${
                 neoSlavicProducts && neoSlavicProducts[0].categories[0].name
               }`}
-              color={"black"}
+              color={"red"}
               link={`/projects/${
                 neoSlavicProducts && neoSlavicProducts[0].categories[0].slug
               }`}
@@ -187,7 +187,7 @@ const HomePage = () => {
               text={`About ${
                 fantasyProducts && fantasyProducts[0].categories[0].name
               }`}
-              color={"black"}
+              color={"red"}
               link={`/projects/${
                 fantasyProducts && fantasyProducts[0].categories[0].slug
               }`}
