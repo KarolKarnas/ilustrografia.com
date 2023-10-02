@@ -14,6 +14,7 @@ import ToastLink from "../components/ToastLink";
 
 import Rating from "../components/Rating";
 import { Link } from "react-router-dom";
+import Spinner from "./Spinner";
 
 type Props = {
   product: Product;
@@ -197,8 +198,8 @@ const ProductPage = ({
     }
   };
 
-  if (variation) {
-    return (
+ 
+    return !variation ? null : (
       <div className="flex flex-col items-center justify-center rounded-xl bg-ivory shadow-small-hero transition-transform duration-500 dark:bg-fair-space md:hover:translate-y-[-1rem] md:hover:scale-110">
         <div
           className={`${
@@ -320,10 +321,8 @@ const ProductPage = ({
         </div>
       </div>
     );
-  } else {
-    return <div>No variation</div>;
-  }
-};
+  } 
+
 export default ProductPage;
 
 {

@@ -56,7 +56,7 @@ const Header = () => {
           id="menu"
           className={
             isActive
-              ? "bg-red-50 text-eerie-black dark:bg-eerie-black dark:text-ivory absolute bottom-0 left-0 top-0 z-30 flex min-h-screen w-full flex-col items-center space-y-8 self-end py-1 pt-40 text-lg uppercase"
+              ? "bg-ivory text-eerie-black dark:bg-eerie-black dark:text-ivory absolute bottom-0 left-0 top-0 z-30 flex min-h-screen w-full flex-col items-center space-y-8 self-end py-1 pt-40 text-lg uppercase"
               : "hidden"
           }
           onClick={handleMobileClick}
