@@ -34,10 +34,10 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
 		tags: [{ name: '', slug: '' }],
 		images: ['/images/neo-slavic-census/basilisk-1.jpg'],
 		statistics: [
-			'+50 to the skill of creating calluses.',
-			"+10 for knowledge of Warsaw's topography.",
-			'+25% protection against turning into stone.',
-			"It's safest to keep the property deed with a printout.",
+			'+50 to the skill of creating calluses',
+			"+10 for knowledge of Warsaw's topography",
+			'+25% protection against turning into stone',
+			"It's safest to keep the property deed with a printout",
 		],
 		options: {
 			material: {
@@ -333,10 +333,10 @@ For this is how Mother Nature works, and we must not interfere with her will.
 		tags: [{ name: '', slug: '' }],
 		images: ['/images/neo-slavic-census/forest-bobo-1.jpg'],
 		statistics: [
-			'+10 life energy on Mondays.',
-			'+50 for dealings with the Forest Guardian.',
-			'+15% for fern growth in the living room.',
-			"Hanging in the bedroom improves the mattress's bed elasticity.",
+			'+10 life energy on Mondays',
+			'+50 for dealings with the Forest Guardian',
+			'+15% for fern growth in the living room',
+			"Hanging in the bedroom improves the mattress's bed elasticity",
 		],
 		options: {
 			material: {
@@ -1825,7 +1825,7 @@ Will she choose your campfire tomorrow as well?
 			'+33% to confusing opponents with a deck of cards that never runs out',
 			'+10 to making grandiose declarations of "Off with their heads!" in everyday situations',
 			`-40 to maintaining healthy relationships (it's hard when you're always shouting "Off with their heads!"`,
-			"Weakness 'Frozen Heart': Despite her charm, she has a heart as cold as ice, making you vulnerable to acts of genuine kindness.",
+			"Weakness 'Frozen Heart': Despite her charm, she has a heart as cold as ice, making you vulnerable to acts of genuine kindness",
 		],
 		options: {
 			material: {
@@ -2417,7 +2417,7 @@ Will she choose your campfire tomorrow as well?
 			'+25% to inspiring courage and unity among allies',
 			'+13 to radiating an aura of kindness and compassion, calming turbulent emotions',
 			'x3 to resistance against fear and intimidation in battle',
-			`Ability: "Eternal Vigilance" - The Black Lady can call upon her spirit to shield allies, providing enhanced protection and determination for a limited time.`,
+			`Ability: "Eternal Vigilance" - The Black Lady can call upon her spirit to shield allies, providing enhanced protection and determination for a limited time`,
 		],
 		options: {
 			material: {
