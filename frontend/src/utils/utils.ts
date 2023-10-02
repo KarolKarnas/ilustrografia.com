@@ -25,10 +25,13 @@ export const findSubstring = (input: string): string | null => {
 // }
 
 export const getError = (error: ApiError) => {
+  console.log(error)
   if (error.response && error.response.data.message) {
     return error.response.data.message;
   } else if (error.data && error.data.message) {
     return error.data.message;
+  } else if (error.error) {
+    return error.error
   } else {
     return error.message;
   }

@@ -18,8 +18,7 @@ const ShopPage = () => {
   );
 
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
-
+  
   const { data: products, isLoading, error } = useGetProductsQuery();
 
   const allCategories = _.flatMap(products, (product) => product.categories);

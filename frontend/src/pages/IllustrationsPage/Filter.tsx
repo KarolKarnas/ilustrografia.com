@@ -5,15 +5,17 @@ import { Link } from "react-router-dom";
 import { useGetProductsQuery } from "../../slices/productsApiSlice";
 import { Product } from "../../types/Product";
 import IllustrationsGrid from "../../components/IllustrationsGrid";
+import Spinner from "../../components/Spinner";
+import { getError } from "../../utils/utils";
+import { ApiError } from "../../types/ApiError";
+import Message from "../../components/Message";
 
 const Filter = () => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [active, setActive] = useState<string | boolean>(false);
-
-  // console.log(active);
-  console.log(filteredProducts);
+  const [active, setActive] = useState<string>("all");
 
   const { data: products, isLoading, error } = useGetProductsQuery();
+
   const allCategories = _.flatMap(products, (product) => product.categories);
   const uniqueCategories = _.uniqBy(allCategories, "slug");
 
@@ -38,16 +40,21 @@ const Filter = () => {
     }
   };
 
-  return (
-    <div className="flex px-24 flex-col items-center justify-center gap-10">
+  return isLoading ? (
+    <Spinner />
+  ) : error ? (
+    <Message variant="bad" message={getError(error as ApiError)} />
+  ) : (
+    <div className="flex w-full flex-col items-center justify-center gap-10 px-2 md:px-24">
       {/* BUTTONS */}
-      <div className="flex gap-5">
+      <div className="flex  flex-wrap gap-1 md:gap-5">
         <button
           onClick={handleClick}
           value={"all"}
           className={`${
-            active === "all" ? "bg-red-200 text-red-50" : ""
-          } rounded-3xl border-[1px] border-solid border-red-500 px-5 py-2 text-red-500 transition-all duration-300 hover:bg-red-500 hover:text-red-50 `}
+            active === "all" ? "bg-red-magic/60 text-ivory border-red-magic "
+            : "text-black-magic dark:border-ivory dark:text-ivory"
+        } w-42 flex items-center gap-3 rounded-sm border border-black-magic hover:border-red-magic dark:hover:border-red-magic  px-6  py-4 text-2xs  uppercase tracking-widest   transition-colors duration-300 hover:bg-red-magic/80  hover:text-ivory  md:px-8 font-semibold  `}
         >
           All
         </button>
@@ -60,8 +67,10 @@ const Filter = () => {
               key={index}
               value={value}
               className={` ${
-                active === value ? "bg-red-200 text-red-50" : ""
-              } rounded-3xl border-[1px] border-solid border-red-500 px-5 py-2 text-red-500 transition-all duration-300 hover:bg-red-500 hover:text-red-50 `}
+                active === value
+                  ? "bg-red-magic/60 text-ivory border-red-magic "
+                  : "text-black-magic dark:border-ivory dark:text-ivory"
+              } w-42 flex items-center gap-3 rounded-sm border border-black-magic hover:border-red-magic dark:hover:border-red-magic  px-6  py-4 text-2xs  uppercase tracking-widest   transition-colors duration-300 hover:bg-red-magic/80  hover:text-ivory  md:px-8 font-semibold  `}
             >
               {category.name}
             </button>
@@ -71,16 +80,6 @@ const Filter = () => {
       {/* IMAGES */}
 
       <IllustrationsGrid products={filteredProducts} colNum={3} />
-
-      {/* <div className='grid grid-cols-3 gap-5 w-8/12'>
-
-				{filteredProducts &&
-					filteredProducts.map((product, index) => (
-						<Link key={index} to={`/illustrations/${product.slug}`}>
-							<img src={product.images[0]} />
-						</Link>
-					))}
-			i</div> */}
     </div>
   );
 };

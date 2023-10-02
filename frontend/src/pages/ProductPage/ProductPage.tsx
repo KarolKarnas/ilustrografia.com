@@ -248,35 +248,34 @@ const ProductPage = () => {
       <>
         <div className="my-5 flex w-full justify-center gap-20">
           <div className="w-4/12 ">
-            
-              <img className="md:sticky md:top-8 shadow-hero "
-                src={
-                  variation &&
-                  product.options.material[
-                    variation.options.material as MaterialOptionNoNameKeys
-                  ].images[0]
-                }
-                alt={`${product.slug}-${variation.options.material}`}
-              />
-        
+            <img
+              className="shadow-hero md:sticky md:top-8 "
+              src={
+                variation &&
+                product.options.material[
+                  variation.options.material as MaterialOptionNoNameKeys
+                ].images[0]
+              }
+              alt={`${product.slug}-${variation.options.material}`}
+            />
           </div>
           <div className="w-4/12">
             {/* BREADCRUMBS */}
             <p className=" text-zinc-300">
-              <Link to={`/shop`} className=" hover:text-red-magic text-xs">
+              <Link to={`/shop`} className=" text-xs hover:text-red-magic">
                 shop
               </Link>{" "}
               /{" "}
               <Link
                 to={`/shop/${product.categories[0].slug}`}
-                className=" hover:text-red-magic text-xs"
+                className=" text-xs hover:text-red-magic"
               >
                 {product.categories[0].slug}
               </Link>{" "}
               /{" "}
               <Link
                 to={`/shop/${product.categories[0].slug}/${product.slug}`}
-                className=" hover:text-red-magic text-xs"
+                className=" text-xs hover:text-red-magic"
               >
                 {product.slug}
               </Link>{" "}
@@ -316,9 +315,9 @@ const ProductPage = () => {
                         product.options.size[
                           variation.options.size as SizeOptionNoNameKeys
                         ].title
-                        ? "border-red-magic bg-red-magic bg-opacity-90 text-white shadow-sm "
-                        : ""
-                    }font-light hover:border-red-magic hover:bg-red-magic border border-black p-1 text-xs transition hover:bg-opacity-70 hover:text-white`}
+                          ? "border-red-magic bg-red-magic/60 text-ivory shadow-sm "
+                          : "dark:border-ivory/80 dark:text-ivory  "
+                      } border border-black p-1 text-xs transition hover:border-red-magic hover:bg-red-magic hover:text-white dark:hover:border-red-magic`}
                     >
                       {option}
                     </button>
@@ -326,7 +325,7 @@ const ProductPage = () => {
                 )}
               </div>
               {/* <hr className=" mx-auto my-3 h-px"></hr> */}
-              
+
               {/* Materials */}
               <div className="flex gap-1">
                 {materialTitle.map((option) => {
@@ -339,9 +338,9 @@ const ProductPage = () => {
                         product.options.material[
                           variation.options.material as MaterialOptionNoNameKeys
                         ].title
-                        ? "border-red-magic bg-red-magic bg-opacity-90 text-white shadow-sm "
-                        : ""
-                    }font-light hover:border-red-magic hover:bg-red-magic border border-black p-1 text-xs transition hover:bg-opacity-70 hover:text-white`}
+                          ? "border-red-magic bg-red-magic/60 text-ivory shadow-sm "
+                          : "dark:border-ivory/80 dark:text-ivory  "
+                      } border border-black p-1 text-xs transition hover:border-red-magic hover:bg-red-magic/80 hover:text-white dark:hover:border-red-magic`}
                     >
                       {option}
                     </button>
@@ -350,14 +349,11 @@ const ProductPage = () => {
               </div>
             </div>
 
-
             <div className="flex justify-evenly">
               <div>SKU {variation?.SKU}</div>
               <div>Price ${variation?.price}</div>
               <div>Price ${variation?.price * qty}</div>
             </div>
-
-
 
             <hr className=" mx-auto my-3 h-px"></hr>
             {/* select quantity */}

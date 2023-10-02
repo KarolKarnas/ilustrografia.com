@@ -5,6 +5,7 @@ import { Product } from "../types/Product";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 import { SerializedError } from "@reduxjs/toolkit";
 import ProductVariations from "./ProductVariations";
+import Message from "./Message";
 
 
 
@@ -40,7 +41,7 @@ const ProductsGrid = ({
         {isLoading ? (
           <Spinner />
         ) : error ? (
-          <div>{getError(error as ApiError)}</div>
+          <Message variant='bad' message={getError(error as ApiError)} />
         ) : (
           products &&
           products.map((product: Product) => (
