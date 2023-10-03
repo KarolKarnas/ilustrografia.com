@@ -365,17 +365,8 @@ const ProductPage = () => {
           <hr className=" mx-auto my-3 h-px"></hr>
 
           <div className="flex h-10 items-center gap-5">
-            <select
-              disabled={variation.countInStock <= 0}
-              className="h-full w-16 px-2 font-montserrat text-sm font-light  "
-              onChange={(e) => setQty(Number(e.target.value))}
-            >
-              {Array.from({ length: variation.countInStock }, (_, index) => (
-                <option className="   " key={index + 1} value={index + 1}>
-                  {index + 1}
-                </option>
-              ))}
-            </select>
+
+<SelectNumber selectNumber={variation.countInStock} onChange={setQty} defaultValue="1"/>
 
             <button
               onClick={addToCartHandler}

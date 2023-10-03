@@ -5,15 +5,17 @@ import { FaChevronDown, FaCheck } from "react-icons/fa6";
 type Props = {
   selectNumber: number;
   onChange: (value: React.SetStateAction<number>) => void;
+  defaultValue: string
 };
 
-const SelectNumber = ({ selectNumber, onChange }: Props) => {
+const SelectNumber = ({ selectNumber, onChange, defaultValue }: Props) => {
   return (
     <Select.Root
-      defaultValue={"5"}
+      defaultValue={defaultValue}
+      disabled={selectNumber <= 0}
       onValueChange={(value) => onChange(Number(value))}
     >
-      <Select.Trigger className="inline-flex h-[35px] items-center  justify-center gap-[5px] border border-red-magic/50 bg-white px-4 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline focus:outline-offset-0 focus:outline-red-magic dark:bg-black-magic dark:text-ivory">
+      <Select.Trigger className="inline-flex h-10 items-center  justify-center gap-[5px] rounded-md bg-white px-4 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5">
         <Select.Value placeholder="Select Rating" />
         <Select.Icon>
           <FaChevronDown />
@@ -22,8 +24,7 @@ const SelectNumber = ({ selectNumber, onChange }: Props) => {
 
       <Select.Portal>
         <Select.Content className="">
-     
-          <Select.Viewport className=" w-14 border border-red-magic/50 bg-white dark:bg-black-magic text-black-magic shadow-lg">
+          <Select.Viewport className=" w-14 border border-red-magic/50 bg-white text-black-magic shadow-lg dark:bg-black-magic rounded-md">
             <Select.Group>
               {Array.from({ length: selectNumber }, (_, index) => (
                 <Select.Item
@@ -31,7 +32,7 @@ const SelectNumber = ({ selectNumber, onChange }: Props) => {
                     index === selectNumber - 1
                       ? ""
                       : "border-b border-b-red-magic/50"
-                  } relative  flex h-[25px] select-none items-center justify-center pl-[25px] pr-[35px] text-[13px] leading-none text-black-magic hover:cursor-pointer data-[highlighted]:outline-none data-[highlighted]:hover:bg-red-magic dark:bg-black-magic dark:text-ivory focus:outline focus:outline-2 data-[highlighted]:focus:bg-red-magic`}
+                  } relative  flex h-[25px] select-none items-center justify-center pl-[25px] pr-[35px] text-[13px] leading-none text-black-magic hover:cursor-pointer focus:outline focus:outline-2 data-[highlighted]:outline-none data-[highlighted]:hover:bg-red-magic data-[highlighted]:focus:bg-red-magic dark:bg-black-magic dark:text-ivory`}
                   key={index + 1}
                   value={(index + 1).toString()}
                 >
