@@ -27,9 +27,13 @@ import Rating from "../../components/Rating";
 import Spinner from "../../components/Spinner";
 import ProductBreadcrumbs from "./ProductBreadcrumbs";
 import { FaChevronDown } from "react-icons/fa6";
+import LineDivider from "../../components/primitives/LineDivider";
+import Reviews from "./Reviews";
+import SelectNumber from "./SelectNumber";
+import ReviewForm from "./ReviewForm";
 
 const ProductPage = () => {
-  const [reviewRating, setReviewRating] = useState(0);
+  const [reviewRating, setReviewRating] = useState(5);
   const [reviewComment, setReviewComment] = useState("");
   // const [userInfo, setUserInfo] = useState<UserInfo>()
   const params = useParams();
@@ -40,7 +44,7 @@ const ProductPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [qty, setQty] = useState(1);
+  const [qty, setQty] = useState(5);
   const [variation, setVariation] = useState<Variation>();
 
   // console.log(variation);
@@ -54,7 +58,7 @@ const ProductPage = () => {
     error,
   } = useGetProductDetailsQuery(slug);
 
-  // console.log(product)
+  console.log(product?.reviews);
 
   const [createProductReview, { isLoading: loadingProductReview }] =
     useCreateProductReviewMutation();
@@ -241,6 +245,7 @@ const ProductPage = () => {
         rating: reviewRating,
       }).unwrap();
       toast.success("Review created successfully");
+      setReviewComment('')
       refetch();
     } catch (err) {
       toast.error(getError(err as ApiError));
@@ -362,11 +367,11 @@ const ProductPage = () => {
           <div className="flex h-10 items-center gap-5">
             <select
               disabled={variation.countInStock <= 0}
-              className="h-full px-4 "
+              className="h-full w-16 px-2 font-montserrat text-sm font-light  "
               onChange={(e) => setQty(Number(e.target.value))}
             >
               {Array.from({ length: variation.countInStock }, (_, index) => (
-                <option key={index + 1} value={index + 1}>
+                <option className="   " key={index + 1} value={index + 1}>
                   {index + 1}
                 </option>
               ))}
@@ -378,28 +383,26 @@ const ProductPage = () => {
                 variation?.countInStock === 0
                   ? "bg-zinc-100 text-zinc-300"
                   : "bg-black-magic text-ivory hover:bg-red-magic dark:border  dark:border-red-magic dark:bg-red-magic/60 dark:hover:bg-red-magic/80"
-              }   h-full  px-32 text-xs font-semibold uppercase transition-colors duration-300`}
+              }   h-full  w-full text-xs font-semibold uppercase transition-colors duration-300 md:w-auto md:px-32`}
               disabled={variation?.countInStock === 0}
             >
               {variation.countInStock > 0 ? "Add to Cart" : "Out Of Stock"}
             </button>
           </div>
           <div className=" mb-3 mt-10 font-montserrat text-black-magic dark:text-ivory">
-            <p className=" mb-2 text-sm font-semibold">
-              By hanging {product.name} on the wall, you gain:{" "}
-            </p>
+            <h4 className=" mb-2 text-sm font-semibold">
+              By buying {product.name} on the wall, you gain:{" "}
+            </h4>
             {product.statistics.length > 0 ? (
               <ul className="list-disc pl-8 text-sm">
                 {product.statistics.map((stat: string) => (
-                  <li key={stat}>
-                    {stat}
-                  </li>
+                  <li key={stat}>{stat}</li>
                 ))}
               </ul>
             ) : null}
           </div>
 
-          <hr className=" mx-auto my-5 h-px"></hr>
+          <hr className=" mx-auto my-5 h-px "></hr>
 
           <div className="font-montserrat text-sm text-black-magic dark:text-ivory">
             <VariationDescription
@@ -409,113 +412,49 @@ const ProductPage = () => {
           <hr className=" mx-auto my-5 h-px"></hr>
 
           <div className=" font-montserrat text-black-magic dark:text-ivory">
-          <VariationCharacteristics
-            variationMaterial={variation.options.material}
-          />
+            <h4 className=" mb-2 text-sm font-semibold">
+              {
+                product.options.material[
+                  variation.options.material as MaterialOptionNoNameKeys
+                ].title
+              }{" "}
+              characteristics:
+            </h4>
+            <VariationCharacteristics
+              variationMaterial={variation.options.material}
+            />
           </div>
 
-          {product.reviews ? (
-            <div className="flex flex-col gap-4 ">
-              <h3>Add Review</h3>
-              {product.reviews?.map((review, index) => {
-                // console.log(review);
-                return (
-                  <div
-                    key={index}
-                    className="flex flex-col rounded-md bg-red-50 p-4 shadow-md"
-                  >
-                    <h5 className="flex font-semibold ">{review.name}</h5>
-                    <p className="text-sm italic">{review.comment}</p>
-                    <p className=" text-xs ">
-                      {review.createdAt.substring(0, 10)}
-                    </p>
+          <hr className=" mx-auto my-5 h-px"></hr>
 
-                    <Rating rating={review.rating} />
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <div>No reviews yet, be the first one</div>
-          )}
-
-          {userInfo && (
-            <Form.Root
-              className="w-full"
-              onSubmit={(e) => handleSubmitReview(e)}
-            >
-              <Form.Field className="flex flex-col" name="review rating">
-                <div className="flex items-baseline justify-between">
-                  <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
-                    Rating (0-5)
-                  </Form.Label>
-                  <Form.Message
-                    className="text-md text-red-magic"
-                    match="valueMissing"
-                  >
-                    Please enter Rating
-                  </Form.Message>
-                  <Form.Message
-                    className="text-md text-red-magic"
-                    match={(value) => Number(value) < 0 || Number(value) > 5}
-                  >
-                    Please provide a valid Rating
-                  </Form.Message>
-                </div>
-                <Form.Control asChild>
-                  <input
-                    className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
-                    type="number"
-                    required
-                    placeholder="Enter rating"
-                    value={reviewRating}
-                    onChange={(e) => setReviewRating(Number(e.target.value))}
-                  />
-                </Form.Control>
-              </Form.Field>
-
-              <Form.Field className="flex flex-col" name="comment">
-                <div className="flex items-baseline justify-between">
-                  <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
-                    Comment
-                  </Form.Label>
-                  <Form.Message
-                    className="text-md text-red-magic"
-                    match="valueMissing"
-                  >
-                    Please enter your Comment
-                  </Form.Message>
-
-                  <Form.Message
-                    className="text-md text-red-magic"
-                    match="typeMismatch"
-                  ></Form.Message>
-                </div>
-                <Form.Control asChild>
-                  <input
-                    className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
-                    type="text"
-                    required
-                    placeholder="Enter name"
-                    value={reviewComment}
-                    onChange={(e) => {
-                      setReviewComment(e.target.value);
-                    }}
-                  />
-                </Form.Control>
-              </Form.Field>
-
-              <Form.Submit asChild>
-                <button
-                  // add disabled styling
-                  className="mt-5 w-full bg-zinc-900 py-2 text-center text-white hover:cursor-pointer  hover:bg-red-200"
-                  // disabled={isLoading}
+          <div className="font-montserrat text-sm text-black-magic dark:text-ivory">
+            <h3 className="font-semibold">Reviews:</h3>
+            {product.reviews && product.reviews.length > 0 ? (
+              <Reviews reviews={product.reviews} />
+            ) : (
+              <span className="">
+                There are no reviews yet, write the first one.
+              </span>
+            )}
+            {userInfo ? (
+              <ReviewForm
+                handleSubmitReview={handleSubmitReview}
+                setReviewRating={setReviewRating}
+                setReviewComment={setReviewComment}
+                reviewComment={reviewComment}
+              />
+            ) : (
+              <div>
+                To write a review you must{" "}
+                <Link
+                  className="text-red-magic underline hover:text-black-magic"
+                  to={"/login"}
                 >
-                  Add Review
-                </button>
-              </Form.Submit>
-            </Form.Root>
-          )}
+                  log in
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -524,56 +463,3 @@ const ProductPage = () => {
   }
 };
 export default ProductPage;
-
-{
-  /* <div className="flex h-10 items-center gap-5">
-            <Select.Root defaultValue={variation.countInStock > 0 ? "1" : "0"} onValueChange={(value) => setQty(Number(value))}>
-              <Select.Trigger  className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none">
-                <Select.Value placeholder="Select Material" />
-                <Select.Icon>
-                  <FaChevronDown />
-                </Select.Icon>
-              </Select.Trigger>
-
-              <Select.Portal>
-                <Select.Content>
-                  <Select.ScrollUpButton />
-                  <Select.Viewport className="rounded-lg bg-gray-800 p-2 text-white shadow-lg">
-                    <Select.Group>
-                      {Array.from(
-                        { length: variation.countInStock },
-                        (_, index) =>
-                          (
-                            <Select.Item
-                              key={index + 1}
-                              value={(index + 1).toString()}
-                            >
-                              <Select.ItemText>{index + 1}</Select.ItemText>
-                              <Select.ItemIndicator className="absolute left-2 inline-flex items-center">
-                                <FaChevronDown />
-                              </Select.ItemIndicator>
-                            </Select.Item>
-                          ) 
-                        
-                      )}
-                    </Select.Group>
-                  </Select.Viewport>
-                  <Select.ScrollDownButton />
-                  <Select.Arrow />
-                </Select.Content>
-              </Select.Portal>
-            </Select.Root>
-
-            <button
-              onClick={addToCartHandler}
-              className={`${
-                variation?.countInStock === 0
-                  ? "bg-zinc-100 text-zinc-300"
-                  : "bg-zinc-900 text-white hover:bg-red-200"
-              }   my-2 h-full  px-32 py-1`}
-              disabled={variation?.countInStock === 0}
-            >
-              {variation.countInStock > 0 ? "Add to Cart" : "Out Of Stock"}
-            </button>
-          </div> */
-}

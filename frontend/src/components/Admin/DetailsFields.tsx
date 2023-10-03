@@ -6,7 +6,6 @@ import InputTextField from "./InputTextField";
 
 type DetailsProps = {
   details: Details;
-
   setDetails: React.Dispatch<React.SetStateAction<Details>>;
 };
 
