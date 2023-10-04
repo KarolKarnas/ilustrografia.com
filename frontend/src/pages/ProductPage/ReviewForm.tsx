@@ -19,6 +19,16 @@ const ReviewForm = ({
     <Form.Root
       className="flex w-full flex-col gap-5"
       onSubmit={(e) => handleSubmitReview(e)}
+
+      // onSubmit={(e) => {
+      //   e.preventDefault()
+      //   if (reviewComment.trim() === "") {
+      //     setReviewComment('')
+      //     return toast.error("Just empty spaces here...");
+      //   }
+      //   return handleSubmitReview(e);
+      // }}
+    
     >
       <Form.Field className="flex flex-col" name="review rating">
         <div className="flex items-baseline justify-between">

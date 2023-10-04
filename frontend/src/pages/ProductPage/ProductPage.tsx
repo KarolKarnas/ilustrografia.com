@@ -1,4 +1,3 @@
-import * as Select from "@radix-ui/react-select";
 import { useAppDispatch, useAppSelector } from "../../slices/reduxHooks";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
@@ -21,13 +20,9 @@ import { addToCart } from "../../slices/cartSlice";
 import VariationCharacteristics from "./VariationCharacteristics";
 import { toast } from "react-toastify";
 import ToastLink from "../../components/ToastLink";
-
-import * as Form from "@radix-ui/react-form";
 import Rating from "../../components/Rating";
 import Spinner from "../../components/Spinner";
 import ProductBreadcrumbs from "./ProductBreadcrumbs";
-import { FaChevronDown } from "react-icons/fa6";
-import LineDivider from "../../components/primitives/LineDivider";
 import Reviews from "./Reviews";
 import SelectNumber from "./SelectNumber";
 import ReviewForm from "./ReviewForm";

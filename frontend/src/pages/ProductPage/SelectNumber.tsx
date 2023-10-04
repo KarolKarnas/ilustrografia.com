@@ -24,7 +24,7 @@ const SelectNumber = ({ selectNumber, onChange, defaultValue }: Props) => {
 
       <Select.Portal>
         <Select.Content className="">
-          <Select.Viewport className=" w-14 border border-red-magic/50 bg-white text-black-magic shadow-lg dark:bg-black-magic rounded-md">
+          <Select.Viewport className=" w-20 border border-red-magic/50 bg-white text-black-magic shadow-lg dark:bg-black-magic rounded-md">
             <Select.Group>
               {Array.from({ length: selectNumber }, (_, index) => (
                 <Select.Item
@@ -32,7 +32,7 @@ const SelectNumber = ({ selectNumber, onChange, defaultValue }: Props) => {
                     index === selectNumber - 1
                       ? ""
                       : "border-b border-b-red-magic/50"
-                  } relative  flex h-[25px] select-none items-center justify-center pl-[25px] pr-[35px] text-[13px] leading-none text-black-magic hover:cursor-pointer focus:outline focus:outline-2 data-[highlighted]:outline-none data-[highlighted]:hover:bg-red-magic data-[highlighted]:focus:bg-red-magic dark:bg-black-magic dark:text-ivory`}
+                  } relative  flex h-8 select-none items-center justify-center  text-[13px] leading-none text-black-magic hover:cursor-pointer focus:outline focus:outline-2 data-[highlighted]:outline-none data-[highlighted]:hover:bg-red-magic data-[highlighted]:focus:bg-red-magic dark:bg-black-magic dark:text-ivory`}
                   key={index + 1}
                   value={(index + 1).toString()}
                 >
