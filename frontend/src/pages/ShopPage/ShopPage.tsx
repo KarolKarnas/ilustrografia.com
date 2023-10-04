@@ -53,7 +53,7 @@ const ShopPage = () => {
     <div>{getError(error as ApiError)}</div>
   ) : (
   
-      <div className="flex flex-col md:flex-row w-full px-2 lg:px-24">
+      <div className="flex flex-col md:flex-row w-full px-2 lg:px-24 lg:min-h-[650px]">
         <div className="w-full md:w-3/12 lg:w-2/12 p-2 md:p-0 ">
 {/* FILTERS */}
 

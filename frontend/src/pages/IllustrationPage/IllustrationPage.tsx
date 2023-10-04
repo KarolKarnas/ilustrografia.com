@@ -75,13 +75,17 @@ const IllustrationPage = () => {
     );
   });
 
+  const firstLetter = product.details.story.charAt(0);
+  const restOfLegend = product.details.story.slice(1);
+ 
+
   return isLoading ? (
     <Spinner />
   ) : error ? (
     <div>{getError(error as ApiError)}</div>
   ) : (
     <div className="flex w-11/12 flex-col gap-16">
-      <div className="flex flex-col md:flex-row w-full justify-center  sm:gap-10 xl:gap-20">
+      <div className="flex w-full flex-col justify-center sm:gap-10  md:flex-row xl:gap-20">
         <div className=" w-full md:w-5/12">
           <img
             className="shadow-hero md:sticky md:top-8"
@@ -89,8 +93,10 @@ const IllustrationPage = () => {
             alt={product?.slug}
           />
         </div>
-        <div className="w-full md:w-4/12 dark:text-ivory">
-          <h1 className=" mb-1 mt-16 md:mt-0 font-fondamento text-3xl">The {product?.name}</h1>
+        <div className="w-full dark:text-ivory md:w-4/12">
+          <h1 className=" mb-1 mt-16 font-fondamento text-3xl md:mt-0">
+            The {product?.name}
+          </h1>
 
           {product.details.latinName ? (
             <span className=" mb-1 font-fondamento text-xl">
@@ -111,41 +117,47 @@ const IllustrationPage = () => {
             </div>
           ) : null}
 
-          
-          <div className="flex justify-center my-6">
+          <div className="my-6 flex justify-center">
             <IconDivider>
               <FaDragon />
             </IconDivider>
           </div>
 
-          <p className="w-full whitespace-pre-line first-letter:bg-red-magic first-letter:px-5 first-letter:py-2 first-letter:font-fondamento first-letter:text-2xl first-letter:text-ivory first-line:leading-10">
-            {product.details.story}
+          <p className="w-full">
+          <span className="text-5xl text-ivory mr-2 lea  bg-red-magic float-left px-5 mt-2 py-2 font-fondamento">{firstLetter}</span>
+           <span className="font-light">{restOfLegend}</span>
           </p>
-          <div className="flex justify-center my-6">
+          <div className="my-6 flex justify-center">
             <IconDivider>
               <FaDragon />
             </IconDivider>
           </div>
-          
-            <p className="mb-3 font-fondamento text-xl">
-              What the {product.name} can do for You?
-            </p>
-            {product.statistics.length > 0 ? (
-              <ul className="list-disc pl-8">
-                {product.statistics.map((stat: string) => (
-                  <li className=" " key={stat}>
-                    {stat}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-         <div className="mt-10 flex justify-center md:justify-start"><Button color="red" text={`${product.name} Products`} link={`/shop/${product.slug}`}/></div>
+
+          <p className="mb-3 font-fondamento text-xl">
+            What the {product.name} can do for You?
+          </p>
+          {product.statistics.length > 0 ? (
+            <ul className="list-disc pl-8">
+              {product.statistics.map((stat: string) => (
+                <li className=" " key={stat}>
+                  {stat}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          <div className="mt-10 flex justify-center md:justify-start">
+            <Button
+              color="red"
+              text={`${product.name} Products`}
+              link={`/shop/${product.slug}`}
+            />
+          </div>
         </div>
       </div>
       <div className="flex justify-center">
         <IconDivider>
-                <FaDragon />
-              </IconDivider>
+          <FaDragon />
+        </IconDivider>
       </div>
 
       <SectionMain>

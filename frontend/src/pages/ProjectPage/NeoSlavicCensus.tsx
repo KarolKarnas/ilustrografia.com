@@ -33,7 +33,7 @@ const NeoSlavicCensus = () => {
           Neo-slavic
         </h1>
       </div>
-      <div className="absolute top-128 hidden w-1/2 md:flex md:items-center md:justify-center ">
+      <div className="absolute top-[34rem] hidden w-1/2 md:flex md:items-center md:justify-center ">
         <h2 className="my-2 text-center font-cormorant-infant text-5xl font-semibold italic text-white drop-shadow-2xl md:text-9xl">
           Census
         </h2>
