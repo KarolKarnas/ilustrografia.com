@@ -19,6 +19,10 @@ export const theme = {
       "neo-slavic": "url('../public/images/addons/neo-slavic-census.jpg')",
       "fantasy-illustrations":
         "url('../public/images/addons/fantasy-illustrations.jpg')",
+      "slavic-gradient":
+        "radial-gradient(at center center,#FFECD3 14%,#8B4932 100%)",
+      "black-slavic-gradient":
+        "radial-gradient(at center center,#424547 10%,#020101 100%)",
     },
 
     colors: {
@@ -76,6 +80,9 @@ export const theme = {
       75: ".75",
       90: ".90",
     },
+    scale: {
+      'flip': '-1'
+    }
   },
 };
 export const plugins = [];

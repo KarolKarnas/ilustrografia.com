@@ -40,12 +40,12 @@ const HomePage = () => {
   } = useGetNeoSlavicQuery(3);
 
   return (
-    <div className=" flex w-full flex-col gap-y-20 p-2 md:w-11/12">
+    <div className=" flex w-full flex-col gap-y-20 p-2 md:p-0 md:w-11/12">
       <div
         className=" md:h-196
        flex h-screen flex-col items-center  justify-center rounded-3xl bg-hero bg-cover bg-center bg-no-repeat shadow-hero lg:h-224"
       >
-        <div className=" flex flex-col items-center justify-center  p-2">
+        <div className=" flex flex-col items-center justify-center  p-2 md:p-0">
           <span className=" md:text-md text-center  font-montserrat text-xs font-semibold uppercase tracking-hero text-red-magic drop-shadow-hero">
             · Ilustrografia ·
           </span>
@@ -238,7 +238,7 @@ const HomePage = () => {
             </MainText>
           </div>
         </MainTitlesWrapper>
-        <MainStrongText> Will you join us?</MainStrongText>
+        <MainStrongText>Will you join us?</MainStrongText>
         {ytSearchLoading ? (
           <Spinner />
         ) : ytSearchError ? (

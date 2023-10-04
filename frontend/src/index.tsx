@@ -35,8 +35,8 @@ import ShopPage from "./pages/ShopPage/ShopPage";
 import IllustrationsPage from "./pages/IllustrationsPage/IllustrationsPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import IllustrationPage from "./pages/IllustrationPage/IllustrationPage";
-import AboutNeoSlavicCensus from "./pages/ProjectPage/AboutNeoSlavicCensus";
-import AboutFantasyIllustrations from "./pages/ProjectPage/AboutFantasyIllustrations";
+import AboutNeoSlavicCensus from "./pages/ProjectPage/NeoSlavicCensus";
+import AboutFantasyIllustrations from "./pages/ProjectPage/FantasyIllustrations";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

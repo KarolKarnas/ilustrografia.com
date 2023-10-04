@@ -21,7 +21,7 @@ const Dropdown = ({ userInfo, handleLogout }: Props) => {
       <DropdownMenu.Portal>
         <DropdownMenu.Content
           side="bottom"
-          className="DropdownMenuContent dark:bg-bg-black-magic/50 mt-2 flex w-64 flex-col gap-2 border border-red-magic/50  bg-ivory p-4 text-sm font-semibold uppercase text-eerie-black shadow-hero backdrop-blur-sm  dark:bg-black-magic dark:text-ivory"
+          className="DropdownMenuContent dark:bg-bg-black-magic/50 mt-2 flex w-64 flex-col gap-2 border border-red-magic/50  bg-ivory p-4 text-sm font-semibold uppercase text-eerie-black shadow-xl dark:bg-black-magic dark:text-ivory"
 
           // border border-red-magic/60
         >
@@ -50,7 +50,7 @@ const Dropdown = ({ userInfo, handleLogout }: Props) => {
                   <DropdownMenu.Content
                     side="bottom"
                     // sideOffset={98}
-                    className=" DropdownMenuContent dark:bg-bg-black-magic/50 focus:outline:none mt-2 flex w-64 flex-col gap-2 border  border-red-magic/50 bg-ivory p-4 text-sm font-semibold uppercase text-eerie-black shadow-hero  backdrop-blur-sm  dark:bg-black-magic dark:text-ivory"
+                    className=" DropdownMenuContent dark:bg-bg-black-magic/50 focus:outline:none mt-2 flex w-64 flex-col gap-2 border  border-red-magic/50 bg-ivory p-4 text-sm font-semibold uppercase text-eerie-black shadow-hero  dark:bg-black-magic dark:text-ivory"
                   >
                     <Link className="mx-auto   " to={"/admin/product-list"}>
                       <DropdownMenu.Item className=" transition duration-500 hover:scale-110 hover:text-red-magic hover:outline-none    focus:scale-110 focus:text-red-magic focus:outline-none">
