@@ -8,8 +8,6 @@ import { useGetProductsByCategoryQuery } from "../../slices/productsApiSlice";
 import { useGetNeoSlavicQuery } from "../../slices/ytApiSlice";
 import SectionMain from "../../components/SectionMain";
 import MainTitlesWrapper from "../../components/MainTitlesWrapper";
-import HeadingAccent from "../../components/primitives/HeadingAccent";
-import MainText from "../../components/primitives/MainText";
 import Spinner from "../../components/Spinner";
 import LatestVideos from "../../components/LatestVideos";
 import { getError } from "../../utils/utils";
@@ -34,14 +32,14 @@ const NeoSlavicCensus = () => {
   return (
     <div className="flex w-11/12 flex-col items-center justify-center">
       <section className="relative flex flex-col items-center justify-center">
-        <div className=" fixed -left-[23rem] top-[5rem] hidden w-1/2 md:flex md:items-center md:justify-center  ">
+        <div className=" fixed -left-[23rem] top-[5rem] hidden w-1/2 md:flex md:items-center md:justify-center -z-10  ">
           <ImageMouseMoving
             src={"/images/neo-slavic-census-about/basilisk-translucent.png"}
             reverse={true}
           />
         </div>
 
-        <div className="fixed  -right-[22rem] top-[5rem] hidden w-1/2 md:flex md:items-center md:justify-center ">
+        <div className="fixed  -right-[22rem] top-[5rem] hidden w-1/2 md:flex md:items-center md:justify-center -z-10 ">
           <ImageMouseMoving
             src={"/images/neo-slavic-census-about/book-translucent.png"}
           />
@@ -61,20 +59,21 @@ const NeoSlavicCensus = () => {
             Neo-slavic
           </h1>
         </div>
-        <div className="absolute top-[20rem] flex items-center justify-center sm:top-[34rem] ">
+        <div className="absolute top-[20rem] flex items-center justify-center sm:top-[43rem] ">
           <h2 className="my-2 text-center font-cormorant-infant text-6xl font-semibold italic text-white drop-shadow-2xl md:text-9xl">
             Census
           </h2>
         </div>
+        
         {/* Gradient Background */}
-        <div className="flex h-full  flex-col items-center justify-start bg-slavic-gradient dark:bg-black-slavic-gradient">
+        <div className="flex h-full  flex-col items-center justify-start bg-slavic-gradient dark:bg-black-slavic-gradient -z-20">
           <img
-            className=" mt-16 w-11/12 rounded-full  shadow-hero md:w-auto"
+            className=" mt-16 w-11/12 rounded-full  shadow-hero md:w-[724px]"
             src="/images/neo-slavic-census-about/neo-slavic-census.jpg"
             alt=""
           />
-          <div className="z-10 flex w-10/12 flex-col items-center justify-center md:w-1/3">
-            <div className="my-8 flex flex-col items-center gap-4 md:flex-row md:gap-8">
+          <div className="z-10 mb-8 mt-12 flex w-10/12 flex-col items-center justify-center md:w-1/3">
+            {/* <div className="my-8 flex flex-col items-center gap-4 md:flex-row md:gap-8">
               <Button
                 text={"shop"}
                 color={"red"}
@@ -85,7 +84,7 @@ const NeoSlavicCensus = () => {
                 color={"white"}
                 link={"/illustrations"}
               />
-            </div>
+            </div> */}
             <p className="flex flex-col items-center justify-center gap-4  text-center  font-cormorant-infant text-xl font-semibold italic text-eerie-black drop-shadow-lg dark:text-ivory">
               <span>
                 The stoic Carpathian mountains stand in silence, their majestic
