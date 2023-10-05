@@ -12,7 +12,7 @@ const MainStrongText = ({ children, alwaysLight }: Props) => {
         alwaysLight
           ? "text-ivory drop-shadow-lg"
           : "text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg"
-      } text-center font-cormorant-infant text-3xl font-semibold italic  `}
+      } text-center font-cormorant-infant text-2xl md:text-3xl font-semibold italic  `}
     >
       {children}
     </strong>

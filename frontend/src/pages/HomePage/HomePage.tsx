@@ -70,7 +70,7 @@ const HomePage = () => {
           <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-magic drop-shadow-lg">
             · Ilustrografia ·
           </span>
-          <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-3xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
+          <h3 className=" my-2  mb-4 text-center font-cormorant-infant  text-5xl font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-6xl ">
             Greetings, Wanderer!
           </h3>
           <strong className=" mb-5 text-center text-eerie-black dark:text-ivory">
@@ -85,7 +85,7 @@ const HomePage = () => {
             limitation is imagination, and when it comes to imagination, there
             are no boundaries.
           </span>
-          <strong className="text-center font-cormorant-infant text-2xl font-semibold italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
+          <strong className="text-center font-cormorant-infant text-2xl md:text-3xl font-semibold italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
             Will you muster the courage to venture with us?
           </strong>
         </div>
@@ -227,7 +227,7 @@ const HomePage = () => {
           <IconDivider>
             <FaDragon />
           </IconDivider>
-          <div className="  flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-20 py-10">
+          <div className="  flex w-full flex-col items-center gap-4 rounded-xl bg-black bg-opacity-30 px-8 md:px-20 py-10">
             <MainText alwaysLight>
               Our latest creative wonders are now live on YouTube, waiting to
               transport you to new worlds and evoke a sense of wonder.
