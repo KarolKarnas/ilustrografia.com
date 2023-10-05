@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import logo from "./assets/logo-ilustrografia.png";
 import Dropdown from "./Dropdown";
 import { useState } from "react";
-import HoverMenuButton from "./HoverMenuButton";
 import DropdownProjects from "./DropdownProjects";
 
 type Props = {
