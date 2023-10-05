@@ -28,6 +28,8 @@ const IllustrationsGrid = ({
           ? "xl:grid-cols-3"
           : colNum === 5
           ? "xl:grid-cols-5"
+          : colNum === 2
+          ? "xl:grid-cols-2"
           : "xl:grid-cols-4"
       } grid grid-cols-1 gap-8 lg:grid-cols-2 `}
     >
@@ -47,7 +49,7 @@ const IllustrationsGrid = ({
                 src={product.images[0]}
                 className={`${
                   aspectRatio === "4/5" ? `aspect-[4/5]` : "aspect-square"
-                } object-cover`}
+                } object-cover w-full`}
               />
             </div>
           </Link>

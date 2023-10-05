@@ -10,7 +10,7 @@ const LatestVideos = ({ youtubeItems }: Props) => {
   return (
     // <div className="w-full min-w-full">
 
-    <div className=" grid md:grid-cols-2 xl:grid-cols-3 min-w-full gap-y-10  ">
+    <div className=" grid md:grid-cols-2 xl:grid-cols-3 min-w-full gap-y-10 z-10 ">
       {youtubeItems.map((item, index) => (
         <YouTubeEmbed center key={index} embedId={item.id.videoId} />
       ))}

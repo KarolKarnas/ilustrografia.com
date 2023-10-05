@@ -4,19 +4,48 @@ import ImageMouseMoving from "../../components/ImageMouseMoving";
 import IconDivider from "../../components/primitives/IconDivider";
 import MainHeading from "../../components/primitives/MainHeading";
 import MainStrongText from "../../components/primitives/MainStrongText";
+import { useGetProductsByCategoryQuery } from "../../slices/productsApiSlice";
+import { useGetNeoSlavicQuery } from "../../slices/ytApiSlice";
+import SectionMain from "../../components/SectionMain";
+import MainTitlesWrapper from "../../components/MainTitlesWrapper";
+import HeadingAccent from "../../components/primitives/HeadingAccent";
+import MainText from "../../components/primitives/MainText";
+import Spinner from "../../components/Spinner";
+import LatestVideos from "../../components/LatestVideos";
+import { getError } from "../../utils/utils";
+import Message from "../../components/Message";
+import { ApiError } from "../../types/ApiError";
+import ProductsGrid from "../../components/ProductsGrid";
+import IllustrationsGrid from "../../components/IllustrationsGrid";
+
+
 
 const NeoSlavicCensus = () => {
+
+  const {
+    data: neoSlavicProducts,
+    isLoading: isLoadingNeoSlavic,
+    error: errorNeoSlavic,
+  } = useGetProductsByCategoryQuery("neo-slavic-census");
+
+  const {
+    data: ytSearch,
+    isLoading: ytSearchLoading,
+    error: ytSearchError,
+  } = useGetNeoSlavicQuery(3);
+
+
   return (
-    <div className="flex w-11/12 flex-col items-center justify-center gap-10">
+    <div className="flex w-11/12 flex-col items-center justify-center">
       <section className="relative flex flex-col justify-center items-center">
-        <div className=" fixed -left-[23rem] top-[5rem] hidden w-1/2 md:flex md:items-center md:justify-center ">
+        <div className=" fixed -left-[23rem] top-[5rem] hidden w-1/2 md:flex md:items-center md:justify-center  ">
            <ImageMouseMoving
              src={"/images/neo-slavic-census-about/basilisk-translucent.png"}
              reverse={true}
            />
          </div>
 
-        <div className="fixed  -right-[24rem] top-[5rem] hidden w-1/2 md:flex md:items-center md:justify-center ">
+        <div className="fixed  -right-[22rem] top-[5rem] hidden w-1/2 md:flex md:items-center md:justify-center ">
           <ImageMouseMoving
             src={"/images/neo-slavic-census-about/book-translucent.png"}
           />
@@ -74,7 +103,7 @@ const NeoSlavicCensus = () => {
         </div>
       </section>
 
-      <div className="flex w-full md:w-7/12 xl:w-6/12 flex-col items-center justify-center font-light">
+      <div className="flex w-full md:w-7/12 xl:w-6/12 flex-col items-center justify-center font-light my-6 md:my-16">
         <MainHeading>Slava!</MainHeading>
         <MainStrongText>
           {" "}
@@ -142,7 +171,64 @@ const NeoSlavicCensus = () => {
 And so, with sweat on our brows, labor, and toil, the New Slavic Census is being created. A trio of amateur researchers, inspired scientists, full of passion and vigor, has decided to take a closer look at those who still dwell on these lands with us. It won&apos;t be an easy task; there is much work ahead of us. But with your invaluable help and support, we will discover and get to know all those whom the darkness of oblivion has shrouded. Let&apos;s get to work!
           </span>
         </p>
+        <img
+            className=" my-8 md:my-16 md:w-auto rounded-full  shadow-hero"
+            src="/images/neo-slavic-census-about/neo-slavic-census-book.jpg"
+            alt=""
+          />
       </div>
+
+
+
+
+      <div className="z-10 flex flex-col justify-center items-center gap-[5rem] md:gap-[8rem]">
+        <SectionMain>
+          <MainTitlesWrapper>
+            <MainStrongText>Neo-slavic Illustrations:</MainStrongText>
+          </MainTitlesWrapper>
+
+            <IllustrationsGrid
+              products={neoSlavicProducts}
+              colNum={4}
+              isLoading={isLoadingNeoSlavic}
+              error={errorNeoSlavic}
+              aspectRatio="4/5"
+            />
+
+            
+  
+        </SectionMain>
+
+        <SectionMain color="second">
+          <MainTitlesWrapper>
+            <MainStrongText>Neo-slavic Products:</MainStrongText>
+          </MainTitlesWrapper>
+          <ProductsGrid
+            products={neoSlavicProducts}
+            hideVariations={false}
+            isLoading={isLoadingNeoSlavic}
+            error={errorNeoSlavic}
+          />
+        </SectionMain>
+
+        <SectionMain>
+        <MainTitlesWrapper>
+            <MainStrongText>Neo-slavic Animations:</MainStrongText>
+          </MainTitlesWrapper>
+          {ytSearchLoading ? (
+            <Spinner />
+          ) : ytSearchError ? (
+            <Message
+              variant="bad"
+              message={getError(ytSearchError as ApiError)}
+              // message={ytSearchError.data.message}
+            />
+          ) : (
+            ytSearch && <LatestVideos youtubeItems={ytSearch.items} />
+          )}
+        </SectionMain>
+      </div>
+
     </div>
   );
 };
