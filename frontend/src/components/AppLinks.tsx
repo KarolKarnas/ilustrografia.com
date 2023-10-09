@@ -63,7 +63,7 @@ const AppLinks = () => {
         <FaCartShopping />
         {cartItems.length > 0 && (
           <span className="absolute bottom-5 left-5  -mr-6 object-right-top ">
-            <div className=" inline-flex items-center rounded-full bg-red-600 px-1.5 py-0.5 text-xs font-semibold leading-4 text-white">
+            <div className=" inline-flex items-center rounded-full bg-red-600 px-1 py-0.5  text-xs font-semibold leading-4 text-white">
               {cartItems.reduce(
                 (acc: number, item: VariationCart) => acc + item.qty,
                 0,

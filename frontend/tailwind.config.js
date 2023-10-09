@@ -17,6 +17,7 @@ export const theme = {
     backgroundImage: {
       hero: "url('../public/images/neo-slavic-creatures.jpg')",
       "neo-slavic": "url('../public/images/addons/neo-slavic-census.jpg')",
+      "brush-paint": "url('../public/images/contact/brush-with-paint.png')",
       "fantasy-illustrations":
         "url('../public/images/addons/fantasy-illustrations.jpg')",
       "slavic-gradient":
@@ -25,6 +26,7 @@ export const theme = {
         "radial-gradient(at center center,#424547 10%,#020101 100%)",
       "fantasy-gradient":
         " radial-gradient(at center center,#FFF9F0 14%,#241C61 100%)",
+
     },
 
     colors: {

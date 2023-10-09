@@ -1,14 +1,16 @@
 import { useMouseMove } from "../hooks/componentHooks";
 import { v4 as uuidv4 } from 'uuid';
+import MainStrongText from "./primitives/MainStrongText";
 
 
 type Props = {
  
   src: string;
   reverse?: boolean;
+  text?: string;
 };
 
-const ImageMouseMoving = ({ src, reverse }: Props) => {
+const ImageMouseMoving = ({ src, reverse,text }: Props) => {
 
   const id = uuidv4()
   useMouseMove((e) => {
@@ -28,8 +30,10 @@ const ImageMouseMoving = ({ src, reverse }: Props) => {
       }
     }
   });
-  return (
-    <img id={id} className="dark:invert-90" src={src} alt={`magic visual element`} />
+  return (<div id={id}>
+    {text && <MainStrongText>{text}</MainStrongText>}
+    <img  className="dark:invert-90" src={src} alt={`magic visual element`} />
+    </div>
   );
 };
 export default ImageMouseMoving;
