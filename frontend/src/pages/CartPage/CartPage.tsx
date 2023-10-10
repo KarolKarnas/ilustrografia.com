@@ -7,6 +7,11 @@ import PageHeading from "../../components/primitives/PageHeading";
 import CartSelectNumber from "./CartSelectNumber";
 import HeadingAccent from "../../components/primitives/HeadingAccent";
 import IconDivider from "../../components/primitives/IconDivider";
+import { useGetProductsByCategoryQuery, useGetProductsQuery } from "../../slices/productsApiSlice";
+import SectionMain from "../../components/SectionMain";
+import MainTitlesWrapper from "../../components/MainTitlesWrapper";
+import MainStrongText from "../../components/primitives/MainStrongText";
+import ProductsGrid from "../../components/ProductsGrid";
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -17,6 +22,9 @@ const CartPage = () => {
   const totalPrice = cartItems
     .reduce((acc, variant) => acc + variant.qty * variant.price, 0)
     .toFixed(2);
+
+		const { data: products, isLoading, error } = useGetProductsByCategoryQuery("neo-slavic-census");
+
 
   const checkoutHandler = () => {
     navigate("/login?redirect=/shipping");
@@ -61,58 +69,126 @@ const CartPage = () => {
           </Link>
         </div>
       ) : (
-        <div className="w-11/12 md:w-8/12 text-2xs md:text-sm">
-          <div className=" mb-10 flex items-center justify-between rounded-lg bg-white py-3 font-montserrat  font-semibold text-black-magic shadow-md dark:bg-black-magic dark:text-ivory">
-            <div className="basis-1/12  flex justify-center "><FaTrash /></div>
-            <div className="w-10 basis-1/12 text-center ">Image</div>
-            <div className="basis-6/12 text-center ">Link</div>
-            <div className="basis-2/12 ">Price</div>
-            <div className="basis-2/12 ">Qty</div>
-            <div className="basis-2/12 ">Total</div>
-          </div>
-          {/* <hr className=" mx-auto my-3 h-px"></hr> */}
+        <div className="w-full md:w-11/12 gap-10 flex flex-col-reverse items-center md:items-start md:flex-row">
+					<div className="w-11/12 md:w-full text-2xs md:text-sm">
+						<div className=" mb-10 flex items-center justify-between rounded-lg bg-white py-3 font-montserrat  font-semibold text-black-magic shadow-md dark:bg-black-magic dark:text-ivory">
+							<div className="basis-1/12  flex justify-center "><FaTrash /></div>
+							<div className="w-10 basis-1/12 text-center ">Image</div>
+							<div className="basis-6/12 text-center ">Link</div>
+							<div className="basis-2/12 ">Price</div>
+							<div className="basis-2/12 ">Qty</div>
+							<div className="basis-2/12 ">Total</div>
+						</div>
+						{/* <hr className=" mx-auto my-3 h-px"></hr> */}
+						{cartItems.map((variation, index) => (
+							<div key={variation._id}>
+								<div className="mb-4 flex items-center justify-between dark:text-ivory">
+									<FaTrash
+										onClick={() => removeFromCartHandler(variation._id)}
+										className="basis-1/12 hover:cursor-pointer hover:text-red-magic"
+									/>
+									<img
+										className="w-10 basis-1/12"
+										src={variation.image}
+										alt={variation.variationName}
+									/>
+									<Link
+										className="basis-6/12 text-center underline hover:text-red-magic"
+										to={variation.pathnameWithQuery}
+									>
+										{" "}
+										<div>{variation.variationName}</div>{" "}
+									</Link>
+									<div className="basis-2/12">${variation.price}</div>
+									<div className="basis-2/12">
+										<CartSelectNumber
+											selectNumber={variation.countInStock}
+											onChange={addToCartHandler}
+											variation={variation}
+											defaultValue={variation.qty.toString()}
+										/>
+									</div>
+									<div className="basis-2/12">
+										${variation.price * variation.qty}
+									</div>
+								</div>
+								{cartItems.length - 1 > index ? (
+									<hr className=" mx-auto my-3 h-px"></hr>
+								) : null}
+							</div>
+							
+						))}
 
-          {cartItems.map((variation, index) => (
-            <div key={variation._id}>
-              <div className="mb-4 flex items-center justify-between dark:text-ivory">
-                <FaTrash
-                  onClick={() => removeFromCartHandler(variation._id)}
-                  className="basis-1/12 hover:cursor-pointer hover:text-red-magic"
-                />
-                <img
-                  className="w-10 basis-1/12"
-                  src={variation.image}
-                  alt={variation.variationName}
-                />
-                <Link
-                  className="basis-6/12 text-center underline hover:text-red-magic"
-                  to={variation.pathnameWithQuery}
-                >
-                  {" "}
-                  <div>{variation.variationName}</div>{" "}
-                </Link>
-                <div className="basis-2/12">${variation.price}</div>
-                <div className="basis-2/12">
-                  <CartSelectNumber
-                    selectNumber={variation.countInStock}
-                    onChange={addToCartHandler}
-                    variation={variation}
-                    defaultValue={variation.qty.toString()}
-                  />
-                </div>
-                <div className="basis-2/12">
-                  ${variation.price * variation.qty}
-                </div>
-              </div>
-              {cartItems.length - 1 > index ? (
-                <hr className=" mx-auto my-3 h-px"></hr>
-              ) : null}
-            </div>
-          ))}
+<div className="flex w-full flex-col items-center gap-4 mt-20">
+	<MainStrongText>Clients also liked:</MainStrongText>
+						<ProductsGrid
+							products={products}
+							hideVariations={false}
+							isLoading={isLoading}
+							error={error}
+							colNum={4}
+						/>
+</div>
+
+					</div>
+
+
+		
+					<div className="w-11/12 md:w-3/12 flex flex-col md:h-full top-0 md:top-8 sticky md:sticky bg-white dark:bg-angel-dark-dust px-4 pb-4 pt-1 md:p-8 md:rounded-lg shadow-hero">
+
+        <div className="">
+          <h2 className=" md:mb-8 font-cormorant-infant  md:text-4xl font-semibold italic text-eerie-black  drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl text-center md:mt-0">
+            Cart Summary
+          </h2>
+
+          <div className="mb-2 md:mb-12 w-full font-montserrat text-black-magic dark:text-ivory">
+            <p className="flex items-end justify-between">
+              <span className="mr-2 text-2xs md:text-xs  uppercase">Total quantity:</span>
+              <span className="  font-light">
+                {totalItems} {totalItems === 1 ? "pc" : "pcs"}
+              </span>
+            </p>
+            <hr className=" mx-auto opacity-10 md:opacity-100 my-0.5 md:my-3 h-px"></hr>
+
+            <p className="flex items-end justify-between">
+              <span className="mr-2 text-2xs md:text-xs   uppercase">Total price:</span>
+              <span className=" text-lg">${totalPrice}</span>
+            </p>
+            <hr className=" mx-auto opacity-10 md:opacity-100 my-0.5 md:my-3 h-px"></hr>
+          </div>
+
+          <button
+            disabled={cartItems.length === 0}
+            onClick={checkoutHandler}
+            className={`${
+              cartItems.length === 0
+                ? "bg-zinc-100 text-zinc-300"
+                : "border border-black-magic bg-black-magic   text-ivory hover:border-red-magic hover:bg-red-magic dark:border-red-magic dark:bg-red-magic/60 dark:hover:bg-red-magic/80"
+            }  h-6 md:h-10  w-full text-2xs md:text-xs font-semibold uppercase transition-colors duration-300 md:w-full `}
+          >
+            {cartItems.length === 0
+              ? "Your cart is empty"
+              : "Proceed to Checkout"}
+          </button>
         </div>
+
+{cartItems.length >=3 ?(	<div className="  mx-auto">
+				<img
+					className="hidden md:block dark:invert-90 w-[300px]"
+					src="/images/shop/baba-checkout.png"
+					alt=""
+				/>
+			</div>) : null}
+				
+      </div>
+				
+
+
+				</div>
       )}
 
-      <div className="flex flex-col-reverse md:flex-row md:gap-20 w-11/12 md:w-auto">
+
+      {/* <div className="flex flex-col-reverse md:flex-row md:gap-20 w-11/12 md:w-auto">
         <div className=" basis-1/2 mx-auto">
           <img
             className=" dark:invert-90"
@@ -155,8 +231,10 @@ const CartPage = () => {
               : "Proceed to Checkout"}
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
 export default CartPage;
+
+// w-1/3 sticky h-[400px] md:top-8

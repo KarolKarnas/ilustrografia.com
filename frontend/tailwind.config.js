@@ -37,6 +37,7 @@ export const theme = {
       "angel-space": "#343638",
       "angel-dark": "#424547",
       "angel-dust": "#eeeeee",
+      "original-dust": "#D3D3D3",
       "angel-dark-dust": "#272727",
       "moon-dust": "#F0F0F0",
       "fair-space": "#E4E4E4",
