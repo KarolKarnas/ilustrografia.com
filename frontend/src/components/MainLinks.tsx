@@ -49,7 +49,7 @@ const MainLinks = ({ mobile }: Props) => {
       <Link
         role="navigation"
         className="border-red-magic text-sm font-semibold uppercase hover:scale-110  hover:border-b-2 hover:text-red-magic hover:transition hover:duration-500"
-        to="/about-us"
+        to="/about"
       >
         About
       </Link>

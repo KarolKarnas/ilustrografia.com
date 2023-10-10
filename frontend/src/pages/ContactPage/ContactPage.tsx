@@ -28,7 +28,7 @@ const ContactPage = () => {
           <ImageMouseMoving
             src={"/images/contact/fantasy-label.png"}
             reverse={false}
-            text="Slavic Legends"
+            text="Fine Art Print"
           />
         </div>
         <img

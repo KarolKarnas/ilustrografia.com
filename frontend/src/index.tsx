@@ -25,6 +25,7 @@ import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import PlaceOrderPage from "./pages/PlaceOrderPage/PlaceOrderPage";
 import OrderDetailsPage from "./pages/OrderDetailsPage/OrderDetailsPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import AboutPage from "./pages/AboutPage/AboutPage";
 
 import OrderListPage from "./pages/Admin/OrderListPage";
 import ProductListPage from "./pages/Admin/ProductListPage";
@@ -49,7 +50,6 @@ const router = createBrowserRouter(
       <Route path="/register" element={<RegistrationPage />} />
       <Route path="/illustrations" element={<IllustrationsPage />} />
       <Route path="/illustrations/:slug" element={<IllustrationPage />} />
-      <Route path="/contact" element={<ContactPage />} />
       <Route
         path="/projects/neo-slavic-census"
         element={<AboutNeoSlavicCensus />}
@@ -58,6 +58,8 @@ const router = createBrowserRouter(
         path="/projects/fantasy-illustrations"
         element={<AboutFantasyIllustrations />}
       />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/about" element={<AboutPage />} />
 
       <Route path="" element={<PrivateRoute />}>
         <Route path="/shipping" element={<ShippingPage />} />
