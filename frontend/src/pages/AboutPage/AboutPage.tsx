@@ -1,6 +1,5 @@
 import { FaDiceD20 } from "react-icons/fa6";
 import IconDivider from "../../components/primitives/IconDivider";
-import MainHeading from "../../components/primitives/MainHeading";
 import MainStrongText from "../../components/primitives/MainStrongText";
 import Button from "../../components/Button";
 import ImageMouseMoving from "../../components/ImageMouseMoving";
@@ -11,7 +10,7 @@ const AboutPage = () => {
     <div className="flex w-11/12 flex-col items-center">
       <PageHeading>About</PageHeading>
       <IconDivider>
-        <FaDiceD20 />
+        <FaDiceD20 className="text-2xl" />
       </IconDivider>
       <div className="relative mb-16 mt-16 flex h-full flex-col justify-center md:flex-row gap-16">
 

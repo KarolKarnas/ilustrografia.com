@@ -48,12 +48,12 @@ const AppLinks = () => {
         )}
 
 
-      <Link
+      {/* <Link
         to={"/favorite"}
         className="bg-red-magic cursor-pointer rounded-3xl p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
       >
         <FaHeart />
-      </Link>
+      </Link> */}
 
       
       <Link

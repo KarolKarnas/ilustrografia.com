@@ -39,7 +39,7 @@ const ProductPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [qty, setQty] = useState(5);
+  const [qty, setQty] = useState(1);
   const [variation, setVariation] = useState<Variation>();
 
   // console.log(variation);
@@ -240,7 +240,7 @@ const ProductPage = () => {
         rating: reviewRating,
       }).unwrap();
       toast.success("Review created successfully");
-      setReviewComment('')
+      setReviewComment("");
       refetch();
     } catch (err) {
       toast.error(getError(err as ApiError));
@@ -360,16 +360,19 @@ const ProductPage = () => {
           <hr className=" mx-auto my-3 h-px"></hr>
 
           <div className="flex h-10 items-center gap-5">
-
-<SelectNumber selectNumber={variation.countInStock} onChange={setQty} defaultValue="1"/>
+            <SelectNumber
+              selectNumber={variation.countInStock}
+              onChange={setQty}
+              defaultValue="1"
+            />
 
             <button
               onClick={addToCartHandler}
               className={`${
                 variation?.countInStock === 0
                   ? "bg-zinc-100 text-zinc-300"
-                  : "bg-black-magic text-ivory hover:bg-red-magic dark:border  dark:border-red-magic dark:bg-red-magic/60 dark:hover:bg-red-magic/80"
-              }   h-full  w-full text-xs font-semibold uppercase transition-colors duration-300 md:w-auto md:px-32`}
+                  : "border border-black-magic bg-black-magic   text-ivory hover:border-red-magic hover:bg-red-magic dark:border-red-magic dark:bg-red-magic/60 dark:hover:bg-red-magic/80"
+              }  h-full  w-full text-xs font-semibold uppercase transition-colors duration-300 md:w-auto md:px-32`}
               disabled={variation?.countInStock === 0}
             >
               {variation.countInStock > 0 ? "Add to Cart" : "Out Of Stock"}

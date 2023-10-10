@@ -1,4 +1,3 @@
-
 import AppLinks from "./AppLinks";
 import { useState } from "react";
 import SocialLinks from "./SocialLinks";
@@ -13,10 +12,10 @@ const Header = () => {
 
   const handleMobileClick = () => {
     setIsActive(!isActive);
-  }
+  };
 
   return (
-    <header className="bg-ivory shadow text-eerie-black dark:bg-black-magic dark:text-ivory  w-full py-4 transition-colors    duration-500 dark:shadow-red-magic/50">
+    <header className="w-full bg-ivory py-4 text-eerie-black shadow  transition-colors duration-500 dark:bg-black-magic    dark:text-ivory dark:shadow-red-magic/50">
       <nav className="flex items-center justify-evenly">
         <div className="w-30 hidden items-center gap-x-3 lg:flex">
           <SocialLinks />
@@ -56,11 +55,14 @@ const Header = () => {
           id="menu"
           className={
             isActive
-              ? "bg-ivory text-eerie-black dark:bg-eerie-black dark:text-ivory absolute bottom-0 left-0 top-0 z-30 flex min-h-screen w-full flex-col items-center space-y-8 self-end py-1 pt-40 text-lg uppercase"
+              ? "absolute bottom-0 left-0 top-0 z-30 flex min-h-screen w-full flex-col items-center space-y-8 self-end bg-ivory py-1 pt-28 text-lg uppercase text-eerie-black dark:bg-eerie-black dark:text-ivory"
               : "hidden"
           }
           onClick={handleMobileClick}
         >
+          <div className="w-30 flex items-center  gap-x-3">
+            <AppLinks />
+          </div>
           <MainLinks mobile={true} />
           <div className="w-30 flex items-center gap-x-3">
             <SocialLinks />
