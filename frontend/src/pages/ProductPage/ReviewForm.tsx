@@ -1,6 +1,7 @@
 import * as Form from "@radix-ui/react-form";
 import { SyntheticEvent } from "react";
 import SelectNumber from "./SelectNumber";
+import ButtonSubmit from "../../components/primitives/ButtonSubmit";
 
 type Props = {
   handleSubmitReview: (e: SyntheticEvent) => Promise<void>;
@@ -75,9 +76,7 @@ const ReviewForm = ({
         </Form.Control>
       </Form.Field>
       <Form.Submit asChild>
-        <button className="mt-6 h-10 w-full bg-black-magic  text-xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:bg-red-magic dark:border dark:border-red-magic dark:bg-red-magic/60 dark:hover:bg-red-magic/80 md:px-32">
-          Add Review
-        </button>
+      <ButtonSubmit>add review</ButtonSubmit>
       </Form.Submit>
     </Form.Root>
   );

@@ -9,6 +9,8 @@ import { toast } from "react-toastify";
 import CheckoutSteps from "../../components/CheckoutSteps";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
+import PageHeading from "../../components/primitives/PageHeading";
+import ButtonSubmit from "../../components/primitives/ButtonSubmit";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -35,7 +37,6 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const res = await login({ email, password }).unwrap();
-      // console.log(res);
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
     } catch (error) {
@@ -43,15 +44,17 @@ const LoginPage = () => {
     }
   };
   return (
-    <div className="flex w-full flex-col items-center">
+    <div className="flex w-11/12 flex-col items-center justify-center">
       <CheckoutSteps step1={true} step2={false} step3={false} step4={false} />
-      <h1 className="mt-5 text-center text-3xl font-bold">Login</h1>
-      <Form.Root className="w-4/12" onSubmit={(e) => handleSubmit(e)}>
+      <PageHeading>Login</PageHeading>
+
+      <Form.Root
+        className="flex w-full flex-col gap-5 md:w-9/12 lg:w-6/12 2xl:w-1/3"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <Form.Field className="flex flex-col" name="email">
           <div className="flex items-baseline justify-between">
-            <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
-              Email
-            </Form.Label>
+            <Form.Label className="form-label">Email</Form.Label>
             <Form.Message
               className="text-md text-red-magic"
               match="valueMissing"
@@ -67,7 +70,7 @@ const LoginPage = () => {
           </div>
           <Form.Control asChild>
             <input
-              className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
+              className="form-input"
               type="email"
               required
               placeholder="Enter email"
@@ -78,9 +81,7 @@ const LoginPage = () => {
         </Form.Field>
         <Form.Field className="flex flex-col" name="password">
           <div className="flex items-baseline justify-between">
-            <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
-              Password
-            </Form.Label>
+            <Form.Label className="form-label">Password</Form.Label>
             <Form.Message
               className="text-md text-red-magic"
               match="valueMissing"
@@ -96,7 +97,7 @@ const LoginPage = () => {
           </div>
           <Form.Control asChild>
             <input
-              className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
+              className="form-input"
               type="password"
               required
               value={password}
@@ -105,20 +106,14 @@ const LoginPage = () => {
           </Form.Control>
         </Form.Field>
         <Form.Submit asChild>
-          <button
-            // add disabled styling
-            className="mt-5 w-full bg-zinc-900 py-2 text-center text-white hover:cursor-pointer  hover:bg-red-200"
-            disabled={isLoading}
-          >
-            Login
-          </button>
+          <ButtonSubmit>Login</ButtonSubmit>
         </Form.Submit>
         {isLoading && <div>Loading...</div>}
       </Form.Root>
-      <p>
+      <p className="mt-5 font-montserrat text-sm font-semibold text-black-magic  dark:text-ivory">
         New customer?{" "}
         <Link
-          className="text-red-700"
+          className="text-red-magic"
           to={redirect ? `/register?redirect=${redirect}` : "/register"}
         >
           Register

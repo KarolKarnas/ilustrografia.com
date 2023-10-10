@@ -4,11 +4,12 @@ import MainHeading from "../../components/primitives/MainHeading";
 import MainStrongText from "../../components/primitives/MainStrongText";
 import Button from "../../components/Button";
 import ImageMouseMoving from "../../components/ImageMouseMoving";
+import PageHeading from "../../components/primitives/PageHeading";
 
 const AboutPage = () => {
   return (
     <div className="flex w-11/12 flex-col items-center">
-      <MainHeading>About</MainHeading>
+      <PageHeading>About</PageHeading>
       <IconDivider>
         <FaDiceD20 />
       </IconDivider>

@@ -13,8 +13,13 @@
 }
 
 .form-label {
-  @apply font-cormorant-infant text-lg font-semibold leading-8 text-red-600;
+  @apply  mb-2 font-montserrat text-sm font-semibold text-black-magic dark:text-ivory;
 }
+
+.form-input {
+  @apply  inline-flex h-10 items-center  justify-center gap-[5px] rounded-md bg-white px-4 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5;
+}
+
 
 .form-message {
   @apply text-red-magic text-lg;

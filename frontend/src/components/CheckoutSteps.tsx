@@ -8,36 +8,35 @@ interface Props {
 }
 
 const CheckoutSteps = ({ step1, step2, step3, step4 }: Props) => {
-  // console.log(step1);
   return (
-    <div className="mt-5 flex w-2/12 justify-between">
+    <div className=" flex w-full md:w-5/12 lg:w-4/12 2xl:w-3/12 justify-between font-montserrat text-sm font-semibold ">
       {step1 ? (
         <Link to={"/login"} className="text-red-magic">
           Login
         </Link>
       ) : (
-        <div className="text-zinc-300 hover:cursor-default">Shipping</div>
+        <div className="text-zinc-300 dark:text-zinc-600 hover:cursor-not-allowed">Login</div>
       )}
       {step2 ? (
         <Link to={"/shipping"} className="text-red-magic">
           Shipping
         </Link>
       ) : (
-        <div className="text-zinc-300 hover:cursor-default">Shipping</div>
+        <div className="text-zinc-300 dark:text-zinc-600 hover:cursor-not-allowed">Shipping</div>
       )}
       {step3 ? (
         <Link to={"/payment"} className="text-red-magic">
           Payment
         </Link>
       ) : (
-        <div className="text-zinc-300 hover:cursor-default">Payment</div>
+        <div className="text-zinc-300 dark:text-zinc-600 hover:cursor-not-allowed">Payment</div>
       )}
       {step4 ? (
         <Link to={"/place-order"} className="text-red-magic">
           Place Order
         </Link>
       ) : (
-        <div className="text-zinc-300 hover:cursor-default">Place Order</div>
+        <div className="text-zinc-300 dark:text-zinc-600 hover:cursor-not-allowed">Place Order</div>
       )}
     </div>
   );
