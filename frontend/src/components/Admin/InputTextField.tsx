@@ -16,28 +16,28 @@ const InputTextField = ({
   onChangeFun,
 }: Props) => {
   return (
-    <Form.Field name={shortName}>
-      <Form.Label className=" form-label">{name}</Form.Label>
-      <Form.Message className="form-message" match="valueMissing">
-        Please enter your {name}
-      </Form.Message>
-
-      <Form.Message className="form-message" match="typeMismatch">
-        Please provide a valid {name}
-      </Form.Message>
-
-      {value !== "" ? (
-        <Form.Message
-          className="form-message"
-          match={(value) => value.trim() === ""}
-        >
-          Just empty spaces here...
+    <Form.Field className="flex flex-col" name={shortName}>
+      <div className="flex items-baseline justify-between">
+        <Form.Label className=" form-label">{name}</Form.Label>
+        <Form.Message className="form-message" match="valueMissing">
+          Please enter your {name}
         </Form.Message>
-      ) : null}
+        <Form.Message className="form-message" match="typeMismatch">
+          Please provide a valid {name}
+        </Form.Message>
+        {value !== "" ? (
+          <Form.Message
+            className="form-message"
+            match={(value) => value.trim() === ""}
+          >
+            Just empty spaces here...
+          </Form.Message>
+        ) : null}
+      </div>
 
       <Form.Control asChild>
         <input
-          className="input-text"
+          className="form-input"
           type="text"
           placeholder={`Enter ${name}`}
           value={value}
