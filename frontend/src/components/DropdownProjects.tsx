@@ -30,6 +30,12 @@ const DropdownProjects = () => {
               Fantasy Illustrations
             </DropdownMenu.Item>
           </Link>
+          <LineDivider />
+          <Link to="/projects/polish-legends-characters" className="mx-auto">
+            <DropdownMenu.Item className="transition duration-500 hover:scale-110 hover:cursor-pointer hover:text-red-magic hover:outline-none    focus:scale-110 focus:text-red-magic focus:outline-none ">
+              Polish Legends Characters
+            </DropdownMenu.Item>
+          </Link>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>

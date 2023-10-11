@@ -36,8 +36,9 @@ import ShopPage from "./pages/ShopPage/ShopPage";
 import IllustrationsPage from "./pages/IllustrationsPage/IllustrationsPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import IllustrationPage from "./pages/IllustrationPage/IllustrationPage";
-import AboutNeoSlavicCensus from "./pages/ProjectPage/NeoSlavicCensus";
-import AboutFantasyIllustrations from "./pages/ProjectPage/FantasyIllustrations";
+import NeoSlavicCensus from "./pages/ProjectPage/NeoSlavicCensus";
+import FantasyIllustrations from "./pages/ProjectPage/FantasyIllustrations";
+import PolishLegendsCharacters from "./pages/ProjectPage/PolishLegendsCharacters";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -52,11 +53,15 @@ const router = createBrowserRouter(
       <Route path="/illustrations/:slug" element={<IllustrationPage />} />
       <Route
         path="/projects/neo-slavic-census"
-        element={<AboutNeoSlavicCensus />}
+        element={<NeoSlavicCensus />}
       />
       <Route
         path="/projects/fantasy-illustrations"
-        element={<AboutFantasyIllustrations />}
+        element={<FantasyIllustrations />}
+      />
+      <Route
+        path="/projects/polish-legends-characters"
+        element={<PolishLegendsCharacters />}
       />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
