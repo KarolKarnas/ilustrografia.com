@@ -44,10 +44,10 @@ const CartPage = () => {
     dispatch(removeFromCart(id));
   };
   return (
-    <div className="flex w-full flex-col items-center justify-center">
+    <div className="flex w-11/12 flex-col items-center justify-center">
       <div
         className="relative mb-8 flex
-       h-48 w-11/12 flex-col items-center justify-center rounded-3xl bg-angel-dust shadow-hero dark:bg-angel-dark-dust sm:bg-inherit md:mb-28 md:h-[330px] "
+       h-48 w-full flex-col items-center justify-center rounded-3xl bg-angel-dust shadow-hero dark:bg-angel-dark-dust sm:bg-inherit md:mb-28 md:h-[330px] "
       >
         <img
           src="/images/shop/baba-cart.jpg "
@@ -59,7 +59,7 @@ const CartPage = () => {
           <HeadingAccent>· Ilustrografia ·</HeadingAccent>
           <PageHeading>Shopping Cart</PageHeading>
           <IconDivider>
-            <FaBasketShopping className="text-2xl" />
+            <FaBasketShopping className="text-xl md:text-2xl" />
           </IconDivider>
         </div>
       </div>
@@ -67,7 +67,7 @@ const CartPage = () => {
       {/* <PageHeading>Shopping Cart</PageHeading> */}
 
       {cartItems.length === 0 ? (
-        <div className="flex w-11/12 flex-col items-center justify-center gap-2">
+        <div className="flex w-full flex-col items-center justify-center gap-2">
           <MainStrongText>Your cart is empty</MainStrongText>
           <Link to="/">
             <Button text="Go back to Shop" link="/shop" color="red"></Button>
@@ -85,8 +85,8 @@ const CartPage = () => {
           </div>
         </div>
       ) : (
-        <div className="flex w-full flex-col-reverse items-center gap-10 md:w-11/12 md:flex-row md:items-start">
-          <div className="w-11/12 text-2xs md:w-full md:text-sm">
+        <div className="flex w-full flex-col-reverse items-center gap-10 md:flex-row md:items-start">
+          <div className="w-full text-2xs md:text-sm">
             <div className=" mb-10 flex items-center justify-between rounded-lg bg-white py-3 font-montserrat  font-semibold text-black-magic shadow-md dark:bg-black-magic dark:text-ivory">
               <div className="flex  basis-1/12 justify-center ">
                 <FaTrash />
@@ -148,7 +148,7 @@ const CartPage = () => {
             </div>
           </div>
 
-          <div className="sticky top-0 flex w-full flex-col bg-white px-4 pb-4 pt-1 shadow-hero dark:bg-angel-dark-dust md:sticky md:top-8 md:h-full md:w-3/12 md:rounded-lg md:p-8">
+          <div className="fixed z-10 bottom-0 flex w-screen flex-col bg-white px-4 pb-4 pt-1 shadow-hero dark:bg-angel-dark-dust md:sticky md:top-8 md:h-full md:w-3/12 md:rounded-lg md:p-8">
             <div className="">
               <h2 className=" text-center font-cormorant-infant  font-semibold italic text-eerie-black drop-shadow-red-heading  dark:text-ivory dark:drop-shadow-xl md:mb-8 md:mt-0 md:text-4xl">
                 Cart Summary

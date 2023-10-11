@@ -8,6 +8,9 @@ import { addPaymentMethod } from "../../slices/cartSlice";
 import CheckoutSteps from "../../components/CheckoutSteps";
 import PageHeading from "../../components/primitives/PageHeading";
 import ButtonSubmit from "../../components/primitives/ButtonSubmit";
+import HeadingAccent from "../../components/primitives/HeadingAccent";
+import IconDivider from "../../components/primitives/IconDivider";
+import { FaCoins } from "react-icons/fa6";
 
 const PaymentPage = () => {
   const { shippingAddress, paymentMethod: currentPaymentMethod } =
@@ -36,10 +39,28 @@ const PaymentPage = () => {
 
   return (
     <div className="flex w-11/12 flex-col items-center justify-center">
+      <div
+        className="relative mb-8 flex
+       h-48 w-full flex-col items-center justify-center rounded-3xl bg-angel-dust shadow-hero dark:bg-angel-dark-dust sm:bg-inherit md:mb-16 md:h-[330px] "
+      >
+        <img
+          src="/images/shop/printings-images.jpg "
+          alt=""
+          className="hidden h-full w-full rounded-3xl  object-none dark:invert-90 sm:block"
+        />
+
+        <div className="absolute flex flex-col items-center justify-center">
+          <HeadingAccent>· Ilustrografia ·</HeadingAccent>
+          <PageHeading>Payment Method</PageHeading>
+          <IconDivider>
+            <FaCoins className="text-xl md:text-2xl" />
+          </IconDivider>
+        </div>
+      </div>
       <CheckoutSteps step1={true} step2={true} step3={true} step4={false} />
-      <PageHeading>Payment Method</PageHeading>
+
       <Form.Root
-        className="flex w-full flex-col gap-5 md:w-9/12 lg:w-6/12 2xl:w-1/3 mt-5 "
+        className="mt-5 flex w-full flex-col gap-5 md:w-9/12 lg:w-6/12 2xl:w-1/3 "
         onSubmit={(e) => handleSubmit(e)}
       >
         <Form.Field className="flex flex-col" name="address">

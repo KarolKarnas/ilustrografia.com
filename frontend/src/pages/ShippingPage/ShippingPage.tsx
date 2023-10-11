@@ -8,6 +8,9 @@ import PageHeading from "../../components/primitives/PageHeading";
 import ButtonSubmit from "../../components/primitives/ButtonSubmit";
 import InputTextField from "../../components/Admin/InputTextField";
 import ImageMouseMoving from "../../components/ImageMouseMoving";
+import HeadingAccent from "../../components/primitives/HeadingAccent";
+import IconDivider from "../../components/primitives/IconDivider";
+import { FaBasketShopping, FaCar, FaHouse } from "react-icons/fa6";
 
 const ShippingPage = () => {
   const { shippingAddress } = useAppSelector((state) => state.cart);
@@ -36,8 +39,29 @@ const ShippingPage = () => {
         </div> */}
 
 
+
+      <div
+        className="relative mb-8 flex
+       h-48 w-full flex-col items-center justify-center rounded-3xl bg-angel-dust shadow-hero dark:bg-angel-dark-dust sm:bg-inherit md:mb-16 md:h-[330px] "
+      >
+        <img
+          src="/images/shop/baba-checkout-cat.jpg "
+          alt=""
+          className="hidden h-full w-full rounded-3xl  object-none dark:invert-90 sm:block"
+        />
+
+        <div className="absolute flex flex-col items-center justify-center">
+          <HeadingAccent>· Ilustrografia ·</HeadingAccent>
+          <PageHeading>Shipping Address</PageHeading>
+          <IconDivider>
+            <FaHouse className="text-xl md:text-2xl" />
+          </IconDivider>
+        </div>
+      </div>
+
       <CheckoutSteps step1={true} step2={true} step3={false} step4={false} />
-      <PageHeading>Shipping</PageHeading>
+
+      {/* <PageHeading>Shipping</PageHeading> */}
       <Form.Root
         className="flex w-full flex-col gap-5 md:w-9/12 lg:w-6/12 2xl:w-1/3"
         onSubmit={(e) => handleSubmit(e)}

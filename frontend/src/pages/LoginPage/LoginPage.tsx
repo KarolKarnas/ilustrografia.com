@@ -2,6 +2,7 @@ import * as Form from "@radix-ui/react-form";
 import { SyntheticEvent, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../slices/reduxHooks";
+import { FaUserAlt } from "react-icons/fa";
 
 import { useLoginMutation } from "../../slices/usersApiSlice";
 import { setCredentials } from "../../slices/authSlice";
@@ -11,6 +12,8 @@ import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 import PageHeading from "../../components/primitives/PageHeading";
 import ButtonSubmit from "../../components/primitives/ButtonSubmit";
+import HeadingAccent from "../../components/primitives/HeadingAccent";
+import IconDivider from "../../components/primitives/IconDivider";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -45,11 +48,28 @@ const LoginPage = () => {
   };
   return (
     <div className="flex w-11/12 flex-col items-center justify-center">
-      <CheckoutSteps step1={true} step2={false} step3={false} step4={false} />
-      <PageHeading>Login</PageHeading>
+      <div
+        className="relative mb-8 flex
+       h-48 w-full flex-col items-center justify-center rounded-3xl bg-angel-dust shadow-hero dark:bg-angel-dark-dust sm:bg-inherit md:mb-28 md:h-[330px] "
+      >
+        <img
+          src="/images/shop/printings-images.jpg "
+          alt=""
+          className="hidden h-full w-full rounded-3xl  object-none dark:invert-90 sm:block"
+        />
 
+        <div className="absolute flex flex-col items-center justify-center">
+          <HeadingAccent>· Ilustrografia ·</HeadingAccent>
+          <PageHeading>Login</PageHeading>
+          <IconDivider>
+            <FaUserAlt className="text-xl md:text-2xl" />
+          </IconDivider>
+        </div>
+      </div>
+
+      <CheckoutSteps step1={true} step2={false} step3={false} step4={false} />
       <Form.Root
-        className="flex w-full flex-col gap-5 md:w-9/12 lg:w-6/12 2xl:w-1/3"
+        className="flex w-11/12 flex-col gap-5 md:w-9/12 lg:w-6/12 2xl:w-1/3"
         onSubmit={(e) => handleSubmit(e)}
       >
         <Form.Field className="flex flex-col" name="email">
