@@ -7,6 +7,7 @@ import CheckoutSteps from "../../components/CheckoutSteps";
 import PageHeading from "../../components/primitives/PageHeading";
 import ButtonSubmit from "../../components/primitives/ButtonSubmit";
 import InputTextField from "../../components/Admin/InputTextField";
+import ImageMouseMoving from "../../components/ImageMouseMoving";
 
 const ShippingPage = () => {
   const { shippingAddress } = useAppSelector((state) => state.cart);
@@ -21,8 +22,6 @@ const ShippingPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  // console.log(cart)
-
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(addShippingAddress({ address, city, postalCode, country }));
@@ -32,6 +31,11 @@ const ShippingPage = () => {
 
   return (
     <div className="flex w-11/12 flex-col items-center justify-center">
+           {/* <div className="hidden md:block md:w-3/4 md:absolute md:left-0  md:top-0 ">
+          <ImageMouseMoving src={"/images/shop/baba-checkout.png"} />
+        </div> */}
+
+
       <CheckoutSteps step1={true} step2={true} step3={false} step4={false} />
       <PageHeading>Shipping</PageHeading>
       <Form.Root

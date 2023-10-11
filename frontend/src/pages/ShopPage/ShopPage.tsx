@@ -1,12 +1,10 @@
 import _ from "lodash";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import { useEffect, useState } from "react";
-// import { useParams, useSearchParams } from 'react-router-dom';
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 import { useGetProductsQuery } from "../../slices/productsApiSlice";
 import { Product } from "../../types/Product";
-import ProductVariations from "../../components/ProductVariations";
 import { useSearchParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import ProductsGrid from "../../components/ProductsGrid";
@@ -64,7 +62,7 @@ const ShopPage = () => {
             <RadioGroup.Root
               className="flex flex-col gap-4"
               defaultValue={""}
-              aria-label="payment-method"
+              aria-label="filter-categories"
             >
               <div className="flex items-center">
                 {" "}

@@ -18,7 +18,7 @@ const InputTextField = ({
   return (
     <Form.Field className="flex flex-col" name={shortName}>
       <div className="flex items-baseline justify-between">
-        <Form.Label className=" form-label">{name}</Form.Label>
+        <Form.Label className="form-label">{name}</Form.Label>
         <Form.Message className="form-message" match="valueMissing">
           Please enter your {name}
         </Form.Message>

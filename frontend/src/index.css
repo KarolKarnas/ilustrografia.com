@@ -20,7 +20,6 @@
   @apply  inline-flex h-10 items-center  justify-center gap-[5px] rounded-md bg-white px-4 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5;
 }
 
-
 .form-message {
   @apply text-red-magic text-lg;
 }
