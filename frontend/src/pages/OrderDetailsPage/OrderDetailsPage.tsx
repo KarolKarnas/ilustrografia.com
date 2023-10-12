@@ -17,6 +17,12 @@ import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 import Message from "../../components/Message";
 import { useEffect } from "react";
+import HeadingAccent from "../../components/primitives/HeadingAccent";
+import PageHeading from "../../components/primitives/PageHeading";
+import IconDivider from "../../components/primitives/IconDivider";
+import { FaListUl } from "react-icons/fa";
+import MainStrongText from "../../components/primitives/MainStrongText";
+import Button from "../../components/Button";
 
 const OrderDetailsPage = () => {
   const { id: orderId } = useParams();
@@ -66,21 +72,6 @@ const OrderDetailsPage = () => {
       }
     }
   }, [errorPayPal, loadingPayPal, order, paypal, paypalDispatch]);
-
-  // const onApproveTest = async () => {
-  // 	await payOrder({
-  // 		orderId,
-  // 		details: {
-  // 			id: 'helloId',
-  // 			status: 'statusss',
-  // 			update_time: 'time is good',
-  // 			payer: { email_address: 'test@tes.com' },
-  // 		},
-  // 	});
-  // 	refetch();
-
-  // 	toast.success('Order is paid');
-  // };
 
   const handleDelivered = async () => {
     try {
@@ -138,32 +129,71 @@ const OrderDetailsPage = () => {
   }
 
   return (
-    <div className="mt-4 flex w-full flex-col items-center">
-      <div className="flex w-8/12 gap-20">
+    <div className="flex w-11/12 flex-col items-center justify-center">
+      <div
+        className="relative mb-8 flex
+     h-48 w-full flex-col items-center justify-center rounded-3xl bg-angel-dust shadow-hero dark:bg-angel-dark-dust sm:bg-inherit md:mb-28 md:h-[330px] "
+      >
+        <img
+          src="/images/shop/printings-images.jpg "
+          alt=""
+          className="hidden h-full w-full rounded-3xl  object-none dark:invert-90 sm:block"
+        />
+
+        <div className="absolute flex flex-col items-center justify-center">
+          <HeadingAccent>· Ilustrografia ·</HeadingAccent>
+          <PageHeading>Order Details</PageHeading>
+          <IconDivider>
+            <FaListUl className="text-xl md:text-2xl" />
+          </IconDivider>
+        </div>
+      </div>
+
+      <div className="flex w-full flex-col-reverse items-center justify-center gap-10 md:flex-row md:items-start">
         {/* col 1 */}
-        <div className=" w-3/4">
-          <section className="mb-7">
-            <h1 className="my-5 text-center text-4xl font-bold text-zinc-300">
-              Order {order._id}
-            </h1>
-            <h2 className="text-4xl text-zinc-400">Shipping</h2>
-            <p className="py-2">
-              <strong>Name: </strong> {order.user.name}
+        <div className="w-full  md:w-7/12">
+          <div className="mb-8">
+            <MainStrongText>Order Number</MainStrongText>
+
+            <p className="mt-2 flex items-center  gap-3 font-montserrat text-black-magic dark:text-ivory">
+              <span className="mr-2 text-2xs uppercase  md:text-xs">
+                Number:
+              </span>
+              <span className="font-light">{order._id}</span>
             </p>
-            <p className="py-2">
-              <strong>Email: </strong>{" "}
+            <hr className=" mx-auto my-3 h-px"></hr>
+          </div>
+
+          <div className="mb-8">
+            <MainStrongText>Shipping Address</MainStrongText>
+            <p className="mt-2 flex items-center  gap-3 font-montserrat text-black-magic dark:text-ivory">
+              <span className="mr-2 text-2xs uppercase  md:text-xs">Name:</span>
+              <span className="font-light">{order.user.name}</span>
+            </p>
+            <hr className=" mx-auto my-3 h-px"></hr>
+            <p className="mt-2 flex items-center  gap-3 font-montserrat text-black-magic dark:text-ivory">
+              <span className="mr-2 text-2xs uppercase  md:text-xs">
+                Email:
+              </span>
               <a
-                className="text-red-magic hover:text-zinc-500"
+                className="text-red-magic hover:text-eerie-black"
                 href={`mailto:${order.user.email}`}
               >
                 {order.user.email}
               </a>
             </p>
-            <p className="py-2">
-              <strong>Address: </strong> {order.shippingAddress?.address},{" "}
-              {order.shippingAddress?.city} {order.shippingAddress?.postalCode},{" "}
-              {order.shippingAddress?.country}
+            <hr className=" mx-auto my-3 h-px"></hr>
+            <p className=" mt-2 flex items-center  gap-3 font-montserrat text-black-magic dark:text-ivory">
+              <span className="mr-2 text-2xs uppercase  md:text-xs">
+                Address:
+              </span>
+              <span className="font-light">
+                {order.shippingAddress?.address}, {order.shippingAddress?.city}{" "}
+                {order.shippingAddress?.postalCode},{" "}
+                {order.shippingAddress?.country}
+              </span>
             </p>
+            <hr className=" mx-auto my-3 h-px"></hr>
             <Message
               variant={order.isDelivered ? "good" : "bad"}
               message={
@@ -172,14 +202,15 @@ const OrderDetailsPage = () => {
                   : "Have not been delivered yet"
               }
             />
-            <hr className=" mx-auto my-3 h-px"></hr>
-          </section>
+          </div>
 
-          <section className="mb-7">
-            <h2 className="text-4xl text-zinc-400">Payment Method</h2>
-            <p className="py-2">
-              <strong>Method: </strong> {order.paymentMethod}
+          <div className="mb-8">
+            <MainStrongText>Payment Method</MainStrongText>
+               <p className="mt-2flex items-center  gap-3 font-montserrat text-black-magic dark:text-ivory">
+              <span className="mr-2 text-2xs uppercase  md:text-xs">Method:</span>
+              <span className="font-light">{order.paymentMethod}</span>
             </p>
+            <hr className=" mx-auto my-3 h-px"></hr>
             <Message
               variant={order.isPaid ? "good" : "bad"}
               message={
@@ -188,100 +219,121 @@ const OrderDetailsPage = () => {
                   : "Have not been paid yet"
               }
             />
-            <hr className=" mx-auto my-3 h-px"></hr>
-          </section>
+          </div>
 
-          <section>
-            <h2 className="text-4xl text-zinc-400">Ordered Items</h2>
-            <div className="mt-4">
-              {order.orderItems.map((variation, index) => (
-                <div key={index}>
-                  <div className="mb-4 flex items-center justify-between">
-                    <img
-                      className="w-10 basis-1/12"
-                      src={variation.image}
-                      alt={variation.variationName}
-                    />
-                    <Link
-                      className="basis-6/12 text-center underline hover:text-red-300"
-                      to={variation.pathnameWithQuery}
-                    >
-                      {" "}
-                      <div>{variation.variationName}</div>{" "}
-                    </Link>
 
-                    <div className="basis-2/12">
-                      {variation.qty} x ${variation.price} = $
-                      {variation.price * variation.qty}
-                    </div>
-                  </div>
-                  <hr className=" mx-auto my-3 h-px w-10/12"></hr>
+
+          <MainStrongText>Order Items</MainStrongText>
+          <div className="py-2"> 
+              <div className="w-full text-2xs md:text-base">
+                <div className=" mb-10 flex items-center justify-between rounded-lg bg-white py-3 font-montserrat  font-semibold text-black-magic shadow-md dark:bg-black-magic dark:text-ivory">
+                  <div className="basis-2/12 text-center ">Image</div>
+                  <div className="basis-6/12 text-center ">Link</div>
+                  <div className="basis-2/12 text-center ">Total</div>
                 </div>
-              ))}
-            </div>
-          </section>
+
+                {order.orderItems.map((variation, index) => (
+                  <div key={index}>
+                    <div className="mb-4 flex items-center justify-between dark:text-ivory">
+                      <img
+                        className="ml-2 w-10 basis-2/12"
+                        src={variation.image}
+                        alt={variation.variationName}
+                      />
+                      <Link
+                        className="basis-6/12 text-center underline hover:text-red-magic"
+                        to={variation.pathnameWithQuery}
+                      >
+                        {" "}
+                        <div>{variation.variationName}</div>{" "}
+                      </Link>
+                      <div className="basis-2/12">
+                        {variation.qty} x ${variation.price} = $
+                        {variation.price * variation.qty}
+                      </div>
+                    </div>
+                    {order.orderItems.length - 1 > index ? (
+                      <hr className=" mx-auto my-3 h-px"></hr>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+          </div>
         </div>
         {/* col 2  */}
-        <div className="flex w-1/4 flex-col items-center justify-around  bg-white p-2 shadow-2xl">
-          <div>
-            <h3 className="mt-5 text-center text-3xl font-bold">
-              Order Summary
-            </h3>
-            <div className="flex w-full justify-between border-b py-2">
-              <div>Items</div>
-              <div>${order.itemsPrice}</div>
-            </div>
-            <div className="flex w-full justify-between border-b py-2">
-              <div>Shipping</div>
-              <div>${order.shippingPrice}</div>
-            </div>
-            <div className="flex w-full justify-between border-b py-2">
-              <div>Tax</div>
-              <div>${order.taxPrice}</div>
-            </div>
-            <div className="flex w-full justify-between border-b py-2">
-              <div className="text-lg">
-                <strong>Total</strong>
-              </div>
-              <div className="text-lg">
-                <strong>${order.totalPrice}</strong>
-              </div>
-            </div>
-            {!order.isPaid && (
-              <div>
-                {loadingPay && <div>Loading...</div>}
-                {isPending ? (
-                  <div>Loading...</div>
-                ) : (
-                  <div>
-                    {/* <button
-											className=' bg-slate-600 hover:bg-red-magic'
-											onClick={onApproveTest}
-										>
-											Test Pay order
-										</button> */}
-                    <div>
-                      <PayPalButtons
-                        {...paypalButtonTransactionProps}
-                      ></PayPalButtons>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-            {loadingDeliver && <div>Loading...</div>}
-            {order.isPaid && !order.isDelivered ? (
-              <button
-                className="hover:bg-red-magic mt-2 bg-slate-600 p-2 text-white"
-                onClick={handleDelivered}
-              >
-                Mark as Delivered
-              </button>
-            ) : null}
-            <div className="flex w-full justify-between py-2">
-              {error && <div>{getError(error as ApiError)}</div>}
-            </div>
+
+        <div className="fixed bottom-0 z-10 flex w-screen flex-col bg-white px-4 pb-4 pt-1 shadow-hero dark:bg-angel-dark-dust md:sticky md:top-8 md:h-full md:w-3/12 md:rounded-lg md:p-8">
+          <h2 className="text-center font-cormorant-infant  font-semibold italic text-eerie-black drop-shadow-red-heading  dark:text-ivory dark:drop-shadow-xl md:mb-8 md:mt-0 md:text-4xl">
+            Order Summary
+          </h2>
+
+          <div className="mb-2 w-full font-montserrat text-black-magic dark:text-ivory md:mb-12">
+            <p className="flex items-center justify-between">
+              <span className="mr-2 text-2xs uppercase  md:text-xs">
+                Items:
+              </span>
+              <span className="  font-light">${order.itemsPrice}</span>
+            </p>
+            <hr className=" mx-auto my-0.5 h-px opacity-10 md:my-3 md:opacity-100"></hr>
+
+            <p className="flex items-center justify-between">
+              <span className="mr-2 text-2xs uppercase  md:text-xs">
+                Shipping:
+              </span>
+              <span className="  font-light">${order.shippingPrice}</span>
+            </p>
+            <hr className=" mx-auto my-0.5 h-px opacity-10 md:my-3 md:opacity-100"></hr>
+
+            <p className="flex items-center justify-between">
+              <span className="mr-2 text-2xs uppercase  md:text-xs">Tax:</span>
+              <span className="  font-light">${order.taxPrice}</span>
+            </p>
+            <hr className=" mx-auto my-0.5 h-px opacity-10 md:my-3 md:opacity-100"></hr>
+
+            <p className="flex items-center justify-between">
+              <span className="mr-2 text-2xs uppercase   md:text-xs">
+                Total:
+              </span>
+              <span className=" text-lg">${order.totalPrice}</span>
+            </p>
+            <hr className=" mx-auto my-0.5 h-px opacity-10 md:my-3 md:opacity-100"></hr>
           </div>
+
+          {!order.isPaid && (
+            <div>
+              {loadingPay && <div>Loading...</div>}
+              {isPending ? (
+                <div>Loading...</div>
+              ) : (
+                <div>
+                  <div>
+                    <PayPalButtons
+                      {...paypalButtonTransactionProps}
+                    ></PayPalButtons>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          {loadingDeliver && <div>Loading...</div>}
+          {order.isPaid && !order.isDelivered ? (
+            <button
+              className="h-6 w-full border   border-red-magic  bg-red-magic/60  text-2xs font-semibold  uppercase text-ivory transition-colors duration-300 hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs"
+              onClick={handleDelivered}
+            >
+              Mark as Delivered
+            </button>
+          ) : null}
+
+          {order.orderItems.length >= 2 ? (
+            <div className="  mx-auto">
+              <img
+                className="hidden w-[300px] dark:invert-90 md:block"
+                src="/images/shop/baba-checkout.png"
+                alt=""
+              />
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

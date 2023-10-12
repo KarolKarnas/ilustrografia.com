@@ -8,11 +8,7 @@ import CartSelectNumber from "./CartSelectNumber";
 import HeadingAccent from "../../components/primitives/HeadingAccent";
 import IconDivider from "../../components/primitives/IconDivider";
 import {
-  useGetProductsByCategoryQuery,
-  useGetProductsQuery,
-} from "../../slices/productsApiSlice";
-import SectionMain from "../../components/SectionMain";
-import MainTitlesWrapper from "../../components/MainTitlesWrapper";
+  useGetProductsByCategoryQuery} from "../../slices/productsApiSlice";
 import MainStrongText from "../../components/primitives/MainStrongText";
 import ProductsGrid from "../../components/ProductsGrid";
 import Button from "../../components/Button";
@@ -155,7 +151,7 @@ const CartPage = () => {
               </h2>
 
               <div className="mb-2 w-full font-montserrat text-black-magic dark:text-ivory md:mb-12">
-                <p className="flex items-end justify-between">
+                <p className="flex items-center justify-between">
                   <span className="mr-2 text-2xs uppercase  md:text-xs">
                     Total quantity:
                   </span>
@@ -165,7 +161,7 @@ const CartPage = () => {
                 </p>
                 <hr className=" mx-auto my-0.5 h-px opacity-10 md:my-3 md:opacity-100"></hr>
 
-                <p className="flex items-end justify-between">
+                <p className="flex items-center justify-between">
                   <span className="mr-2 text-2xs uppercase   md:text-xs">
                     Total price:
                   </span>
@@ -180,8 +176,8 @@ const CartPage = () => {
                 className={`${
                   cartItems.length === 0
                     ? "bg-zinc-100 text-zinc-300"
-                    : "border border-black-magic bg-black-magic   text-ivory hover:border-red-magic hover:bg-red-magic dark:border-red-magic dark:bg-red-magic/60 dark:hover:bg-red-magic/80"
-                }  h-6 w-full  text-2xs font-semibold uppercase transition-colors duration-300 md:h-10 md:w-full md:text-xs `}
+                    : "border border-red-magic bg-red-magic/60   text-ivory  hover:bg-red-magic/80  "
+                  }  h-6 w-full  text-2xs font-semibold uppercase transition-colors duration-300 md:h-10 md:w-full md:text-xs `}
               >
                 {cartItems.length === 0
                   ? "Your cart is empty"
@@ -189,7 +185,7 @@ const CartPage = () => {
               </button>
             </div>
 
-            {cartItems.length >= 3 ? (
+            {cartItems.length >= 2 ? (
               <div className="  mx-auto">
                 <img
                   className="hidden w-[300px] dark:invert-90 md:block"
@@ -200,55 +196,9 @@ const CartPage = () => {
             ) : null}
           </div>
         </div>
-      )}
-
-      {/* <div className="flex flex-col-reverse md:flex-row md:gap-20 w-11/12 md:w-auto">
-        <div className=" basis-1/2 mx-auto">
-          <img
-            className=" dark:invert-90"
-            src="/images/shop/baba-checkout.png"
-            alt=""
-          />
-        </div>
-        <div className="basis-1/2 md:mt-20">
-          <h2 className="mb-8 font-cormorant-infant text-4xl font-semibold italic text-eerie-black  drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl text-center md:text-left mt-8 md:mt-0">
-            Cart summary
-          </h2>
-
-          <div className="mb-12 w-full font-montserrat text-black-magic dark:text-ivory">
-            <p className="flex items-end justify-between">
-              <span className="mr-2 text-xs  uppercase">Total quantity:</span>
-              <span className=" text-2xl font-light">
-                {totalItems} {totalItems === 1 ? "pc" : "pcs"}
-              </span>
-            </p>
-            <hr className=" mx-auto my-3 h-px"></hr>
-
-            <p className="flex items-end justify-between">
-              <span className="mr-2 text-xs  uppercase">Total price:</span>
-              <span className=" text-2xl">${totalPrice}</span>
-            </p>
-            <hr className=" mx-auto my-3 h-px"></hr>
-          </div>
-
-          <button
-            disabled={cartItems.length === 0}
-            onClick={checkoutHandler}
-            className={`${
-              cartItems.length === 0
-                ? "bg-zinc-100 text-zinc-300"
-                : "border border-black-magic bg-black-magic   text-ivory hover:border-red-magic hover:bg-red-magic dark:border-red-magic dark:bg-red-magic/60 dark:hover:bg-red-magic/80"
-            }  h-10  w-full text-xs font-semibold uppercase transition-colors duration-300 md:w-full md:px-32`}
-          >
-            {cartItems.length === 0
-              ? "Your cart is empty"
-              : "Proceed to Checkout"}
-          </button>
-        </div>
-      </div> */}
+      )} 
     </div>
   );
 };
 export default CartPage;
 
-// w-1/3 sticky h-[400px] md:top-8
