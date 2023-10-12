@@ -14,6 +14,7 @@ import PageHeading from "../../components/primitives/PageHeading";
 import ButtonSubmit from "../../components/primitives/ButtonSubmit";
 import HeadingAccent from "../../components/primitives/HeadingAccent";
 import IconDivider from "../../components/primitives/IconDivider";
+import InputTextField from "../../components/Admin/InputTextField";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -69,62 +70,26 @@ const LoginPage = () => {
 
       <CheckoutSteps step1={true} step2={false} step3={false} step4={false} />
       <Form.Root
-        className="flex w-11/12 flex-col gap-5 md:w-9/12 lg:w-6/12 2xl:w-1/3"
+        className="flex w-full flex-col gap-5 md:w-9/12 lg:w-6/12 2xl:w-1/3"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <Form.Field className="flex flex-col" name="email">
-          <div className="flex items-baseline justify-between">
-            <Form.Label className="form-label">Email</Form.Label>
-            <Form.Message
-              className="text-md text-red-magic"
-              match="valueMissing"
-            >
-              Please enter your email
-            </Form.Message>
-            <Form.Message
-              className="text-md text-red-magic"
-              match="typeMismatch"
-            >
-              Please provide a valid email
-            </Form.Message>
-          </div>
-          <Form.Control asChild>
-            <input
-              className="form-input"
-              type="email"
-              required
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Control>
-        </Form.Field>
-        <Form.Field className="flex flex-col" name="password">
-          <div className="flex items-baseline justify-between">
-            <Form.Label className="form-label">Password</Form.Label>
-            <Form.Message
-              className="text-md text-red-magic"
-              match="valueMissing"
-            >
-              Please enter your password
-            </Form.Message>
-            <Form.Message
-              className="text-md text-red-magic"
-              match="typeMismatch"
-            >
-              Please provide a valid password
-            </Form.Message>
-          </div>
-          <Form.Control asChild>
-            <input
-              className="form-input"
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Control>
-        </Form.Field>
+        <InputTextField
+          shortName={"email"}
+          name={"Email"}
+          onChangeFun={(e) => setEmail(e.target.value)}
+          value={email}
+          type="email"
+          required={true}
+        />
+
+        <InputTextField
+          shortName={"password"}
+          name={"Password"}
+          onChangeFun={(e) => setPassword(e.target.value)}
+          value={password}
+          type="password"
+          required={true}
+        />
         <Form.Submit asChild>
           <ButtonSubmit>Login</ButtonSubmit>
         </Form.Submit>

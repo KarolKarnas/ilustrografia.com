@@ -5,6 +5,7 @@ type Props = {
   name: string;
   value?: string;
   required: boolean;
+  type?: "text" | "email" | "password";
   onChangeFun: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -13,6 +14,7 @@ const InputTextField = ({
   name,
   value,
   required,
+  type,
   onChangeFun,
 }: Props) => {
   return (
@@ -38,7 +40,7 @@ const InputTextField = ({
       <Form.Control asChild>
         <input
           className="form-input"
-          type="text"
+          type={type ? type : "text"}
           placeholder={`Enter ${name}`}
           value={value}
           onChange={(e) => {
