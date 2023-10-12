@@ -8,6 +8,13 @@ import { setCredentials } from "../../slices/authSlice";
 import { toast } from "react-toastify";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
+import HeadingAccent from "../../components/primitives/HeadingAccent";
+import PageHeading from "../../components/primitives/PageHeading";
+import IconDivider from "../../components/primitives/IconDivider";
+import { FaUserAltSlash } from "react-icons/fa";
+import InputTextField from "../../components/Admin/InputTextField";
+import ButtonSubmit from "../../components/primitives/ButtonSubmit";
+import MainStrongText from "../../components/primitives/MainStrongText";
 
 const RegistrationPage = () => {
   const [name, setName] = useState("");
@@ -41,144 +48,80 @@ const RegistrationPage = () => {
         const res = await register({ name, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
+        toast.success(`Welcome to Team Ilustrografia ${name}!`)
       } catch (error) {
         toast.error(getError(error as ApiError));
       }
     }
   };
   return (
-    <div className="flex w-full flex-col items-center">
-      <h1 className="mt-5 text-center text-3xl font-bold">Register</h1>
-      <Form.Root className="w-4/12" onSubmit={(e) => handleSubmit(e)}>
-        <Form.Field className="flex flex-col" name="name">
-          <div className="flex items-baseline justify-between">
-            <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
-              Name
-            </Form.Label>
-            <Form.Message
-              className="text-md text-red-magic"
-              match="valueMissing"
-            >
-              Please enter your name
-            </Form.Message>
-            <Form.Message
-              className="text-md text-red-magic"
-              match="typeMismatch"
-            >
-              Please provide a valid name
-            </Form.Message>
-          </div>
-          <Form.Control asChild>
-            <input
-              className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
-              type="text"
-              required
-              placeholder="Enter name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </Form.Control>
-        </Form.Field>
-        <Form.Field className="flex flex-col" name="email">
-          <div className="flex items-baseline justify-between">
-            <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
-              Email
-            </Form.Label>
-            <Form.Message
-              className="text-md text-red-magic"
-              match="valueMissing"
-            >
-              Please enter your email
-            </Form.Message>
-            <Form.Message
-              className="text-md text-red-magic"
-              match="typeMismatch"
-            >
-              Please provide a valid email
-            </Form.Message>
-          </div>
-          <Form.Control asChild>
-            <input
-              className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
-              type="email"
-              required
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Control>
-        </Form.Field>
-        <Form.Field className="flex flex-col" name="password">
-          <div className="flex items-baseline justify-between">
-            <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
-              Password
-            </Form.Label>
-            <Form.Message
-              className="text-md text-red-magic"
-              match="valueMissing"
-            >
-              Please enter your password
-            </Form.Message>
-            <Form.Message
-              className="text-md text-red-magic"
-              match="typeMismatch"
-            >
-              Please provide a valid password
-            </Form.Message>
-          </div>
-          <Form.Control asChild>
-            <input
-              className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Control>
-        </Form.Field>
-        <Form.Field className="flex flex-col" name="confirmPassword">
-          <div className="flex items-baseline justify-between">
-            <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
-              Confirm Password
-            </Form.Label>
-            <Form.Message
-              className="text-md text-red-magic"
-              match="valueMissing"
-            >
-              Please confirm your password
-            </Form.Message>
-            <Form.Message
-              className="text-md text-red-magic"
-              match="typeMismatch"
-            >
-              Please confirm a valid password
-            </Form.Message>
-          </div>
-          <Form.Control asChild>
-            <input
-              className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
-              type="password"
-              required
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </Form.Control>
-        </Form.Field>
-        <Form.Submit asChild>
-          <button
-            // add disabled styling
-            className="mt-5 w-full bg-zinc-900 py-2 text-center text-white hover:cursor-pointer  hover:bg-red-200"
-            disabled={isLoading}
-          >
-            Register
-          </button>
-        </Form.Submit>
-        {isLoading && <div>Loading...</div>}
-      </Form.Root>
-      <p>
-        Already register?{" "}
+<div className="flex w-11/12 flex-col items-center justify-center">
+<div
+        className="relative mb-8 flex
+     h-48 w-full flex-col items-center justify-center rounded-3xl bg-angel-dust shadow-hero dark:bg-angel-dark-dust sm:bg-inherit md:mb-20 md:h-[330px] "
+      >
+        <img
+          src="/images/shop/printings-images.jpg "
+          alt=""
+          className="hidden h-full w-full rounded-3xl  object-none dark:invert-90 sm:block"
+        />
+
+        <div className="absolute flex flex-col items-center justify-center">
+          <HeadingAccent>· Ilustrografia ·</HeadingAccent>
+          <PageHeading>Register</PageHeading>
+          <IconDivider>
+            <FaUserAltSlash className="text-xl md:text-2xl" />
+          </IconDivider>
+        </div>
+      </div>
+
+
+            <MainStrongText>Register New Profile</MainStrongText>
+      <Form.Root onSubmit={(e) => handleSubmit(e)} className="flex w-full flex-col gap-5 md:w-9/12 lg:w-6/12 2xl:w-5/12 ">
+
+                <InputTextField
+            shortName={"name"}
+            name={"Name"}
+            onChangeFun={(e) => setName(e.target.value)}
+            value={name}
+            required={true}
+                    />
+                <InputTextField
+            shortName={"email"}
+            name={"Email"}
+            onChangeFun={(e) => setEmail(e.target.value)}
+            value={email}
+            type="email"
+            required={true}
+                    />
+                <InputTextField
+            shortName={"password"}
+            name={"New Password"}
+            onChangeFun={(e) => setPassword(e.target.value)}
+            value={password}
+            type="password"
+            required={false}
+                    />
+                <InputTextField
+            shortName={"confirmPassword"}
+            name={"Confirm New Password"}
+            onChangeFun={(e) => setConfirmPassword(e.target.value)}
+            value={confirmPassword}
+            type="password"
+            required={false}
+                    />
+              <Form.Submit asChild>
+              <ButtonSubmit>Register</ButtonSubmit>
+              </Form.Submit>
+              {/* {isLoading && <div>Loading...</div>} */}
+            </Form.Root>
+
+
+
+      <p className="mt-5 font-montserrat text-sm font-semibold text-black-magic  dark:text-ivory">
+      Already register?{" "}
         <Link
-          className="text-red-700"
+          className="text-red-magic"
           to={redirect ? `/login?redirect=${redirect}` : "/login"}
         >
           Login

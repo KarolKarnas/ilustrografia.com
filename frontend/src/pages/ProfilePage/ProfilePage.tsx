@@ -88,7 +88,9 @@ const ProfilePage = () => {
           <div className="w-full flex flex-col xl:flex-row justify-center items-center xl:items-start  gap-8">
             
             <Form.Root onSubmit={(e) => handleSubmit(e)} className="flex w-full flex-col gap-5 md:w-9/12 lg:w-6/12 2xl:w-5/12 ">
-            <MainStrongText>Update Profile</MainStrongText>
+            <div className="mx-auto -mb-5">
+              <MainStrongText>Update Profile</MainStrongText>
+            </div>
 
                 <InputTextField
             shortName={"name"}
@@ -124,7 +126,7 @@ const ProfilePage = () => {
               <Form.Submit asChild>
               <ButtonSubmit>Update</ButtonSubmit>
               </Form.Submit>
-              {/* {isLoading && <div>Loading...</div>} */}
+              {isLoading && <div>Loading...</div>}
             </Form.Root>
             
                     <div className="w-full overflow-x-auto flex flex-col gap-5 ">
