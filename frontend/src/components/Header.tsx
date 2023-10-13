@@ -60,9 +60,9 @@ const Header = () => {
           }
           onClick={handleMobileClick}
         >
-          <div className="w-30 flex items-center  gap-x-3">
+          {/* <div className="w-30 flex items-center  gap-x-3">
             <AppLinks />
-          </div>
+          </div> */}
           <MainLinks mobile={true} />
           <div className="w-30 flex items-center gap-x-3">
             <SocialLinks />

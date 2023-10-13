@@ -14,6 +14,7 @@ import HeadingAccent from "../../components/primitives/HeadingAccent";
 import PageHeading from "../../components/primitives/PageHeading";
 import IconDivider from "../../components/primitives/IconDivider";
 import Spinner from "../../components/Spinner";
+import Message from "../../components/Message";
 
 const ProductListPage = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
@@ -23,7 +24,6 @@ const ProductListPage = () => {
 
   const [deleteProduct, { isLoading: loadingDelete }] =
     useDeleteProductMutation();
-
 
   const createProductHandler = async () => {
     if (window.confirm("Are you sure you want to create a new product?")) {
@@ -42,7 +42,6 @@ const ProductListPage = () => {
   // };
 
   const handleDeleteProduct = async (slug: string) => {
-
     if (window.confirm(`Are you sure you want to delete ${slug}?`)) {
       try {
         const res = await deleteProduct(slug);
@@ -86,10 +85,13 @@ const ProductListPage = () => {
           </IconDivider>
         </div>
       </div>
+      
       {isLoading ? (
         <div className="flex w-full justify-center">
           <Spinner></Spinner>
         </div>
+      ) : error ? (
+        <Message variant="bad" message={getError(error as ApiError)} />
       ) : loadingCreate ? (
         <div className="flex w-full justify-center">
           <Spinner></Spinner>

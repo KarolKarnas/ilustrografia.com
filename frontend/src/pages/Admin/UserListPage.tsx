@@ -4,10 +4,15 @@ import {
 } from "../../slices/usersApiSlice";
 import { UserInfo } from "../../types/User";
 import { Link } from "react-router-dom";
-import { FaTrash, FaEdit, FaCheck, FaTimes } from "react-icons/fa";
+import { FaTrash, FaEdit, FaCheck, FaTimes, FaListUl } from "react-icons/fa";
 import { getError } from "../../utils/utils";
 import { toast } from "react-toastify";
 import { ApiError } from "../../types/ApiError";
+import HeadingAccent from "../../components/primitives/HeadingAccent";
+import PageHeading from "../../components/primitives/PageHeading";
+import IconDivider from "../../components/primitives/IconDivider";
+import Spinner from "../../components/Spinner";
+import Message from "../../components/Message";
 
 const UserListPage = () => {
   const { data: users, isLoading, error, refetch } = useGetUsersQuery();
@@ -28,65 +33,118 @@ const UserListPage = () => {
   };
 
   return (
-    <div className="w-3/4">
-      <div className="flex justify-between">
-        <h1 className="text-2xl text-zinc-400">Users List</h1>
+    <div className="flex w-11/12 flex-col">
+
+<div
+        className="relative mb-8 flex
+     h-48 w-full flex-col items-center justify-center rounded-3xl bg-angel-dust shadow-hero dark:bg-angel-dark-dust sm:bg-inherit md:mb-20 md:h-[330px] "
+      >
+        <img
+          src="/images/shop/printings-images.jpg "
+          alt=""
+          className="hidden h-full w-full rounded-3xl  object-none dark:invert-90 sm:block"
+        />
+
+        <div className="absolute flex flex-col items-center justify-center">
+          <HeadingAccent>· Admin ·</HeadingAccent>
+          <PageHeading>User List</PageHeading>
+          <IconDivider>
+            <FaListUl className="text-xl md:text-2xl" />
+          </IconDivider>
+        </div>
       </div>
 
-      <div className="mt-4 flex w-full flex-col">
-        {/* {loadingDelete && <div>Loading...</div>} */}
-
-        {isLoading ? (
-          <div>Loading...</div>
-        ) : (
-          <>
-            {" "}
-            {users &&
-              users.map((user: UserInfo, index) => (
-                <div
-                  key={index}
-                  className={`${
-                    index % 2 === 0 ? "bg-red-100" : ""
-                  } mb-10 flex flex-col border`}
-                >
-                  <div className="flex gap-1">
-                    {" "}
-                    <div className="basis-3/12 font-bold">ID</div>
-                    <div className="basis-1/12 font-bold">NAME</div>
-                    <div className="basis-3/12 font-bold">EMAIL</div>
-                    <div className="basis-1/12 font-bold">ADMIN</div>
-                    <div className="basis-4/12 font-bold">EDIT/DELETE</div>
-                  </div>
-                  <div className="flex gap-1">
-                    {" "}
-                    <div className="basis-3/12">{user._id}</div>
-                    <div className="basis-1/12">{user.name}</div>
-                    <div className="basis-3/12">{user.email}</div>
-                    <div className="basis-1/12">
-                      {user.isAdmin ? (
-                        <FaCheck className="text-green-400" />
-                      ) : (
-                        <FaTimes className="text-red-magic" />
-                      )}
-                    </div>
-                    <div className="flex basis-4/12 gap-2">
-                      <Link
-                        to={`/admin/user-list/${user._id}/edit`}
-                        className="hover:cursor-pointer hover:text-red-300"
+      {isLoading ? (
+        <div className="flex w-full justify-center">
+          <Spinner></Spinner>
+        </div>
+      ) : error ? (
+        <Message variant="bad" message={getError(error as ApiError)} />
+      ) : (       <div className="mt-4 flex w-full flex-col">     
+              <div className=" overflow-x-auto  shadow-hero">
+                <table className=" min-w-full  border text-center text-sm font-light text-black-magic dark:border-neutral-700 dark:text-ivory   ">
+                  <thead className="border-b font-montserrat font-semibold dark:border-neutral-700 ">
+               <tr className="dark:bg-black-magic">
+                      <th
+                        scope="col"
+                        className="border-r px-6 py-4 dark:border-neutral-700"
                       >
-                        <FaEdit />
-                      </Link>{" "}
-                      <FaTrash
-                        onClick={() => handleDeleteUser(user._id)}
-                        className="text-red-500 hover:cursor-pointer hover:text-red-300"
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </>
-        )}
-      </div>
+                        Id
+                      </th>
+                      <th
+                        scope="col"
+                        className="border-r px-6 py-4 dark:border-neutral-700"
+                      >
+                       Name
+                      </th>
+                      <th
+                        scope="col"
+                        className="border-r px-6 py-4 dark:border-neutral-700"
+                      >
+                        E-mail
+                      </th>
+                      <th
+                        scope="col"
+                        className="border-r px-6 py-4 dark:border-neutral-700"
+                      >
+                        Admin
+                      </th>
+                      <th
+                        scope="col"
+                        className=" px-6 py-4"
+                      >
+                        Edit/Delete
+                      </th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {users &&
+            users.map((user: UserInfo, index) => (
+                      <tr
+                        key={index}
+                        className={`border-b dark:border-neutral-700 ${
+                          index % 2 === 0 ? "bg-white dark:bg-angel-space" : ""
+                        }`}
+                      >
+                        <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
+                          {user._id}
+                        </td>
+                        <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
+                        {user.name}
+                        </td>
+                        <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
+                        {user.email}
+                        </td>
+                        <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
+                        {user.isAdmin ? (
+                      <FaCheck className="text-green-400 mx-auto" />
+                    ) : (
+                      <FaTimes className="text-red-magic mx-auto" />
+                    )}
+                        </td>
+                        <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
+                        <span className="flex justify-center gap-3">
+                            <Link
+                              to={`/admin/user-list/${user._id}/edit`}
+                              className="cursor-pointer rounded-3xl bg-red-magic p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
+                            >
+                              <FaEdit />
+                            </Link>{" "}
+                            <div
+                              className="cursor-pointer rounded-3xl bg-red-magic p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
+                              onClick={() => handleDeleteUser(user._id)}
+                            >
+                              <FaTrash />
+                            </div>
+                          </span>
+                        </td>                    
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div> 
+    </div>) }
     </div>
   );
 };
