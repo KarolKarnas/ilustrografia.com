@@ -129,36 +129,36 @@ const ProfilePage = () => {
 
         <div className="flex w-full flex-col gap-5 overflow-x-auto ">
           <MainStrongText>All {userInfo?.name} Orders</MainStrongText>
-          <table className="min-w-full  border text-center text-sm font-light text-black-magic dark:border-neutral-600 dark:text-ivory">
-            <thead className="border-b font-montserrat font-semibold dark:border-neutral-600 ">
+          <table className="min-w-full  border text-center text-sm font-light text-black-magic dark:border-neutral-700 dark:text-ivory">
+            <thead className="border-b font-montserrat font-semibold dark:border-neutral-700 dark:bg-black-magic ">
               <tr>
                 <th
                   scope="col"
-                  className="border-r px-6 py-4 dark:border-neutral-600"
+                  className="border-r px-6 py-4 dark:border-neutral-700"
                 >
                   Id
                 </th>
                 <th
                   scope="col"
-                  className="border-r px-6 py-4 dark:border-neutral-600"
+                  className="border-r px-6 py-4 dark:border-neutral-700"
                 >
                   Date
                 </th>
                 <th
                   scope="col"
-                  className="border-r px-6 py-4 dark:border-neutral-600"
+                  className="border-r px-6 py-4 dark:border-neutral-700"
                 >
                   Total
                 </th>
                 <th
                   scope="col"
-                  className="border-r px-6 py-4 dark:border-neutral-600"
+                  className="border-r px-6 py-4 dark:border-neutral-700"
                 >
                   Paid
                 </th>
                 <th
                   scope="col"
-                  className="border-r px-6 py-4 dark:border-neutral-600"
+                  className="border-r px-6 py-4 dark:border-neutral-700"
                 >
                   Delivered
                 </th>
@@ -172,34 +172,34 @@ const ProfilePage = () => {
                 orders.map((order, index) => (
                   <tr
                     key={index}
-                    className={`border-b dark:border-neutral-600 ${
-                      index % 2 === 0 ? "bg-white dark:bg-black-magic" : ""
+                    className={`border-b dark:border-neutral-700 ${
+                      index % 2 === 0 ? "bg-white dark:bg-angel-space" : ""
                     }`}
                   >
-                    <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-600">
+                    <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
                       {order._id}
                     </td>
-                    <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-600">
+                    <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
                       {order.createdAt.substring(0, 10)}
                     </td>
-                    <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-600">
+                    <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
                       ${order.totalPrice.toFixed(2)}
                     </td>
-                    <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-600">
+                    <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
                       {order.isPaid ? (
                         order.paidAt?.substring(0, 10)
                       ) : (
                         <FaTimes className="mx-auto text-red-magic" />
                       )}
                     </td>
-                    <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-600">
+                    <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
                       {order.isDelivered ? (
                         order.deliveredAt?.substring(0, 10)
                       ) : (
                         <FaTimes className="mx-auto text-red-magic" />
                       )}
                     </td>
-                    <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-600">
+                    <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
                       <Link
                         to={`/order/${order._id}`}
                         className="text-red-magic underline transition-colors duration-500 hover:text-eerie-black"
