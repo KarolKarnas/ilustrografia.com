@@ -1,64 +1,141 @@
 import { useGetAllOrdersQuery } from "../../slices/ordersApiSlice";
-import { FaTimes } from "react-icons/fa";
+import { FaListUl, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import HeadingAccent from "../../components/primitives/HeadingAccent";
+import PageHeading from "../../components/primitives/PageHeading";
+import IconDivider from "../../components/primitives/IconDivider";
+import Spinner from "../../components/Spinner";
+import Message from "../../components/Message";
+import { getError } from "../../utils/utils";
+import { ApiError } from "../../types/ApiError";
 
 const OrderListPage = () => {
-  const { data: orders, isLoading, isError } = useGetAllOrdersQuery();
+  const { data: orders, isLoading, error } = useGetAllOrdersQuery();
 
   return (
-    <div className="w-3/4">
-      <h2 className="text-2xl text-zinc-400">Orders</h2>
-      <div className="mt-4 flex w-full flex-col">
-        {!orders ? (
-          <div>No orders</div>
-        ) : (
-          <div className="flex gap-1">
-            {" "}
-            <div className="basis-3/12 font-bold">ID</div>
-            <div className="basis-3/12 font-bold">NAME</div>
-            <div className="basis-1/12 font-bold">DATE</div>
-            <div className="basis-1/12 font-bold">TOTAL</div>
-            <div className="basis-1/12 text-center font-bold">PAID</div>
-            <div className="basis-1/12 text-center font-bold">DELIVERED</div>
-            <div className="basis-2/12 font-bold">DETAILS</div>
-          </div>
-        )}
-        {orders &&
-          orders.map((order, index) => (
-            <div
-              className={`${index % 2 === 0 ? "bg-red-100" : ""} flex gap-1 `}
-              key={index}
-            >
-              {" "}
-              <div className="basis-3/12">{order._id}</div>
-              <div className="basis-3/12">{order.user.name}</div>
-              <div className="basis-1/12">
-                {order.createdAt.substring(0, 10)}
-              </div>
-              <div className="basis-1/12">${order.totalPrice.toFixed(2)}</div>
-              <div className="flex basis-1/12 items-center justify-center">
-                {order.isPaid ? (
-                  order.paidAt?.substring(0, 10)
-                ) : (
-                  <FaTimes className="text-red-magic" />
-                )}
-              </div>
-              <div className="flex basis-1/12 items-center justify-center">
-                {order.isDelivered ? (
-                  order.deliveredAt?.substring(0, 10)
-                ) : (
-                  <FaTimes className="text-red-magic" />
-                )}
-              </div>
-              <Link
-                to={`/order/${order._id}`}
-                className="basis-2/12 underline hover:text-red-300"
-              >
-                Details
-              </Link>
-            </div>
-          ))}
+    <div className="flex w-11/12 flex-col">
+      <div
+        className="relative mb-8 flex
+     h-48 w-full flex-col items-center justify-center rounded-3xl bg-angel-dust shadow-hero dark:bg-angel-dark-dust sm:bg-inherit md:mb-20 md:h-[330px] "
+      >
+        <img
+          src="/images/shop/printings-images.jpg "
+          alt=""
+          className="hidden h-full w-full rounded-3xl  object-none dark:invert-90 sm:block"
+        />
+
+        <div className="absolute flex flex-col items-center justify-center">
+          <HeadingAccent>· Admin ·</HeadingAccent>
+          <PageHeading>Order List</PageHeading>
+          <IconDivider>
+            <FaListUl className="text-xl md:text-2xl" />
+          </IconDivider>
+        </div>
       </div>
+
+      {isLoading ? (
+        <div className="flex w-full justify-center">
+          <Spinner></Spinner>
+        </div>
+      ) : error ? (
+        <Message variant="bad" message={getError(error as ApiError)} />
+      ) : (
+        <div className="mt-4 flex w-full flex-col">
+          <div className=" overflow-x-auto  shadow-hero">
+            <table className="min-w-full  border text-center text-sm font-light text-black-magic dark:border-neutral-700 dark:text-ivory">
+              <thead className="border-b font-montserrat font-semibold dark:border-neutral-700 dark:bg-black-magic ">
+                <tr>
+                  <th
+                    scope="col"
+                    className="border-r px-6 py-4 dark:border-neutral-700"
+                  >
+                    Id
+                  </th>
+                  <th
+                    scope="col"
+                    className="border-r px-6 py-4 dark:border-neutral-700"
+                  >
+                    Name
+                  </th>
+                  <th
+                    scope="col"
+                    className="border-r px-6 py-4 dark:border-neutral-700"
+                  >
+                    Date
+                  </th>
+                  <th
+                    scope="col"
+                    className="border-r px-6 py-4 dark:border-neutral-700"
+                  >
+                    Total
+                  </th>
+                  <th
+                    scope="col"
+                    className="border-r px-6 py-4 dark:border-neutral-700"
+                  >
+                    Paid
+                  </th>
+                  <th
+                    scope="col"
+                    className="border-r px-6 py-4 dark:border-neutral-700"
+                  >
+                    Delivered
+                  </th>
+                  <th scope="col" className="px-6 py-4 ">
+                    Details
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders &&
+                  orders.map((order, index) => (
+                    <tr
+                      key={index}
+                      className={`border-b dark:border-neutral-700 ${
+                        index % 2 === 0 ? "bg-white dark:bg-angel-space" : ""
+                      }`}
+                    >
+                      <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
+                        {order._id}
+                      </td>
+                      <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
+                        {order.user.name}
+                      </td>
+                      <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
+                        {order.createdAt.substring(0, 10)}
+                      </td>
+                      <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
+                        ${order.totalPrice.toFixed(2)}
+                      </td>
+                      <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
+                        {order.isPaid ? (
+                          order.paidAt?.substring(0, 10)
+                        ) : (
+                          <FaTimes className="mx-auto text-red-magic" />
+                        )}
+                      </td>
+                      <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
+                        {order.isDelivered ? (
+                          order.deliveredAt?.substring(0, 10)
+                        ) : (
+                          <FaTimes className="mx-auto text-red-magic" />
+                        )}
+                      </td>
+                      <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-700">
+                        <Link
+                          to={`/order/${order._id}`}
+                          className="text-red-magic underline transition-colors duration-500 hover:text-eerie-black"
+                        >
+                          Details
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
