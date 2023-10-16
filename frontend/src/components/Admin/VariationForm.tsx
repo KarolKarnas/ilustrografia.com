@@ -4,6 +4,8 @@ import { SyntheticEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { Product, VariationOptionalId } from "../../types/Product";
 import { FaChevronDown, FaEdit, FaTrash } from "react-icons/fa";
+import InputTextField from "./InputTextField";
+import VariationEdit from "./VariationEdit";
 
 type Props = {
   variations: VariationOptionalId[];
@@ -54,24 +56,35 @@ const VariationForm = ({ variations, setVariations, slug, product }: Props) => {
     setVariations(updatedVariations);
   };
   const handleEditVariation = (index: number) => {
-    console.log(index);
+    // console.log(index);
+    // console.log(variations[index]);
+    
   };
-
+  
+  
   return (
     <Form.Root className="w-full" onSubmit={(e) => handleSubmitVariation(e)}>
       <div className="flex flex-col">
         <h3>Create Variation</h3>
         {variations?.map((variation, index) => (
           <div key={index} className="flex items-center">
-            <FaTrash
+            <div className="flex flex-col">
+     
+            {/* <FaEdit
+              className="hover:cursor-pointer hover:text-red-300"
+              onClick={() => handleEditVariation(index)}
+            />{" "} */}
+              <div className="flex items-center gap-2">
+              <FaTrash
               className="hover:cursor-pointer hover:text-red-300"
               onClick={() => handleDeleteVariation(index)}
             />{" "}
-            <FaEdit
-              className="hover:cursor-pointer hover:text-red-300"
-              onClick={() => handleEditVariation(index)}
-            />{" "}
-            {variation.SKU} / ${variation.price} / {variation.countInStock}
+                <div>{variation.SKU}</div>
+                <div> Price: ${variation.price}</div>
+                <div>Count In stock: {variation.countInStock}</div>
+              </div>
+              <VariationEdit price={variation.price} countInStock={variation.countInStock} setVariations={setVariations} index={index} variations={variations}/>
+            </div>
           </div>
         ))}
       </div>

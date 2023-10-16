@@ -66,6 +66,8 @@ const ProductEditScreen = () => {
 		error,
 	} = useGetProductDetailsQuery(productSlug);
 
+	// console.log(product)
+
 	const [updateProduct, { isLoading: loadingUpdate, error: updateError }] =
 		useUpdateProductMutation();
 
