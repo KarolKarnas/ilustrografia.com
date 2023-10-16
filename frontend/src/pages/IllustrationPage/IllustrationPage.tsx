@@ -20,7 +20,6 @@ import MainStrongText from "../../components/primitives/MainStrongText";
 import IconDivider from "../../components/primitives/IconDivider";
 import { FaDragon } from "react-icons/fa6";
 import Button from "../../components/Button";
-import ShopPage from "../ShopPage/ShopPage";
 
 const IllustrationPage = () => {
   const params = useParams();
@@ -50,9 +49,9 @@ const IllustrationPage = () => {
     _.map(product?.variations, "options.material"),
   );
 
-  const sizeValues: string[] = _.uniq(
-    _.map(product?.variations, "options.size"),
-  );
+  // const sizeValues: string[] = _.uniq(
+  //   _.map(product?.variations, "options.size"),
+  // );
 
   const getSizesForMaterialFromProduct = (
     product: Product,
