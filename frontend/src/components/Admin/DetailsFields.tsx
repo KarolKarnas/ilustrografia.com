@@ -27,21 +27,22 @@ const DetailsFields = ({
   }, [details]);
 
   return (
-    <>
+    <div className="p-4 md:p-8 bg-angel-dust dark:bg-angel-space shadow-xl rounded-xl">
       {" "}
       <Form.Field name="story">
-       
-          <Form.Label className=" form-label">
+      <div className="flex items-baseline justify-between">
+          <Form.Label className="form-label">
             Story
           </Form.Label>
           <Form.Message className="form-message" match="valueMissing">
             Please enter story of the Creature
           </Form.Message>
+          </div>
       
         <Form.Control asChild>
           <textarea
             required
-            className="input-text h-64"
+            className="gap-[5px] py-3 rounded-md bg-white px-4 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5 h-64 w-full"
             placeholder="Enter the Story"
             value={story}
             onChange={(e) => {
@@ -90,7 +91,7 @@ const DetailsFields = ({
         required={false}
       />
     
-    </>
+    </div>
   );
 };
 export default DetailsFields;

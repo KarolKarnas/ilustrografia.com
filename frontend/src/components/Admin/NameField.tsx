@@ -16,8 +16,8 @@ type Props = {
 
 const NameField = ({ updateError, name, setName, setSlug }: Props) => {
   return (
-    <>
-      <Form.Field name="name">
+    <Form.Field className="flex flex-col" name="name">
+      <div className="flex items-baseline justify-between">
         <Form.Label className=" form-label">Name</Form.Label>
         <Form.Message className="text-md text-red-magic" match="valueMissing">
           Please enter your name
@@ -31,24 +31,34 @@ const NameField = ({ updateError, name, setName, setSlug }: Props) => {
             {getError(updateError as ApiError)}
           </Form.Message>
         )}
-        <Form.Control asChild>
-          <input
-            className="input-text"
-            type="text"
-            required
-            placeholder="Enter name"
-            value={name}
-            onChange={(e) => {
-              const newName = e.target.value;
-              const newSlug = _.kebabCase(newName);
 
-              setName(newName);
-              setSlug(newSlug);
-            }}
-          />
-        </Form.Control>
-      </Form.Field>
-    </>
+        {name !== "" ? (
+          <Form.Message
+            className="form-message"
+            match={(name) => name.trim() === ""}
+          >
+            Just empty spaces here...
+          </Form.Message>
+        ) : null}
+      </div>
+
+      <Form.Control asChild>
+        <input
+          className="form-input"
+          type="text"
+          required
+          placeholder="Enter name"
+          value={name}
+          onChange={(e) => {
+            const newName = e.target.value;
+            const newSlug = _.kebabCase(newName);
+
+            setName(newName);
+            setSlug(newSlug);
+          }}
+        />
+      </Form.Control>
+    </Form.Field>
   );
 };
 export default NameField;

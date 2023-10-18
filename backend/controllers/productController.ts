@@ -68,6 +68,9 @@ const createProduct = asyncHandler(async (req, res) => {
 
 	const product = new ProductModel({
 		user: reqWithUser.user._id,
+		details: {			latinName: "Samplus Productus",
+		story: `The "Sample Product" is a unique and intriguing item that transports us to the heart of Warsaw, where stories of ancient legends and mysteries await. In this vibrant city, history and folklore intertwine, creating a captivating narrative filled with enchantment and wonder. It serves as a reminder that even the simplest of products can be a gateway to discovering the rich tapestry of a city's past and the allure of its untold stories. The "Sample Product" is more than an item; it's a key to unlocking the mysteries of a place and its history.`,
+		occurrence: `Slav Lands`},
 		name: `Sample Name ${slug}`,
 		slug: productSlug,
 		rating: {

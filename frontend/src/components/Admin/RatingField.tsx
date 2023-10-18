@@ -8,18 +8,17 @@ type Props = {
 const RatingField = ({ rating, setRating }: Props) => {
   return (
     <>
-      {" "}
       {/* rating */}
       <Form.Field className="flex flex-col" name="ratingRating">
         <div className="flex items-baseline justify-between">
-          <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
+          <Form.Label className=" form-label">
             Rating (0-5)
           </Form.Label>
-          <Form.Message className="text-md text-red-magic" match="valueMissing">
+          <Form.Message className="form-message" match="valueMissing">
             Please enter Rating
           </Form.Message>
           <Form.Message
-            className="text-md text-red-magic"
+            className="form-message"
             match={(value) => Number(value) < 0 || Number(value) > 5}
           >
             Please provide a valid Rating
@@ -27,7 +26,7 @@ const RatingField = ({ rating, setRating }: Props) => {
         </div>
         <Form.Control asChild>
           <input
-            className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
+            className="form-input"
             type="number"
             required
             placeholder="Enter rating"

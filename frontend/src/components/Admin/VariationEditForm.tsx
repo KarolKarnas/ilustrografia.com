@@ -61,47 +61,52 @@ const VariationEditForm = ({
 
   return (
     <div>
-      <Form.Root className="flex w-full items-center gap-5 md:w-9/12 lg:w-6/12 2xl:w-1/3">
-        <div>
-          <FaTrash
-            className="hover:cursor-pointer hover:text-red-300"
-            onClick={() => handleDeleteVariation(index)}
+      {/* md:w-9/12 lg:w-6/12 2xl:w-1/3 */}
+      <Form.Root className="flex w-full items-center gap-1 md:gap-5 ">
+        <div
+          onClick={() => handleDeleteVariation(index)}
+          className=" cursor-pointer rounded-3xl bg-red-magic p-2 text-xs text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110 mt-2 "
+        >
+          <FaTrash />
+        </div>
+
+        <div className="w-full">
+          <InputTextField
+            shortName={"sku"}
+            name={""}
+            onChangeFun={(e) => handleSetSku(e.target.value)}
+            value={newSku}
+            required={true}
           />
         </div>
 
-  
-
-        <InputTextField
-          shortName={"sku"}
-          name={"SKU"}
-          onChangeFun={(e) => handleSetSku(e.target.value)}
-          value={newSku}
-          required={true}
-        />
-
-        <InputNumberField
-          shortName={"price"}
-          name={"Price"}
-          onChangeFun={(e) =>
-            handleSetPrice(
-              Number(e.target.value) < 1 ? 1 : Number(e.target.value),
-            )
-          }
-          value={newPrice}
-          required={true}
-        />
-        <InputNumberField
-          shortName={"countInStock"}
-          name={"Count In Stock"}
-          onChangeFun={(e) =>
-            handleSetCountInStock(
-              Number(e.target.value) < 0 ? 0 : Number(e.target.value),
-            )
-          }
-          value={newCountInStock}
-          required={true}
-          minValue={-1}
-        />
+        <div className="w-36">
+          <InputNumberField
+            shortName={"price"}
+            name={""}
+            onChangeFun={(e) =>
+              handleSetPrice(
+                Number(e.target.value) < 1 ? 1 : Number(e.target.value),
+              )
+            }
+            value={newPrice}
+            required={true}
+          />
+        </div>
+        <div className="w-36">
+          <InputNumberField
+            shortName={"countInStock"}
+            name={""}
+            onChangeFun={(e) =>
+              handleSetCountInStock(
+                Number(e.target.value) < 0 ? 0 : Number(e.target.value),
+              )
+            }
+            value={newCountInStock}
+            required={true}
+            minValue={-1}
+          />
+        </div>
       </Form.Root>
     </div>
   );

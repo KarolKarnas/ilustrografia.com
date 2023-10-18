@@ -33,24 +33,16 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
 
   return (
     <>
-      {/* <InputTextField
-        shortName={"mainImageUrl"}
-        name={"Main Image URL"}
-        onChangeFun={(e) => setImages([e.target.value])}
-        value={images[0]}
-        required={false}
-      /> */}
-
       <Form.Field className="flex flex-col" name="mainImageUrl">
         <div className="flex items-baseline justify-between">
-          <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
+          <Form.Label className=" form-label">
             Main Image URL
           </Form.Label>
-          <Form.Message className="text-md text-red-magic" match="valueMissing">
+          <Form.Message className="form-message" match="valueMissing">
             Please enter Main Image URL
           </Form.Message>
           <Form.Message
-            className="text-md text-red-magic"
+            className="form-message"
             match={(value) => Number(value) < 0}
           >
             Please provide a Main Image URL
@@ -58,7 +50,7 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
         </div>
         <Form.Control asChild>
           <input
-            className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
+            className="form-input"
             type="text"
             required
             placeholder="Enter Main image url"
@@ -71,19 +63,19 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
 
       <Form.Field className="flex flex-col" name="uploadMainImage">
         <div className="flex items-baseline justify-between">
-          <Form.Label className=" text-lg font-semibold leading-8 text-zinc-600">
+          <Form.Label className=" form-label">
             Add Product Image
           </Form.Label>
-          <Form.Message className="text-md text-red-magic" match="valueMissing">
+          <Form.Message className="form-message" match="valueMissing">
             Please enter Product Image
           </Form.Message>
-          <Form.Message className="text-md text-red-magic" match="typeMismatch">
+          <Form.Message className="form-message" match="typeMismatch">
             Please provide a Product Image
           </Form.Message>
         </div>
         <Form.Control asChild>
           <input
-            className="inline-flex w-full items-center justify-center rounded-none border border-solid border-zinc-500 bg-slate-200 p-2 text-zinc-600 focus:rounded-none focus:outline-dashed focus:outline-red-300 "
+            className="py-3 rounded-md bg-white px-4 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5 "
             type="file"
             // required
             // placeholder='Enter Number of Reviews'

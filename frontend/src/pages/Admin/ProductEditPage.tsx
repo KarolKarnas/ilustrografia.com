@@ -25,7 +25,7 @@ import {
   ratingInitial,
 } from "../../utils/initialStates";
 import StatisticsForm from "../../components/Admin/StatisticsForm";
-import VariationForm from "../../components/Admin/VariationForm";
+import VariationCreateForm from "../../components/Admin/VariationCreateForm";
 import UploadArtPrintField from "../../components/Admin/UploadArtPrintField";
 import UploadMainImageField from "../../components/Admin/UploadMainImageField";
 import NumberReviewsField from "../../components/Admin/NumberReviewsField";
@@ -36,11 +36,16 @@ import UploadPosterField from "../../components/Admin/UploadPosterField";
 import UploadPremiumField from "../../components/Admin/UploadPremiumField";
 import DetailsFields from "../../components/Admin/DetailsFields";
 
+import HeadingAccent from "../../components/primitives/HeadingAccent";
+import PageHeading from "../../components/primitives/PageHeading";
+import IconDivider from "../../components/primitives/IconDivider";
+import { FaDragon } from "react-icons/fa";
+import VariationsList from "../../components/Admin/VariationsList";
+import Spinner from "../../components/Spinner";
+
 const ProductEditScreen = () => {
   const { slug: productSlug } = useParams();
   const navigate = useNavigate();
-
-  // const [product, setProduct] = useState<Product>();
 
   const [_id, set_Id] = useState("");
   const [details, setDetails] = useState<Details>({ story: "" });
@@ -54,8 +59,6 @@ const ProductEditScreen = () => {
   const [statistics, setStatistics] = useState<string[]>([]);
   const [variations, setVariations] = useState<VariationOptionalId[]>([]);
 
-  // console.log(details)
-
   if (!productSlug) {
     return <div>No slug provided</div>;
   }
@@ -66,7 +69,7 @@ const ProductEditScreen = () => {
     error,
   } = useGetProductDetailsQuery(productSlug);
 
-  console.log(product);
+  // console.log(product);
 
   const [updateProduct, { isLoading: loadingUpdate, error: updateError }] =
     useUpdateProductMutation();
@@ -126,84 +129,128 @@ const ProductEditScreen = () => {
   return (
     <div className="flex w-11/12 flex-col gap-16">
       <div className="flex w-full flex-col justify-center sm:gap-10  md:flex-row xl:gap-20">
-        <div className=" flex w-full  md:sticky md:top-8 h-full flex-col gap-5 md:w-3/12">
-          <img
-            className=""
-            src={product?.images[0]}
-            alt={product?.slug}
-          />
-					<div className="flex md:w-3/12">
-					<img
-            className=""
-            src={product?.options.material["art-print"].images[0]}
-            alt={`${product?.slug} art print`}
-          />
+        {/* col 1 */}
 
-					<img
-            className=""
-            src={product?.options.material["painting-on-canvas"].images[0]}
-            alt={`${product?.slug} painting on canvas`}
-          />
-										<img
-            className=""
-            src={product?.options.material["poster"].images[0]}
-            alt={`${product?.slug} poster`}
-          />
-										<img
-            className=""
-            src={product?.options.material["premium-print"].images[0]}
-            alt={`${product?.slug} premium print`}
-          />
-					
-					</div>
-          <button
-            onClick={handleSubmit}
-            className={` h-6 w-full border border-red-magic bg-red-magic/60   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs `}
-          >
-            Update
-          </button>
+        {isLoading ? (
+          <Spinner />
+        ) : loadingUpdate ? (
+          <Spinner />
+        ) : (
+          <div className=" mb-8 flex  h-full w-full flex-col gap-5 md:sticky md:top-8 md:mb-0 md:w-1/2 lg:w-3/12">
+            <img className="" src={product?.images[0]} alt={product?.slug} />
+            <div className="flex w-1/4 ">
+              <img
+                className=""
+                src={product?.options.material["art-print"].images[0]}
+                alt={`${product?.slug} art print`}
+              />
 
-					<Link to={"/admin/product-list"}>
+              <img
+                className=""
+                src={product?.options.material["painting-on-canvas"].images[0]}
+                alt={`${product?.slug} painting on canvas`}
+              />
+              <img
+                className=""
+                src={product?.options.material["poster"].images[0]}
+                alt={`${product?.slug} poster`}
+              />
+              <img
+                className=""
+                src={product?.options.material["premium-print"].images[0]}
+                alt={`${product?.slug} premium print`}
+              />
+            </div>
             <button
-              className={`
-								
-							h-6 w-full border border-black-magic bg-black-magic   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:bg-red-magic/80 hover:border-red-magic md:h-10 md:w-full md:text-xs`}
+              onClick={handleSubmit}
+              className={` h-6 w-full border border-red-magic bg-red-magic/60   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs `}
             >
-              Go Back
+              Save Changes
             </button>
-          </Link>{" "}
-        </div>
+            <Link to={"/admin/product-list"}>
+              <button
+                className={`
+								
+							h-6 w-full border border-black-magic bg-black-magic   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:border-red-magic hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs`}
+              >
+                Go Back
+              </button>
+            </Link>{" "}
+            <Link to={`/shop/${product?.slug}`}>
+              <button
+                className={`
+								
+							h-6 w-full border border-black-magic bg-black-magic   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:border-red-magic hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs`}
+              >
+                Check Product
+              </button>
+            </Link>{" "}
+          </div>
+        )}
 
-        <div className="w-full dark:text-ivory md:w-9/12">
-          <h1 className="mt-5 text-center text-3xl font-bold">Edit Product</h1>{" "}
+        {/* col 2 */}
+        <div className="w-full  dark:text-ivory md:w-2/3 lg:w-9/12">
+          <div
+            className="mb-12 flex
+     h-48 w-full flex-col items-center justify-center rounded-3xl bg-angel-dust shadow-hero dark:bg-angel-dark-dust"
+          >
+            <HeadingAccent>{product?.name}</HeadingAccent>
+            <PageHeading>Update Product</PageHeading>
+            <IconDivider>
+              <FaDragon className="text-xl md:text-2xl" />
+            </IconDivider>
+          </div>
 
-          {loadingUpdate && <div>Loading...</div>}
+          {loadingUpdate && <Spinner />}
           {isLoading ? (
-            <div>Loading...</div>
+            <Spinner />
           ) : error ? (
             <Message variant="bad" message={getError(error as ApiError)} />
           ) : product ? (
-            <div className="flex w-full  justify-center gap-10 ">
-              <div className="w-1/2">
-								<Form.Root className="w-full " onSubmit={(e) => handleSubmit(e)}>
-									<NameField
-										updateError={updateError}
-										name={name}
-										setName={setName}
-										setSlug={setSlug}
-									/>
-									<DetailsFields setDetails={setDetails} details={details} />
-									<RatingField rating={rating} setRating={setRating} />
-									<NumberReviewsField rating={rating} setRating={setRating} />
-									<UploadMainImageField images={images} setImages={setImages} />
-									<UploadArtPrintField
-										options={options}
-										setOptions={setOptions}
-									/>
-									<UploadCanvasField options={options} setOptions={setOptions} />
-									<UploadPosterField options={options} setOptions={setOptions} />
-									<UploadPremiumField options={options} setOptions={setOptions} />
-									{/* <Form.Submit asChild>
+            <div className="flex w-full flex-col justify-center  gap-10 xl:flex-row ">
+              {/* col 2.1 */}
+              <div className="flex w-full flex-col gap-10 xl:w-1/2">
+                <Form.Root
+                  className="flex w-full flex-col gap-10 "
+                  onSubmit={(e) => handleSubmit(e)}
+                >
+                  <div className="rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8">
+                    <NameField
+                      updateError={updateError}
+                      name={name}
+                      setName={setName}
+                      setSlug={setSlug}
+                    />
+                  </div>
+                  {/* <InputTextField /> */}
+                  <DetailsFields setDetails={setDetails} details={details} />
+                  <div className="rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8 ">
+                    <RatingField rating={rating} setRating={setRating} />
+                    <NumberReviewsField rating={rating} setRating={setRating} />
+                  </div>
+                  <div className="rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8">
+                    <UploadMainImageField
+                      images={images}
+                      setImages={setImages}
+                    />
+                    <UploadArtPrintField
+                      options={options}
+                      setOptions={setOptions}
+                    />
+                    <UploadCanvasField
+                      options={options}
+                      setOptions={setOptions}
+                    />
+                    <UploadPosterField
+                      options={options}
+                      setOptions={setOptions}
+                    />
+                    <UploadPremiumField
+                      options={options}
+                      setOptions={setOptions}
+                    />
+                  </div>
+                  {/* <Form.Submit asChild>
 										<button
 											// add disabled styling
 											className="mt-5 w-full bg-zinc-900 py-2 text-center text-white hover:cursor-pointer  hover:bg-red-200"
@@ -212,32 +259,34 @@ const ProductEditScreen = () => {
 											Update
 										</button>
 									</Form.Submit> */}
-									{isLoading && <div>Loading...</div>}
-								</Form.Root>
+                  {isLoading && <div>Loading...</div>}
+                </Form.Root>
 
+                <StatisticsForm
+                  statistics={statistics}
+                  setStatistics={setStatistics}
+                />
+              </div>
+              {/* col 2.2 */}
+              <div className="flex w-full flex-col gap-10 xl:w-1/2">
+                <VariationsList
+                  variations={variations}
+                  setVariations={setVariations}
+                />
 
-								<StatisticsForm
-										statistics={statistics}
-										setStatistics={setStatistics}
-									/>
-									<CategoriesForm
-										categories={categories}
-										setCategories={setCategories}
-									/>
-									<TagsForm tags={tags} setTags={setTags} />
-
-				
-
-							</div>
-							<div className="w-1/2">
-                <VariationForm
+                <VariationCreateForm
                   variations={variations}
                   setVariations={setVariations}
                   slug={slug}
                   product={product}
                 />
-								</div>
-      
+
+                <CategoriesForm
+                  categories={categories}
+                  setCategories={setCategories}
+                />
+                <TagsForm tags={tags} setTags={setTags} />
+              </div>
             </div>
           ) : (
             <div>No product found</div>
