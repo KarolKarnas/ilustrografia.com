@@ -161,30 +161,32 @@ const ProductEditScreen = () => {
                 alt={`${product?.slug} premium print`}
               />
             </div>
-            <button
-              onClick={handleSubmit}
-              className={` h-6 w-full border border-red-magic bg-red-magic/60   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs `}
-            >
-              Save Changes
-            </button>
-            <Link to={"/admin/product-list"}>
+            <div className="fixed bg-ivory dark:bg-eerie-black  md:bg-none w-full md:static bottom-0 left-0 flex flex-col gap-1 md:gap-4 z-10">
               <button
-                className={`
-								
-							h-6 w-full border border-black-magic bg-black-magic   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:border-red-magic hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs`}
+                onClick={handleSubmit}
+                className={` h-8 w-full border border-red-magic bg-red-magic/60   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs `}
               >
-                Go Back
+                Save Changes
               </button>
-            </Link>{" "}
-            <Link to={`/shop/${product?.slug}`}>
-              <button
-                className={`
-								
-							h-6 w-full border border-black-magic bg-black-magic   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:border-red-magic hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs`}
-              >
-                Check Product
-              </button>
-            </Link>{" "}
+              <Link to={"/admin/product-list"}>
+                <button
+                  className={`
+                              
+                            h-8 w-full border border-black-magic bg-black-magic   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:border-red-magic hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs`}
+                >
+                  Go Back
+                </button>
+              </Link>{" "}
+              <Link to={`/shop/${product?.slug}`}>
+                <button
+                  className={`
+                              
+                            h-8 w-full border border-black-magic bg-black-magic   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:border-red-magic hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs`}
+                >
+                  Check Product
+                </button>
+            </Link>
+            </div>
           </div>
         )}
 

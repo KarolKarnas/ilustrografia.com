@@ -110,14 +110,10 @@ const ProductListPage = () => {
                     <tr>
                       <td
                         colSpan={7}
-                        className="whitespace-nowrap border-b bg-angel-dust px-6 py-4  dark:border-neutral-700 dark:bg-black-magic md:px-12 md:py-8"
+                        className="whitespace-nowrap border-b bg-angel-dust px-6 py-4  dark:border-neutral-700 dark:bg-black-magic  md:py-8"
                       >
-                        <div className="xl:gap:0 flex items-end justify-normal gap-3 text-xl lg:text-2xl xl:justify-between ">
-                          <span>
-                            {product.name} {product._id}{" "}
-                            {product.categories[0].name}
-                          </span>
-                          <span className="flex gap-3">
+                        <div className="xl:gap:0 flex items-end gap-3 text-xl lg:text-2xl  ">
+                        <span className="flex gap-3">
                             <Link
                               to={`/admin/product-list/${product.slug}/edit`}
                               className="cursor-pointer rounded-3xl bg-red-magic p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
@@ -131,6 +127,11 @@ const ProductListPage = () => {
                               <FaTrash />
                             </div>
                           </span>
+                          <span>
+                            {product.name} {product._id}{" "}
+                            {product.categories[0].name}
+                          </span>
+               
                         </div>
                       </td>
                     </tr>

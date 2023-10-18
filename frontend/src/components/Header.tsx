@@ -44,7 +44,7 @@ const Header = () => {
             <span className="hamburger-bottom bg-eerie-black dark:bg-ivory "></span>
           </button>
 
-          <div className="w-30 flex items-center gap-x-3 lg:hidden">
+          <div className="w-30 flex items-center gap-x-3 mr-2 lg:hidden">
             <AppLinks />
           </div>
         </div>
