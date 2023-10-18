@@ -42,6 +42,7 @@ import IconDivider from "../../components/primitives/IconDivider";
 import { FaDragon } from "react-icons/fa";
 import VariationsList from "../../components/Admin/VariationsList";
 import Spinner from "../../components/Spinner";
+import ButtonSubmit from "../../components/primitives/ButtonSubmit";
 
 const ProductEditScreen = () => {
   const { slug: productSlug } = useParams();
@@ -129,13 +130,12 @@ const ProductEditScreen = () => {
   return (
     <div className="flex w-11/12 flex-col gap-16">
       <div className="flex w-full flex-col justify-center sm:gap-10  md:flex-row xl:gap-20">
-        {/* col 1 */}
-
-        {isLoading ? (
-          <Spinner />
-        ) : loadingUpdate ? (
-          <Spinner />
+        {isLoading || loadingUpdate ? (
+          <div className="flex justify-center">
+            <Spinner />
+          </div>
         ) : (
+          /* col 1 */
           <div className=" mb-8 flex  h-full w-full flex-col gap-5 md:sticky md:top-8 md:mb-0 md:w-1/2 lg:w-3/12">
             <img className="" src={product?.images[0]} alt={product?.slug} />
             <div className="flex w-1/4 ">
@@ -161,7 +161,7 @@ const ProductEditScreen = () => {
                 alt={`${product?.slug} premium print`}
               />
             </div>
-            <div className="fixed bg-ivory dark:bg-eerie-black  md:bg-none w-full md:static bottom-0 left-0 flex flex-col gap-1 md:gap-4 z-10">
+            <div className="fixed bottom-0 left-0  z-10 flex w-full flex-col gap-1 bg-ivory dark:bg-eerie-black md:static md:gap-4 md:bg-none">
               <button
                 onClick={handleSubmit}
                 className={` h-8 w-full border border-red-magic bg-red-magic/60   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs `}
@@ -185,7 +185,7 @@ const ProductEditScreen = () => {
                 >
                   Check Product
                 </button>
-            </Link>
+              </Link>
             </div>
           </div>
         )}
@@ -203,9 +203,10 @@ const ProductEditScreen = () => {
             </IconDivider>
           </div>
 
-          {loadingUpdate && <Spinner />}
-          {isLoading ? (
-            <Spinner />
+          {isLoading || loadingUpdate ? (
+            <div className="flex justify-center">
+              <Spinner />
+            </div>
           ) : error ? (
             <Message variant="bad" message={getError(error as ApiError)} />
           ) : product ? (
@@ -226,11 +227,11 @@ const ProductEditScreen = () => {
                   </div>
                   {/* <InputTextField /> */}
                   <DetailsFields setDetails={setDetails} details={details} />
-                  <div className="rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8 ">
+                  <div className="flex flex-col gap-5 rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8 ">
                     <RatingField rating={rating} setRating={setRating} />
                     <NumberReviewsField rating={rating} setRating={setRating} />
                   </div>
-                  <div className="rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8">
+                  <div className="flex flex-col gap-5 rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8">
                     <UploadMainImageField
                       images={images}
                       setImages={setImages}
@@ -252,16 +253,10 @@ const ProductEditScreen = () => {
                       setOptions={setOptions}
                     />
                   </div>
-                  {/* <Form.Submit asChild>
-										<button
-											// add disabled styling
-											className="mt-5 w-full bg-zinc-900 py-2 text-center text-white hover:cursor-pointer  hover:bg-red-200"
-											disabled={isLoading}
-										>
-											Update
-										</button>
-									</Form.Submit> */}
-                  {isLoading && <div>Loading...</div>}
+
+                  <Form.Submit asChild>
+                    <button className="hidden"></button>
+                  </Form.Submit>
                 </Form.Root>
 
                 <StatisticsForm

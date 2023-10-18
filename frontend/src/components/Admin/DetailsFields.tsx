@@ -27,7 +27,7 @@ const DetailsFields = ({
   }, [details]);
 
   return (
-    <div className="p-4 md:p-8 bg-angel-dust dark:bg-angel-space shadow-xl rounded-xl">
+    <div className="p-4 md:p-8 flex flex-col gap-5 bg-angel-dust dark:bg-angel-space shadow-xl rounded-xl">
       {" "}
       <Form.Field name="story">
       <div className="flex items-baseline justify-between">
