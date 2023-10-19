@@ -1,6 +1,6 @@
 # ilustrografia.com
 
-[**Live Demo**](http://ilustrografia.com/) 👈
+[**Live Demo - ilustrografia.com**](http://ilustrografia.com/) 👈
 
 ## Description
 This is a beautifully styled and responsive e-commerce platform designed for an artist who sells prints of her digital paintings. The website offers a variety of print sizes, materials, and prices. To manage this diversity, the database was carefully structured to accommodate different product variants, including size, material, stock count, prices, names, descriptions, images of the digital paintings, and visualization images for each material.
@@ -31,6 +31,8 @@ For each product, there is an illustration page featuring the main image, variou
 - Node.js with Express
 - Redux for state management
 - Postman for API testing
+- Radix UI
+- Lodash
 - Tailwind CSS for styling
 - Continuously deployed on Render.com
 

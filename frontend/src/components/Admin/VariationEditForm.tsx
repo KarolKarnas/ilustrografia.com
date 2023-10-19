@@ -65,15 +65,16 @@ const VariationEditForm = ({
       <Form.Root className="flex w-full items-center gap-1 md:gap-5 ">
         <div
           onClick={() => handleDeleteVariation(index)}
-          className=" cursor-pointer rounded-3xl bg-red-magic p-2 text-xs text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110 mt-2 "
+          className=" cursor-pointer rounded-3xl bg-red-magic p-2 text-xs text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110 "
         >
           <FaTrash />
         </div>
 
         <div className="w-full">
           <InputTextField
+        minimal
             shortName={"sku"}
-            name={""}
+            name={"sku"}
             onChangeFun={(e) => handleSetSku(e.target.value)}
             value={newSku}
             required={true}
@@ -82,8 +83,9 @@ const VariationEditForm = ({
 
         <div className="w-36">
           <InputNumberField
+          minimal
             shortName={"price"}
-            name={""}
+            name={"price"}
             onChangeFun={(e) =>
               handleSetPrice(
                 Number(e.target.value) < 1 ? 1 : Number(e.target.value),
@@ -95,8 +97,9 @@ const VariationEditForm = ({
         </div>
         <div className="w-36">
           <InputNumberField
+                 minimal
             shortName={"countInStock"}
-            name={""}
+            name={"Stock"}
             onChangeFun={(e) =>
               handleSetCountInStock(
                 Number(e.target.value) < 0 ? 0 : Number(e.target.value),

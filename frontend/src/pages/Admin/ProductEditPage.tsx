@@ -42,7 +42,6 @@ import IconDivider from "../../components/primitives/IconDivider";
 import { FaDragon } from "react-icons/fa";
 import VariationsList from "../../components/Admin/VariationsList";
 import Spinner from "../../components/Spinner";
-import ButtonSubmit from "../../components/primitives/ButtonSubmit";
 
 const ProductEditScreen = () => {
   const { slug: productSlug } = useParams();
