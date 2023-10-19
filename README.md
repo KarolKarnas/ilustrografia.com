@@ -30,6 +30,7 @@ For each product, there is an illustration page featuring the main image, variou
 - MongoDB with Mongoose
 - Node.js with Express
 - Redux for state management
+- Redux Toolkit, RTK Query
 - Postman for API testing
 - Radix UI
 - Lodash

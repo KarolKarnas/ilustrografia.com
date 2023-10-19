@@ -19,6 +19,7 @@ import { Variation } from "../../types/Product";
 import { addToCart } from "../../slices/cartSlice";
 import VariationCharacteristics from "./VariationCharacteristics";
 import { toast } from "react-toastify";
+import Meta from "../../components/Meta";
 import ToastLink from "../../components/ToastLink";
 import Rating from "../../components/Rating";
 import Spinner from "../../components/Spinner";
@@ -26,6 +27,7 @@ import ProductBreadcrumbs from "./ProductBreadcrumbs";
 import Reviews from "./Reviews";
 import SelectNumber from "./SelectNumber";
 import ReviewForm from "./ReviewForm";
+
 
 const ProductPage = () => {
   const [reviewRating, setReviewRating] = useState(5);
@@ -253,6 +255,8 @@ const ProductPage = () => {
     ) : error ? (
       <div>{getError(error as ApiError)}</div>
     ) : (
+      <>
+      <Meta title={`${product.name} · ${product.categories[0].name} · Product`} />
       <div className="flex w-11/12 flex-col justify-center gap-16 md:flex-row">
         <div className="w-full md:w-4/12 ">
           <img
@@ -265,7 +269,7 @@ const ProductPage = () => {
             }
             alt={`${product.slug}-${variation.options.material}`}
           />
-        </div>
+        M</div>
         <div className="w-full md:w-4/12">
           {/* BREADCRUMBS */}
           <ProductBreadcrumbs
@@ -446,7 +450,7 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-    );
+      </>);
   } else {
     return <div>No variation</div>;
   }

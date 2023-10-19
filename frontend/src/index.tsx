@@ -15,6 +15,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import CartPage from "./pages/CartPage/CartPage";
 
+import { HelmetProvider } from 'react-helmet-async';
+
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { Provider } from "react-redux";
 import store from "./slices/store";
@@ -39,6 +41,7 @@ import IllustrationPage from "./pages/IllustrationPage/IllustrationPage";
 import NeoSlavicCensus from "./pages/ProjectPage/NeoSlavicCensus";
 import FantasyIllustrations from "./pages/ProjectPage/FantasyIllustrations";
 import PolishLegendsCharacters from "./pages/ProjectPage/PolishLegendsCharacters";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -83,16 +86,6 @@ const router = createBrowserRouter(
         <Route path="/admin/user-list" element={<UserListPage />} />
         <Route path="/admin/user-list/:id/edit" element={<UserEditPage />} />
       </Route>
-
-      {/* <Route index={true} path='/illustrations' element={<IllustrationsPage />}></Route>
-			<Route
-				path='/shop/:project/:creature/:product'
-				element={<ProductPage />}
-			></Route>
-			<Route
-				path='/projects/:project/:creature/'
-				element={<CreaturePage />}
-			></Route> */}
     </Route>,
   ),
 );
@@ -102,6 +95,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <HelmetProvider>
     <Provider store={store}>
       <PayPalScriptProvider
         deferLoading={true}
@@ -112,5 +106,6 @@ root.render(
         <RouterProvider router={router} />
       </PayPalScriptProvider>
     </Provider>
+    </HelmetProvider>
   </React.StrictMode>,
 );

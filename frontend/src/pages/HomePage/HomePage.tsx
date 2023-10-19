@@ -1,6 +1,7 @@
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 import { useGetProductsByCategoryQuery } from "../../slices/productsApiSlice";
+import Meta from "../../components/Meta";
 
 import Spinner from "../../components/Spinner";
 import SocialLinks from "../../components/SocialLinks";
@@ -40,6 +41,8 @@ const HomePage = () => {
   } = useGetNeoSlavicQuery(3);
 
   return (
+    <>
+    <Meta />
     <div className=" flex w-full flex-col gap-y-20 p-2 md:p-0 md:w-11/12">
       <div
         className=" md:h-196
@@ -60,7 +63,7 @@ const HomePage = () => {
             <SocialLinks />
           </div>
         </div>
-      </div>
+      M</div>
 
       <div className="flex">
         <div className="hidden w-1/4 md:flex md:items-center md:justify-center">
@@ -252,6 +255,6 @@ const HomePage = () => {
         )}
       </SectionMain>
     </div>
-  );
+    </>  );
 };
 export default HomePage;
