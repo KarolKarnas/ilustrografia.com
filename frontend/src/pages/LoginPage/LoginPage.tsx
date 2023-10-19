@@ -15,6 +15,7 @@ import ButtonSubmit from "../../components/primitives/ButtonSubmit";
 import HeadingAccent from "../../components/primitives/HeadingAccent";
 import IconDivider from "../../components/primitives/IconDivider";
 import InputTextField from "../../components/Admin/InputTextField";
+import Spinner from "../../components/Spinner";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -93,7 +94,7 @@ const LoginPage = () => {
         <Form.Submit asChild>
           <ButtonSubmit>Login</ButtonSubmit>
         </Form.Submit>
-        {isLoading && <div>Loading...</div>}
+        {isLoading &&<div className="flex justify-center"> <Spinner /></div>}
       </Form.Root>
       <p className="mt-5 font-montserrat text-sm font-semibold text-black-magic  dark:text-ivory">
         New customer?{" "}
