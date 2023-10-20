@@ -270,7 +270,6 @@ const ProductPage = () => {
               }
               alt={`${product.slug}-${variation.options.material}`}
             />
-            M
           </div>
           <div className="w-full md:w-4/12">
             {/* BREADCRUMBS */}

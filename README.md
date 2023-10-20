@@ -2,6 +2,10 @@
 
 [**Live Demo - ilustrografia.com**](http://ilustrografia.com/) 👈
 
+#### eCommerce platform built with the MERN stack & Redux & Typescript
+
+<img src="./frontend/public/images/github-screens/ilustrografia-fullstack-app-1.jpg" alt="screens of the ilustrografia eCommerce platform">
+
 ## Description
 This is a beautifully styled and responsive e-commerce platform designed for an artist who sells prints of her digital paintings. The website offers a variety of print sizes, materials, and prices. To manage this diversity, the database was carefully structured to accommodate different product variants, including size, material, stock count, prices, names, descriptions, images of the digital paintings, and visualization images for each material.
 
@@ -37,6 +41,10 @@ For each product, there is an illustration page featuring the main image, variou
 - Helmet
 - Tailwind CSS for styling
 - Continuously deployed on Render.com
+
+[**Live Demo - ilustrografia.com**](http://ilustrografia.com/) 👈
+
+<img src="./frontend/public/images/github-screens/ilustrografia-fullstack-app-2.jpg" alt="screens of the ilustrografia eCommerce platform">
 
 ## The Artist
 

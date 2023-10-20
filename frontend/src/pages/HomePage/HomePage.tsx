@@ -63,7 +63,6 @@ const HomePage = () => {
               <SocialLinks />
             </div>
           </div>
-          M
         </div>
 
         <div className="flex">
