@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply min-h-screen bg-ivory transition-colors duration-500  dark:bg-eerie-black;
+    @apply min-h-screen bg-ivory dark:bg-eerie-black;
   }
 }
 
