@@ -1,6 +1,6 @@
 # ilustrografia.com
 
-[**Live Demo - ilustrografia.com**](http://ilustrografia.com/) 👈
+[**Live Demo - ilustrografia.com**](https://ilustrografia.com/) 👈
 
 #### eCommerce platform built with the MERN stack & Redux & Typescript
 
@@ -26,6 +26,7 @@ For each product, there is an illustration page featuring the main image, variou
 - PayPal and credit card integration
 - Database seeding for products and users
 - Fetching the latest YouTube animations using the YouTube API
+- Dark/Light theme
 
 ## Technologies Used
 
@@ -42,7 +43,12 @@ For each product, there is an illustration page featuring the main image, variou
 - Tailwind CSS for styling
 - Continuously deployed on Render.com
 
-[**Live Demo - ilustrografia.com**](http://ilustrografia.com/) 👈
+#### In progress
+
+- Integration tests (React Testing Library)
+- E2E tests with Cypress
+
+[**Live Demo - ilustrografia.com**](https://ilustrografia.com/) 👈
 
 <img src="./frontend/public/images/github-screens/ilustrografia-fullstack-app-2.jpg" alt="screens of the ilustrografia eCommerce platform">
 
