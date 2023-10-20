@@ -8,6 +8,7 @@ import { Product } from "../../types/Product";
 import { useSearchParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import ProductsGrid from "../../components/ProductsGrid";
+import Meta from "../../components/Meta";
 
 const ShopPage = () => {
   const [productsFiltered, setProductsFiltered] = useState<Product[] | null>(
@@ -50,8 +51,7 @@ const ShopPage = () => {
   ) : error ? (
     <div>{getError(error as ApiError)}</div>
   ) : (
-  
-      <div className="flex flex-col md:flex-row w-full px-2 lg:px-24 lg:min-h-[650px]">
+  <>      <Meta title="Shop · Ilustrografia · Illustration · Digital Painting · Fantasy · Legends" />      <div className="flex flex-col md:flex-row w-full px-2 lg:px-24 lg:min-h-[650px]">
         <div className="w-full md:w-3/12 lg:w-2/12 p-2 md:p-0 ">
 {/* FILTERS */}
 
@@ -116,19 +116,9 @@ const ShopPage = () => {
             hideVariations={false}
             colNum={3}
           />
-
-          {/* <div className="grid grid-cols-1 dark:bg-slate-600 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {productsFiltered
-              ? productsFiltered?.map((product: Product) => (
-                  <ProductVariations key={product._id} product={product} />
-                ))
-              : products?.map((product: Product) => (
-                  <ProductVariations key={product._id} product={product} />
-                ))}
-          </div> */}
         </div>
       </div>
 
-  );
+</>  );
 };
 export default ShopPage;

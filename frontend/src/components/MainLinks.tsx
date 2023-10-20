@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import logo from "./assets/logo-ilustrografia.png";
 import DropdownProjects from "./DropdownProjects";
 
 type Props = {
@@ -33,7 +32,7 @@ const MainLinks = ({ mobile }: Props) => {
       <Link role="navigation" to="/" className={mobile ? "hidden" : ""}>
         <img
           className="h-20 transition duration-500 hover:-translate-y-1 hover:scale-105 dark:invert"
-          src={logo}
+          src="/images/logo-ilustrografia.png"
           alt="logo-ilustrografia"
         />
       </Link>

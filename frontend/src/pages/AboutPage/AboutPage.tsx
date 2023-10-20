@@ -4,9 +4,12 @@ import MainStrongText from "../../components/primitives/MainStrongText";
 import Button from "../../components/Button";
 import ImageMouseMoving from "../../components/ImageMouseMoving";
 import PageHeading from "../../components/primitives/PageHeading";
+import Meta from "../../components/Meta";
 
 const AboutPage = () => {
   return (
+    <>
+    <Meta title="About · Ilustrografia · Illustration · Digital Painting · Fantasy · Legends" />
     <div className="flex w-11/12 flex-col items-center">
       <PageHeading>About</PageHeading>
       <IconDivider>
@@ -126,6 +129,7 @@ const AboutPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 export default AboutPage;

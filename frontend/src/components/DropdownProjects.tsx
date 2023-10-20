@@ -20,7 +20,7 @@ const DropdownProjects = () => {
           <DropdownMenu.Arrow className=" fill-red-magic stroke-red-magic" />
           <Link to="/projects/neo-slavic-census" className="mx-auto">
             <DropdownMenu.Item className=" transition duration-500 hover:scale-110 hover:text-red-magic hover:outline-none    focus:scale-110 focus:text-red-magic focus:outline-none ">
-              Neo Slavic Census
+              Neo-slavic Census
             </DropdownMenu.Item>
           </Link>
           <LineDivider />

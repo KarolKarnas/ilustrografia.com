@@ -1,13 +1,12 @@
 import Filter from "./Filter";
+import Meta from "../../components/Meta";
 
 const IllustrationsPage = () => {
-
-	
-	return (
-		<div className="">
-			{/* <h1>IllustrationsPage</h1> */}
-			<Filter />
-		</div>
-	);
+  return (
+    <>
+      <Meta />
+      <Filter />
+    </>
+  );
 };
 export default IllustrationsPage;

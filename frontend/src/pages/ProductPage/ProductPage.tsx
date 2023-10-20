@@ -28,7 +28,6 @@ import Reviews from "./Reviews";
 import SelectNumber from "./SelectNumber";
 import ReviewForm from "./ReviewForm";
 
-
 const ProductPage = () => {
   const [reviewRating, setReviewRating] = useState(5);
   const [reviewComment, setReviewComment] = useState("");
@@ -256,201 +255,205 @@ const ProductPage = () => {
       <div>{getError(error as ApiError)}</div>
     ) : (
       <>
-      <Meta title={`${product.name} · ${product.categories[0].name} · Product`} />
-      <div className="flex w-11/12 flex-col justify-center gap-16 md:flex-row">
-        <div className="w-full md:w-4/12 ">
-          <img
-            className="shadow-hero md:sticky md:top-8 "
-            src={
-              variation &&
-              product.options.material[
-                variation.options.material as MaterialOptionNoNameKeys
-              ].images[0]
-            }
-            alt={`${product.slug}-${variation.options.material}`}
-          />
-        M</div>
-        <div className="w-full md:w-4/12">
-          {/* BREADCRUMBS */}
-          <ProductBreadcrumbs
-            categoryName={product.categories[0].name}
-            categorySlug={product.categories[0].slug}
-            productName={product.name}
-          />
-
-          <h1 className=" font-fondamento text-3xl dark:text-ivory">
-            {product.name}{" "}
-            <span className="text-xl">
-              {
+        <Meta
+          title={`${product.name} · ${product.categories[0].name} · Product`}
+        />
+        <div className="flex w-11/12 flex-col justify-center gap-16 md:flex-row">
+          <div className="w-full md:w-4/12 ">
+            <img
+              className="shadow-hero md:sticky md:top-8 "
+              src={
+                variation &&
                 product.options.material[
                   variation.options.material as MaterialOptionNoNameKeys
-                ].title
-              }{" "}
-              {
-                product.options.size[
-                  variation.options.size as SizeOptionNoNameKeys
-                ].title
+                ].images[0]
               }
-            </span>
-          </h1>
-          {/* RATING */}
+              alt={`${product.slug}-${variation.options.material}`}
+            />
+            M
+          </div>
+          <div className="w-full md:w-4/12">
+            {/* BREADCRUMBS */}
+            <ProductBreadcrumbs
+              categoryName={product.categories[0].name}
+              categorySlug={product.categories[0].slug}
+              productName={product.name}
+            />
 
-          <Rating
-            rating={product.rating.rating}
-            numReviews={product.rating.numReviews}
-          />
-          <div className="mt-5 flex flex-col gap-1">
-            {/* SIZES */}
-            <h3 className="font-montserrat text-xs font-bold uppercase dark:text-ivory">
-              Sizes:
-            </h3>
-            <div className=" flex items-center gap-1">
-              {sizesByMaterialTitle[variation.options.material].map(
-                (option) => (
-                  <button
-                    onClick={handleChangeSize}
-                    key={option}
-                    className={`${
-                      option ===
-                      product.options.size[
-                        variation.options.size as SizeOptionNoNameKeys
-                      ].title
-                        ? "border-red-magic bg-red-magic/60 text-ivory shadow-sm "
-                        : "dark:border-ivory/80 dark:text-ivory  "
-                    } border border-black p-1 text-xs transition hover:border-red-magic hover:bg-red-magic hover:text-white dark:hover:border-red-magic`}
+            <h1 className=" font-fondamento text-3xl dark:text-ivory">
+              {product.name}{" "}
+              <span className="text-xl">
+                {
+                  product.options.material[
+                    variation.options.material as MaterialOptionNoNameKeys
+                  ].title
+                }{" "}
+                {
+                  product.options.size[
+                    variation.options.size as SizeOptionNoNameKeys
+                  ].title
+                }
+              </span>
+            </h1>
+            {/* RATING */}
+
+            <Rating
+              rating={product.rating.rating}
+              numReviews={product.rating.numReviews}
+            />
+            <div className="mt-5 flex flex-col gap-1">
+              {/* SIZES */}
+              <h3 className="font-montserrat text-xs font-bold uppercase dark:text-ivory">
+                Sizes:
+              </h3>
+              <div className=" flex items-center gap-1">
+                {sizesByMaterialTitle[variation.options.material].map(
+                  (option) => (
+                    <button
+                      onClick={handleChangeSize}
+                      key={option}
+                      className={`${
+                        option ===
+                        product.options.size[
+                          variation.options.size as SizeOptionNoNameKeys
+                        ].title
+                          ? "border-red-magic bg-red-magic/60 text-ivory shadow-sm "
+                          : "dark:border-ivory/80 dark:text-ivory  "
+                      } border border-black p-1 text-xs transition hover:border-red-magic hover:bg-red-magic hover:text-white dark:hover:border-red-magic`}
+                    >
+                      {option}
+                    </button>
+                  ),
+                )}
+              </div>
+              {/* <hr className=" mx-auto my-3 h-px"></hr> */}
+
+              {/* Materials */}
+              <h3 className="font-montserrat text-xs font-bold uppercase dark:text-ivory">
+                Materials:
+              </h3>
+              <div className="flex items-center gap-1">
+                {materialTitle.map((option) => {
+                  return (
+                    <button
+                      onClick={handleChangeMaterial}
+                      key={option}
+                      className={`${
+                        option ===
+                        product.options.material[
+                          variation.options.material as MaterialOptionNoNameKeys
+                        ].title
+                          ? "border-red-magic bg-red-magic/60 text-ivory shadow-sm "
+                          : "dark:border-ivory/80 dark:text-ivory  "
+                      } border border-black p-1 text-xs transition hover:border-red-magic hover:bg-red-magic/80 hover:text-white dark:hover:border-red-magic`}
+                    >
+                      {option}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="mt-3 flex gap-10">
+              <div className=" font-montserrat text-black-magic dark:text-ivory">
+                <span className="mr-2 text-xs  uppercase">Price:</span>
+                <strong className=" text-2xl font-light">
+                  ${variation?.price}
+                </strong>
+              </div>
+            </div>
+
+            <hr className=" mx-auto my-3 h-px"></hr>
+
+            <div className="flex h-10 items-center gap-5">
+              <SelectNumber
+                selectNumber={variation.countInStock}
+                onChange={setQty}
+                defaultValue="1"
+              />
+
+              <button
+                onClick={addToCartHandler}
+                className={`${
+                  variation?.countInStock === 0
+                    ? "bg-zinc-100 text-zinc-300"
+                    : "border border-black-magic bg-black-magic   text-ivory hover:border-red-magic hover:bg-red-magic dark:border-red-magic dark:bg-red-magic/60 dark:hover:bg-red-magic/80"
+                }  h-full  w-full text-xs font-semibold uppercase transition-colors duration-300 md:w-auto md:px-32`}
+                disabled={variation?.countInStock === 0}
+              >
+                {variation.countInStock > 0 ? "Add to Cart" : "Out Of Stock"}
+              </button>
+            </div>
+            <div className=" mb-3 mt-10 font-montserrat text-black-magic dark:text-ivory">
+              <h4 className=" mb-2 text-sm font-semibold">
+                By buying {product.name} on the wall, you gain:{" "}
+              </h4>
+              {product.statistics.length > 0 ? (
+                <ul className="list-disc pl-8 text-sm">
+                  {product.statistics.map((stat: string) => (
+                    <li key={stat}>{stat}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+
+            <hr className=" mx-auto my-5 h-px "></hr>
+
+            <div className="font-montserrat text-sm text-black-magic dark:text-ivory">
+              <VariationDescription
+                variationMaterial={variation.options.material}
+              />{" "}
+            </div>
+            <hr className=" mx-auto my-5 h-px"></hr>
+
+            <div className=" font-montserrat text-black-magic dark:text-ivory">
+              <h4 className=" mb-2 text-sm font-semibold">
+                {
+                  product.options.material[
+                    variation.options.material as MaterialOptionNoNameKeys
+                  ].title
+                }{" "}
+                characteristics:
+              </h4>
+              <VariationCharacteristics
+                variationMaterial={variation.options.material}
+              />
+            </div>
+
+            <hr className=" mx-auto my-5 h-px"></hr>
+
+            <div className="font-montserrat text-sm text-black-magic dark:text-ivory">
+              <h3 className="font-semibold">Reviews:</h3>
+              {product.reviews && product.reviews.length > 0 ? (
+                <Reviews reviews={product.reviews} />
+              ) : (
+                <span className="">
+                  There are no reviews yet, write the first one.
+                </span>
+              )}
+              {userInfo ? (
+                <ReviewForm
+                  handleSubmitReview={handleSubmitReview}
+                  setReviewRating={setReviewRating}
+                  setReviewComment={setReviewComment}
+                  reviewComment={reviewComment}
+                />
+              ) : (
+                <div>
+                  To write a review you must{" "}
+                  <Link
+                    className="text-red-magic underline hover:text-black-magic"
+                    to={"/login"}
                   >
-                    {option}
-                  </button>
-                ),
+                    log in
+                  </Link>
+                </div>
               )}
             </div>
-            {/* <hr className=" mx-auto my-3 h-px"></hr> */}
-
-            {/* Materials */}
-            <h3 className="font-montserrat text-xs font-bold uppercase dark:text-ivory">
-              Materials:
-            </h3>
-            <div className="flex items-center gap-1">
-              {materialTitle.map((option) => {
-                return (
-                  <button
-                    onClick={handleChangeMaterial}
-                    key={option}
-                    className={`${
-                      option ===
-                      product.options.material[
-                        variation.options.material as MaterialOptionNoNameKeys
-                      ].title
-                        ? "border-red-magic bg-red-magic/60 text-ivory shadow-sm "
-                        : "dark:border-ivory/80 dark:text-ivory  "
-                    } border border-black p-1 text-xs transition hover:border-red-magic hover:bg-red-magic/80 hover:text-white dark:hover:border-red-magic`}
-                  >
-                    {option}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="mt-3 flex gap-10">
-            <div className=" font-montserrat text-black-magic dark:text-ivory">
-              <span className="mr-2 text-xs  uppercase">Price:</span>
-              <strong className=" text-2xl font-light">
-                ${variation?.price}
-              </strong>
-            </div>
-          </div>
-
-          <hr className=" mx-auto my-3 h-px"></hr>
-
-          <div className="flex h-10 items-center gap-5">
-            <SelectNumber
-              selectNumber={variation.countInStock}
-              onChange={setQty}
-              defaultValue="1"
-            />
-
-            <button
-              onClick={addToCartHandler}
-              className={`${
-                variation?.countInStock === 0
-                  ? "bg-zinc-100 text-zinc-300"
-                  : "border border-black-magic bg-black-magic   text-ivory hover:border-red-magic hover:bg-red-magic dark:border-red-magic dark:bg-red-magic/60 dark:hover:bg-red-magic/80"
-              }  h-full  w-full text-xs font-semibold uppercase transition-colors duration-300 md:w-auto md:px-32`}
-              disabled={variation?.countInStock === 0}
-            >
-              {variation.countInStock > 0 ? "Add to Cart" : "Out Of Stock"}
-            </button>
-          </div>
-          <div className=" mb-3 mt-10 font-montserrat text-black-magic dark:text-ivory">
-            <h4 className=" mb-2 text-sm font-semibold">
-              By buying {product.name} on the wall, you gain:{" "}
-            </h4>
-            {product.statistics.length > 0 ? (
-              <ul className="list-disc pl-8 text-sm">
-                {product.statistics.map((stat: string) => (
-                  <li key={stat}>{stat}</li>
-                ))}
-              </ul>
-            ) : null}
-          </div>
-
-          <hr className=" mx-auto my-5 h-px "></hr>
-
-          <div className="font-montserrat text-sm text-black-magic dark:text-ivory">
-            <VariationDescription
-              variationMaterial={variation.options.material}
-            />{" "}
-          </div>
-          <hr className=" mx-auto my-5 h-px"></hr>
-
-          <div className=" font-montserrat text-black-magic dark:text-ivory">
-            <h4 className=" mb-2 text-sm font-semibold">
-              {
-                product.options.material[
-                  variation.options.material as MaterialOptionNoNameKeys
-                ].title
-              }{" "}
-              characteristics:
-            </h4>
-            <VariationCharacteristics
-              variationMaterial={variation.options.material}
-            />
-          </div>
-
-          <hr className=" mx-auto my-5 h-px"></hr>
-
-          <div className="font-montserrat text-sm text-black-magic dark:text-ivory">
-            <h3 className="font-semibold">Reviews:</h3>
-            {product.reviews && product.reviews.length > 0 ? (
-              <Reviews reviews={product.reviews} />
-            ) : (
-              <span className="">
-                There are no reviews yet, write the first one.
-              </span>
-            )}
-            {userInfo ? (
-              <ReviewForm
-                handleSubmitReview={handleSubmitReview}
-                setReviewRating={setReviewRating}
-                setReviewComment={setReviewComment}
-                reviewComment={reviewComment}
-              />
-            ) : (
-              <div>
-                To write a review you must{" "}
-                <Link
-                  className="text-red-magic underline hover:text-black-magic"
-                  to={"/login"}
-                >
-                  log in
-                </Link>
-              </div>
-            )}
           </div>
         </div>
-      </div>
-      </>);
+      </>
+    );
   } else {
     return <div>No variation</div>;
   }

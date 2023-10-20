@@ -34,6 +34,7 @@ For each product, there is an illustration page featuring the main image, variou
 - Postman for API testing
 - Radix UI
 - Lodash
+- Helmet
 - Tailwind CSS for styling
 - Continuously deployed on Render.com
 
@@ -95,9 +96,11 @@ npm run build
 
 ### Seed Database
 
-You can use the following commands to seed the database with some sample users and products as well as destroy all data
+In the backend you can use the following commands to seed the database with some sample users and products as well as destroy all data
 
 ```
+cd backend
+
 # Import data
 npm run data:import
 
