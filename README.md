@@ -52,11 +52,11 @@ For each product, there is an illustration page featuring the main image, variou
 
 <img src="./frontend/public/images/github-screens/ilustrografia-fullstack-app-2.jpg" alt="screens of the ilustrografia eCommerce platform">
 
+Building this advanced project with responsiveness, light/dark theme support, and user experience in mind was a journey. Modern technologies were employed to bring this project to life, and every effort was made to ensure its success. We hope you enjoy it!
+
 ## The Artist
 
-- [Meggiem.Art](https://www.meggiem.art/) 👈
-
-Building this advanced project with responsiveness, light/dark theme support, and user experience in mind was a journey. Modern technologies were employed to bring this project to life, and every effort was made to ensure its success. We hope you enjoy it!
+- [Meggiem.Art](https://www.instagram.com/meggie_art/) the Artist 👈
 
 ## Usage
 

@@ -57,7 +57,7 @@ const HomePage = () => {
             </h1>
             <div className="my-8 flex gap-8">
               <Button text={"shop"} color={"red"} link={"/shop"} />
-              <Button text={"about us"} color={"white"} link={"/about-us"} />
+              <Button text={"about us"} color={"white"} link={"/about"} />
             </div>
             <div className="flex items-center gap-x-2">
               <SocialLinks />
