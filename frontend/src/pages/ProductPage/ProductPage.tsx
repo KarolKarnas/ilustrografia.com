@@ -260,7 +260,7 @@ const ProductPage = () => {
           title={`${product.name} · ${product.categories[0].name} · Product`}
         />
         <div className="flex w-11/12 flex-col justify-center gap-16 md:flex-row">
-          <div className="w-full md:w-4/12 ">
+          <div className="w-full hidden md:block  md:w-4/12 ">
             <img
               className="shadow-hero md:sticky md:top-8 "
               src={
@@ -301,7 +301,7 @@ const ProductPage = () => {
               rating={product.rating.rating}
               numReviews={product.rating.numReviews}
             />
-            <div className="mt-5 flex flex-col gap-1">
+            <div className="mt-3 flex flex-col gap-1">
               {/* SIZES */}
               <h3 className="font-montserrat text-xs font-bold uppercase dark:text-ivory">
                 Sizes:
@@ -384,7 +384,21 @@ const ProductPage = () => {
                 {variation.countInStock > 0 ? "Add to Cart" : "Out Of Stock"}
               </button>
             </div>
-            <div className="flex flex-col mb-3 mt-10 font-montserrat text-black-magic dark:text-ivory">
+
+            <div className="w-full my-5 md:hidden md:w-4/12 ">
+            <img
+              className="shadow-hero "
+              src={
+                variation &&
+                product.options.material[
+                  variation.options.material as MaterialOptionNoNameKeys
+                ].images[0]
+              }
+              alt={`${product.slug}-${variation.options.material}`}
+            />
+          </div>
+
+            <div className="flex flex-col mb-3 mt-5 font-montserrat text-black-magic dark:text-ivory">
               <h4 className=" mb-2 text-sm font-semibold">
                 By buying {product.name} on the wall, you gain:{" "}
               </h4>

@@ -29,7 +29,7 @@ const App = () => {
   return (
     // <div className="flex min-h-screen flex-col justify-between overflow-hidden">
     <>
-    <ScrollRestoration />
+<ScrollRestoration />
       <ToastContainer
         position="top-center"
         autoClose={5000}

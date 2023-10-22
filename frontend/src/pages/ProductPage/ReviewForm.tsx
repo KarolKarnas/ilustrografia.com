@@ -34,7 +34,7 @@ const ReviewForm = ({
       <Form.Field className="flex flex-col" name="review rating">
         <div className="flex items-baseline justify-between">
           <Form.Label className=" mb-2 font-montserrat text-sm font-semibold text-black-magic dark:text-ivory">
-            Rating (1-5)
+            Rating
           </Form.Label>
           <Form.Message className="text-md text-red-magic" match="valueMissing">
             Please enter your kind rating

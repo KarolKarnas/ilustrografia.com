@@ -15,7 +15,7 @@ const Footer = () => {
           {/* <span className=" md:text-md text-red-magic  mb-4 text-center font-montserrat text-xs font-semibold uppercase  tracking-hero drop-shadow-lg">
           Reality Full of Magic
             </span> */}
-          <strong className="text-center  text-lg font-medium italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
+          <strong className="text-center font-medium italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
             Slavic Legends, Paintings, Posters, Prints, Fine Art Prints, Fantasy
             Illustrations
           </strong>
@@ -56,9 +56,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="mt-16 flex w-full justify-center gap-1 border-t border-red-magic/60 bg-moon-dust py-1 text-center dark:bg-eerie-black">
+      <div className="mt-16 flex w-full justify-center gap-1 border-t border-red-magic/60 bg-moon-dust py-1 text-center dark:bg-eerie-black text-xs font-light">
         Made with 🧠 by{" "}
-        <a className=" underline hover:text-red-magic" rel="noreferrer" target="_blank" href="https://github.com/KarolKarnas">
+        <a className=" underline hover:text-red-magic/60" rel="noreferrer" target="_blank" href="https://github.com/KarolKarnas">
           Karol Karnas
         </a>
       </div>
