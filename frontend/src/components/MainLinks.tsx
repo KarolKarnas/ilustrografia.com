@@ -31,7 +31,7 @@ const MainLinks = ({ mobile }: Props) => {
 
       <Link role="navigation" to="/" className={mobile ? "hidden" : ""}>
         <img
-          className="h-20 transition duration-500 hover:-translate-y-1 hover:scale-105 dark:invert"
+          className="h-20 transition-transform  hover:-translate-y-1 hover:scale-105 dark:invert"
           src="/images/logo-ilustrografia.png"
           alt="logo-ilustrografia"
         />

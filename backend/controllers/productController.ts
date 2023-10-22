@@ -204,6 +204,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 		options,
 		variations,
 		statistics,
+		reviews
 	} = typedProduct;
 
 	const names = await ProductModel.find({ name });
@@ -244,6 +245,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 		product.options = options;
 		product.variations = variations;
 		product.statistics = statistics;
+		product.reviews = reviews;
 
 		const updatedProduct = await product.save();
 		// console.log(updatedProduct);

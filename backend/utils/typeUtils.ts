@@ -101,9 +101,16 @@ const isMongooseId = (value: unknown): value is mongoose.Types.ObjectId => {
 };
 
 const parseMongooseObject = (objectId: unknown): mongoose.Types.ObjectId => {
-	if (!objectId || !isMongooseId(objectId)) {
-		throw new Error('Incorrect or missing ObjectId');
+	console.log(objectId);
+	if (!objectId) {
+			throw new Error('Missing MongooseObject');
 	}
+
+	if (!isMongooseId(objectId)) {
+			console.log('Not a Mongoose ObjectId:', objectId);
+			throw new Error('Incorrect MongooseObject');
+	}
+
 	return objectId;
 };
 //begin
@@ -607,7 +614,7 @@ const isValidReviewUser = (object: unknown): boolean => {
 	);
 	if (missingProperties.length === 0) {
 		if (
-			parseMongooseObject(variationObject.user) &&
+			parseStringKey('user', variationObject.user) &&
 			parseStringKey('name', variationObject.name) &&
 			parseNumberKey('rating', variationObject.rating) &&
 			parseStringKey('comment', variationObject.comment)

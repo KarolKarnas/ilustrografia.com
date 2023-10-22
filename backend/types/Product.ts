@@ -70,7 +70,7 @@ export interface ProductOptions {
 }
 
 export interface ReviewUser {
-	user: mongoose.Types.ObjectId;
+	user: mongoose.Types.ObjectId | string;
 	name: string;
 	rating: number;
 	comment: string;

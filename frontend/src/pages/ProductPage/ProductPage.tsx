@@ -27,6 +27,7 @@ import ProductBreadcrumbs from "./ProductBreadcrumbs";
 import Reviews from "./Reviews";
 import SelectNumber from "./SelectNumber";
 import ReviewForm from "./ReviewForm";
+import Button from "../../components/Button";
 
 const ProductPage = () => {
   const [reviewRating, setReviewRating] = useState(5);
@@ -383,7 +384,7 @@ const ProductPage = () => {
                 {variation.countInStock > 0 ? "Add to Cart" : "Out Of Stock"}
               </button>
             </div>
-            <div className=" mb-3 mt-10 font-montserrat text-black-magic dark:text-ivory">
+            <div className="flex flex-col mb-3 mt-10 font-montserrat text-black-magic dark:text-ivory">
               <h4 className=" mb-2 text-sm font-semibold">
                 By buying {product.name} on the wall, you gain:{" "}
               </h4>
@@ -394,6 +395,11 @@ const ProductPage = () => {
                   ))}
                 </ul>
               ) : null}
+              <Link className="mt-2 w-full" to={`/illustrations/${product.slug}`}>
+                <button className=" h-6 w-full border border-black-magic bg-black-magic text-2xs uppercase text-ivory  transition-colors  duration-300 hover:border-red-magic hover:bg-red-magic/60 dark:border-red-magic dark:bg-red-magic/60 dark:hover:bg-red-magic/80 md:w-auto md:px-20">
+                  story
+                </button>
+              </Link>
             </div>
 
             <hr className=" mx-auto my-5 h-px "></hr>

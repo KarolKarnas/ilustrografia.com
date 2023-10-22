@@ -3,7 +3,7 @@ import InputTextField from "./InputTextField";
 import * as Form from "@radix-ui/react-form";
 import { VariationOptionalId } from "../../types/Product";
 import InputNumberField from "./InputNumberField";
-import { FaChevronDown, FaEdit, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 
 type Props = {
   price: number;

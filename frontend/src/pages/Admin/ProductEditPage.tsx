@@ -11,6 +11,7 @@ import {
   Details,
   ProductOptions,
   Rating,
+  ReviewUser,
   Tag,
   VariationOptionalId,
 } from "../../types/Product";
@@ -43,6 +44,7 @@ import { FaDragon } from "react-icons/fa";
 import VariationsList from "../../components/Admin/VariationsList";
 import Spinner from "../../components/Spinner";
 import Meta from "../../components/Meta";
+import ReviewList from "../../components/Admin/ReviewList";
 
 const ProductEditScreen = () => {
   const { slug: productSlug } = useParams();
@@ -59,6 +61,7 @@ const ProductEditScreen = () => {
   const [options, setOptions] = useState<ProductOptions>(productOptionsInitial);
   const [statistics, setStatistics] = useState<string[]>([]);
   const [variations, setVariations] = useState<VariationOptionalId[]>([]);
+  const [reviews, setReviews] = useState<ReviewUser[] | undefined>([])
 
   if (!productSlug) {
     return <div>No slug provided</div>;
@@ -70,7 +73,7 @@ const ProductEditScreen = () => {
     error,
   } = useGetProductDetailsQuery(productSlug);
 
-  // console.log(product);
+  console.log(product);
 
   const [updateProduct, { isLoading: loadingUpdate, error: updateError }] =
     useUpdateProductMutation();
@@ -89,6 +92,7 @@ const ProductEditScreen = () => {
         setOptions(product.options);
         setVariations(product.variations);
         setStatistics(product.statistics);
+        setReviews(product.reviews)
       }
     }
   }, [product]);
@@ -118,11 +122,13 @@ const ProductEditScreen = () => {
         variations,
         _id,
         statistics,
+        reviews
       }).unwrap();
       toast.success("product updated successfully");
       refetch();
       navigate(`/admin/product-list/${slug}/edit`);
     } catch (error) {
+      console.log(error)
       toast.error(getError(error as ApiError));
     }
   };
@@ -197,6 +203,7 @@ const ProductEditScreen = () => {
 
           {/* col 2 */}
           <div className="w-full  dark:text-ivory md:w-2/3 lg:w-9/12">
+            
             <div
               className="mb-12 flex
      h-48 w-full flex-col items-center justify-center rounded-3xl bg-angel-dust shadow-hero dark:bg-angel-dark-dust"
@@ -215,83 +222,88 @@ const ProductEditScreen = () => {
             ) : error ? (
               <Message variant="bad" message={getError(error as ApiError)} />
             ) : product ? (
-              <div className="flex w-full flex-col justify-center  gap-10 xl:flex-row ">
+              <div className="flex w-full flex-col justify-center  gap-10 ">
                 {/* col 2.1 */}
-                <div className="flex w-full flex-col gap-10 xl:w-1/2">
-                  <Form.Root
-                    className="flex w-full flex-col gap-10 "
-                    onSubmit={(e) => handleSubmit(e)}
-                  >
-                    <div className="rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8">
-                      <NameField
-                        updateError={updateError}
-                        name={name}
-                        setName={setName}
-                        setSlug={setSlug}
-                      />
-                    </div>
-                    {/* <InputTextField /> */}
-                    <DetailsFields setDetails={setDetails} details={details} />
-                    <div className="flex flex-col gap-5 rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8 ">
-                      <RatingField rating={rating} setRating={setRating} />
-                      <NumberReviewsField
-                        rating={rating}
-                        setRating={setRating}
-                      />
-                    </div>
-                    <div className="flex flex-col gap-5 rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8">
-                      <UploadMainImageField
-                        images={images}
-                        setImages={setImages}
-                      />
-                      <UploadArtPrintField
-                        options={options}
-                        setOptions={setOptions}
-                      />
-                      <UploadCanvasField
-                        options={options}
-                        setOptions={setOptions}
-                      />
-                      <UploadPosterField
-                        options={options}
-                        setOptions={setOptions}
-                      />
-                      <UploadPremiumField
-                        options={options}
-                        setOptions={setOptions}
-                      />
-                    </div>
-
-                    <Form.Submit asChild>
-                      <button className="hidden"></button>
-                    </Form.Submit>
-                  </Form.Root>
-
-                  <StatisticsForm
-                    statistics={statistics}
-                    setStatistics={setStatistics}
-                  />
+                <div className="flex  w-full flex-col justify-center  gap-10 xl:flex-row">
+                  <div className="flex w-full flex-col gap-10 xl:w-1/2">
+                    <Form.Root
+                      className="flex w-full flex-col gap-10 "
+                      onSubmit={(e) => handleSubmit(e)}
+                    >
+                      <div className="rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8">
+                        <NameField
+                          updateError={updateError}
+                          name={name}
+                          setName={setName}
+                          setSlug={setSlug}
+                        />
+                      </div>
+                      {/* <InputTextField /> */}
+                      <DetailsFields setDetails={setDetails} details={details} />
+                      <div className="flex flex-col gap-5 rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8 ">
+                        <RatingField rating={rating} setRating={setRating} />
+                        <NumberReviewsField
+                          rating={rating}
+                          setRating={setRating}
+                        />
+                      </div>
+                      <div className="flex flex-col gap-5 rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8">
+                        <UploadMainImageField
+                          images={images}
+                          setImages={setImages}
+                        />
+                        <UploadArtPrintField
+                          options={options}
+                          setOptions={setOptions}
+                        />
+                        <UploadCanvasField
+                          options={options}
+                          setOptions={setOptions}
+                        />
+                        <UploadPosterField
+                          options={options}
+                          setOptions={setOptions}
+                        />
+                        <UploadPremiumField
+                          options={options}
+                          setOptions={setOptions}
+                        />
+                      </div>
+                      <Form.Submit asChild>
+                        <button className="hidden"></button>
+                      </Form.Submit>
+                    </Form.Root>
+                    <StatisticsForm
+                      statistics={statistics}
+                      setStatistics={setStatistics}
+                    />
+                  </div>
+                  {/* col 2.2 */}
+                  <div className="flex w-full flex-col gap-10 xl:w-1/2">
+                    <VariationsList
+                      variations={variations}
+                      setVariations={setVariations}
+                    />
+                    <VariationCreateForm
+                      variations={variations}
+                      setVariations={setVariations}
+                      slug={slug}
+                      product={product}
+                    />
+                    <CategoriesForm
+                      categories={categories}
+                      setCategories={setCategories}
+                    />
+                    <TagsForm tags={tags} setTags={setTags} />
+                  </div>
                 </div>
-                {/* col 2.2 */}
-                <div className="flex w-full flex-col gap-10 xl:w-1/2">
-                  <VariationsList
-                    variations={variations}
-                    setVariations={setVariations}
-                  />
 
-                  <VariationCreateForm
-                    variations={variations}
-                    setVariations={setVariations}
-                    slug={slug}
-                    product={product}
-                  />
 
-                  <CategoriesForm
-                    categories={categories}
-                    setCategories={setCategories}
-                  />
-                  <TagsForm tags={tags} setTags={setTags} />
+                <div className="w-full">
+                <ReviewList reviews={reviews} setReviews={setReviews} />
                 </div>
+
+
               </div>
             ) : (
               <div>No product found</div>

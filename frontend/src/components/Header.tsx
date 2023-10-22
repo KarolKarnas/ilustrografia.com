@@ -15,7 +15,7 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full bg-ivory py-4 text-eerie-black shadow  transition-colors duration-500 dark:bg-black-magic    dark:text-ivory dark:shadow-red-magic/50">
+    <header className="w-full bg-ivory py-4 text-eerie-black shadow   dark:bg-black-magic    dark:text-ivory dark:shadow-red-magic/50">
       <nav className="flex items-center justify-evenly">
         <div className="w-30 hidden items-center gap-x-3 lg:flex">
           <SocialLinks />
