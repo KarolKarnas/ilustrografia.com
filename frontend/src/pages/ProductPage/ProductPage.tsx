@@ -99,7 +99,7 @@ const ProductPage = () => {
   // }
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   // console.log(product);

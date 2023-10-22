@@ -3,7 +3,7 @@ import { useAppDispatch } from "./slices/reduxHooks";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { logout } from "./slices/authSlice";
@@ -29,6 +29,7 @@ const App = () => {
   return (
     // <div className="flex min-h-screen flex-col justify-between overflow-hidden">
     <>
+    <ScrollRestoration />
       <ToastContainer
         position="top-center"
         autoClose={5000}
