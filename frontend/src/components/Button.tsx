@@ -5,11 +5,10 @@ type Props = {
   text: string;
   color: string;
   link: string;
-  blank?: boolean;
 };
-const Button = ({ text, color, link, blank }: Props) => {
+const Button = ({ text, color, link }: Props) => {
   return (
-    <Link target={blank ? "_blank" : "_self"} to={link}>
+    <Link to={link}>
       {" "}
       <button
         className={` w-42 flex items-center gap-3 border px-6 py-4 text-2xs font-semibold uppercase  tracking-widest transition-colors duration-300  md:px-8  ${

@@ -5,7 +5,7 @@ import AppLinks from "./AppLinks";
 
 const Footer = () => {
   return (
-    <footer className="flex w-full flex-col bg-ivory pt-16  shadow-2xl   transition-colors   duration-500 dark:bg-black-magic    dark:text-ivory dark:shadow-red-magic">
+    <footer className="flex w-full flex-col bg-ivory pt-16  shadow-2xl   dark:bg-black-magic    dark:text-ivory dark:shadow-red-magic">
       <div className="   flex w-full flex-col items-center justify-center gap-16 md:flex-row  md:items-start md:justify-evenly md:gap-0  ">
         <div className=" flex  w-64 flex-col items-center justify-center">
           {" "}
