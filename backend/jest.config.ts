@@ -1,6 +1,7 @@
 module.exports = {
-  preset: "ts-jest",
-  testEnvironment: "node"
+	preset: 'ts-jest',
+	testEnvironment: 'node',
+	globalTeardown: './tests/teardown.ts',
 };
 
 // import type {Config} from '@jest/types';
