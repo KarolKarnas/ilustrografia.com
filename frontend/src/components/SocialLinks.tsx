@@ -24,7 +24,7 @@ const SocialLinks = () => {
       <a
         rel="noreferrer"
         target="_blank"
-        href="https://www.facebook.com/ilustrografiaPL/"
+        href="https://www.tiktok.com/@ilustrografia.pl"
         className="rounded-3xl bg-red-magic bg-opacity-60 p-2 transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
       >
         <FaTiktok className="text-white" />

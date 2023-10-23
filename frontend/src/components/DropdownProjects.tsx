@@ -2,11 +2,15 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Link } from "react-router-dom";
 import LineDivider from "./primitives/LineDivider";
 
-const DropdownProjects = () => {
+type Props = {
+  footer?: boolean;
+};
+
+const DropdownProjects = ({ footer }: Props) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger className="focus:outline-none">
-        <div className="border-red-magic text-sm font-semibold uppercase hover:scale-110  hover:border-b-2 hover:text-red-magic hover:transition hover:duration-500">
+        <div className={`${footer ? 'hover:text-red-magic border-red-magic  text-xs uppercase  hover:scale-110 hover:border-b-2 hover:transition hover:duration-500' : 'border-red-magic text-sm font-semibold uppercase hover:scale-110  hover:border-b-2 hover:text-red-magic hover:transition hover:duration-500'}`}>
           Projects
         </div>
       </DropdownMenu.Trigger>

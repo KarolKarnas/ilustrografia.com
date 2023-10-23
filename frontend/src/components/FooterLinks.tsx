@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import DropdownProjects from "./DropdownProjects";
 
 const MainLinks = () => {
   return (
@@ -15,12 +16,7 @@ const MainLinks = () => {
       >
         Illustrations
       </Link>
-      <Link
-        className="hover:text-red-magic border-red-magic  text-xs uppercase  hover:scale-110 hover:border-b-2 hover:transition hover:duration-500"
-        to="/projects"
-      >
-        Projects
-      </Link>
+        <DropdownProjects footer />
       <Link
         className="hover:text-red-magic border-red-magic  text-xs uppercase  hover:scale-110 hover:border-b-2 hover:transition hover:duration-500"
         to="/shop"
@@ -29,7 +25,7 @@ const MainLinks = () => {
       </Link>
       <Link
         className="hover:text-red-magic border-red-magic  text-xs uppercase  hover:scale-110 hover:border-b-2 hover:transition hover:duration-500"
-        to="/about-us"
+        to="/about"
       >
         About
       </Link>
