@@ -56,7 +56,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="mt-16 flex w-full justify-center gap-1 border-t border-red-magic/60 bg-moon-dust py-1 text-center dark:bg-eerie-black text-xs font-light">
+      <div className="mt-16 flex w-full justify-center gap-1 border-t dark:border-angel-dark/40 bg-moon-dust py-1 text-center dark:bg-eerie-black text-xs font-light">
         Made with 🧠 by{" "}
         <a className=" underline hover:text-red-magic/60" rel="noreferrer" target="_blank" href="https://github.com/KarolKarnas">
           Karol Karnas
