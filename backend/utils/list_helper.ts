@@ -1,5 +1,7 @@
 import { ProductNoId } from '../types/Product';
-import { products } from '../data/products';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// import { products } from '../data/products';
+// import _ from 'lodash';
 
 const dummy = (blogs: number[]) => {
 	console.log(blogs);
@@ -65,12 +67,22 @@ const highestRatingProduct = (products: ProductNoId[]) => {
 	return favorites;
 };
 
-console.log(highestRatingProduct(products));
+// const mostCategory = (products: ProductNoId[]) => {
+// 	if (products.length === 0) {
+// 		return 'there is no favorite product here';
+// 	}
+
+// 	const grouped = _.groupBy(products, 'category[0].name');
+
+// 	return grouped;
+// };
+
+// console.log(mostCategory(products));
 
 export default {
 	dummy,
 	totalReviews,
 	totalRatingNumReviews,
 	productsAverageRating,
-  highestRatingProduct
+	highestRatingProduct,
 };

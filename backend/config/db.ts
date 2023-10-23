@@ -2,9 +2,18 @@ import mongoose from 'mongoose';
 
 const connectDB = async () => {
 	try {
-		if (process.env.MONGO_URI) {
+		if (process.env.NODE_ENV === 'production' && process.env.MONGO_URI) {
 			const conn = await mongoose.connect(process.env.MONGO_URI);
-			console.log(`MongoDB Connected ${conn.connection.host}`);
+			console.log(`**Production** MongoDB Connected ${conn.connection.host}`);
+		} else if (
+			process.env.NODE_ENV === 'development' &&
+			process.env.MONGO_URI
+		) {
+			const conn = await mongoose.connect(process.env.MONGO_URI);
+			console.log(`**Development** MongoDB Connected ${conn.connection.host}`);
+		} else if (process.env.NODE_ENV === 'test' && process.env.MONGO_TEST_URI) {
+			const conn = await mongoose.connect(process.env.MONGO_TEST_URI);
+			console.log(`**Test** MongoDB Connected ${conn.connection.host}`);
 		}
 	} catch (error: unknown) {
 		if (error instanceof Error) {
