@@ -62,7 +62,7 @@ const AboutPage = () => {
               </span>
             </p>
 
-            <a href="https://www.lensman.pl/">
+            <a target="_blank" rel="noreferrer" href="https://www.lensman.pl/">
               <button
                 className={` w-42 " flex items-center gap-3 border border-red-600 bg-red-magic bg-opacity-60 px-6  py-4 text-2xs font-semibold  uppercase  tracking-widest text-red-50 transition-colors duration-300 hover:bg-red-magic   hover:bg-opacity-80  md:px-8
             `}
@@ -91,7 +91,7 @@ const AboutPage = () => {
               </span>
             </p>
 
-            <a href="https://www.meggiem.art/">
+            <a target="_blank" rel="noreferrer" href="https://www.meggiem.art/">
               <button
                 className={` w-42 " flex items-center gap-3 border border-red-600 bg-red-magic bg-opacity-60 px-6  py-4 text-2xs font-semibold  uppercase  tracking-widest text-red-50 transition-colors duration-300 hover:bg-red-magic   hover:bg-opacity-80  md:px-8
             `}
@@ -119,7 +119,11 @@ const AboutPage = () => {
               </span>
             </p>
 
-            <a href="https://pl.linkedin.com/in/kamil-ulman-4925b91b2">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://pl.linkedin.com/in/kamil-ulman-4925b91b2"
+            >
               <button
                 className={` w-42 " flex items-center gap-3 border border-red-600 bg-red-magic bg-opacity-60 px-6  py-4 text-2xs font-semibold  uppercase  tracking-widest text-red-50 transition-colors duration-300 hover:bg-red-magic   hover:bg-opacity-80  md:px-8
             `}
