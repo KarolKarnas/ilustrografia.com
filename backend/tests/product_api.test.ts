@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import supertest from 'supertest';
-import app from '../index';
+import app from '../app';
 // import { Product } from '../types/Product';
 
 const api = supertest(app);
