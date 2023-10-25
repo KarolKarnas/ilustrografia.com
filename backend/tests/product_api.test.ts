@@ -12,6 +12,8 @@ import { password } from '../data/users';
 
 const api = supertest(app);
 
+
+
 beforeEach(async () => {
 	try {
 		await Order.deleteMany();
@@ -66,8 +68,6 @@ test('A user can login with correct email and password', async () => {
 		.send({ email: users[0].email, password: password })
 		.expect(200);
 
-	console.log(response.body);
-
 	expect(response.body).toHaveProperty('_id');
 	expect(response.body).toHaveProperty('name');
 	expect(response.body).toHaveProperty('email');
@@ -88,7 +88,7 @@ test('A user cannot login with incorrect email and correct password ', async () 
 		.expect(401);
 });
 
-test.only('A logged in user with isAdmin === true can add new product', async () => {
+test('A logged in user with token provided and isAdmin === true can add new product ', async () => {
 	const responseAuth = await api
 		.post('/api/users/auth')
 		.send({ email: users[0].email, password: password });
@@ -99,16 +99,34 @@ test.only('A logged in user with isAdmin === true can add new product', async ()
 
 	await api.post('/api/products').set('Cookie', `jwt=${jwtToken}`);
 
-	// console.log(responseProduct);
 	const responseProducts = await api.get('/api/products');
 	const typedResponseProducts = responseProducts.body as ProductUser[];
 
 	const names = typedResponseProducts.map((product) => product.name);
 
-	console.log(names);
-
 	expect(responseProducts.body).toHaveLength(products.length + 1);
 	expect(names[names.length - 1]).toContain('Sample Name');
+});
+
+
+test('A logged in user with token provided and isAdmin === false cannot add new product', async () => {
+	const responseAuth = await api
+		.post('/api/users/auth')
+		.send({ email: users[1].email, password: password });
+
+	// extract token from cookie
+	const jwtCookie = responseAuth.headers['set-cookie'][0] as string;
+	const jwtToken = jwtCookie.split('=')[1].split(';')[0];
+
+	await api.post('/api/products').set('Cookie', `jwt=${jwtToken}`);
+
+	const responseProducts = await api.get('/api/products');
+	const typedResponseProducts = responseProducts.body as ProductUser[];
+
+	const names = typedResponseProducts.map((product) => product.name);
+
+	expect(responseProducts.body).toHaveLength(products.length);
+	expect(names[names.length - 1]).not.toContain('Sample Name');
 });
 
 afterAll(async () => {
