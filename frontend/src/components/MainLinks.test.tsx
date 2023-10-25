@@ -12,7 +12,7 @@ import { BrowserRouter, MemoryRouter } from "react-router-dom";
 test("header", () => {
   render(
     <Provider store={store}>
-      <App />
+      <App test />
     </Provider>,
     { wrapper: BrowserRouter },
   );

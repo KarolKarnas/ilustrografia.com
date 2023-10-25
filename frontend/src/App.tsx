@@ -11,9 +11,11 @@ import GoToTop from "./components/GoToTop";
 // import ProductGroup from './components/ProductGroup';
 // import projects from './products';
 
-const App = () => {
-  // console.log(projects);
+type Props = {
+  test?: boolean;
+};
 
+const App = ({ test }: Props) => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     const expirationTime = localStorage.getItem("expirationTime");
@@ -29,7 +31,7 @@ const App = () => {
   return (
     // <div className="flex min-h-screen flex-col justify-between overflow-hidden">
     <>
-<ScrollRestoration />
+     {test ? null : <ScrollRestoration />}
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -43,7 +45,7 @@ const App = () => {
         theme="light"
       />
       <Header />
-      <main className=" min-w-screen flex flex-auto min-h-[60vh] flex-col items-center overflow-clip pt-4 md:pt-8 pb-20 ">
+      <main className=" min-w-screen flex min-h-[60vh] flex-auto flex-col items-center overflow-clip pb-20 pt-4 md:pt-8 ">
         <Outlet />
         <GoToTop />
       </main>
