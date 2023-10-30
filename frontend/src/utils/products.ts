@@ -1,7 +1,9 @@
 import { Product } from "../types/Product";
+import { v4 as uuidv4 } from 'uuid';
 export const products: Product[] = [
 
   {
+    _id:uuidv4(),
     details: {
       latinName: "Reprivatus Camenisus",
       ytLink: "u8d6Pbykjgg",
@@ -97,6 +99,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
     variations: [
       //ART-PRINT
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "art-print", size: "s20x40" },
         SKU: "basilisk-art-print-s20x40",
@@ -105,6 +108,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "art-print", size: "s30x40" },
         SKU: "basilisk-art-print-s30x40",
@@ -113,6 +117,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "art-print", size: "s40x60" },
         SKU: "basilisk-art-print-s40x60",
@@ -121,6 +126,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "art-print", size: "s50x70" },
         SKU: "basilisk-art-print-s50x70",
@@ -129,6 +135,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "art-print", size: "s60x90" },
         SKU: "basilisk-art-print-s60x90",
@@ -137,6 +144,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "art-print", size: "s70x100" },
         SKU: "basilisk-art-print-s70x100",
@@ -146,6 +154,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
       },
       //CANVAS
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "painting-on-canvas", size: "s20x40" },
         SKU: "basilisk-painting-on-canvas-s20x40",
@@ -154,6 +163,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "painting-on-canvas", size: "s30x40" },
         SKU: "basilisk-painting-on-canvas-s30x40",
@@ -162,6 +172,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "painting-on-canvas", size: "s40x60" },
         SKU: "basilisk-painting-on-canvas-s40x60",
@@ -170,6 +181,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "painting-on-canvas", size: "s50x70" },
         SKU: "basilisk-painting-on-canvas-s50x70",
@@ -178,6 +190,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "painting-on-canvas", size: "s60x90" },
         SKU: "basilisk-painting-on-canvas-s60x90",
@@ -186,6 +199,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "painting-on-canvas", size: "s70x100" },
         SKU: "basilisk-painting-on-canvas-s70x100",
@@ -195,6 +209,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
       },
       // POSTER
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "poster", size: "s20x30" },
         SKU: "basilisk-poster-s20x30",
@@ -203,6 +218,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "poster", size: "s30x40" },
         SKU: "basilisk-poster-s30x40",
@@ -211,6 +227,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "poster", size: "s40x60" },
         SKU: "basilisk-poster-s40x60",
@@ -219,6 +236,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "poster", size: "s50x70" },
         SKU: "basilisk-poster-s50x70",
@@ -227,6 +245,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "poster", size: "s60x90" },
         SKU: "basilisk-poster-s60x90",
@@ -235,6 +254,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "poster", size: "s70x100" },
         SKU: "basilisk-poster-s70x100",
@@ -244,6 +264,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
       },
       // PREMIUM PRINT
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "premium-print", size: "s20x30" },
         SKU: "basilisk-premium-print-s20x30",
@@ -252,6 +273,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "premium-print", size: "s30x40" },
         SKU: "basilisk-premium-print-s30x40",
@@ -260,6 +282,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "premium-print", size: "s40x60" },
         SKU: "basilisk-premium-print-s40x60",
@@ -268,6 +291,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "premium-print", size: "s50x70" },
         SKU: "basilisk-premium-print-s50x70",
@@ -276,6 +300,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "premium-print", size: "s60x90" },
         SKU: "basilisk-premium-print-s60x90",
@@ -284,6 +309,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "basilisk",
         options: { material: "premium-print", size: "s70x100" },
         SKU: "basilisk-premium-print-s70x100",
@@ -295,6 +321,7 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
   },
   //BOBO
   {
+    _id:uuidv4(),
     details: {
       latinName: "Vampus Trampus",
       ytLink: "enO_H99fqv8",
@@ -396,6 +423,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
     variations: [
       //ART-PRINT
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "art-print", size: "s20x40" },
         SKU: "forest-bobo-art-print-s20x40",
@@ -404,6 +432,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "art-print", size: "s30x40" },
         SKU: "forest-bobo-art-print-s30x40",
@@ -412,6 +441,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "art-print", size: "s40x60" },
         SKU: "forest-bobo-art-print-s40x60",
@@ -420,6 +450,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "art-print", size: "s50x70" },
         SKU: "forest-bobo-art-print-s50x70",
@@ -428,6 +459,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "art-print", size: "s60x90" },
         SKU: "forest-bobo-art-print-s60x90",
@@ -436,6 +468,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "art-print", size: "s70x100" },
         SKU: "forest-bobo-art-print-s70x100",
@@ -445,6 +478,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
       },
       //CANVAS
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "painting-on-canvas", size: "s20x40" },
         SKU: "forest-bobo-painting-on-canvas-s20x40",
@@ -453,6 +487,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "painting-on-canvas", size: "s30x40" },
         SKU: "forest-bobo-painting-on-canvas-s300x40",
@@ -461,6 +496,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "painting-on-canvas", size: "s40x60" },
         SKU: "forest-bobo-painting-on-canvas-s40x60",
@@ -469,6 +505,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "painting-on-canvas", size: "s50x70" },
         SKU: "forest-bobo-painting-on-canvas-s50x70",
@@ -477,6 +514,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "painting-on-canvas", size: "s60x90" },
         SKU: "forest-bobo-painting-on-canvas-s60x90",
@@ -485,6 +523,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "painting-on-canvas", size: "s70x100" },
         SKU: "forest-bobo-painting-on-canvas-s70x100",
@@ -494,6 +533,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
       },
       // POSTER
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "poster", size: "s20x30" },
         SKU: "forest-bobo-poster-s20x30",
@@ -502,6 +542,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "poster", size: "s30x40" },
         SKU: "forest-bobo-poster-s30x40",
@@ -510,6 +551,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "poster", size: "s40x60" },
         SKU: "forest-bobo-poster-s40x60",
@@ -518,6 +560,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "poster", size: "s50x70" },
         SKU: "forest-bobo-poster-s50x70",
@@ -526,6 +569,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "poster", size: "s60x90" },
         SKU: "forest-bobo-poster-s60x90",
@@ -534,6 +578,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "poster", size: "s70x100" },
         SKU: "forest-bobo-poster-s70x100",
@@ -543,6 +588,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
       },
       // PREMIUM PRINT
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "premium-print", size: "s20x30" },
         SKU: "forest-bobo-premium-print-s20x30",
@@ -551,6 +597,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "premium-print", size: "s30x40" },
         SKU: "forest-bobo-premium-print-s30x40",
@@ -559,6 +606,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "premium-print", size: "s40x60" },
         SKU: "forest-bobo-premium-print-s40x60",
@@ -567,6 +615,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "premium-print", size: "s50x70" },
         SKU: "forest-bobo-premium-print-s50x70",
@@ -575,6 +624,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "premium-print", size: "s60x90" },
         SKU: "forest-bobo-premium-print-s60x90",
@@ -583,6 +633,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "forest-bobo",
         options: { material: "premium-print", size: "s70x100" },
         SKU: "forest-bobo-premium-print-s70x100",
@@ -594,6 +645,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
   },
   // Shopping Baba
   {
+    _id:uuidv4(),
     details: {
       latinName: "Hitruos Babuos",
       ytLink: "cMflnJD-Gxk",
@@ -688,6 +740,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
     variations: [
       //ART-PRINT
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "art-print", size: "s20x40" },
         SKU: "shopping-baba-art-print-s20x40",
@@ -696,6 +749,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "art-print", size: "s30x40" },
         SKU: "shopping-baba-art-print-s30x40",
@@ -704,6 +758,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "art-print", size: "s40x60" },
         SKU: "shopping-baba-art-print-s40x60",
@@ -712,6 +767,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "art-print", size: "s50x70" },
         SKU: "shopping-baba-art-print-s50x70",
@@ -720,6 +776,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "art-print", size: "s60x90" },
         SKU: "shopping-baba-art-print-s60x90",
@@ -728,6 +785,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "art-print", size: "s70x100" },
         SKU: "shopping-baba-art-print-s70x100",
@@ -737,6 +795,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
       },
       //CANVAS
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "painting-on-canvas", size: "s20x40" },
         SKU: "shopping-baba-painting-on-canvas-s20x40",
@@ -745,6 +804,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "painting-on-canvas", size: "s30x40" },
         SKU: "shopping-baba-painting-on-canvas-s300x40",
@@ -753,6 +813,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "painting-on-canvas", size: "s40x60" },
         SKU: "shopping-baba-painting-on-canvas-s40x60",
@@ -761,6 +822,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "painting-on-canvas", size: "s50x70" },
         SKU: "shopping-baba-painting-on-canvas-s50x70",
@@ -769,6 +831,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "painting-on-canvas", size: "s60x90" },
         SKU: "shopping-baba-painting-on-canvas-s60x90",
@@ -777,6 +840,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "painting-on-canvas", size: "s70x100" },
         SKU: "shopping-baba-painting-on-canvas-s70x100",
@@ -786,6 +850,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
       },
       // POSTER
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "poster", size: "s20x30" },
         SKU: "shopping-baba-poster-s20x30",
@@ -794,6 +859,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "poster", size: "s30x40" },
         SKU: "shopping-baba-poster-s30x40",
@@ -802,6 +868,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "poster", size: "s40x60" },
         SKU: "shopping-baba-poster-s40x60",
@@ -810,6 +877,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "poster", size: "s50x70" },
         SKU: "shopping-baba-poster-s50x70",
@@ -818,6 +886,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "poster", size: "s60x90" },
         SKU: "shopping-baba-poster-s60x90",
@@ -826,6 +895,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "poster", size: "s70x100" },
         SKU: "shopping-baba-poster-s70x100",
@@ -835,6 +905,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
       },
       // PREMIUM PRINT
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "premium-print", size: "s20x30" },
         SKU: "shopping-baba-premium-print-s20x30",
@@ -843,6 +914,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "premium-print", size: "s30x40" },
         SKU: "shopping-baba-premium-print-s30x40",
@@ -851,6 +923,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "premium-print", size: "s40x60" },
         SKU: "shopping-baba-premium-print-s40x60",
@@ -859,6 +932,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "premium-print", size: "s50x70" },
         SKU: "shopping-baba-premium-print-s50x70",
@@ -867,6 +941,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "premium-print", size: "s60x90" },
         SKU: "shopping-baba-premium-print-s60x90",
@@ -875,6 +950,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "shopping-baba",
         options: { material: "premium-print", size: "s70x100" },
         SKU: "shopping-baba-premium-print-s70x100",
@@ -886,6 +962,7 @@ For this is how Mother Nature works, and we must not interfere with her will.
   },
   // Wetlinka Goddess
   {
+    _id:uuidv4(),
     details: {
       latinName: "Karpatus Partihardis",
       ytLink: "W3tEopU5Ju8",
@@ -1003,6 +1080,7 @@ Will she choose your campfire tomorrow as well?
     variations: [
       //ART-PRINT
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "art-print", size: "s20x40" },
         SKU: "wetlinka-goddess-art-print-s20x40",
@@ -1011,6 +1089,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "art-print", size: "s30x40" },
         SKU: "wetlinka-goddess-art-print-s30x40",
@@ -1019,6 +1098,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "art-print", size: "s40x60" },
         SKU: "wetlinka-goddess-art-print-s40x60",
@@ -1027,6 +1107,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "art-print", size: "s50x70" },
         SKU: "wetlinka-goddess-art-print-s50x70",
@@ -1035,6 +1116,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "art-print", size: "s60x90" },
         SKU: "wetlinka-goddess-art-print-s60x90",
@@ -1043,6 +1125,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "art-print", size: "s70x100" },
         SKU: "wetlinka-goddess-art-print-s70x100",
@@ -1052,6 +1135,7 @@ Will she choose your campfire tomorrow as well?
       },
       //CANVAS
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "painting-on-canvas", size: "s20x40" },
         SKU: "wetlinka-goddess-painting-on-canvas-s20x40",
@@ -1060,6 +1144,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "painting-on-canvas", size: "s30x40" },
         SKU: "wetlinka-goddess-painting-on-canvas-s300x40",
@@ -1068,6 +1153,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "painting-on-canvas", size: "s40x60" },
         SKU: "wetlinka-goddess-painting-on-canvas-s40x60",
@@ -1076,6 +1162,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "painting-on-canvas", size: "s50x70" },
         SKU: "wetlinka-goddess-painting-on-canvas-s50x70",
@@ -1084,6 +1171,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "painting-on-canvas", size: "s60x90" },
         SKU: "wetlinka-goddess-painting-on-canvas-s60x90",
@@ -1092,6 +1180,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "painting-on-canvas", size: "s70x100" },
         SKU: "wetlinka-goddess-painting-on-canvas-s70x100",
@@ -1101,6 +1190,7 @@ Will she choose your campfire tomorrow as well?
       },
       // POSTER
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "poster", size: "s20x30" },
         SKU: "wetlinka-goddess-poster-s20x30",
@@ -1109,6 +1199,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "poster", size: "s30x40" },
         SKU: "wetlinka-goddess-poster-s30x40",
@@ -1117,6 +1208,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "poster", size: "s40x60" },
         SKU: "wetlinka-goddess-poster-s40x60",
@@ -1125,6 +1217,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "poster", size: "s50x70" },
         SKU: "wetlinka-goddess-poster-s50x70",
@@ -1133,6 +1226,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "poster", size: "s60x90" },
         SKU: "wetlinka-goddess-poster-s60x90",
@@ -1141,6 +1235,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "poster", size: "s70x100" },
         SKU: "wetlinka-goddess-poster-s70x100",
@@ -1150,6 +1245,7 @@ Will she choose your campfire tomorrow as well?
       },
       // PREMIUM PRINT
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "premium-print", size: "s20x30" },
         SKU: "wetlinka-goddess-premium-print-s20x30",
@@ -1158,6 +1254,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "premium-print", size: "s30x40" },
         SKU: "wetlinka-goddess-premium-print-s30x40",
@@ -1166,6 +1263,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "premium-print", size: "s40x60" },
         SKU: "wetlinka-goddess-premium-print-s40x60",
@@ -1174,6 +1272,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "premium-print", size: "s50x70" },
         SKU: "wetlinka-goddess-premium-print-s50x70",
@@ -1182,6 +1281,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "premium-print", size: "s60x90" },
         SKU: "wetlinka-goddess-premium-print-s60x90",
@@ -1190,6 +1290,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "wetlinka-goddess",
         options: { material: "premium-print", size: "s70x100" },
         SKU: "wetlinka-goddess-premium-print-s70x100",
@@ -1202,6 +1303,7 @@ Will she choose your campfire tomorrow as well?
   // FANTASY ILLUSTRATIONS
   //Spring Nymph
   {
+    _id:uuidv4(),
     details: {
       story: `In a serene grove nestled within the heart of an ancient forest, a Spring Nymph, the harbinger of the forthcoming season, gracefully danced among the budding wildflowers. Her presence was a true sign of the impending springtime, the eternal rebirth in which Mother Nature bestowed the Earth with blossoms and abundant life.
 
@@ -1298,6 +1400,7 @@ Will she choose your campfire tomorrow as well?
     variations: [
       //ART-PRINT
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "art-print", size: "s20x40" },
         SKU: "spring-nymph-art-print-s20x40",
@@ -1306,6 +1409,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "art-print", size: "s30x40" },
         SKU: "spring-nymph-art-print-s20x40",
@@ -1314,6 +1418,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "art-print", size: "s40x60" },
         SKU: "spring-nymph-art-print-s40x60",
@@ -1322,6 +1427,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "art-print", size: "s50x70" },
         SKU: "spring-nymph-art-print-s50x70",
@@ -1330,6 +1436,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "art-print", size: "s60x90" },
         SKU: "spring-nymph-art-print-s60x90",
@@ -1338,6 +1445,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "art-print", size: "s70x100" },
         SKU: "spring-nymph-art-print-s70x100",
@@ -1347,6 +1455,7 @@ Will she choose your campfire tomorrow as well?
       },
       //CANVAS
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "painting-on-canvas", size: "s20x40" },
         SKU: "spring-nymph-na-painting-on-canvas-s20x40",
@@ -1355,6 +1464,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "painting-on-canvas", size: "s30x40" },
         SKU: "spring-nymph-na-painting-on-canvas-s30x40",
@@ -1363,6 +1473,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "painting-on-canvas", size: "s40x60" },
         SKU: "spring-nymph-na-painting-on-canvas-s40x60",
@@ -1371,6 +1482,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "painting-on-canvas", size: "s50x70" },
         SKU: "spring-nymph-na-painting-on-canvas-s50x70",
@@ -1379,6 +1491,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "painting-on-canvas", size: "s60x90" },
         SKU: "spring-nymph-na-painting-on-canvas-s60x90",
@@ -1387,6 +1500,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "painting-on-canvas", size: "s70x100" },
         SKU: "spring-nymph-na-painting-on-canvas-s70x100",
@@ -1396,6 +1510,7 @@ Will she choose your campfire tomorrow as well?
       },
       // POSTER
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "poster", size: "s20x30" },
         SKU: "spring-nymph-poster-s20x30",
@@ -1404,6 +1519,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "poster", size: "s30x40" },
         SKU: "spring-nymph-poster-s30x40",
@@ -1412,6 +1528,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "poster", size: "s40x60" },
         SKU: "spring-nymph-poster-s40x60",
@@ -1420,6 +1537,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "poster", size: "s50x70" },
         SKU: "spring-nymph-poster-s50x70",
@@ -1428,6 +1546,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "poster", size: "s60x90" },
         SKU: "spring-nymph-poster-s60x90",
@@ -1436,6 +1555,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "poster", size: "s70x100" },
         SKU: "spring-nymph-poster-s70x100",
@@ -1445,6 +1565,7 @@ Will she choose your campfire tomorrow as well?
       },
       // PREMIUM PRINT
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "premium-print", size: "s20x30" },
         SKU: "spring-nymph-premium-print-s20x30",
@@ -1453,6 +1574,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "premium-print", size: "s30x40" },
         SKU: "spring-nymph-premium-print-s30x40",
@@ -1461,6 +1583,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "premium-print", size: "s40x60" },
         SKU: "spring-nymph-premium-print-s40x60",
@@ -1469,6 +1592,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "premium-print", size: "s50x70" },
         SKU: "spring-nymph-premium-print-s50x70",
@@ -1477,6 +1601,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "premium-print", size: "s60x90" },
         SKU: "spring-nymph-premium-print-s60x90",
@@ -1485,6 +1610,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "spring-nymph",
         options: { material: "premium-print", size: "s70x100" },
         SKU: "spring-nymph-premium-print-s70x100",
@@ -1498,6 +1624,7 @@ Will she choose your campfire tomorrow as well?
   // FIRE MAGIC
 
   {
+    _id:uuidv4(),
     details: {
       story: `In the ancient annals of history, a powerful heroine emerged, bearing a name that would become legend itself—Fire Magic. She was unlike any mortal, a being seemingly wrought entirely from the flames and inferno she wielded with unparalleled mastery.
 
@@ -1591,6 +1718,7 @@ Will she choose your campfire tomorrow as well?
     variations: [
       //ART-PRINT
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "art-print", size: "s20x40" },
         SKU: "fire-magic-art-print-s20x40",
@@ -1599,6 +1727,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "art-print", size: "s30x40" },
         SKU: "fire-magic-art-print-s20x40",
@@ -1607,6 +1736,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "art-print", size: "s40x60" },
         SKU: "fire-magic-art-print-s40x60",
@@ -1615,6 +1745,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "art-print", size: "s50x70" },
         SKU: "fire-magic-art-print-s50x70",
@@ -1623,6 +1754,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "art-print", size: "s60x90" },
         SKU: "fire-magic-art-print-s60x90",
@@ -1631,6 +1763,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "art-print", size: "s70x100" },
         SKU: "fire-magic-art-print-s70x100",
@@ -1640,6 +1773,7 @@ Will she choose your campfire tomorrow as well?
       },
       //CANVAS
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "painting-on-canvas", size: "s20x40" },
         SKU: "fire-magic-na-painting-on-canvas-s20x40",
@@ -1648,6 +1782,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "painting-on-canvas", size: "s30x40" },
         SKU: "fire-magic-na-painting-on-canvas-s30x40",
@@ -1656,6 +1791,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "painting-on-canvas", size: "s40x60" },
         SKU: "fire-magic-na-painting-on-canvas-s40x60",
@@ -1664,6 +1800,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "painting-on-canvas", size: "s50x70" },
         SKU: "fire-magic-na-painting-on-canvas-s50x70",
@@ -1672,6 +1809,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "painting-on-canvas", size: "s60x90" },
         SKU: "fire-magic-na-painting-on-canvas-s60x90",
@@ -1680,6 +1818,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "painting-on-canvas", size: "s70x100" },
         SKU: "fire-magic-na-painting-on-canvas-s70x100",
@@ -1689,6 +1828,7 @@ Will she choose your campfire tomorrow as well?
       },
       // POSTER
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "poster", size: "s20x30" },
         SKU: "fire-magic-poster-s20x30",
@@ -1697,6 +1837,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "poster", size: "s30x40" },
         SKU: "fire-magic-poster-s30x40",
@@ -1705,6 +1846,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "poster", size: "s40x60" },
         SKU: "fire-magic-poster-s40x60",
@@ -1713,6 +1855,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "poster", size: "s50x70" },
         SKU: "fire-magic-poster-s50x70",
@@ -1721,6 +1864,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "poster", size: "s60x90" },
         SKU: "fire-magic-poster-s60x90",
@@ -1729,6 +1873,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "poster", size: "s70x100" },
         SKU: "fire-magic-poster-s70x100",
@@ -1738,6 +1883,7 @@ Will she choose your campfire tomorrow as well?
       },
       // PREMIUM PRINT
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "premium-print", size: "s20x30" },
         SKU: "fire-magic-premium-print-s20x30",
@@ -1746,6 +1892,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "premium-print", size: "s30x40" },
         SKU: "fire-magic-premium-print-s30x40",
@@ -1754,6 +1901,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "premium-print", size: "s40x60" },
         SKU: "fire-magic-premium-print-s40x60",
@@ -1762,6 +1910,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "premium-print", size: "s50x70" },
         SKU: "fire-magic-premium-print-s50x70",
@@ -1770,6 +1919,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "premium-print", size: "s60x90" },
         SKU: "fire-magic-premium-print-s60x90",
@@ -1778,6 +1928,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "fire-magic",
         options: { material: "premium-print", size: "s70x100" },
         SKU: "fire-magic-premium-print-s70x100",
@@ -1790,6 +1941,7 @@ Will she choose your campfire tomorrow as well?
   // QUEEN OF HEARTS
 
   {
+    _id:uuidv4(),
     details: {
       story: `In the heart of the enchanting Slavic region, there lived a woman who had earned a notorious reputation. She was known far and wide as the Queen of Hearts, a moniker she had acquired through her cunning and deceitful ways. Her real name had been lost to time, for she operated in the shadows, away from the prying eyes of society.
 
@@ -1889,6 +2041,7 @@ Will she choose your campfire tomorrow as well?
     variations: [
       //ART-PRINT
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "art-print", size: "s20x40" },
         SKU: "queen-of-hearts-art-print-s20x40",
@@ -1897,6 +2050,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "art-print", size: "s30x40" },
         SKU: "queen-of-hearts-art-print-s20x40",
@@ -1905,6 +2059,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "art-print", size: "s40x60" },
         SKU: "queen-of-hearts-art-print-s40x60",
@@ -1913,6 +2068,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "art-print", size: "s50x70" },
         SKU: "queen-of-hearts-art-print-s50x70",
@@ -1921,6 +2077,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "art-print", size: "s60x90" },
         SKU: "queen-of-hearts-art-print-s60x90",
@@ -1929,6 +2086,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "art-print", size: "s70x100" },
         SKU: "queen-of-hearts-art-print-s70x100",
@@ -1938,6 +2096,7 @@ Will she choose your campfire tomorrow as well?
       },
       //CANVAS
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "painting-on-canvas", size: "s20x40" },
         SKU: "queen-of-hearts-na-painting-on-canvas-s20x40",
@@ -1946,6 +2105,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "painting-on-canvas", size: "s30x40" },
         SKU: "queen-of-hearts-na-painting-on-canvas-s30x40",
@@ -1954,6 +2114,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "painting-on-canvas", size: "s40x60" },
         SKU: "queen-of-hearts-na-painting-on-canvas-s40x60",
@@ -1962,6 +2123,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "painting-on-canvas", size: "s50x70" },
         SKU: "queen-of-hearts-na-painting-on-canvas-s50x70",
@@ -1970,6 +2132,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "painting-on-canvas", size: "s60x90" },
         SKU: "queen-of-hearts-na-painting-on-canvas-s60x90",
@@ -1978,6 +2141,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "painting-on-canvas", size: "s70x100" },
         SKU: "queen-of-hearts-na-painting-on-canvas-s70x100",
@@ -1987,6 +2151,7 @@ Will she choose your campfire tomorrow as well?
       },
       // POSTER
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "poster", size: "s20x30" },
         SKU: "queen-of-hearts-poster-s20x30",
@@ -1995,6 +2160,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "poster", size: "s30x40" },
         SKU: "queen-of-hearts-poster-s30x40",
@@ -2003,6 +2169,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "poster", size: "s40x60" },
         SKU: "queen-of-hearts-poster-s40x60",
@@ -2011,6 +2178,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "poster", size: "s50x70" },
         SKU: "queen-of-hearts-poster-s50x70",
@@ -2019,6 +2187,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "poster", size: "s60x90" },
         SKU: "queen-of-hearts-poster-s60x90",
@@ -2027,6 +2196,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "poster", size: "s70x100" },
         SKU: "queen-of-hearts-poster-s70x100",
@@ -2036,6 +2206,7 @@ Will she choose your campfire tomorrow as well?
       },
       // PREMIUM PRINT
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "premium-print", size: "s20x30" },
         SKU: "queen-of-hearts-premium-print-s20x30",
@@ -2044,6 +2215,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "premium-print", size: "s30x40" },
         SKU: "queen-of-hearts-premium-print-s30x40",
@@ -2052,6 +2224,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "premium-print", size: "s40x60" },
         SKU: "queen-of-hearts-premium-print-s40x60",
@@ -2060,6 +2233,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "premium-print", size: "s50x70" },
         SKU: "queen-of-hearts-premium-print-s50x70",
@@ -2068,6 +2242,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "premium-print", size: "s60x90" },
         SKU: "queen-of-hearts-premium-print-s60x90",
@@ -2076,6 +2251,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "queen-of-hearts",
         options: { material: "premium-print", size: "s70x100" },
         SKU: "queen-of-hearts-premium-print-s70x100",
@@ -2089,6 +2265,7 @@ Will she choose your campfire tomorrow as well?
   // --------------- POLISH LEGENDS -----------------
   //Mermaid of Warsaw
   {
+    _id:uuidv4(),
     details: {
       story: `In the heart of Warsaw, where history and folklore intertwine, there existed a tale that combined two legends: Wars, Sawa, and the Mermaid of Warsaw.
 
@@ -2185,6 +2362,7 @@ Will she choose your campfire tomorrow as well?
     variations: [
       //ART-PRINT
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "art-print", size: "s20x40" },
         SKU: "mermaid-of-warsaw-art-print-s20x40",
@@ -2193,6 +2371,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "art-print", size: "s30x40" },
         SKU: "mermaid-of-warsaw-art-print-s20x40",
@@ -2201,6 +2380,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "art-print", size: "s40x60" },
         SKU: "mermaid-of-warsaw-art-print-s40x60",
@@ -2209,6 +2389,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "art-print", size: "s50x70" },
         SKU: "mermaid-of-warsaw-art-print-s50x70",
@@ -2217,6 +2398,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "art-print", size: "s60x90" },
         SKU: "mermaid-of-warsaw-art-print-s60x90",
@@ -2225,6 +2407,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "art-print", size: "s70x100" },
         SKU: "mermaid-of-warsaw-art-print-s70x100",
@@ -2234,6 +2417,7 @@ Will she choose your campfire tomorrow as well?
       },
       //CANVAS
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "painting-on-canvas", size: "s20x40" },
         SKU: "mermaid-of-warsaw-na-painting-on-canvas-s20x40",
@@ -2242,6 +2426,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "painting-on-canvas", size: "s30x40" },
         SKU: "mermaid-of-warsaw-na-painting-on-canvas-s30x40",
@@ -2250,6 +2435,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "painting-on-canvas", size: "s40x60" },
         SKU: "mermaid-of-warsaw-na-painting-on-canvas-s40x60",
@@ -2258,6 +2444,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "painting-on-canvas", size: "s50x70" },
         SKU: "mermaid-of-warsaw-na-painting-on-canvas-s50x70",
@@ -2266,6 +2453,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "painting-on-canvas", size: "s60x90" },
         SKU: "mermaid-of-warsaw-na-painting-on-canvas-s60x90",
@@ -2274,6 +2462,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "painting-on-canvas", size: "s70x100" },
         SKU: "mermaid-of-warsaw-na-painting-on-canvas-s70x100",
@@ -2283,6 +2472,7 @@ Will she choose your campfire tomorrow as well?
       },
       // POSTER
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "poster", size: "s20x30" },
         SKU: "mermaid-of-warsaw-poster-s20x30",
@@ -2291,6 +2481,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "poster", size: "s30x40" },
         SKU: "mermaid-of-warsaw-poster-s30x40",
@@ -2299,6 +2490,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "poster", size: "s40x60" },
         SKU: "mermaid-of-warsaw-poster-s40x60",
@@ -2307,6 +2499,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "poster", size: "s50x70" },
         SKU: "mermaid-of-warsaw-poster-s50x70",
@@ -2315,6 +2508,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "poster", size: "s60x90" },
         SKU: "mermaid-of-warsaw-poster-s60x90",
@@ -2323,6 +2517,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "poster", size: "s70x100" },
         SKU: "mermaid-of-warsaw-poster-s70x100",
@@ -2332,6 +2527,7 @@ Will she choose your campfire tomorrow as well?
       },
       // PREMIUM PRINT
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "premium-print", size: "s20x30" },
         SKU: "mermaid-of-warsaw-premium-print-s20x30",
@@ -2340,6 +2536,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "premium-print", size: "s30x40" },
         SKU: "mermaid-of-warsaw-premium-print-s30x40",
@@ -2348,6 +2545,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "premium-print", size: "s40x60" },
         SKU: "mermaid-of-warsaw-premium-print-s40x60",
@@ -2356,6 +2554,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "premium-print", size: "s50x70" },
         SKU: "mermaid-of-warsaw-premium-print-s50x70",
@@ -2364,6 +2563,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "premium-print", size: "s60x90" },
         SKU: "mermaid-of-warsaw-premium-print-s60x90",
@@ -2372,6 +2572,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "mermaid-of-warsaw",
         options: { material: "premium-print", size: "s70x100" },
         SKU: "mermaid-of-warsaw-premium-print-s70x100",
@@ -2383,6 +2584,7 @@ Will she choose your campfire tomorrow as well?
   },
   //Black Lady
   {
+    _id:uuidv4(),
     details: {
       story: `The Legend of the Black Lady of Janowiec
 
@@ -2479,6 +2681,7 @@ Will she choose your campfire tomorrow as well?
     variations: [
       //ART-PRINT
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "art-print", size: "s20x40" },
         SKU: "black-lady-art-print-s20x40",
@@ -2487,6 +2690,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "art-print", size: "s30x40" },
         SKU: "black-lady-art-print-s20x40",
@@ -2495,6 +2699,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "art-print", size: "s40x60" },
         SKU: "black-lady-art-print-s40x60",
@@ -2503,6 +2708,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "art-print", size: "s50x70" },
         SKU: "black-lady-art-print-s50x70",
@@ -2511,6 +2717,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "art-print", size: "s60x90" },
         SKU: "black-lady-art-print-s60x90",
@@ -2519,6 +2726,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "art-print", size: "s70x100" },
         SKU: "black-lady-art-print-s70x100",
@@ -2528,6 +2736,7 @@ Will she choose your campfire tomorrow as well?
       },
       //CANVAS
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "painting-on-canvas", size: "s20x40" },
         SKU: "black-lady-na-painting-on-canvas-s20x40",
@@ -2536,6 +2745,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "painting-on-canvas", size: "s30x40" },
         SKU: "black-lady-na-painting-on-canvas-s30x40",
@@ -2544,6 +2754,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "painting-on-canvas", size: "s40x60" },
         SKU: "black-lady-na-painting-on-canvas-s40x60",
@@ -2552,6 +2763,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "painting-on-canvas", size: "s50x70" },
         SKU: "black-lady-na-painting-on-canvas-s50x70",
@@ -2560,6 +2772,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "painting-on-canvas", size: "s60x90" },
         SKU: "black-lady-na-painting-on-canvas-s60x90",
@@ -2568,6 +2781,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "painting-on-canvas", size: "s70x100" },
         SKU: "black-lady-na-painting-on-canvas-s70x100",
@@ -2577,6 +2791,7 @@ Will she choose your campfire tomorrow as well?
       },
       // POSTER
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "poster", size: "s20x30" },
         SKU: "black-lady-poster-s20x30",
@@ -2585,6 +2800,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "poster", size: "s30x40" },
         SKU: "black-lady-poster-s30x40",
@@ -2593,6 +2809,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "poster", size: "s40x60" },
         SKU: "black-lady-poster-s40x60",
@@ -2601,6 +2818,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "poster", size: "s50x70" },
         SKU: "black-lady-poster-s50x70",
@@ -2609,6 +2827,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "poster", size: "s60x90" },
         SKU: "black-lady-poster-s60x90",
@@ -2617,6 +2836,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "poster", size: "s70x100" },
         SKU: "black-lady-poster-s70x100",
@@ -2626,6 +2846,7 @@ Will she choose your campfire tomorrow as well?
       },
       // PREMIUM PRINT
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "premium-print", size: "s20x30" },
         SKU: "black-lady-premium-print-s20x30",
@@ -2634,6 +2855,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "premium-print", size: "s30x40" },
         SKU: "black-lady-premium-print-s30x40",
@@ -2642,6 +2864,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "premium-print", size: "s40x60" },
         SKU: "black-lady-premium-print-s40x60",
@@ -2650,6 +2873,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "premium-print", size: "s50x70" },
         SKU: "black-lady-premium-print-s50x70",
@@ -2658,6 +2882,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "premium-print", size: "s60x90" },
         SKU: "black-lady-premium-print-s60x90",
@@ -2666,6 +2891,7 @@ Will she choose your campfire tomorrow as well?
         tags: [{ name: "", slug: "" }],
       },
       {
+        _id: uuidv4(),
         productSlug: "black-lady",
         options: { material: "premium-print", size: "s70x100" },
         SKU: "black-lady-premium-print-s70x100",

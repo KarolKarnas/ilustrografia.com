@@ -1,7 +1,7 @@
 import { products } from "../../utils/products";
 import { setupServer } from "msw/node";
 import { rest } from "msw";
-import { MemoryRouter} from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "../../slices/store";
 import { render, screen } from "@testing-library/react";
