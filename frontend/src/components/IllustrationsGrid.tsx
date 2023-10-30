@@ -23,6 +23,8 @@ const IllustrationsGrid = ({
 }: Props) => {
   return (
     <div
+      role="group"
+      aria-label="Image Gallery"
       className={`${
         colNum === 3
           ? "xl:grid-cols-3"
@@ -46,10 +48,11 @@ const IllustrationsGrid = ({
                 {product.name}
               </div>
               <img
+                role="img"
                 src={product.images[0]}
                 className={`${
                   aspectRatio === "4/5" ? `aspect-[4/5]` : "aspect-square"
-                } object-cover w-full`}
+                } w-full object-cover`}
               />
             </div>
           </Link>

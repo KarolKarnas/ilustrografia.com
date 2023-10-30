@@ -38,7 +38,7 @@ export interface Variation {
 	countInStock: number;
 	tags: Tag[];
 	// images: string[]
-	_id: string;
+	_id?: string;
 }
 export interface VariationOptionalId {
 	productSlug: string;
@@ -105,7 +105,7 @@ export interface Review {
 }
 
 export interface Product {
-	_id: string;
+	_id?: string;
 	details: Details,
 	name: string;
 	slug: string;

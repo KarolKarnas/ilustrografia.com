@@ -1,7 +1,6 @@
 import _ from "lodash";
 import { useEffect, useState } from "react";
 
-import { Link } from "react-router-dom";
 import { useGetProductsQuery } from "../../slices/productsApiSlice";
 import { Product } from "../../types/Product";
 import IllustrationsGrid from "../../components/IllustrationsGrid";

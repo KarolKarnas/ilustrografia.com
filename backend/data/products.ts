@@ -1494,7 +1494,7 @@ Will she choose your campfire tomorrow as well?
 		],
 	},
 
-// FIRE MAGIC
+	// FIRE MAGIC
 
 	{
 		details: {
@@ -1536,9 +1536,7 @@ Will she choose your campfire tomorrow as well?
 				optionName: 'Material',
 				'art-print': {
 					title: 'Art Print',
-					images: [
-						'/images/fantasy-illustrations/fire-magic-art-print-1.jpg',
-					],
+					images: ['/images/fantasy-illustrations/fire-magic-art-print-1.jpg'],
 				},
 				'painting-on-canvas': {
 					title: 'Painting On Canvas',
@@ -1788,7 +1786,7 @@ Will she choose your campfire tomorrow as well?
 			},
 		],
 	},
-// QUEEN OF HEARTS
+	// QUEEN OF HEARTS
 
 	{
 		details: {
@@ -1844,7 +1842,9 @@ Will she choose your campfire tomorrow as well?
 				},
 				poster: {
 					title: 'Poster',
-					images: ['/images/fantasy-illustrations/queen-of-hearts-poster-1.jpg'],
+					images: [
+						'/images/fantasy-illustrations/queen-of-hearts-poster-1.jpg',
+					],
 				},
 				'premium-print': {
 					title: 'Premium Print',
@@ -2144,7 +2144,9 @@ Will she choose your campfire tomorrow as well?
 				},
 				'premium-print': {
 					title: 'Premium Print',
-					images: ['/images/polish-legends/mermaid-of-warsaw-premium-print-1.jpg'],
+					images: [
+						'/images/polish-legends/mermaid-of-warsaw-premium-print-1.jpg',
+					],
 				},
 			},
 			size: {

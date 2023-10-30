@@ -27,7 +27,6 @@ import ProductBreadcrumbs from "./ProductBreadcrumbs";
 import Reviews from "./Reviews";
 import SelectNumber from "./SelectNumber";
 import ReviewForm from "./ReviewForm";
-import Button from "../../components/Button";
 
 const ProductPage = () => {
   const [reviewRating, setReviewRating] = useState(5);
@@ -280,7 +279,7 @@ const ProductPage = () => {
               productName={product.name}
             />
 
-            <h1 className=" font-fondamento text-3xl dark:text-ivory">
+            <h1 role="heading" className=" font-fondamento text-3xl dark:text-ivory">
               {product.name}{" "}
               <span className="text-xl">
                 {
