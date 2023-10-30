@@ -45,5 +45,4 @@ test("Component fetch and renders content", async () => {
 
   const images = await screen.findAllByRole("img");
   expect(images.length).toBe(9);
-
 });
