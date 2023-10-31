@@ -51,9 +51,10 @@ const Filter = () => {
           onClick={handleClick}
           value={"all"}
           className={`${
-            active === "all" ? "bg-red-magic/60 text-ivory border-red-magic "
-            : "text-black-magic dark:border-ivory dark:text-ivory"
-        } w-42 flex items-center gap-3 rounded-sm border border-black-magic hover:border-red-magic dark:hover:border-red-magic  px-6  py-4 text-2xs  uppercase tracking-widest   transition-colors duration-300 hover:bg-red-magic/80  hover:text-ivory  md:px-8 font-semibold  `}
+            active === "all"
+              ? "border-red-magic bg-red-magic/60 text-ivory "
+              : "text-black-magic dark:border-ivory dark:text-ivory"
+          } w-42 flex items-center gap-3 rounded-sm border border-black-magic px-6 py-4  text-2xs  font-semibold uppercase  tracking-widest transition-colors   duration-300 hover:border-red-magic hover:bg-red-magic/80  hover:text-ivory  dark:hover:border-red-magic md:px-8  `}
         >
           All
         </button>
@@ -67,9 +68,9 @@ const Filter = () => {
               value={value}
               className={` ${
                 active === value
-                  ? "bg-red-magic/60 text-ivory border-red-magic "
+                  ? "border-red-magic bg-red-magic/60 text-ivory "
                   : "text-black-magic dark:border-ivory dark:text-ivory"
-              } w-42 flex items-center gap-3 rounded-sm border border-black-magic hover:border-red-magic dark:hover:border-red-magic  px-6  py-4 text-2xs  uppercase tracking-widest   transition-colors duration-300 hover:bg-red-magic/80  hover:text-ivory  md:px-8 font-semibold  `}
+              } w-42 flex items-center gap-3 rounded-sm border border-black-magic px-6 py-4  text-2xs  font-semibold uppercase  tracking-widest transition-colors   duration-300 hover:border-red-magic hover:bg-red-magic/80  hover:text-ivory  dark:hover:border-red-magic md:px-8  `}
             >
               {category.name}
             </button>

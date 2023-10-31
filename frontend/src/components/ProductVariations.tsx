@@ -201,7 +201,7 @@ const ProductPage = ({
   return !variation ? null : (
     <div
       className="flex flex-col items-center justify-center rounded-xl bg-ivory shadow-small-hero transition-transform duration-500 dark:bg-fair-space md:hover:translate-y-[-1rem] md:hover:scale-110"
-      role="product"
+       data-testid="product" role="product"
     >
       <div
         className={`${hideVariations ? "hidden" : "relative  h-full w-full"} `}

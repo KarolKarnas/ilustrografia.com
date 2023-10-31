@@ -63,9 +63,9 @@ describe("HomePage", () => {
     );
   });
 
-  // afterEach(() => {
-  //   cleanup()
-  // });
+  afterEach(() => {
+    cleanup();
+  });
 
   test("Page renders main heading", () => {
     const heading = screen.getByText("Reality Full of Magic");
@@ -73,28 +73,29 @@ describe("HomePage", () => {
     expect(heading).toBeInTheDocument();
   });
 
-  test("Page renders Neoslavic section", () => {
-    waitFor(async () => {
+  test("Page renders Neoslavic section with correct number of illustrations and products", async () => {
+    await waitFor(async () => {
       const section = await screen.findByTestId("neo-slavic-section");
       expect(section).toBeDefined();
       // const { getByRole, findByText, findAllByRole } = within(section);
-      const imagesNeo = await within(section).findAllByRole("img");
+      const imagesNeo = await within(section).findAllByTestId("img");
       expect(imagesNeo.length).toBe(4);
 
-      const productsNeo = await within(section).findAllByRole("product");
+      const productsNeo = await within(section).findAllByTestId("product");
       expect(productsNeo.length).toBe(4);
     });
   });
 
-  test("Page renders Fantasy section", () => {
-    waitFor(async () => {
+  test("Page renders Fantasy Illustrations section with correct number of illustrations and products", async () => {
+    await waitFor(async () => {
       const sectionFantasy = await screen.findByTestId(
         "fantasy-illustrations-section",
       );
       expect(sectionFantasy).toBeDefined();
-      const imagesFantasy = await within(sectionFantasy).findAllByRole("img");
+      const imagesFantasy = await within(sectionFantasy).findAllByTestId("img");
       expect(imagesFantasy.length).toBe(3);
-      const productsFantasy = await within(sectionFantasy).findAllByRole("product");
+      const productsFantasy =
+        await within(sectionFantasy).findAllByTestId("product");
       expect(productsFantasy.length).toBe(3);
     });
   });

@@ -24,6 +24,7 @@
     "build/trash/ProductPage.test.tsx",
     "build/trash/basilisk.ts",
     "src/pages/IllustrationsPage/Filter.test.tsx",
-    "src/utils/products.ts"
+    "src/utils/products.ts",
+    "build/trash/ProductPage2.test.tsx"
   ]
 }

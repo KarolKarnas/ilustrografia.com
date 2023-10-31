@@ -49,6 +49,7 @@ const IllustrationsGrid = ({
               </div>
               <img
                 role="img"
+                data-testid="img"
                 src={product.images[0]}
                 className={`${
                   aspectRatio === "4/5" ? `aspect-[4/5]` : "aspect-square"

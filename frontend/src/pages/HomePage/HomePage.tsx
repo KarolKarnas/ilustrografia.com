@@ -98,7 +98,7 @@ const HomePage = () => {
         </div>
 
         {/* Neo Slavic Project */}
-        
+
         <SectionMain url="neo-slavic">
           <MainTitlesWrapper>
             <HeadingAccent>· Ilustrografia ·</HeadingAccent>
