@@ -42,7 +42,7 @@ const AppLinks = () => {
         {userInfo ? (
           <Dropdown userInfo={userInfo} handleLogout={handleLogout} />
         ) : (
-          <Link to={"/login"} className="bg-red-magic cursor-pointer rounded-3xl p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110">
+          <Link to={"/login"} className="bg-red-magic cursor-pointer rounded-3xl p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110" id="login">
             <FaUserAltSlash />
           </Link>
         )}
