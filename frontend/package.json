@@ -34,7 +34,7 @@
     "start": "react-scripts start",
     "local": "HOST=0.0.0.0 npm run start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --verbose",
     "eject": "react-scripts eject",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "cypress:open": "cypress open"
