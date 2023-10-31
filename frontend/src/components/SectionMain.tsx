@@ -7,7 +7,7 @@ type Props = {
 };
 const SectionMain = ({ children, color, url}: Props) => {
   return (
-    <div
+    <div data-testid ={`${url}-section`}
       className={`${
         color === "second"
           ? "bg-fair-space dark:bg-outer-space"
