@@ -9,5 +9,6 @@ export default defineConfig({
     viewportWidth: 1920,
     // defaultCommandTimeout: 100000,
     // requestTimeout: 100000,
+    baseUrl: "http://localhost:3000",
   },
 });

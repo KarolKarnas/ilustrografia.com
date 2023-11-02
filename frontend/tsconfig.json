@@ -26,5 +26,6 @@
     "src/pages/IllustrationsPage/Filter.test.tsx",
     "src/utils/products.ts",
     "src/pages/ProductPage/ProductPage.test.tsx"
-  ]
+  ],
+  "exclude": ["cypress.config.ts", "cypress", "node_modules"]
 }

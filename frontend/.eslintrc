@@ -2,16 +2,18 @@
   "env": {
     "browser": true,
     "es6": true,
-    "jest": true
+    "jest": true,
+    "cypress/globals": true
   },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:testing-library/react",
+    "plugin:cypress/recommended",
     "prettier"
   ],
-  "plugins": ["react", "@typescript-eslint", "testing-library"],
+  "plugins": ["react", "@typescript-eslint", "testing-library", "cypress"],
   "settings": {
     "react": {
       "pragma": "React",
@@ -21,7 +23,8 @@
   "rules": {
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 0,
+    "@typescript-eslint/no-namespace": "off"
     // "no-mixed-spaces-and-tabs": 0
   }
 }
