@@ -4,13 +4,7 @@ import { rest } from "msw";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "../../slices/store";
-import {
-  cleanup,
-  render,
-  screen,
-  waitFor,
-  within,
-} from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import IllustrationPage from "./IllustrationPage";
 
@@ -49,71 +43,40 @@ afterAll(() => {
   server.close();
 });
 
-test("renders content", async () => {
+const initialRender = () => {
   render(
     <HelmetProvider>
       <Provider store={store}>
         <MemoryRouter initialEntries={["/basilisk"]}>
           <Routes>
-            {/* <Route path="shop" element={<ShopPage />}> */}
             <Route path="/:slug" element={<IllustrationPage />} />
-            {/* </Route> */}
           </Routes>
         </MemoryRouter>
       </Provider>
     </HelmetProvider>,
   );
+};
+
+test("Page renders correct main heading", async () => {
+  initialRender();
 
   await waitFor(async () => {
     const title = await screen.findByText("The Basilisk");
     expect(title).toBeDefined();
-
-    const productsBasilisk = await screen.findAllByRole("product");
-    expect(productsBasilisk.length).toBe(4);
-
-    const imagesNeo = await screen.findAllByTestId("img");
-    expect(imagesNeo.length).toBe(4);
   });
 });
-test("renders different Basilisk products", async () => {
-  render(
-    <HelmetProvider>
-      <Provider store={store}>
-        <MemoryRouter initialEntries={["/basilisk"]}>
-          <Routes>
-            {/* <Route path="shop" element={<ShopPage />}> */}
-            <Route path="/:slug" element={<IllustrationPage />} />
-            {/* </Route> */}
-          </Routes>
-        </MemoryRouter>
-      </Provider>
-    </HelmetProvider>,
-  );
+test("Page renders correct number of products", async () => {
+  initialRender();
 
   await waitFor(async () => {
     const productsBasilisk = await screen.findAllByRole("product");
     expect(productsBasilisk.length).toBe(4);
   });
 });
-
-
-test("renders Illustrations from the Basilisk category ('neo-slavic-census')", async () => {
-  render(
-    <HelmetProvider>
-      <Provider store={store}>
-        <MemoryRouter initialEntries={["/basilisk"]}>
-          <Routes>
-            {/* <Route path="shop" element={<ShopPage />}> */}
-            <Route path="/:slug" element={<IllustrationPage />} />
-            {/* </Route> */}
-          </Routes>
-        </MemoryRouter>
-      </Provider>
-    </HelmetProvider>,
-  );
+test("Page renders correct number of Illustrations from the Basilisk category ('neo-slavic-census')", async () => {
+  initialRender();
 
   await waitFor(async () => {
-
     const imagesNeo = await screen.findAllByTestId("img");
     expect(imagesNeo.length).toBe(4);
   });

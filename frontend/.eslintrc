@@ -8,9 +8,10 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:testing-library/react",
     "prettier"
   ],
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "testing-library"],
   "settings": {
     "react": {
       "pragma": "React",

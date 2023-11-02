@@ -29,69 +29,82 @@ afterAll(() => {
   server.close();
 });
 
-describe("Filter in Illustrations.tsx", () => {
-  beforeEach(() => {
-    render(
-      <HelmetProvider>
-        <Provider store={store}>
-          <MemoryRouter>
-            <Filter />
-          </MemoryRouter>
-        </Provider>
-      </HelmetProvider>,
-    );
-  });
+const initialRender = () => {
+  render(
+    <HelmetProvider>
+      <Provider store={store}>
+        <MemoryRouter>
+          <Filter />
+        </MemoryRouter>
+      </Provider>
+    </HelmetProvider>,
+  );
+};
 
+describe("Filter in Illustrations.tsx", () => {
+  const user = userEvent.setup();
 
   test("Component creates category named buttons", async () => {
-    await waitFor(async () => {
-      const buttonNeo = await screen.findByText("Neo-Slavic Census");
+    initialRender();
+
+    await waitFor(() => {
+      const buttonNeo = screen.getByText("Neo-Slavic Census");
       expect(buttonNeo).toBeDefined();
-      const buttonFantasy = await screen.findByText("Fantasy Illustrations");
+    });
+
+    await waitFor(() => {
+      const buttonFantasy = screen.getByText("Fantasy Illustrations");
       expect(buttonFantasy).toBeDefined();
-      const buttonPolish = await screen.findByText("Polish Legends");
+    });
+
+    await waitFor(() => {
+      const buttonPolish = screen.getByText("Polish Legends");
       expect(buttonPolish).toBeDefined();
     });
   });
-  
-  test("Component fetch and renders all content", async () => {
-    await waitFor(async () => {
-      const images = await screen.findAllByRole("img");
+
+  test("Component fetch and renders correct number of images", async () => {
+    initialRender();
+
+    await waitFor(() => {
+      const images = screen.getAllByRole("img");
       expect(images.length).toBe(9);
     });
-
   });
-  test("After click on the category button, only the content from the category is visible", async () => {
-    const user = userEvent.setup();
+
+  test("After click on the category button, only the content from the category is render", async () => {
+    initialRender();
 
     await waitFor(async () => {
-      const buttonNeo = await screen.findByText("Neo-Slavic Census");
+      const buttonNeo = screen.getByText("Neo-Slavic Census");
       await user.click(buttonNeo);
-      const imagesNeo = await screen.findAllByRole("img");
+      const imagesNeo = screen.getAllByRole("img");
       expect(imagesNeo.length).toBe(4);
+    });
 
-      const buttonPolish = await screen.findByText("Polish Legends");
+    await waitFor(async () => {
+      const buttonPolish = screen.getByText("Polish Legends");
       await user.click(buttonPolish);
-      const imagesPolish = await screen.findAllByRole("img");
+      const imagesPolish = screen.getAllByRole("img");
       expect(imagesPolish.length).toBe(2);
     });
   });
 
   test("After click on 'All' button, all content is shown", async () => {
-    const user = userEvent.setup();
+    initialRender();
 
     await waitFor(async () => {
-      const buttonNeo = await screen.findByText("Neo-Slavic Census");
+      const buttonNeo = screen.getByText("Neo-Slavic Census");
       await user.click(buttonNeo);
-      const imagesNeo = await screen.findAllByRole("img");
+      const imagesNeo = screen.getAllByRole("img");
       expect(imagesNeo.length).toBe(4);
+    });
 
-      const buttonAll = await screen.findByText("All");
+    await waitFor(async () => {
+      const buttonAll = screen.getByText("All");
       await user.click(buttonAll);
-      const imagesAll = await screen.findAllByRole("img");
+      const imagesAll = screen.getAllByRole("img");
       expect(imagesAll.length).toBe(9);
     });
   });
-
-
 });

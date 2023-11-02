@@ -54,7 +54,7 @@ const ProductPage = () => {
     error,
   } = useGetProductDetailsQuery(slug);
 
-  console.log(product?.reviews);
+  // console.log(product?.reviews);
 
   const [createProductReview, { isLoading: loadingProductReview }] =
     useCreateProductReviewMutation();

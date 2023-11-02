@@ -1,16 +1,11 @@
-// import "./matchMedia.mock";
 import "../setupTests";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Provider } from "react-redux";
-import store from "../slices/store";
 import MainLinks from "./MainLinks";
 
-import App from "../App";
+import {  MemoryRouter } from "react-router-dom";
 
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
-
-test("header", () => {
+test("Renders Links", () => {
   render(
     <MemoryRouter>
       <MainLinks mobile={false} />
