@@ -98,3 +98,5 @@ test("Price is updated after change material by the user", async () => {
     expect(price).toHaveTextContent(`$${basilisk.variations[18].price}`);
   });
 });
+
+
