@@ -356,7 +356,7 @@ const ProductPage = () => {
             <div className="mt-3 flex gap-10">
               <div className=" font-montserrat text-black-magic dark:text-ivory">
                 <span className="mr-2 text-xs  uppercase">Price:</span>
-                <strong className=" text-2xl font-light">
+                <strong data-testid='price-value' className=" text-2xl font-light">
                   ${variation?.price}
                 </strong>
               </div>
@@ -372,7 +372,7 @@ const ProductPage = () => {
               />
 
               <button
-              data-testid="addCartBtn"
+              data-testid="add-cart-btn"
                 onClick={addToCartHandler}
                 className={`${
                   variation?.countInStock === 0
