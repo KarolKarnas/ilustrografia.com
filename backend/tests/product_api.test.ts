@@ -12,8 +12,6 @@ import { password } from '../data/users';
 
 const api = supertest(app);
 
-
-
 beforeEach(async () => {
 	try {
 		await Order.deleteMany();

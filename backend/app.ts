@@ -12,9 +12,8 @@ import userRouter from './routes/userRoutes';
 import orderRouter from './routes/orderRoutes';
 import uploadRouter from './routes/uploadRoutes';
 import ytRouter from './routes/ytRoutes';
+import testRouter from './routes/testRoutes';
 import { errorHandler, notFound } from './middleware/errorMiddleware';
-
-
 
 connectDB();
 
@@ -54,6 +53,7 @@ if (process.env.NODE_ENV === 'production') {
 	);
 } else {
 	app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+	app.use('/api/testing', testRouter);
 	app.get('/', (_req, res) => {
 		res.send('API is running....');
 	});
