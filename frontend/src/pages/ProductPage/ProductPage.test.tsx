@@ -54,7 +54,7 @@ test("Renders add to cart button", async () => {
   initialRender();
 
   await waitFor(() => {
-    screen.logTestingPlaygroundURL();
+    // screen.logTestingPlaygroundURL();
     const title = screen.getByTestId("add-cart-btn");
     expect(title).toBeDefined();
   });

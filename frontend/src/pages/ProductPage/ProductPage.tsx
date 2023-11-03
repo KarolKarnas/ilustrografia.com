@@ -259,7 +259,7 @@ const ProductPage = () => {
           title={`${product.name} · ${product.categories[0].name} · Product`}
         />
         <div className="flex w-11/12 flex-col justify-center gap-16 md:flex-row">
-          <div className="w-full hidden md:block  md:w-4/12 ">
+          <div className="hidden w-full md:block  md:w-4/12 ">
             <img
               className="shadow-hero md:sticky md:top-8 "
               src={
@@ -279,7 +279,10 @@ const ProductPage = () => {
               productName={product.name}
             />
 
-            <h1 role="heading" className=" font-fondamento text-3xl dark:text-ivory">
+            <h1
+              role="heading"
+              className=" font-fondamento text-3xl dark:text-ivory"
+            >
               {product.name}{" "}
               <span className="text-xl">
                 {
@@ -356,7 +359,10 @@ const ProductPage = () => {
             <div className="mt-3 flex gap-10">
               <div className=" font-montserrat text-black-magic dark:text-ivory">
                 <span className="mr-2 text-xs  uppercase">Price:</span>
-                <strong data-testid='price-value' className=" text-2xl font-light">
+                <strong
+                  data-testid="price-value"
+                  className=" text-2xl font-light"
+                >
                   ${variation?.price}
                 </strong>
               </div>
@@ -365,14 +371,16 @@ const ProductPage = () => {
             <hr className=" mx-auto my-3 h-px"></hr>
 
             <div className="flex h-10 items-center gap-5">
-              <SelectNumber
-                selectNumber={variation.countInStock}
-                onChange={setQty}
-                defaultValue="1"
-              />
+              <div data-testid="qty-select">
+                <SelectNumber
+                  selectNumber={variation.countInStock}
+                  onChange={setQty}
+                  defaultValue="1"
+                />
+              </div>
 
               <button
-              data-testid="add-cart-btn"
+                data-testid="add-cart-btn"
                 onClick={addToCartHandler}
                 className={`${
                   variation?.countInStock === 0
@@ -385,20 +393,20 @@ const ProductPage = () => {
               </button>
             </div>
 
-            <div className="w-full my-5 md:hidden md:w-4/12 ">
-            <img
-              className="shadow-hero "
-              src={
-                variation &&
-                product.options.material[
-                  variation.options.material as MaterialOptionNoNameKeys
-                ].images[0]
-              }
-              alt={`${product.slug}-${variation.options.material}`}
-            />
-          </div>
+            <div className="my-5 w-full md:hidden md:w-4/12 ">
+              <img
+                className="shadow-hero "
+                src={
+                  variation &&
+                  product.options.material[
+                    variation.options.material as MaterialOptionNoNameKeys
+                  ].images[0]
+                }
+                alt={`${product.slug}-${variation.options.material}`}
+              />
+            </div>
 
-            <div className="flex flex-col mb-3 mt-5 font-montserrat text-black-magic dark:text-ivory">
+            <div className="mb-3 mt-5 flex flex-col font-montserrat text-black-magic dark:text-ivory">
               <h4 className=" mb-2 text-sm font-semibold">
                 By buying {product.name} on the wall, you gain:{" "}
               </h4>
@@ -409,7 +417,10 @@ const ProductPage = () => {
                   ))}
                 </ul>
               ) : null}
-              <Link className="mt-2 w-full" to={`/illustrations/${product.slug}`}>
+              <Link
+                className="mt-2 w-full"
+                to={`/illustrations/${product.slug}`}
+              >
                 <button className=" h-6 w-full border border-black-magic bg-black-magic text-2xs uppercase text-ivory  transition-colors  duration-300 hover:border-red-magic hover:bg-red-magic/60 dark:border-red-magic dark:bg-red-magic/60 dark:hover:bg-red-magic/80 md:w-auto md:px-20">
                   story
                 </button>

@@ -97,7 +97,7 @@ const CartPage = () => {
               </div>
               {/* <hr className=" mx-auto my-3 h-px"></hr> */}
               {cartItems.map((variation, index) => (
-                <div key={variation._id}>
+                <div key={variation._id} data-testid='cart-product'>
                   <div className="mb-4 flex items-center justify-between dark:text-ivory">
                     <FaTrash
                       onClick={() => removeFromCartHandler(variation._id)}
@@ -157,17 +157,17 @@ const CartPage = () => {
                     <span className="mr-2 text-2xs uppercase  md:text-xs">
                       Total quantity:
                     </span>
-                    <span className="  font-light">
+                    <span className="font-light" >
                       {totalItems} {totalItems === 1 ? "pc" : "pcs"}
                     </span>
                   </p>
                   <hr className=" mx-auto my-0.5 h-px opacity-10 md:my-3 md:opacity-100"></hr>
 
                   <p className="flex items-center justify-between">
-                    <span className="mr-2 text-2xs uppercase   md:text-xs">
+                    <span className="mr-2 text-2xs uppercase   md:text-xs" >
                       Total price:
                     </span>
-                    <span className=" text-lg">${totalPrice}</span>
+                    <span className=" text-lg" data-testid='cart-total-price'>${totalPrice}</span>
                   </p>
                   <hr className=" mx-auto my-0.5 h-px opacity-10 md:my-3 md:opacity-100"></hr>
                 </div>
