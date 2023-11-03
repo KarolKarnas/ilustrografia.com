@@ -11,4 +11,7 @@ export default defineConfig({
     // requestTimeout: 100000,
     baseUrl: "http://localhost:3000",
   },
+  env: {
+    BACKEND: 'http://localhost:5000/api'
+  }
 });

@@ -20,6 +20,7 @@ const login = ({ email, password }: Props) => {
   cy.get("input:eq(0)").type(email);
   cy.get("input:eq(1)").type(password);
   cy.get('button:contains("Login")').click();
+  cy.contains('Reality Full of Magic')
 };
 
 Cypress.Commands.add("login", ({ email, password }) => {
