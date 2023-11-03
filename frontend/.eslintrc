@@ -9,11 +9,21 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:testing-library/react",
     "plugin:cypress/recommended",
     "prettier"
   ],
   "plugins": ["react", "@typescript-eslint", "testing-library", "cypress"],
+
+  "overrides": [
+    {
+      // Now we enable eslint-plugin-testing-library rules or preset only for matching testing files!
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ],
   "settings": {
     "react": {
       "pragma": "React",
@@ -24,7 +34,8 @@
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "react/react-in-jsx-scope": 0,
-    "@typescript-eslint/no-namespace": "off"
+    "@typescript-eslint/no-namespace": "off",
+    "testing-library/await-async-query": 0
     // "no-mixed-spaces-and-tabs": 0
   }
 }

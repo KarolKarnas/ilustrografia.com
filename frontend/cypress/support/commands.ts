@@ -2,6 +2,8 @@
 /// <reference types="cypress" />
 // import { join } from "path";
 
+import '@testing-library/cypress/add-commands'
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -27,6 +29,6 @@ Cypress.Commands.add("login", ({ email, password }) => {
   return login({ email, password });
 });
 
-const Commands = { login };
+// const Commands = { login };
 
-export default Commands;
+// export default Commands;

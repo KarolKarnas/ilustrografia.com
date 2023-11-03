@@ -4,11 +4,7 @@ import { rest } from "msw";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 
-import {
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import store from "../../slices/store";
 import ProductPage from "./ProductPage";
@@ -58,6 +54,7 @@ test("Renders add to cart button", async () => {
   initialRender();
 
   await waitFor(() => {
+    screen.logTestingPlaygroundURL();
     const title = screen.getByTestId("add-cart-btn");
     expect(title).toBeDefined();
   });
@@ -98,5 +95,3 @@ test("Price is updated after change material by the user", async () => {
     expect(price).toHaveTextContent(`$${basilisk.variations[18].price}`);
   });
 });
-
-
