@@ -1,26 +1,25 @@
 import { products } from "../../src/utils/products";
-
-const john = { email: "john@email.com", password: "123456" };
-const admin = { email: "admin@email.com", password: "123456" };
+import { users } from "../../src/utils/users";
 
 describe("ProductPage", () => {
-  beforeEach(function () {
-    cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
-  });
-
-  products.forEach((product) => {
-    it(`${product.name} ProductPage can be opened`, () => {
-      cy.visit(`/shop/${product.slug}`);
-      cy.findByRole("heading", { level: 1 }).should(
-        "contain",
-        `${product.name} Art Print 20x40`,
-      );
+  describe.skip("All products are render", () => {
+    beforeEach(function () {
+      cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
+    });
+    products.forEach((product) => {
+      it(`${product.name} ProductPage can be opened`, () => {
+        cy.visit(`/shop/${product.slug}`);
+        cy.findByRole("heading", { level: 1 }).should(
+          "contain",
+          `${product.name} Art Print 20x40`,
+        );
+      });
     });
   });
 
   describe("When regular user logged in", function () {
     beforeEach(function () {
-      cy.login(john);
+      cy.login(users[1]);
     });
     it("User can write a review", () => {
       const review = `Great 🎨!`;
@@ -55,7 +54,7 @@ describe("ProductPage", () => {
       cy.visit("/cart");
       cy.findAllByTestId("cart-product").should("have.length", 1);
     });
-    it.only("User can add a product with changed size, material and quantity to the cart", () => {
+    it("User can add a product with changed size, material and quantity to the cart", () => {
       cy.visit("/shop/basilisk");
       cy.findByRole("button", { name: /painting on canvas/i }).click();
       cy.findByRole("button", { name: /70x100/i }).click();

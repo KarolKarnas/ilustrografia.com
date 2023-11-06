@@ -2,7 +2,7 @@
 /// <reference types="cypress" />
 // import { join } from "path";
 
-import '@testing-library/cypress/add-commands'
+import "@testing-library/cypress/add-commands";
 
 declare global {
   namespace Cypress {
@@ -18,12 +18,21 @@ type Props = {
 };
 
 const login = ({ email, password }: Props) => {
-  cy.visit("/login");
-  cy.get("input:eq(0)").type(email);
-  cy.get("input:eq(1)").type(password);
-  cy.get('button:contains("Login")').click();
-  cy.contains('Reality Full of Magic')
+  cy.session(
+    [email, password],
+    () => {
+      cy.visit("/login");
+      cy.get("input[name='email']").type(email);
+      cy.get("input[name='password']").type(password);
+      cy.get('button:contains("Login")').click();
+      cy.findByRole('alert').should('contain', 'Logged in successfully')
+    },
+    {
+      cacheAcrossSpecs: true,
+    },
+  );
 };
+
 
 Cypress.Commands.add("login", ({ email, password }) => {
   return login({ email, password });

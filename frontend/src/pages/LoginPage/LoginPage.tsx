@@ -45,6 +45,7 @@ const LoginPage = () => {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
+      toast.success('Logged in successfully');
     } catch (error) {
       toast.error(getError(error as ApiError));
     }
