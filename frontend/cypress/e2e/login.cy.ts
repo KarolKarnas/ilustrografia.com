@@ -1,9 +1,8 @@
-import { users } from "../../src/utils/users";
+import { users } from "../fixtures/users";
 
-const [admin, john, jane] = users
+const [admin, john, jane] = users;
 
 describe("ilustrografia", () => {
-
   it("Login can be opened", () => {
     cy.visit("/login");
     cy.contains("Login");
@@ -28,15 +27,15 @@ describe("ilustrografia", () => {
   it("Admin user cannot login with wrong password", () => {
     cy.visit("/login");
     cy.get("input[name='email']").type(admin.email);
-    cy.get("input[name='password']").type('654321');
+    cy.get("input[name='password']").type("654321");
     cy.get('button:contains("Login")').click();
-    cy.findByRole('alert').should('contain', 'Invalid email or password')
+    cy.findByRole("alert").should("contain", "Invalid email or password");
   });
   it("User cannot login with wrong email", () => {
     cy.visit("/login");
-    cy.get("input[name='email']").type('fake@email.com');
-    cy.get("input[name='password']").type('123456');
+    cy.get("input[name='email']").type("fake@email.com");
+    cy.get("input[name='password']").type("123456");
     cy.get('button:contains("Login")').click();
-    cy.findByRole('alert').should('contain', 'Invalid email or password')
+    cy.findByRole("alert").should("contain", "Invalid email or password");
   });
 });

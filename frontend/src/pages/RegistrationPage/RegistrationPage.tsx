@@ -100,7 +100,7 @@ const RegistrationPage = () => {
           />
           <InputTextField
             shortName={"password"}
-            name={"New Password"}
+            name={"Password"}
             onChangeFun={(e) => setPassword(e.target.value)}
             value={password}
             type="password"
@@ -108,7 +108,7 @@ const RegistrationPage = () => {
           />
           <InputTextField
             shortName={"confirmPassword"}
-            name={"Confirm New Password"}
+            name={"Confirm Password"}
             onChangeFun={(e) => setConfirmPassword(e.target.value)}
             value={confirmPassword}
             type="password"

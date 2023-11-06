@@ -25,7 +25,8 @@
     "build/trash/basilisk.ts",
     "src/pages/IllustrationsPage/Filter.test.tsx",
     "src/utils/products.ts",
-    "src/pages/ProductPage/ProductPage.test.tsx"
+    "src/pages/ProductPage/ProductPage.test.tsx",
+    "cypress/fixtures/users.ts"
   ],
   "exclude": ["cypress.config.ts", "cypress", "node_modules"]
 }

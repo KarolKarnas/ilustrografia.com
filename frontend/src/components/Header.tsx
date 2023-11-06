@@ -23,7 +23,7 @@ const Header = () => {
         <div className="hidden items-center gap-x-4 lg:flex lg:gap-x-10">
           <MainLinks mobile={false} />
         </div>
-        <div className="w-30 hidden gap-x-3 lg:flex lg:items-center">
+        <div data-testid='app-links-full' className="w-30 hidden gap-x-3 lg:flex lg:items-center">
           <AppLinks />
         </div>
 

@@ -1,8 +1,8 @@
 import { products } from "../../src/utils/products";
-import { users } from "../../src/utils/users";
+import { users } from "../fixtures/users";
 
 describe("ProductPage", () => {
-  describe.skip("All products are render", () => {
+  describe("All products are render", () => {
     beforeEach(function () {
       cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
     });
