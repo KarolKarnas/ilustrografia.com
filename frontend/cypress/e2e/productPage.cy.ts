@@ -1,6 +1,11 @@
 import { products } from "../../src/utils/products";
 import { users } from "../fixtures/users";
 
+after(() => {
+  cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
+  cy.visit('')
+});
+
 describe("ProductPage", () => {
   describe("All products are render", () => {
     beforeEach(function () {
@@ -69,8 +74,3 @@ describe("ProductPage", () => {
     });
   });
 });
-
-// after(() => {
-//   cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
-//   cy.visit('')
-// });

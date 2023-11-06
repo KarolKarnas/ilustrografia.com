@@ -9,7 +9,7 @@ declare global {
     interface Chainable {
       login: typeof login;
       loginNoSession: typeof loginNoSession;
-      logout: typeof logout
+      logout: typeof logout;
     }
   }
 }
@@ -44,9 +44,9 @@ const loginNoSession = ({ email, password }: Props) => {
 
 const logout = () => {
   cy.get('[data-testid="app-links-full"]')
-  .find('[data-testid="logged-user"]')
-  .click();
-cy.findByRole("menuitem", { name: /logout/i }).click();
+    .find('[data-testid="logged-user"]')
+    .click();
+  cy.findByRole("menuitem", { name: /logout/i }).click();
   cy.findAllByRole("alert").should("contain", "Logged out successfully");
 };
 
@@ -59,6 +59,7 @@ Cypress.Commands.add("loginNoSession", ({ email, password }) => {
 Cypress.Commands.add("logout", () => {
   return logout();
 });
+
 
 // const Commands = { login };
 
