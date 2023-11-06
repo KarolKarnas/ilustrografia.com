@@ -6,7 +6,7 @@ export type Props = {
 };
 
 const LatestVideos = ({ youtubeItems }: Props) => {
-  // console.log(youtubeItems);
+  console.log(youtubeItems);
   return (
     // <div className="w-full min-w-full">
 
