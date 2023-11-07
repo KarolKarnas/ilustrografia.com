@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAppDispatch } from "./slices/reduxHooks";
+import { useAppDispatch, useAppSelector } from "./slices/reduxHooks";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -28,10 +28,12 @@ const App = ({ test }: Props) => {
     }
   }, [dispatch]);
 
+  const activeTheme = useAppSelector((state) => state.theme);
+
   return (
     // <div className="flex min-h-screen flex-col justify-between overflow-hidden">
     <>
-     {test ? null : <ScrollRestoration />}
+      {test ? null : <ScrollRestoration />}
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -42,7 +44,7 @@ const App = ({ test }: Props) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme={activeTheme === "light" ? "light" : "dark"}
       />
       <Header />
       <main className=" min-w-screen flex min-h-[60vh] flex-auto flex-col items-center overflow-clip pb-20 pt-4 md:pt-8 ">
