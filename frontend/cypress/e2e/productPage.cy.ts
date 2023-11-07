@@ -3,16 +3,17 @@ import { users } from "../fixtures/users";
 
 after(() => {
   cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
-  cy.visit('')
+  // cy.visit('')
 });
 
 describe("ProductPage", () => {
-  describe("All products are render", () => {
-    beforeEach(function () {
+  describe("All products are rendered on the ProductPage", () => {
+    beforeEach(() => {
       cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
     });
+
     products.forEach((product) => {
-      it(`${product.name} ProductPage can be opened`, () => {
+      it(`Should open the ${product.name} ProductPage and display the product details`, () => {
         cy.visit(`/shop/${product.slug}`);
         cy.findByRole("heading", { level: 1 }).should(
           "contain",
@@ -22,13 +23,42 @@ describe("ProductPage", () => {
     });
   });
 
-  describe("When regular user logged in", function () {
-    beforeEach(function () {
-      cy.login(users[1]);
-    });
-    it("User can write a review", () => {
-      const review = `Great 🎨!`;
+  describe("When a user is not logged in", () => {
+    beforeEach(() => {
       cy.visit("/shop/basilisk");
+    });
+
+    it("Should allow the user to change the size of the product", () => {
+      cy.findByRole("button", { name: /70x100/i }).click();
+      cy.findByTestId("price-value").should("contain", "$499");
+    });
+
+    it("Should allow the user to change the material of the product", () => {
+      cy.findByRole("button", { name: /premium print/i }).click();
+      cy.findByTestId("price-value").should("contain", "$59");
+    });
+
+    it("Should allow the user to change the quantity of products", () => {
+      cy.findByTestId("qty-select").click();
+      cy.findAllByRole("option").eq(1).click();
+      cy.findByTestId("qty-select").should("contain", "2");
+    });
+
+    it("Should prevent the user from writing a review", () => {
+      cy.get('a[href="/login"]').should("exist");
+      cy.get('a[href="/login"]').should("contain", "log in");
+      cy.contains("To write a review you must log in");
+    });
+  });
+
+  describe("When a regular user is logged in", () => {
+    beforeEach(() => {
+      cy.login(users[1]);
+      cy.visit("/shop/basilisk");
+    });
+
+    it("Should allow the user to write a review for the product", () => {
+      const review = `Great 🎨!`;
       cy.findByRole("heading", { level: 1 }).should(
         "contain",
         "Basilisk Art Print 20x40",
@@ -37,30 +67,14 @@ describe("ProductPage", () => {
       cy.findByRole("button", { name: /add review/i }).click();
       cy.contains(review);
     });
-    it("User can change size of the product", () => {
-      cy.visit("/shop/basilisk");
-      cy.findByRole("button", { name: /70x100/i }).click();
-      cy.findByTestId("price-value").should("contain", "$499");
-    });
-    it("User can change material of the product", () => {
-      cy.visit("/shop/basilisk");
-      cy.findByRole("button", { name: /premium print/i }).click();
-      cy.findByTestId("price-value").should("contain", "$59");
-    });
-    it("User can change quantity of products", () => {
-      cy.visit("/shop/basilisk");
-      cy.findByTestId("qty-select").click();
-      cy.findAllByRole("option").eq(1).click();
-      cy.findByTestId("qty-select").should("contain", "2");
-    });
-    it("User can add a product to the cart", () => {
-      cy.visit("/shop/basilisk");
+
+    it("Should allow the user to add a product to the cart", () => {
       cy.findByRole("button", { name: /add to cart/i }).click();
       cy.visit("/cart");
       cy.findAllByTestId("cart-product").should("have.length", 1);
     });
-    it("User can add a product with changed size, material and quantity to the cart", () => {
-      cy.visit("/shop/basilisk");
+
+    it("Should allow the user to add a product to the cart with custom size, material, and quantity", () => {
       cy.findByRole("button", { name: /painting on canvas/i }).click();
       cy.findByRole("button", { name: /70x100/i }).click();
       cy.findByTestId("qty-select").click();
