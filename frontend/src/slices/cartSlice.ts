@@ -20,6 +20,9 @@ const cartSlice = createSlice({
 			);
 
 			if (existItem) {
+				if (existItem.qty === item.qty) {
+          throw new Error(`${item.variationName} x ${item.qty} already in the cart.`);
+        }
 				state.cartItems = state.cartItems.map((currentItem: VariationCart) =>
 					currentItem._id === existItem._id ? item : currentItem
 				);

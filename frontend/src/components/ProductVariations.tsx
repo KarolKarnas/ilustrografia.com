@@ -15,6 +15,8 @@ import ToastLink from "../components/ToastLink";
 import Rating from "../components/Rating";
 import { Link } from "react-router-dom";
 import Spinner from "./Spinner";
+import { getError } from "../utils/utils";
+import { ApiError } from "../types/ApiError";
 
 type Props = {
   product: Product;
@@ -169,33 +171,39 @@ const ProductPage = ({
   };
 
   const addToCartHandler = () => {
-    if (variation) {
-      // const pathnameWithQuery =
-      //   window.location.pathname + window.location.search;
-      const variationName = `${product.name} ${
-        product.options.material[
-          variation.options.material as MaterialOptionNoNameKeys
-        ].title
-      } ${
-        product.options.size[variation.options.size as SizeOptionNoNameKeys]
-          .title
-      }`;
-      dispatch(
-        addToCart({
-          ...variation,
-          _id: variation._id!,
-          qty,
-          image:
-            product.options.material[
-              variation.options.material as MaterialOptionNoNameKeys
-            ].images[0],
-          variationName,
-          pathnameWithQuery: url,
-        }),
-      );
-      toast.success(<ToastLink product={variationName} />);
-      // navigate('/cart');
+    try {
+      if (variation) {
+        // const pathnameWithQuery =
+        //   window.location.pathname + window.location.search;
+        const variationName = `${product.name} ${
+          product.options.material[
+            variation.options.material as MaterialOptionNoNameKeys
+          ].title
+        } ${
+          product.options.size[variation.options.size as SizeOptionNoNameKeys]
+            .title
+        }`;
+        dispatch(
+          addToCart({
+            ...variation,
+            _id: variation._id!,
+            qty,
+            image:
+              product.options.material[
+                variation.options.material as MaterialOptionNoNameKeys
+              ].images[0],
+            variationName,
+            pathnameWithQuery: url,
+          }),
+        );
+        toast.success(<ToastLink product={variationName} />);
+        // navigate('/cart');
+      }
+      
+    } catch (err) {
+      toast.warning(getError(err as ApiError));
     }
+   
   };
 
   return !variation ? null : (

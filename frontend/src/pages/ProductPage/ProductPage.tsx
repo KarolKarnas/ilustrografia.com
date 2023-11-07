@@ -204,30 +204,35 @@ const ProductPage = () => {
 
   const addToCartHandler = () => {
     if (variation) {
-      const pathnameWithQuery =
-        window.location.pathname + window.location.search;
-      const variationName = `${product.name} ${
-        product.options.material[
-          variation.options.material as MaterialOptionNoNameKeys
-        ].title
-      } ${
-        product.options.size[variation.options.size as SizeOptionNoNameKeys]
-          .title
-      }`;
-      dispatch(
-        addToCart({
-          ...variation,
-          _id: variation._id!,
-          qty,
-          image:
-            product.options.material[
-              variation.options.material as MaterialOptionNoNameKeys
-            ].images[0],
-          variationName,
-          pathnameWithQuery,
-        }),
-      );
-      toast.success(<ToastLink product={variationName} />);
+      try {
+        const pathnameWithQuery =
+          window.location.pathname + window.location.search;
+        const variationName = `${product.name} ${
+          product.options.material[
+            variation.options.material as MaterialOptionNoNameKeys
+          ].title
+        } ${
+          product.options.size[variation.options.size as SizeOptionNoNameKeys]
+            .title
+        }`;
+        dispatch(
+          addToCart({
+            ...variation,
+            _id: variation._id!,
+            qty,
+            image:
+              product.options.material[
+                variation.options.material as MaterialOptionNoNameKeys
+              ].images[0],
+            variationName,
+            pathnameWithQuery,
+          }),
+        );
+        toast.success(<ToastLink product={variationName} qty={qty} />);
+      } catch (err) {
+        toast.warning(getError(err as ApiError));
+      }
+
       // navigate('/cart');
     }
   };
