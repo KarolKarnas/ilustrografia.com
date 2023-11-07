@@ -303,6 +303,7 @@ const ProductPage = ({
           </div>
 
           <button
+          data-testid="addToCartBtn"
             onClick={addToCartHandler}
             className={`${
               variation?.countInStock === 0
