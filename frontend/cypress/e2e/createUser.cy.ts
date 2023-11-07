@@ -4,9 +4,8 @@ const [admin, john, jane] = users;
 
 after(() => {
   cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
-  cy.visit('')
+  // cy.visit("");
 });
-
 
 describe("Create new user", () => {
   beforeEach(function () {
@@ -45,12 +44,12 @@ describe("Create new user", () => {
     cy.visit("/admin/user-list");
     cy.get("tbody").find("tr").should("have.length", 4);
   });
-  
+
   it("Cannot create user with existing email", () => {
     const newUser = {
       name: "New",
       email: admin.email,
-      password: '123456'
+      password: "123456",
     };
 
     cy.visit("/register");
@@ -59,9 +58,27 @@ describe("Create new user", () => {
     cy.get("input[name='password']").type(newUser.password);
     cy.get("input[name='confirmPassword']").type(newUser.password);
     cy.findByRole("button", { name: /register/i }).click();
-    cy.findByRole("alert").should(
-      "contain",
-      `User already exists`,
-    );
+    cy.findByRole("alert").should("contain", `User already exists`);
+  });
+
+  it("User cannot be create with empty spaces", () => {
+    const newUser = {
+      name: "   ",
+      email: "   ",
+      password: "   ",
+    };
+
+    cy.visit("/register");
+    cy.findByRole("textbox", { name: /name/i }).type(newUser.name);
+    cy.findByRole("textbox", { name: /email/i }).type(newUser.email);
+    cy.get("input[name='password']").type(newUser.password);
+    cy.get("input[name='confirmPassword']").type(newUser.password);
+    cy.findByRole("button", { name: /register/i }).click();
+    cy.get(".form-message").should("have.length", 4);
+    cy.get(".form-message").each((message) => {
+      cy.wrap(message).should("have.css", "color", "rgb(234, 96, 82)");
+    });
+    cy.contains("Just empty spaces here...");
+    cy.contains("Please enter your Email");
   });
 });

@@ -107,6 +107,7 @@ describe("ilustrografia", () => {
 
     //make order
     cy.visit("/cart");
+    cy.findAllByTestId("cart-product").should("have.length", 215);
     cy.findByRole("button", { name: /proceed to checkout/i }).click();
     cy.findByRole("textbox", { name: /address/i }).type("FakeStreet 11");
     cy.findByRole("textbox", { name: /city/i }).type("FakeTown");
@@ -122,9 +123,6 @@ describe("ilustrografia", () => {
     cy.get("tbody").find("tr").should("have.length", 1);
   });
 });
-
-
-
 
 // it.only("Logged in user can make order with all products, all variations", () => {
 //   //make order
