@@ -7,24 +7,27 @@ after(() => {
   // cy.visit("");
 });
 
-describe("Create new user", () => {
+describe("User Registration", () => {
   beforeEach(() => {
+    // Reset the backend data before each test
     cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
   });
 
-  it("There are 3 users with test data", () => {
+  it("Should have 3 users with test data", () => {
+    // Log in as an admin, visit the user list page, and check for 3 users
     cy.loginNoSession(admin);
     cy.visit("/admin/user-list");
     cy.get("tbody").find("tr").should("have.length", 3);
   });
 
-  it("There are 4 users after creating a new user", () => {
+  it("Should have 4 users after creating a new user", () => {
     const newUser = {
       name: "New",
       email: "new@email.com",
       password: "123456",
     };
-    //create user
+
+    // Create a new user and verify the count increases to 4
     cy.visit("/register");
     cy.findByRole("textbox", { name: /name/i }).type(newUser.name);
     // cy.get("input[name='name']").type('New');
@@ -37,21 +40,22 @@ describe("Create new user", () => {
       "contain",
       `Welcome to Team Ilustrografia ${newUser.name}!`,
     );
-    //logout
+
+    // Log out, log in as admin, and check for 4 users
     cy.logout();
-    //check number of users as admin
     cy.loginNoSession(admin);
     cy.visit("/admin/user-list");
     cy.get("tbody").find("tr").should("have.length", 4);
   });
 
-  it("Cannot create user with existing email", () => {
+  it("Should prevent user creation with an existing email", () => {
     const newUser = {
       name: "New",
       email: admin.email,
       password: "123456",
     };
 
+    // Attempt to create a user with an existing email and verify the error message
     cy.visit("/register");
     cy.findByRole("textbox", { name: /name/i }).type(newUser.name);
     cy.findByRole("textbox", { name: /email/i }).type(newUser.email);
@@ -61,13 +65,14 @@ describe("Create new user", () => {
     cy.findByRole("alert").should("contain", `User already exists`);
   });
 
-  it("User cannot be create with empty spaces", () => {
+  it("Should prevent user creation with empty spaces", () => {
     const newUser = {
       name: "   ",
       email: "   ",
       password: "   ",
     };
 
+    // Attempt to create a user with empty spaces and verify the error messages
     cy.visit("/register");
     cy.findByRole("textbox", { name: /name/i }).type(newUser.name);
     cy.findByRole("textbox", { name: /email/i }).type(newUser.email);

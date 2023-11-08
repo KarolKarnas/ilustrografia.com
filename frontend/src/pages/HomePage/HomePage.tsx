@@ -181,7 +181,7 @@ const HomePage = () => {
             <MainHeading alwaysLight>
               {`${
                 fantasyProducts && fantasyProducts[0].categories[0].name
-              } Products`}
+              }`}
             </MainHeading>
             <IconDivider>
               <FaDragon />
