@@ -6,7 +6,7 @@ after(() => {
   // cy.visit('')
 });
 
-describe("ProductPage", () => {
+describe("Product Page", () => {
   describe("All products are rendered on the ProductPage", () => {
     beforeEach(() => {
       cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);

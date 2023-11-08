@@ -1,6 +1,10 @@
 import { should } from "chai";
 
 describe("Home Page", () => {
+  before(() => {
+    // Reset the database before all tests
+    cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
+  });
   beforeEach(() => {
     // Visit the Ilustrografia website and block YouTube video requests
     cy.visit("");

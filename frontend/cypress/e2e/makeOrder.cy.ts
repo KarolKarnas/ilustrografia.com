@@ -2,11 +2,11 @@ import { users } from "../fixtures/users";
 
 const [admin, john, jane] = users;
 
-describe("ilustrografia", () => {
+describe("Ilustrografia User Order Process", () => {
   beforeEach(function () {
     cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
   });
-  it("Logged in user can make order with one product", () => {
+  it("Should allow a logged-in user to place an order with one product", () => {
     //make order
     cy.loginNoSession(john);
     cy.visit("/shop/shopping-baba");
@@ -26,7 +26,7 @@ describe("ilustrografia", () => {
     cy.get("tbody").find("tr").should("have.length", 1);
   });
 
-  it("Out of stock BTN should exist", () => {
+  it("Should display 'Out of Stock' button when a products variation is out of stock", () => {
     cy.visit("/shop");
     cy.findAllByTestId("product")
       .eq(0)
@@ -37,7 +37,7 @@ describe("ilustrografia", () => {
     cy.findByRole("button", { name: /out of stock/i }).should("exist");
   });
 
-  it("Logged in user can make order with all products, all variations", () => {
+  it("Should allow a logged-in user to place an order with all available products and variations", () => {
     const productSizesA = [
       "20x40",
       "30x40",

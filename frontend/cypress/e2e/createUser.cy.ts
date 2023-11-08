@@ -3,6 +3,7 @@ import { users } from "../fixtures/users";
 const [admin, john, jane] = users;
 
 after(() => {
+  // Reset the backend data after all tests
   cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
   // cy.visit("");
 });
