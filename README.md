@@ -36,17 +36,16 @@ For each product, there is an illustration page featuring the main image, variou
 - Node.js with Express
 - Redux for state management
 - Redux Toolkit, RTK Query
-- Postman for API testing
-- Radix UI
 - Lodash
 - Helmet
+- Radix UI
 - Tailwind CSS for styling
+- Postman for API testing
+- Supertest for Backend tests
+- React Testing Library for Frontend Integration tests 
+- Cypress for E2E tests 
 - Continuously deployed on Render.com
 
-#### In progress
-
-- Integration tests (React Testing Library)
-- E2E tests with Cypress
 
 [**Live Demo - ilustrografia.com**](https://ilustrografia.com/) 👈
 
@@ -70,13 +69,18 @@ Rename the `.env.example` file to `.env` and add the following:
 ```
 NODE_ENV = development
 PORT = 5000
-MONGO_URI = your mongodb uri
-JWT_SECRET = 'abc123'
-PAYPAL_CLIENT_ID = your paypal client id
-YOUTUBE_API = your yt API
+MONGO_URI = YOUR_MONGO_URI
+MONGO_TEST_URI = YOUR_MONGO_TEST_URI
+JWT_SECRET = ADD_YOUR_SECRET
+PAYPAL_CLIENT_ID = ADD_YOUR_PAYPAL_CLIENT
+
+<!-- can be omitted -->
+
+YOUTUBE_API=YOUR_YT_API_OR_YOU_CAN_OMIT_THIS
+CHANNEL_API=YOUR_YT_CHANNEL_API_OR_YOU_CAN_OMIT_THIS
+PLAYLIST_NEO_SLAVIC_CENSUS=YOUR_PLAYLIST_OR_YOU_CAN_OMIT_THIS
 ```
 
-Feel free to change the JWT_SECRET to a custom value.
 
 ### Install Dependencies (frontend & backend)
 
@@ -97,6 +101,29 @@ npm run dev
 # Run frontend (:3000)
 cd ../frontend
 npm start
+
+```
+### Run Tests
+
+To run the tests correctly:
+- set in your env file NODE_ENV = test
+- set in your env file MONGO_TEST_URI = you MongoDb Test URI
+
+```
+
+# Run backend tests (:5000)
+cd ../backend
+npm run data:import
+npm run dev
+npm run test
+
+# Run frontend integration tests (:3000)
+cd ../frontend
+npm run test
+
+# Run frontend e2e tests (:3000)
+cd ../frontend
+npm run cypress:open
 
 ```
 
