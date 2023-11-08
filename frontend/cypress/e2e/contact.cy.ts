@@ -1,9 +1,15 @@
-describe("ilustrografia", () => {
-  it("HomePage can be opened", () => {
-    cy.visit("http://localhost:3000/contact");
+describe("Contact Page", () => {
+  beforeEach(() => {
+    cy.visit("/contact");
+  });
+  it("Should open the ContactPage", () => {
     cy.contains("Do you have a question?");
-    
-    cy.viewport(1920, 1080)
-    cy.get('#login').click()
+  });
+  it("Should contain a valid email link", () => {
+    cy.get('a:contains("ilustrografia@gmail.com")').should(
+      "have.attr",
+      "href",
+      "mailto:ilustrografia@gmail.com",
+    );
   });
 });

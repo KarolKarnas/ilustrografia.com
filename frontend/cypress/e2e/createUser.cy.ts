@@ -8,7 +8,7 @@ after(() => {
 });
 
 describe("Create new user", () => {
-  beforeEach(function () {
+  beforeEach(() => {
     cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
   });
 
