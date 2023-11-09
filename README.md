@@ -7,6 +7,7 @@
 <img src="./frontend/public/images/github-screens/ilustrografia-fullstack-app-1.jpg" alt="screens of the ilustrografia eCommerce platform">
 
 ## Description
+
 This is a beautifully styled and responsive e-commerce platform designed for an artist who sells prints of her digital paintings. The website offers a variety of print sizes, materials, and prices. To manage this diversity, the database was carefully structured to accommodate different product variants, including size, material, stock count, prices, names, descriptions, images of the digital paintings, and visualization images for each material.
 
 To ensure a clean and user-friendly interface, Product Variants were created, allowing users to easily select the size or material they prefer while dynamically updating the price and images.
@@ -42,10 +43,9 @@ For each product, there is an illustration page featuring the main image, variou
 - Tailwind CSS for styling
 - Postman for API testing
 - Supertest for Backend tests
-- React Testing Library for Frontend Integration tests 
-- Cypress for E2E tests 
+- React Testing Library for Frontend Integration tests
+- Cypress for E2E tests
 - Continuously deployed on Render.com
-
 
 [**Live Demo - ilustrografia.com**](https://ilustrografia.com/) 👈
 
@@ -81,7 +81,6 @@ CHANNEL_API=YOUR_YT_CHANNEL_API_OR_YOU_CAN_OMIT_THIS
 PLAYLIST_NEO_SLAVIC_CENSUS=YOUR_PLAYLIST_OR_YOU_CAN_OMIT_THIS
 ```
 
-
 ### Install Dependencies (frontend & backend)
 
 ```
@@ -103,9 +102,11 @@ cd ../frontend
 npm start
 
 ```
+
 ### Run Tests
 
 To run the tests correctly:
+
 - set in your env file NODE_ENV = test
 - set in your env file MONGO_TEST_URI = you MongoDb Test URI
 
@@ -121,8 +122,12 @@ npm run test
 cd ../frontend
 npm run test
 
-# Run frontend e2e tests (:3000)
+# Run frontend e2e tests, run backend and react server before:
+cd ../backend
+npm run dev
 cd ../frontend
+npm start
+
 npm run cypress:open
 
 ```
