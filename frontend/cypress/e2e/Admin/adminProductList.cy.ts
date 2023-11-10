@@ -11,13 +11,10 @@ describe("Ilustrografia Product List Page", () => {
     // Reset the testing state and login as an admin user
     cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
     cy.loginNoSession(admin);
+    cy.visit("/admin/product-list");
   });
 
   describe("Product List Page", () => {
-    beforeEach(() => {
-      // Visit the Admin Product List page before each test
-      cy.visit("/admin/product-list");
-    });
     it('Should contain a single h1 tag with the text "Product List"', () => {
       cy.get("h1").should("have.length", 1).should("contain", "Product List");
     });
@@ -33,6 +30,16 @@ describe("Ilustrografia Product List Page", () => {
       cy.findByRole("alert").should("contain.text", "deleted successfully");
       cy.findAllByRole("table").should("have.length", 8);
     });
+    it("Should create new product", () => {
+      cy.visit("/admin/product-list");
+      cy.findByRole("button", { name: /add new product/i }).click();
+      cy.findByRole("alert").should(
+        "contain.text",
+        "Product created successfully",
+      );
+      cy.findAllByRole("table").should("have.length", 10);
+    });
+
     it("Should have the first table with 26 rows", () => {
       cy.visit("/admin/product-list");
       cy.findByTestId("basilisk-table").within(() => {

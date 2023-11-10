@@ -132,6 +132,7 @@ const UserListPage = () => {
                               <FaEdit />
                             </Link>{" "}
                             <div
+                              data-testid="delete"
                               className="cursor-pointer rounded-3xl bg-red-magic p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
                               onClick={() => handleDeleteUser(user._id)}
                             >
