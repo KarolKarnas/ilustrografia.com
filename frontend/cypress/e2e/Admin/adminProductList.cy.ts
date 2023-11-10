@@ -1,12 +1,12 @@
-import { users } from "../fixtures/users";
+import { users } from "../../fixtures/users";
 
 const [admin, john, jane] = users;
 
-// after(() => {
-//   cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
-// });
+after(() => {
+  cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
+});
 
-describe("Ilustrografia Admin Pages", () => {
+describe("Ilustrografia Product List Page", () => {
   beforeEach(() => {
     // Reset the testing state and login as an admin user
     cy.request("POST", `${Cypress.env("BACKEND")}/testing/reset`);
@@ -55,33 +55,6 @@ describe("Ilustrografia Admin Pages", () => {
           cy.findAllByTestId("edit").should("exist");
         });
       });
-    });
-  });
-  describe("Edit Product Page", () => {
-    beforeEach(() => {
-      // Visit the Product Edit page before each test
-      cy.visit("/admin/product-list/shopping-baba/edit");
-    });
-    it('Should contain a single h1 tag with the text "Product List"', () => {
-      cy.get("h1").should("have.length", 1).should("contain", "Update Product");
-    });
-    it("general", () => {
-      cy.findAllByRole("textbox").should("have.length", 37);
-      cy.findAllByRole("textbox", { name: /name/i }).should("have.length", 2);
-      cy.get('input[name="ytLink"]').should("exist");
-      cy.get('input[name="name"]').should("exist");
-    });
-    it.only("edit name", () => {
-      const newName = "Lichodla";
-      //change name
-      cy.get('input[name="name"]').as("nameInput").clear();
-      cy.get("@nameInput").type(newName);
-      cy.get('button:contains("Save Changes")').click();
-      //verify changes on the illustration page and product page
-      cy.visit(`/shop/${newName.toLowerCase()}`);
-      cy.contains("Lichodla Art Print 20x40");
-      cy.contains("Shopping Baba Art Print 20x40").should("not.exist");
-      cy.contains("button", /add to cart/i).click();
     });
   });
 });

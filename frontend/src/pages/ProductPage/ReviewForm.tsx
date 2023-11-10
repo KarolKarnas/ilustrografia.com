@@ -29,7 +29,6 @@ const ReviewForm = ({
       //   }
       //   return handleSubmitReview(e);
       // }}
-    
     >
       <Form.Field className="flex flex-col" name="review rating">
         <div className="flex items-baseline justify-between">
@@ -46,9 +45,12 @@ const ReviewForm = ({
             Please provide a valid Rating
           </Form.Message>
         </div>
-        <Form.Control asChild>
-          <SelectNumber selectNumber={5} onChange={setReviewRating} defaultValue="5"/>
-        </Form.Control>
+
+        <SelectNumber
+          selectNumber={5}
+          onChange={setReviewRating}
+          defaultValue="5"
+        />
       </Form.Field>
       <Form.Field className="flex flex-col" name="comment">
         <div className="flex items-baseline justify-between">
@@ -76,7 +78,7 @@ const ReviewForm = ({
         </Form.Control>
       </Form.Field>
       <Form.Submit asChild>
-      <ButtonSubmit>add review</ButtonSubmit>
+        <ButtonSubmit>add review</ButtonSubmit>
       </Form.Submit>
     </Form.Root>
   );

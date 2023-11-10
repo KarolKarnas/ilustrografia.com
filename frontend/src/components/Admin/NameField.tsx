@@ -22,7 +22,7 @@ const NameField = ({ updateError, name, setName, setSlug }: Props) => {
         <Form.Message className="text-md text-red-magic" match="valueMissing">
           Please enter your name
         </Form.Message>
-        {updateError && (
+        {/* {updateError && (
           <Form.Message
             className="form-message"
             match="typeMismatch"
@@ -30,7 +30,7 @@ const NameField = ({ updateError, name, setName, setSlug }: Props) => {
           >
             {getError(updateError as ApiError)}
           </Form.Message>
-        )}
+        )} */}
 
         {name !== "" ? (
           <Form.Message

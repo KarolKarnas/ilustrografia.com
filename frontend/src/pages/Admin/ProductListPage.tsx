@@ -46,7 +46,7 @@ const ProductListPage = () => {
     if (window.confirm(`Are you sure you want to delete ${slug}?`)) {
       try {
         const res = await deleteProduct(slug);
-        console.log(res);
+        // console.log(res);
         refetch();
         toast.success(`Product ${slug} deleted successfully`);
       } catch (error) {
@@ -108,7 +108,10 @@ const ProductListPage = () => {
             {products &&
               products.map((product: Product, index) => (
                 <div key={index} className=" overflow-x-auto  shadow-hero">
-                  <table data-testid={`${product.slug}-table`} className=" min-w-full  border text-center text-sm font-light text-black-magic dark:border-neutral-700 dark:text-ivory  ">
+                  <table
+                    data-testid={`${product.slug}-table`}
+                    className=" min-w-full  border text-center text-sm font-light text-black-magic dark:border-neutral-700 dark:text-ivory  "
+                  >
                     <thead className="border-b font-montserrat font-semibold dark:border-neutral-700 ">
                       <tr>
                         <td
@@ -117,13 +120,15 @@ const ProductListPage = () => {
                         >
                           <div className="xl:gap:0 flex items-end gap-3 text-xl lg:text-2xl  ">
                             <span className="flex gap-3">
-                              <Link data-testid="edit"
+                              <Link
+                                data-testid="edit"
                                 to={`/admin/product-list/${product.slug}/edit`}
                                 className="cursor-pointer rounded-3xl bg-red-magic p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
                               >
                                 <FaEdit />
                               </Link>{" "}
-                              <div data-testid="delete"
+                              <div
+                                data-testid="delete"
                                 className="cursor-pointer rounded-3xl bg-red-magic p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
                                 onClick={() =>
                                   handleDeleteProduct(product.slug)

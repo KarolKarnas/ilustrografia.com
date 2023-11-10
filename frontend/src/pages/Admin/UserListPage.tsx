@@ -17,7 +17,7 @@ import Meta from "../../components/Meta";
 
 const UserListPage = () => {
   const { data: users, isLoading, error, refetch } = useGetUsersQuery();
-  console.log(users);
+  // console.log(users);
 
   const [deleteUser] = useDeleteUserMutation();
 

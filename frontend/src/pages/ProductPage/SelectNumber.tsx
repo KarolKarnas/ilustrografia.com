@@ -5,7 +5,7 @@ import { FaChevronDown, FaCheck } from "react-icons/fa6";
 type Props = {
   selectNumber: number;
   onChange: (value: React.SetStateAction<number>) => void;
-  defaultValue: string
+  defaultValue: string;
 };
 
 const SelectNumber = ({ selectNumber, onChange, defaultValue }: Props) => {
@@ -24,7 +24,7 @@ const SelectNumber = ({ selectNumber, onChange, defaultValue }: Props) => {
 
       <Select.Portal>
         <Select.Content className="">
-          <Select.Viewport className=" w-20 border border-red-magic/50 bg-white text-black-magic shadow-lg dark:bg-black-magic rounded-md">
+          <Select.Viewport className=" w-20 rounded-md border border-red-magic/50 bg-white text-black-magic shadow-lg dark:bg-black-magic">
             <Select.Group>
               {Array.from({ length: selectNumber }, (_, index) => (
                 <Select.Item

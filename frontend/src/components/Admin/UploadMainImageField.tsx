@@ -22,7 +22,7 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
       formData.append("image", e.target.files[0]);
       try {
         const res = await uploadProductImage(formData).unwrap();
-        console.log(res);
+        // console.log(res);
         toast.success(res.message);
         setImages([res.image]);
       } catch (error) {
@@ -35,9 +35,7 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
     <>
       <Form.Field className="flex flex-col" name="mainImageUrl">
         <div className="flex items-baseline justify-between">
-          <Form.Label className=" form-label">
-            Main Image URL
-          </Form.Label>
+          <Form.Label className=" form-label">Main Image URL</Form.Label>
           <Form.Message className="form-message" match="valueMissing">
             Please enter Main Image URL
           </Form.Message>
@@ -63,9 +61,7 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
 
       <Form.Field className="flex flex-col" name="uploadMainImage">
         <div className="flex items-baseline justify-between">
-          <Form.Label className=" form-label">
-            Add Product Image
-          </Form.Label>
+          <Form.Label className=" form-label">Add Product Image</Form.Label>
           <Form.Message className="form-message" match="valueMissing">
             Please enter Product Image
           </Form.Message>
@@ -75,7 +71,7 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
         </div>
         <Form.Control asChild>
           <input
-            className="py-3 rounded-md bg-white px-4 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5 "
+            className="rounded-md bg-white px-4 py-3 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5 "
             type="file"
             // required
             // placeholder='Enter Number of Reviews'

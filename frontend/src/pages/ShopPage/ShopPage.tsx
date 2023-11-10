@@ -41,7 +41,7 @@ const ShopPage = () => {
       const category = searchParams.get("category");
       if (category) {
         filterProducts(category);
-        console.log(category);
+        // console.log(category);
       }
     }
   }, [isLoading]);
@@ -51,9 +51,12 @@ const ShopPage = () => {
   ) : error ? (
     <div>{getError(error as ApiError)}</div>
   ) : (
-  <>      <Meta title="Shop · Ilustrografia · Illustration · Digital Painting · Fantasy · Legends" />      <div className="flex flex-col md:flex-row w-full px-2 lg:px-24 lg:min-h-[650px]">
-        <div className="w-full md:w-3/12 lg:w-2/12 p-2 md:p-0 ">
-{/* FILTERS */}
+    <>
+      {" "}
+      <Meta title="Shop · Ilustrografia · Illustration · Digital Painting · Fantasy · Legends" />{" "}
+      <div className="flex w-full flex-col px-2 md:flex-row lg:min-h-[650px] lg:px-24">
+        <div className="w-full p-2 md:w-3/12 md:p-0 lg:w-2/12 ">
+          {/* FILTERS */}
 
           <div className="mb-5 md:sticky md:top-8">
             <h3 className="mb-4 font-fondamento text-lg font-semibold dark:text-ivory ">
@@ -67,7 +70,7 @@ const ShopPage = () => {
               <div className="flex items-center">
                 {" "}
                 <RadioGroup.Item
-               className={`h-5 w-5 rounded-full bg-ivory border border-red-magic`}
+                  className={`h-5 w-5 rounded-full border border-red-magic bg-ivory`}
                   value={""}
                   id="r-all"
                   onClick={() => filterProducts("all")}
@@ -89,7 +92,7 @@ const ShopPage = () => {
                 <div key={index} className="flex items-center">
                   {" "}
                   <RadioGroup.Item
-                    className={`h-5 w-5 rounded-full bg-ivory border border-red-magic`}
+                    className={`h-5 w-5 rounded-full border border-red-magic bg-ivory`}
                     value={category.slug}
                     id={`r${index}`}
                     checked={searchParams.get("category") === category.slug}
@@ -106,8 +109,8 @@ const ShopPage = () => {
                 </div>
               ))}
             </RadioGroup.Root>
-                    </div>
           </div>
+        </div>
 
         {/* PRODUCTS */}
         <div className="w-full md:w-9/12 lg:w-10/12">
@@ -118,7 +121,7 @@ const ShopPage = () => {
           />
         </div>
       </div>
-
-</>  );
+    </>
+  );
 };
 export default ShopPage;

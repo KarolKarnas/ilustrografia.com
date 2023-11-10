@@ -61,7 +61,7 @@ const ProductEditScreen = () => {
   const [options, setOptions] = useState<ProductOptions>(productOptionsInitial);
   const [statistics, setStatistics] = useState<string[]>([]);
   const [variations, setVariations] = useState<VariationOptionalId[]>([]);
-  const [reviews, setReviews] = useState<ReviewUser[] | undefined>([])
+  const [reviews, setReviews] = useState<ReviewUser[] | undefined>([]);
 
   if (!productSlug) {
     return <div>No slug provided</div>;
@@ -73,7 +73,7 @@ const ProductEditScreen = () => {
     error,
   } = useGetProductDetailsQuery(productSlug);
 
-  console.log(product);
+  // console.log(product);
 
   const [updateProduct, { isLoading: loadingUpdate, error: updateError }] =
     useUpdateProductMutation();
@@ -92,7 +92,7 @@ const ProductEditScreen = () => {
         setOptions(product.options);
         setVariations(product.variations);
         setStatistics(product.statistics);
-        setReviews(product.reviews)
+        setReviews(product.reviews);
       }
     }
   }, [product]);
@@ -122,13 +122,13 @@ const ProductEditScreen = () => {
         variations,
         _id,
         statistics,
-        reviews
+        reviews,
       }).unwrap();
-      toast.success("product updated successfully");
+      toast.success(`The ${name.trim()} product updated successfully`);
       refetch();
       navigate(`/admin/product-list/${slug}/edit`);
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       toast.error(getError(error as ApiError));
     }
   };
@@ -203,7 +203,6 @@ const ProductEditScreen = () => {
 
           {/* col 2 */}
           <div className="w-full  dark:text-ivory md:w-2/3 lg:w-9/12">
-            
             <div
               className="mb-12 flex
      h-48 w-full flex-col items-center justify-center rounded-3xl bg-angel-dust shadow-hero dark:bg-angel-dark-dust"
@@ -239,7 +238,10 @@ const ProductEditScreen = () => {
                         />
                       </div>
                       {/* <InputTextField /> */}
-                      <DetailsFields setDetails={setDetails} details={details} />
+                      <DetailsFields
+                        setDetails={setDetails}
+                        details={details}
+                      />
                       <div className="flex flex-col gap-5 rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8 ">
                         <RatingField rating={rating} setRating={setRating} />
                         <NumberReviewsField
@@ -298,12 +300,9 @@ const ProductEditScreen = () => {
                   </div>
                 </div>
 
-
                 <div className="w-full">
-                <ReviewList reviews={reviews} setReviews={setReviews} />
+                  <ReviewList reviews={reviews} setReviews={setReviews} />
                 </div>
-
-
               </div>
             ) : (
               <div>No product found</div>

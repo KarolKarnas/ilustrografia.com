@@ -26,7 +26,7 @@ type Props = {
   hideVariations?: boolean;
 };
 
-const ProductPage = ({
+const ProductVariations = ({
   product,
   variationNum,
   material,
@@ -199,23 +199,22 @@ const ProductPage = ({
         toast.success(<ToastLink product={variationName} />);
         // navigate('/cart');
       }
-      
     } catch (err) {
       toast.warning(getError(err as ApiError));
     }
-   
   };
 
   return !variation ? null : (
     <div
       className="flex flex-col items-center justify-center rounded-xl bg-ivory shadow-small-hero transition-transform duration-500 dark:bg-fair-space md:hover:translate-y-[-1rem] md:hover:scale-110"
-       data-testid="product" role="product"
+      data-testid="product"
+      role="product"
     >
       <div
         className={`${hideVariations ? "hidden" : "relative  h-full w-full"} `}
       >
         <div className="absolute top-5 flex w-full flex-col items-center justify-center">
-          <h1 className=" font-cormorant-infant text-xl font-semibold italic drop-shadow-md">
+          <h3 className=" font-cormorant-infant text-xl font-semibold italic drop-shadow-md">
             {product.name}{" "}
             <span className="text-sm">
               {
@@ -229,7 +228,7 @@ const ProductPage = ({
                 ].title
               }
             </span>
-          </h1>
+          </h3>
           {/* RATING */}
           {/* <Rating
               rating={product.rating.rating}
@@ -311,7 +310,7 @@ const ProductPage = ({
           </div>
 
           <button
-          data-testid="addToCartBtn"
+            data-testid="addToCartBtn"
             onClick={addToCartHandler}
             className={`${
               variation?.countInStock === 0
@@ -328,4 +327,4 @@ const ProductPage = ({
   );
 };
 
-export default ProductPage;
+export default ProductVariations;
