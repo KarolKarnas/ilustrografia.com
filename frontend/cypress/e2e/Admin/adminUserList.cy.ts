@@ -35,7 +35,7 @@ describe("Ilustrografia User List Page", () => {
       });
     });
 
-    it.only("Should have admin user as first ", () => {
+    it("Should have admin user as first ", () => {
       cy.get("tbody")
         .find("tr")
         .eq(0)
@@ -49,6 +49,10 @@ describe("Ilustrografia User List Page", () => {
       cy.get("@tableBody").within(() => {
         cy.get("tr").eq(1).findByTestId("delete").click();
       });
+      cy.findByRole("alert").should(
+        "contain.text",
+        "User deleted successfully",
+      );
       cy.get("@tableBody").within(() => {
         cy.get("tr").should("have.length", 2);
       });

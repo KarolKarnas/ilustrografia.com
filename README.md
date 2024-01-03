@@ -90,6 +90,33 @@ cd ../backend
 npm install
 ```
 
+### Seed Database
+
+In the backend you can use the following commands to seed the database with some sample users and products as well as destroy all data
+
+```
+cd backend
+
+# Import data
+npm run data:import
+
+# Destroy data
+npm run data:destroy
+```
+
+```
+Sample User Logins
+
+admin@email.com (Admin)
+123456
+
+john@email.com (Customer)
+123456
+
+jane@email.com (Customer)
+123456
+```
+
 ### Run
 
 ```
@@ -138,33 +165,6 @@ npm run cypress:open
 # Create frontend prod build
 cd frontend
 npm run build
-```
-
-### Seed Database
-
-In the backend you can use the following commands to seed the database with some sample users and products as well as destroy all data
-
-```
-cd backend
-
-# Import data
-npm run data:import
-
-# Destroy data
-npm run data:destroy
-```
-
-```
-Sample User Logins
-
-admin@email.com (Admin)
-123456
-
-john@email.com (Customer)
-123456
-
-jane@email.com (Customer)
-123456
 ```
 
 ---

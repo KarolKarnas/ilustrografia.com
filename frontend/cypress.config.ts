@@ -5,6 +5,7 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    experimentalRunAllSpecs: true,
     viewportHeight: 1080,
     viewportWidth: 1920,
     // defaultCommandTimeout: 100000,
@@ -12,6 +13,6 @@ export default defineConfig({
     baseUrl: "http://localhost:3000",
   },
   env: {
-    BACKEND: 'http://localhost:5000/api'
-  }
+    BACKEND: "http://localhost:5000/api",
+  },
 });
