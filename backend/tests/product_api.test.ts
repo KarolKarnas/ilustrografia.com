@@ -8,7 +8,6 @@ import { products } from '../data/products';
 import users from '../data/users';
 import { ProductUser } from '../types/Product';
 import { password } from '../data/users';
-// import { UserId } from '../types/User';
 
 const api = supertest(app);
 

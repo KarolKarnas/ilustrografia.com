@@ -3,7 +3,6 @@ import ProductModel from '../models/productModel';
 import { RequestUser } from '../types/User';
 import {
 	checkHaveUser,
-	// checkHaveUserReview,
 	toCheckedProduct,
 	toCheckedReview,
 } from '../utils/typeUtils';
@@ -43,26 +42,11 @@ const getProductsByCategory = asyncHandler(async (req, res) => {
 	}
 });
 
-//not used
-// const getVariantBySlugAndSku = asyncHandler(async (req, res) => {
-// 	const product = await ProductModel.findOne(
-// 		{ slug: req.params.slug, 'variations.SKU': req.params.sku },
-// 		{ 'variations.$': 1 }
-// 	);
-// 	if (product) {
-// 		res.json(product);
-// 	} else {
-// 		res.status(404).json({ message: 'Product Not Found' });
-// 	}
-// });
-
 // @desc    Create a product
 // @route   POST /api/products
 // @access  Private/Admin
-
 const createProduct = asyncHandler(async (req, res) => {
 	const reqWithUser: RequestUser = checkHaveUser(req);
-
 	const slug = uuidv4();
 	const productSlug = `sample-slug-${slug}`;
 
@@ -192,7 +176,6 @@ const createProduct = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
 	const typedProduct = toCheckedProduct(req.body);
-
 	const {
 		details,
 		name,
@@ -218,22 +201,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 		}
 	}
 
-	// console.log(req.params.slug);
-
-	// if (slug !== req.params.slug) {
-	// 	const slugs = await ProductModel.find({ slug });
-	// 	if (slugs.length !== 0) {
-	// 		res.status(400);
-	// 		throw new Error(
-	// 			`Product with the slug ${slug} already exists, provide unique slug`
-	// 		);
-	// 	}
-	// }
-
 	const product = await ProductModel.findOne({ slug: req.params.slug });
-
-	// console.log(product);
-
 	if (product) {
 		product.details= details,
 		product.name = name;
@@ -248,7 +216,6 @@ const updateProduct = asyncHandler(async (req, res) => {
 		product.reviews = reviews;
 
 		const updatedProduct = await product.save();
-		// console.log(updatedProduct);
 		res.json(updatedProduct);
 	} else {
 		res.status(404);
@@ -259,7 +226,6 @@ const updateProduct = asyncHandler(async (req, res) => {
 // @desc    Delete product
 // @route   PUT /api/products/:id
 // @access  Private/Admin
-
 const deleteProduct = asyncHandler(async (req, res) => {
 	const product = await ProductModel.findOne({
 		slug: req.params.slug,
@@ -278,22 +244,12 @@ const deleteProduct = asyncHandler(async (req, res) => {
 // @access  Private
 const createProductReview = asyncHandler(async (req, res) => {
 	const reqUser = checkHaveUser(req);
-	// console.log(reqUser.user);
 	const typedBody = toCheckedReview(req.body);
 	const { rating, comment } = typedBody;
 
 	const product = await ProductModel.findOne({ slug: req.params.slug });
 
 	if (product) {
-		// const alreadyReviewed = product.reviews?.find(
-		// 	(r) => r.user.toString() === reqUser.user._id.toString()
-		// );
-
-		// if (alreadyReviewed) {
-		// 	res.status(400);
-		// 	throw new Error('Product already reviewed');
-		// }
-
 		const review = {
 			user: reqUser.user._id,
 			name: reqUser.user.name,

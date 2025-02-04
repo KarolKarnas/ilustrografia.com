@@ -58,7 +58,6 @@ const productSchema = new mongoose.Schema<ProductUser>(
 		options: {
 			material: {
 				optionName: String,
-				// Define material sub-options
 				'art-print': {
 					title: String,
 					images: [String],
@@ -78,7 +77,6 @@ const productSchema = new mongoose.Schema<ProductUser>(
 			},
 			size: {
 				optionName: String,
-				// Define size sub-options
 				s20x30: {
 					title: String,
 					images: [String],

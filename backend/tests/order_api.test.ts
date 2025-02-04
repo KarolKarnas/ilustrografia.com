@@ -6,12 +6,9 @@ import Order from '../models/orderModel';
 import User from '../models/userModel';
 import { products } from '../data/products';
 import users from '../data/users';
-// import { ProductUser } from '../types/Product';
 import { password } from '../data/users';
-// import { OrderData } from '../types/Order';
 import { VariationCart } from '../types/Product';
 import { OrderData } from '../types/Order';
-// import { UserId } from '../types/User';
 
 const api = supertest(app);
 

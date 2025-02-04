@@ -1,16 +1,6 @@
 import mongoose from 'mongoose';
 import { VariationCart } from './Product';
 
-//add sku
-// interface OrderItems {
-// 	name: string;
-// 	qty: number;
-// 	image: string;
-// 	sku: string;
-// 	price: number;
-// 	product: mongoose.Types.ObjectId;
-// }
-
 export interface ShippingAddress {
 	address: string;
 	city: string;
@@ -36,8 +26,7 @@ export interface Order {
 	shippingPrice: number;
 	totalPrice: number;
 	isPaid: boolean;
-	// add ? question marks
-	paidAt?: number; // not Date
+	paidAt?: number;
 	isDelivered: boolean;
 	deliveredAt?: number;
 }

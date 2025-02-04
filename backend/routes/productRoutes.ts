@@ -3,7 +3,6 @@ import {
 	getProducts,
 	getProductBySlug,
 	getProductsByCategory,
-	// getVariantBySlugAndSku,
 	createProduct,
 	updateProduct,
 	deleteProduct,
@@ -19,7 +18,6 @@ router
 	.get(getProductBySlug)
 	.put(protect, admin, updateProduct)
 	.delete(protect, admin, deleteProduct);
-// router.route('/:slug/:sku').get(getVariantBySlugAndSku);
 router.route('/categories/:category').get(getProductsByCategory);
 router.route('/:slug/reviews').post(protect, createProductReview);
 
