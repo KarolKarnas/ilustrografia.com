@@ -22,7 +22,6 @@ import PageHeading from "../../components/primitives/PageHeading";
 import IconDivider from "../../components/primitives/IconDivider";
 import { FaListUl } from "react-icons/fa";
 import MainStrongText from "../../components/primitives/MainStrongText";
-import Button from "../../components/Button";
 import Meta from "../../components/Meta";
 
 const OrderDetailsPage = () => {
@@ -94,6 +93,7 @@ const OrderDetailsPage = () => {
         .create({
           purchase_units: [
             {
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               amount: { value: order!.totalPrice.toString() },
             },
           ],
@@ -103,6 +103,7 @@ const OrderDetailsPage = () => {
         });
     },
     onApprove(data, actions) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       return actions.order!.capture().then(async function (details) {
         try {
           await payOrder({ orderId, details });

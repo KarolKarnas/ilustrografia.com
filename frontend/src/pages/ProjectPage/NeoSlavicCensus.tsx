@@ -1,5 +1,4 @@
 import { FaDragon } from "react-icons/fa6";
-import Button from "../../components/Button";
 import ImageMouseMoving from "../../components/ImageMouseMoving";
 import IconDivider from "../../components/primitives/IconDivider";
 import MainHeading from "../../components/primitives/MainHeading";

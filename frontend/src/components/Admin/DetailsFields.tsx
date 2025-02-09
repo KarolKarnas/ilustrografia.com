@@ -1,6 +1,5 @@
 import { Details } from "../../types/Product";
 import * as Form from "@radix-ui/react-form";
-import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import InputTextField from "./InputTextField";
 

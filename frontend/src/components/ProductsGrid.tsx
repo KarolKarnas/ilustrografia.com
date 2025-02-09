@@ -23,7 +23,6 @@ const ProductsGrid = ({
   isLoading,
   error,
   colNum,
-  aspectRatio,
   hideVariations
 }: Props) => {
   return (

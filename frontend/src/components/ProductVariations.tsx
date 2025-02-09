@@ -8,13 +8,9 @@ import {
 } from "../types/Product";
 import { Variation } from "../types/Product";
 import { addToCart } from "../slices/cartSlice";
-
 import { toast } from "react-toastify";
 import ToastLink from "../components/ToastLink";
-
-import Rating from "../components/Rating";
 import { Link } from "react-router-dom";
-import Spinner from "./Spinner";
 import { getError } from "../utils/utils";
 import { ApiError } from "../types/ApiError";
 
@@ -28,18 +24,14 @@ type Props = {
 
 const ProductVariations = ({
   product,
-  variationNum,
   material,
   size,
   hideVariations,
 }: Props) => {
   const dispatch = useAppDispatch();
   const [url, setUrl] = useState<string>(`/shop/${product.slug}`);
-
-  const [qty, setQty] = useState(1);
+  const qty = 1;
   const [variation, setVariation] = useState<Variation>();
-
-  // console.log(variation);
 
   const getVariation = (material: string, size: string) => {
     return _.find(product?.variations, { options: { material, size } });
@@ -53,13 +45,7 @@ const ProductVariations = ({
 
   useEffect(() => {
     if (product) {
-      // if (variationNum) {
-      //   setVariation(product.variations[variationNum]);
-      // } else {
-
-      // }
       if (material && size) {
-        // console.log(material, size);
         const currentVariation = getVariation(material, size);
         setVariation(currentVariation);
       } else {
@@ -186,6 +172,7 @@ const ProductVariations = ({
         dispatch(
           addToCart({
             ...variation,
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             _id: variation._id!,
             qty,
             image:
@@ -229,11 +216,6 @@ const ProductVariations = ({
               }
             </span>
           </h3>
-          {/* RATING */}
-          {/* <Rating
-              rating={product.rating.rating}
-              numReviews={product.rating.numReviews}
-            /> */}
         </div>
       </div>
 

@@ -12,8 +12,7 @@ type Props = {
 };
 
 const UploadArtPrintField = ({ options, setOptions }: Props) => {
-  const [uploadProductImage, { isLoading: loadingUpload }] =
-    useUploadProductImageMutation();
+  const [uploadProductImage] = useUploadProductImageMutation();
 
   const uploadArtPrintFileHandler = async (
     e: ChangeEvent<HTMLInputElement>,
@@ -48,9 +47,7 @@ const UploadArtPrintField = ({ options, setOptions }: Props) => {
     <>
       <Form.Field className="flex flex-col" name="artPrintImageUrl">
         <div className="flex items-baseline justify-between">
-          <Form.Label className=" form-label">
-            Art Print Image URL
-          </Form.Label>
+          <Form.Label className=" form-label">Art Print Image URL</Form.Label>
           <Form.Message className="form-message" match="valueMissing">
             Art Print Please enter Image URL
           </Form.Message>
@@ -97,11 +94,8 @@ const UploadArtPrintField = ({ options, setOptions }: Props) => {
         </div>
         <Form.Control asChild>
           <input
-            className="py-3 rounded-md bg-white px-4 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5 "
+            className="rounded-md bg-white px-4 py-3 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5 "
             type="file"
-            // required
-            // placeholder='Enter Number of Reviews'
-            // value={rating?.numReviews}
             onChange={uploadArtPrintFileHandler}
           />
         </Form.Control>

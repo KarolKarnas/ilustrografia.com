@@ -26,7 +26,7 @@ const RegistrationPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [register, { isLoading }] = useRegisterMutation();
+  const [register] = useRegisterMutation();
 
   const { userInfo } = useAppSelector((state) => state.auth);
 

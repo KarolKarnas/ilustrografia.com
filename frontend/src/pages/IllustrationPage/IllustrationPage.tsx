@@ -32,14 +32,11 @@ const IllustrationPage = () => {
   const {
     data: product,
     isLoading,
-    refetch,
     error,
   } = useGetProductDetailsQuery(slug);
 
   const {
     data: categoryProducts,
-    isLoading: isLoadingCategory,
-    error: errorCategory,
   } = useGetProductsByCategoryQuery(`${product?.categories[0].slug}`);
 
   if (!product) {
@@ -49,10 +46,6 @@ const IllustrationPage = () => {
   const materialValues: string[] = _.uniq(
     _.map(product?.variations, "options.material"),
   );
-
-  // const sizeValues: string[] = _.uniq(
-  //   _.map(product?.variations, "options.size"),
-  // );
 
   const getSizesForMaterialFromProduct = (
     product: Product,

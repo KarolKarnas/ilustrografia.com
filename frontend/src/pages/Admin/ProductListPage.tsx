@@ -38,15 +38,10 @@ const ProductListPage = () => {
     }
   };
 
-  // const createVariationHandler = async (slug: string) => {
-  // 	await console.log(slug);
-  // };
-
   const handleDeleteProduct = async (slug: string) => {
     if (window.confirm(`Are you sure you want to delete ${slug}?`)) {
       try {
-        const res = await deleteProduct(slug);
-        // console.log(res);
+        await deleteProduct(slug);
         refetch();
         toast.success(`Product ${slug} deleted successfully`);
       } catch (error) {

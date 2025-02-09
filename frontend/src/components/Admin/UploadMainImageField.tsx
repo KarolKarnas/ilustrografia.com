@@ -4,14 +4,13 @@ import { useUploadProductImageMutation } from "../../slices/productsApiSlice";
 import { toast } from "react-toastify";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
-// import InputTextField from './InputTextField';
 
 type Props = {
   images: string[];
   setImages: React.Dispatch<React.SetStateAction<string[]>>;
 };
 const UploadMainImageField = ({ images, setImages }: Props) => {
-  const [uploadProductImage, { isLoading: loadingUpload }] =
+  const [uploadProductImage] =
     useUploadProductImageMutation();
 
   const uploadFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +21,6 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
       formData.append("image", e.target.files[0]);
       try {
         const res = await uploadProductImage(formData).unwrap();
-        // console.log(res);
         toast.success(res.message);
         setImages([res.image]);
       } catch (error) {
@@ -54,7 +52,6 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
             placeholder="Enter Main image url"
             value={images[0]}
             onChange={(e) => setImages([e.target.value])}
-            // onChange={(e) => setNewStatistic(e.target.value)}
           />
         </Form.Control>
       </Form.Field>
@@ -73,9 +70,6 @@ const UploadMainImageField = ({ images, setImages }: Props) => {
           <input
             className="rounded-md bg-white px-4 py-3 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5 "
             type="file"
-            // required
-            // placeholder='Enter Number of Reviews'
-            // value={rating?.numReviews}
             onChange={uploadFileHandler}
           />
         </Form.Control>

@@ -1,16 +1,10 @@
-import Spinner from "./Spinner";
-import { getError } from "../utils/utils";
-import { ApiError } from "../types/ApiError";
 import { Product } from "../types/Product";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
-import { SerializedError } from "@reduxjs/toolkit";
 import ProductVariations from "./ProductVariations";
 
 type Props = {
   product: Product,
   materialValues?: string[];
   sizesByMaterial?: { [key: string]: string[] };
-
   colNum?: number;
   aspectRatio?: string;
   hideVariations?: boolean;
@@ -21,7 +15,6 @@ const ProductGrid = ({
   materialValues,
   sizesByMaterial,
   colNum,
-  aspectRatio,
   hideVariations
 }: Props) => {
   return (

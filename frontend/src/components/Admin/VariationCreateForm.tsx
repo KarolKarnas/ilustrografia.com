@@ -1,9 +1,7 @@
 import * as Form from "@radix-ui/react-form";
-import * as Select from "@radix-ui/react-select";
 import { SyntheticEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { Product, VariationOptionalId } from "../../types/Product";
-import { FaChevronDown } from "react-icons/fa";
 import SelectString from "./SelectString";
 
 type Props = {
@@ -14,7 +12,6 @@ type Props = {
 };
 
 const VariationCreateForm = ({ variations, setVariations, slug, product }: Props) => {
-  // variation
   const [optionsMaterial, setOptionsMaterial] = useState("");
   const [optionsSize, setOptionsSize] = useState("");
 

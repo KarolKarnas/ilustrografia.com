@@ -1,14 +1,13 @@
 import { products } from "../../utils/products";
 import { setupServer } from "msw/node";
 import { rest } from "msw";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { MemoryRouter} from "react-router-dom";
 import { Provider } from "react-redux";
 
 import { render, screen, waitFor } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import store from "../../slices/store";
 import ProductListPage from "./ProductListPage";
-import userEvent from "@testing-library/user-event";
 
 const handlers = [
   rest.get("/api/products", (req, res, ctx) => {

@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../slices/reduxHooks";
 import { SyntheticEvent, useEffect, useState } from "react";
-import { useParams, useNavigate, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
@@ -31,19 +31,16 @@ import ReviewForm from "./ReviewForm";
 const ProductPage = () => {
   const [reviewRating, setReviewRating] = useState(5);
   const [reviewComment, setReviewComment] = useState("");
-  // const [userInfo, setUserInfo] = useState<UserInfo>()
   const params = useParams();
   const slug = params.slug;
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const [qty, setQty] = useState(1);
   const [variation, setVariation] = useState<Variation>();
 
-  // console.log(variation);
   if (!slug) {
     return <div>No slug provided</div>;
   }
@@ -54,10 +51,7 @@ const ProductPage = () => {
     error,
   } = useGetProductDetailsQuery(slug);
 
-  // console.log(product?.reviews);
-
-  const [createProductReview, { isLoading: loadingProductReview }] =
-    useCreateProductReviewMutation();
+  const [createProductReview] = useCreateProductReviewMutation();
 
   const { userInfo } = useAppSelector((state) => state.auth);
 
@@ -218,6 +212,7 @@ const ProductPage = () => {
         dispatch(
           addToCart({
             ...variation,
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             _id: variation._id!,
             qty,
             image:
