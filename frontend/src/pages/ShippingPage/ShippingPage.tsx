@@ -7,10 +7,9 @@ import CheckoutSteps from "../../components/CheckoutSteps";
 import PageHeading from "../../components/primitives/PageHeading";
 import ButtonSubmit from "../../components/primitives/ButtonSubmit";
 import InputTextField from "../../components/Admin/InputTextField";
-import ImageMouseMoving from "../../components/ImageMouseMoving";
 import HeadingAccent from "../../components/primitives/HeadingAccent";
 import IconDivider from "../../components/primitives/IconDivider";
-import { FaBasketShopping, FaCar, FaHouse } from "react-icons/fa6";
+import { FaHouse } from "react-icons/fa6";
 import Meta from "../../components/Meta";
 
 const ShippingPage = () => {

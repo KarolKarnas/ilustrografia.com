@@ -24,8 +24,6 @@ const PlaceOrderPage = () => {
 
   const {
     data: products,
-    isLoading: isLoadingSlavic,
-    error: errorSlavic,
   } = useGetProductsByCategoryQuery("neo-slavic-census");
 
   const [createOrder, { isLoading, error }] = useCreateOrderMutation();
