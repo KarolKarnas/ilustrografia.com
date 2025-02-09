@@ -26,7 +26,6 @@ const OrderListPage = () => {
             alt=""
             className="hidden h-full w-full rounded-3xl  object-none dark:invert-90 sm:block"
           />
-
           <div className="absolute flex flex-col items-center justify-center">
             <HeadingAccent>· Admin ·</HeadingAccent>
             <PageHeading>Order List</PageHeading>

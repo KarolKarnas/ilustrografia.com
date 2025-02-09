@@ -18,7 +18,6 @@ import {
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 import { toast } from "react-toastify";
-
 import TagsForm from "../../components/Admin/TagsForm";
 import CategoriesForm from "../../components/Admin/CategoriesForm";
 import {
@@ -36,7 +35,6 @@ import UploadCanvasField from "../../components/Admin/UploadCanvasField";
 import UploadPosterField from "../../components/Admin/UploadPosterField";
 import UploadPremiumField from "../../components/Admin/UploadPremiumField";
 import DetailsFields from "../../components/Admin/DetailsFields";
-
 import HeadingAccent from "../../components/primitives/HeadingAccent";
 import PageHeading from "../../components/primitives/PageHeading";
 import IconDivider from "../../components/primitives/IconDivider";
@@ -49,7 +47,6 @@ import ReviewList from "../../components/Admin/ReviewList";
 const ProductEditScreen = () => {
   const { slug: productSlug } = useParams();
   const navigate = useNavigate();
-
   const [_id, set_Id] = useState("");
   const [details, setDetails] = useState<Details>({ story: "" });
   const [name, setName] = useState("");
@@ -72,9 +69,6 @@ const ProductEditScreen = () => {
     refetch,
     error,
   } = useGetProductDetailsQuery(productSlug);
-
-  // console.log(product);
-
   const [updateProduct, { isLoading: loadingUpdate, error: updateError }] =
     useUpdateProductMutation();
 
@@ -128,7 +122,6 @@ const ProductEditScreen = () => {
       refetch();
       navigate(`/admin/product-list/${slug}/edit`);
     } catch (error) {
-      // console.log(error)
       toast.error(getError(error as ApiError));
     }
   };
@@ -136,7 +129,6 @@ const ProductEditScreen = () => {
   return (
     <>
       <Meta title="Admin · Update Product · Ilustrografia · Illustration · Digital Painting · Fantasy · Legends" />
-
       <div className="flex w-11/12 flex-col gap-16">
         <div className="flex w-full flex-col justify-center sm:gap-10  md:flex-row xl:gap-20">
           {isLoading || loadingUpdate ? (
@@ -144,7 +136,6 @@ const ProductEditScreen = () => {
               <Spinner />
             </div>
           ) : (
-            /* col 1 */
             <div className=" mb-8 flex  h-full w-full flex-col gap-5 md:sticky md:top-8 md:mb-0 md:w-1/2 lg:w-3/12">
               <img className="" src={product?.images[0]} alt={product?.slug} />
               <div className="flex w-1/4 ">
@@ -191,7 +182,6 @@ const ProductEditScreen = () => {
                 <Link to={`/shop/${product?.slug}`}>
                   <button
                     className={`
-                              
                             h-8 w-full border border-black-magic bg-black-magic   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:border-red-magic hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs`}
                   >
                     Check Product
@@ -200,8 +190,6 @@ const ProductEditScreen = () => {
               </div>
             </div>
           )}
-
-          {/* col 2 */}
           <div className="w-full  dark:text-ivory md:w-2/3 lg:w-9/12">
             <div
               className="mb-12 flex
@@ -213,7 +201,6 @@ const ProductEditScreen = () => {
                 <FaDragon className="text-xl md:text-2xl" />
               </IconDivider>
             </div>
-
             {isLoading || loadingUpdate ? (
               <div className="flex justify-center">
                 <Spinner />
@@ -222,7 +209,6 @@ const ProductEditScreen = () => {
               <Message variant="bad" message={getError(error as ApiError)} />
             ) : product ? (
               <div className="flex w-full flex-col justify-center  gap-10 ">
-                {/* col 2.1 */}
                 <div className="flex  w-full flex-col justify-center  gap-10 xl:flex-row">
                   <div className="flex w-full flex-col gap-10 xl:w-1/2">
                     <Form.Root
@@ -237,7 +223,6 @@ const ProductEditScreen = () => {
                           setSlug={setSlug}
                         />
                       </div>
-                      {/* <InputTextField /> */}
                       <DetailsFields
                         setDetails={setDetails}
                         details={details}
@@ -280,7 +265,6 @@ const ProductEditScreen = () => {
                       setStatistics={setStatistics}
                     />
                   </div>
-                  {/* col 2.2 */}
                   <div className="flex w-full flex-col gap-10 xl:w-1/2">
                     <VariationsList
                       variations={variations}
