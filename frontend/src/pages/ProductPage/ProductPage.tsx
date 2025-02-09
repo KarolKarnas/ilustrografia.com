@@ -33,11 +33,9 @@ const ProductPage = () => {
   const [reviewComment, setReviewComment] = useState("");
   const params = useParams();
   const slug = params.slug;
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useAppDispatch();
-
   const [qty, setQty] = useState(1);
   const [variation, setVariation] = useState<Variation>();
 
@@ -64,7 +62,6 @@ const ProductPage = () => {
       const material = searchParams.get("material");
       const size = searchParams.get("size");
       if (material && size) {
-        // console.log(material, size);
         const currentVariation = getVariation(material, size);
         setVariation(currentVariation);
       } else {
@@ -83,26 +80,12 @@ const ProductPage = () => {
     }
   }, [variation, product]);
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (error) {
-  //   <div>{getError(error as ApiError)}</div>;
-  // }
-
   if (!product) {
     return <Spinner />;
   }
 
-  // console.log(product);
-  // console.log(variation);
-  // console.log(qty);
-
   const materialValues = _.uniq(_.map(product.variations, "options.material"));
-
   const sizeValues = _.uniq(_.map(product.variations, "options.size"));
-
   const getSizesForMaterialFromProduct = (
     product: Product,
     material: string,
@@ -137,7 +120,6 @@ const ProductPage = () => {
   const materialTitle = materialValues.map(
     (name) => product.options.material[name as MaterialOptionNoNameKeys].title,
   );
-  //TITLE_TO_NAME_MATERIAL
   const titleToNameMaterial: { [key: string]: string } = {};
 
   materialTitle.forEach(
@@ -147,15 +129,11 @@ const ProductPage = () => {
   const sizeTitle = sizeValues.map(
     (name) => product.options.size[name as SizeOptionNoNameKeys].title,
   );
-
-  //TITLE_TO_NAME_SIZE
   const titleToNameSize: { [key: string]: string } = {};
 
   sizeTitle.forEach(
     (title, index) => (titleToNameSize[title] = sizeValues[index]),
   );
-
-  // console.log(titleToNameSize)
 
   const handleChangeSize = (e: SyntheticEvent) => {
     const targetSize = e.currentTarget.textContent;
@@ -175,14 +153,11 @@ const ProductPage = () => {
     const targetMaterial = e.currentTarget.textContent;
     if (targetMaterial) {
       const shortMaterialName = titleToNameMaterial[targetMaterial];
-      // if same size exist
-
       if (variation) {
         const theSame = getVariation(
           shortMaterialName,
           variation?.options.size,
         );
-
         if (theSame) {
           setVariation(theSame);
         } else {
@@ -227,8 +202,6 @@ const ProductPage = () => {
       } catch (err) {
         toast.warning(getError(err as ApiError));
       }
-
-      // navigate('/cart');
     }
   };
 
@@ -297,14 +270,11 @@ const ProductPage = () => {
                 }
               </span>
             </h1>
-            {/* RATING */}
-
             <Rating
               rating={product.rating.rating}
               numReviews={product.rating.numReviews}
             />
             <div className="mt-3 flex flex-col gap-1">
-              {/* SIZES */}
               <h3 className="font-montserrat text-xs font-bold uppercase dark:text-ivory">
                 Sizes:
               </h3>
@@ -328,9 +298,6 @@ const ProductPage = () => {
                   ),
                 )}
               </div>
-              {/* <hr className=" mx-auto my-3 h-px"></hr> */}
-
-              {/* Materials */}
               <h3 className="font-montserrat text-xs font-bold uppercase dark:text-ivory">
                 Materials:
               </h3>
@@ -367,9 +334,7 @@ const ProductPage = () => {
                 </strong>
               </div>
             </div>
-
             <hr className=" mx-auto my-3 h-px"></hr>
-
             <div className="flex h-10 items-center gap-5">
               <div data-testid="qty-select">
                 <SelectNumber
@@ -378,7 +343,6 @@ const ProductPage = () => {
                   defaultValue="1"
                 />
               </div>
-
               <button
                 data-testid="add-cart-btn"
                 onClick={addToCartHandler}
@@ -392,7 +356,6 @@ const ProductPage = () => {
                 {variation.countInStock > 0 ? "Add to Cart" : "Out Of Stock"}
               </button>
             </div>
-
             <div className="my-5 w-full md:hidden md:w-4/12 ">
               <img
                 className="shadow-hero "
@@ -405,7 +368,6 @@ const ProductPage = () => {
                 alt={`${product.slug}-${variation.options.material}`}
               />
             </div>
-
             <div className="mb-3 mt-5 flex flex-col font-montserrat text-black-magic dark:text-ivory">
               <h4 className=" mb-2 text-sm font-semibold">
                 By buying {product.name} on the wall, you gain:{" "}
@@ -426,16 +388,13 @@ const ProductPage = () => {
                 </button>
               </Link>
             </div>
-
             <hr className=" mx-auto my-5 h-px "></hr>
-
             <div className="font-montserrat text-sm text-black-magic dark:text-ivory">
               <VariationDescription
                 variationMaterial={variation.options.material}
               />{" "}
             </div>
             <hr className=" mx-auto my-5 h-px"></hr>
-
             <div className=" font-montserrat text-black-magic dark:text-ivory">
               <h4 className=" mb-2 text-sm font-semibold">
                 {
@@ -449,9 +408,7 @@ const ProductPage = () => {
                 variationMaterial={variation.options.material}
               />
             </div>
-
             <hr className=" mx-auto my-5 h-px"></hr>
-
             <div className="font-montserrat text-sm text-black-magic dark:text-ivory">
               <h3 className="font-semibold">Reviews:</h3>
               {product.reviews && product.reviews.length > 0 ? (

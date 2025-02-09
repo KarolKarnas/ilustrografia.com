@@ -15,16 +15,16 @@ const neoslavicProducts = products.filter(
 );
 
 const handlers = [
-  rest.get("/api/products/basilisk", (req, res, ctx) => {
+  rest.get("/api/products/basilisk", (_req, res, ctx) => {
     return res(ctx.json(basilisk));
   }),
-  rest.get("/api/products", (req, res, ctx) => {
+  rest.get("/api/products", (_req, res, ctx) => {
     return res(ctx.json(products));
   }),
-  rest.get("/api/products/categories/undefined", (req, res, ctx) => {
+  rest.get("/api/products/categories/undefined", (_req, res, ctx) => {
     return res(ctx.json(null));
   }),
-  rest.get("/api/products/categories/neo-slavic-census", (req, res, ctx) => {
+  rest.get("/api/products/categories/neo-slavic-census", (_req, res, ctx) => {
     return res(ctx.json(neoslavicProducts));
   }),
 ];

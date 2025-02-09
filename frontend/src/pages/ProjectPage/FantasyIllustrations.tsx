@@ -5,10 +5,8 @@ import IconDivider from "../../components/primitives/IconDivider";
 import MainHeading from "../../components/primitives/MainHeading";
 import MainStrongText from "../../components/primitives/MainStrongText";
 import { useGetProductsByCategoryQuery } from "../../slices/productsApiSlice";
-
 import SectionMain from "../../components/SectionMain";
 import MainTitlesWrapper from "../../components/MainTitlesWrapper";
-
 import ProductsGrid from "../../components/ProductsGrid";
 import IllustrationsGrid from "../../components/IllustrationsGrid";
 import Meta from "../../components/Meta";
@@ -67,14 +65,6 @@ const FantasyIllustrations = () => {
               alt=""
             />
             <div className="z-10 mb-8 mt-12 flex w-10/12 flex-col items-center justify-center md:w-1/3">
-              {/* <div className="my-8 flex flex-col items-center gap-4 md:flex-row md:gap-8">
-              <Button text={"shop"} color={"red"} link={"/shop"} />
-              <Button
-                text={"illustrations"}
-                color={"white"}
-                link={"/illustrations"}
-              />
-            </div> */}
               <p className="flex flex-col items-center justify-center gap-5  text-center  font-cormorant-infant text-xl font-semibold italic text-eerie-black drop-shadow-lg dark:text-ivory">
                 <span>
                   Welcome to the world of fantasy illustrations, where limitless
@@ -100,10 +90,6 @@ const FantasyIllustrations = () => {
 
         <div className="my-6 flex w-full flex-col items-center justify-center font-light md:my-16 md:w-7/12 xl:w-6/12">
           <MainHeading>Fantasy Illustrations</MainHeading>
-          {/* <MainStrongText>
-          {" "}
-          How many millennia have these Slavic lands borne!
-        </MainStrongText> */}
           <div className="py-4">
             <IconDivider>
               <FaDragon />
@@ -131,13 +117,7 @@ const FantasyIllustrations = () => {
               link={"/illustrations"}
             />
           </div>
-          {/* <img
-          className=" my-8 rounded-full shadow-hero md:my-16  md:w-auto"
-          src="/images/neo-slavic-census-about/neo-slavic-census-book.jpg"
-          alt=""
-        /> */}
         </div>
-
         <div className="z-10 flex flex-col items-center justify-center gap-[5rem] md:gap-[8rem]">
           <SectionMain>
             <MainTitlesWrapper>
@@ -152,7 +132,6 @@ const FantasyIllustrations = () => {
               aspectRatio="4/5"
             />
           </SectionMain>
-
           <SectionMain color="second">
             <MainTitlesWrapper>
               <MainStrongText>Fantasy Illustration Products:</MainStrongText>

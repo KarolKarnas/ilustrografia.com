@@ -21,7 +21,6 @@ const SelectNumber = ({ selectNumber, onChange, defaultValue }: Props) => {
           <FaChevronDown />
         </Select.Icon>
       </Select.Trigger>
-
       <Select.Portal>
         <Select.Content className="">
           <Select.Viewport className=" w-20 rounded-md border border-red-magic/50 bg-white text-black-magic shadow-lg dark:bg-black-magic">

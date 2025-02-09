@@ -12,9 +12,7 @@ import Message from "../../components/Message";
 const Filter = () => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [active, setActive] = useState<string>("all");
-
   const { data: products, isLoading, error } = useGetProductsQuery();
-
   const allCategories = _.flatMap(products, (product) => product.categories);
   const uniqueCategories = _.uniqBy(allCategories, "slug");
 
@@ -45,7 +43,6 @@ const Filter = () => {
     <Message variant="bad" message={getError(error as ApiError)} />
   ) : (
     <div className="flex w-full flex-col items-center justify-center gap-10 px-2 md:px-24">
-      {/* BUTTONS */}
       <div className="flex  flex-wrap gap-1 md:gap-5">
         <button
           onClick={handleClick}
@@ -58,7 +55,6 @@ const Filter = () => {
         >
           All
         </button>
-
         {uniqueCategories.map((category, index) => {
           const value = category.slug;
           return (
@@ -77,8 +73,6 @@ const Filter = () => {
           );
         })}
       </div>
-      {/* IMAGES */}
-
       <IllustrationsGrid products={filteredProducts} colNum={3} />
     </div>
   );

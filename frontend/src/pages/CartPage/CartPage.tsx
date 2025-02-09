@@ -17,7 +17,6 @@ const CartPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { cartItems } = useAppSelector((state) => state.cart);
-
   const totalItems = cartItems.reduce((acc, variant) => acc + variant.qty, 0);
   const totalPrice = cartItems
     .reduce((acc, variant) => acc + variant.qty * variant.price, 0)
@@ -28,11 +27,9 @@ const CartPage = () => {
     isLoading,
     error,
   } = useGetProductsByCategoryQuery("neo-slavic-census");
-
   const checkoutHandler = () => {
     navigate("/login?redirect=/shipping");
   };
-
   const addToCartHandler = async (variation: VariationCart, qty: number) => {
     dispatch(addToCart({ ...variation, qty }));
   };
@@ -61,16 +58,12 @@ const CartPage = () => {
             </IconDivider>
           </div>
         </div>
-
-        {/* <PageHeading>Shopping Cart</PageHeading> */}
-
         {cartItems.length === 0 ? (
           <div className="flex w-full flex-col items-center justify-center gap-2">
             <MainStrongText>Your cart is empty</MainStrongText>
             <Link to="/">
               <Button text="Go back to Shop" link="/shop" color="red"></Button>
             </Link>
-
             <div className="mt-4 flex w-full flex-col items-center gap-4">
               <MainStrongText>Or get one of those:</MainStrongText>
               <ProductsGrid
@@ -95,9 +88,8 @@ const CartPage = () => {
                 <div className="basis-2/12 text-center sm:text-left">Qty</div>
                 <div className="basis-2/12 ">Total</div>
               </div>
-              {/* <hr className=" mx-auto my-3 h-px"></hr> */}
               {cartItems.map((variation, index) => (
-                <div key={variation._id} data-testid='cart-product'>
+                <div key={variation._id} data-testid="cart-product">
                   <div className="mb-4 flex items-center justify-between dark:text-ivory">
                     <FaTrash
                       onClick={() => removeFromCartHandler(variation._id)}
@@ -133,7 +125,6 @@ const CartPage = () => {
                   ) : null}
                 </div>
               ))}
-
               <div className="mt-20 flex w-full flex-col items-center gap-4">
                 <MainStrongText>Clients also liked:</MainStrongText>
                 <ProductsGrid
@@ -145,7 +136,6 @@ const CartPage = () => {
                 />
               </div>
             </div>
-
             <div className="fixed bottom-0 z-10 flex w-screen flex-col bg-white px-4 pb-4 pt-1 shadow-hero dark:bg-angel-dark-dust md:sticky md:top-8 md:h-full md:w-3/12 md:rounded-lg md:p-8">
               <div className="">
                 <h2 className=" text-center font-cormorant-infant  font-semibold italic text-eerie-black drop-shadow-red-heading  dark:text-ivory dark:drop-shadow-xl md:mb-8 md:mt-0 md:text-4xl">
@@ -157,21 +147,21 @@ const CartPage = () => {
                     <span className="mr-2 text-2xs uppercase  md:text-xs">
                       Total quantity:
                     </span>
-                    <span className="font-light" >
+                    <span className="font-light">
                       {totalItems} {totalItems === 1 ? "pc" : "pcs"}
                     </span>
                   </p>
                   <hr className=" mx-auto my-0.5 h-px opacity-10 md:my-3 md:opacity-100"></hr>
-
                   <p className="flex items-center justify-between">
-                    <span className="mr-2 text-2xs uppercase   md:text-xs" >
+                    <span className="mr-2 text-2xs uppercase   md:text-xs">
                       Total price:
                     </span>
-                    <span className=" text-lg" data-testid='cart-total-price'>${totalPrice}</span>
+                    <span className=" text-lg" data-testid="cart-total-price">
+                      ${totalPrice}
+                    </span>
                   </p>
                   <hr className=" mx-auto my-0.5 h-px opacity-10 md:my-3 md:opacity-100"></hr>
                 </div>
-
                 <button
                   disabled={cartItems.length === 0}
                   onClick={checkoutHandler}
@@ -186,7 +176,6 @@ const CartPage = () => {
                     : "Proceed to Checkout"}
                 </button>
               </div>
-
               {cartItems.length >= 2 ? (
                 <div className="  mx-auto">
                   <img

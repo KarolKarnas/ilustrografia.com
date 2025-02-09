@@ -2,7 +2,6 @@ import * as Form from "@radix-ui/react-form";
 import { SyntheticEvent, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../slices/reduxHooks";
-
 import { useRegisterMutation } from "../../slices/usersApiSlice";
 import { setCredentials } from "../../slices/authSlice";
 import { toast } from "react-toastify";
@@ -22,14 +21,10 @@ const RegistrationPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
   const [register] = useRegisterMutation();
-
   const { userInfo } = useAppSelector((state) => state.auth);
-
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
   const redirect = sp.get("redirect") || "/";
@@ -68,7 +63,6 @@ const RegistrationPage = () => {
             alt=""
             className="hidden h-full w-full rounded-3xl  object-none dark:invert-90 sm:block"
           />
-
           <div className="absolute flex flex-col items-center justify-center">
             <HeadingAccent>· Ilustrografia ·</HeadingAccent>
             <PageHeading>Register</PageHeading>
@@ -77,7 +71,6 @@ const RegistrationPage = () => {
             </IconDivider>
           </div>
         </div>
-
         <MainStrongText>Register New Profile</MainStrongText>
         <Form.Root
           onSubmit={(e) => handleSubmit(e)}
@@ -117,9 +110,7 @@ const RegistrationPage = () => {
           <Form.Submit asChild>
             <ButtonSubmit>Register</ButtonSubmit>
           </Form.Submit>
-          {/* {isLoading && <div>Loading...</div>} */}
         </Form.Root>
-
         <p className="mt-5 font-montserrat text-sm font-semibold text-black-magic  dark:text-ivory">
           Already register?{" "}
           <Link

@@ -61,7 +61,6 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-
         <div className="flex">
           <div className="hidden w-1/4 md:flex md:items-center md:justify-center">
             <ImageMouseMoving src={"/images/addons/magic.png"} />
@@ -132,15 +131,12 @@ const HomePage = () => {
             isLoading={isLoadingNeoSlavic}
             error={errorNeoSlavic}
           />
-
           <IconDivider>
             <FaPaintbrush />
           </IconDivider>
-
           <MainStrongText
             alwaysLight
           >{`Explore our Neo-Slavic prints today:`}</MainStrongText>
-
           <ProductsGrid
             products={neoSlavicProducts}
             hideVariations={false}
@@ -148,7 +144,6 @@ const HomePage = () => {
             error={errorNeoSlavic}
           />
         </SectionMain>
-
         <div className="mt-5 flex md:my-16">
           <div className="hidden w-1/4 md:flex md:items-center md:justify-center">
             <ImageMouseMoving src={"/images/addons/quotation-mark-1.png"} />
@@ -157,7 +152,6 @@ const HomePage = () => {
             <p className=" my-2  mb-4 text-center font-cormorant-infant  font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-3xl ">
               {`  It is important that we have some secret, some mysteries, some personal and unrecognizable element in our lives. If anyone has not experienced that, he really hasn't experienced anything essential. For me, the world has always been infinite and ungraspable from the very beginning`}
             </p>
-
             <strong className="text-center font-cormorant-infant text-xl font-light italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
               Carl Gustav Jung
             </strong>

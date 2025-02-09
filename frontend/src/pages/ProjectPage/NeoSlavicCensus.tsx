@@ -40,7 +40,6 @@ const NeoSlavicCensus = () => {
               reverse={true}
             />
           </div>
-
           <div className="fixed  -right-[22rem] top-[5rem] -z-10 hidden w-1/2 md:flex md:items-center md:justify-center ">
             <ImageMouseMoving
               src={"/images/neo-slavic-census-about/book-translucent.png"}
@@ -55,7 +54,6 @@ const NeoSlavicCensus = () => {
               reverse={true}
             />
           </div>
-
           <div className="absolute top-8 flex items-center justify-center md:top-16 ">
             <h1 className="my-2 whitespace-nowrap text-center font-cormorant-infant text-6xl font-semibold italic text-white drop-shadow-2xl md:text-9xl">
               Neo-slavic
@@ -66,8 +64,6 @@ const NeoSlavicCensus = () => {
               Census
             </h2>
           </div>
-
-          {/* Gradient Background */}
           <div className="-z-20 flex  h-full flex-col items-center justify-start bg-slavic-gradient dark:bg-black-slavic-gradient">
             <img
               className=" mt-16 w-11/12 rounded-full  shadow-hero md:w-[724px]"
@@ -75,18 +71,6 @@ const NeoSlavicCensus = () => {
               alt=""
             />
             <div className="z-10 mb-8 mt-12 flex w-10/12 flex-col items-center justify-center md:w-1/3">
-              {/* <div className="my-8 flex flex-col items-center gap-4 md:flex-row md:gap-8">
-              <Button
-                text={"shop"}
-                color={"red"}
-                link={"/shop?category=neo-slavic-census"}
-              />
-              <Button
-                text={"illustrations"}
-                color={"white"}
-                link={"/illustrations"}
-              />
-            </div> */}
               <p className="flex flex-col items-center justify-center gap-4  text-center  font-cormorant-infant text-xl font-semibold italic text-eerie-black drop-shadow-lg dark:text-ivory">
                 <span>
                   The stoic Carpathian mountains stand in silence, their
@@ -105,7 +89,6 @@ const NeoSlavicCensus = () => {
             </div>
           </div>
         </section>
-
         <div className="my-6 flex w-full flex-col items-center justify-center font-light md:my-16 md:w-7/12 xl:w-6/12">
           <MainHeading>Slava!</MainHeading>
           <MainStrongText>
@@ -235,7 +218,6 @@ const NeoSlavicCensus = () => {
               aspectRatio="4/5"
             />
           </SectionMain>
-
           <SectionMain color="second">
             <MainTitlesWrapper>
               <MainStrongText>Neo-slavic Products:</MainStrongText>
@@ -247,7 +229,6 @@ const NeoSlavicCensus = () => {
               error={errorNeoSlavic}
             />
           </SectionMain>
-
           <SectionMain>
             <MainTitlesWrapper>
               <MainStrongText>Neo-slavic Animations:</MainStrongText>
@@ -258,7 +239,6 @@ const NeoSlavicCensus = () => {
               <Message
                 variant="bad"
                 message={getError(ytSearchError as ApiError)}
-                // message={ytSearchError.data.message}
               />
             ) : (
               ytSearch && <LatestVideos youtubeItems={ytSearch.items} />

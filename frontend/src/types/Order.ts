@@ -1,30 +1,7 @@
-// import mongoose from 'mongoose';
+
 import { ShippingAddress, VariationCart } from './Product';
-import { UserOrder, UserInfoOptions } from './User';
+import { UserInfoOptions } from './User';
 
-//add sku
-// interface OrderItems {
-// 	name: string;
-// 	qty: number;
-// 	image: string;
-// 	sku: string;
-// 	price: number;
-// 	product: mongoose.Types.ObjectId;
-// }
-
-// export interface ShippingAddress {
-// 	address: string;
-// 	city: string;
-// 	postalCode: string;
-// 	country: string;
-// }
-
-interface PaymentResult {
-	id: string;
-	status: string;
-	update_time: string;
-	email_address: string;
-}
 
 export interface Order {
 	createdAt: string;
@@ -41,8 +18,6 @@ export interface Order {
 	user: UserInfoOptions;
 	__v: number;
 	_id: string;
-	// add ? question marks
-	// paymentResult?: PaymentResult;
 	paidAt?: string;
 	deliveredAt?: string;
 }

@@ -14,15 +14,10 @@ const ShopPage = () => {
   const [productsFiltered, setProductsFiltered] = useState<Product[] | null>(
     null,
   );
-
   const [searchParams, setSearchParams] = useSearchParams();
-
   const { data: products, isLoading, error } = useGetProductsQuery();
-
   const allCategories = _.flatMap(products, (product) => product.categories);
-
   const uniqueCategories = _.uniqBy(allCategories, "slug");
-
   const filterProducts = (slug: string) => {
     if (products && slug === "all") {
       setProductsFiltered(products);
@@ -41,7 +36,6 @@ const ShopPage = () => {
       const category = searchParams.get("category");
       if (category) {
         filterProducts(category);
-        // console.log(category);
       }
     }
   }, [isLoading]);
@@ -56,8 +50,6 @@ const ShopPage = () => {
       <Meta title="Shop · Ilustrografia · Illustration · Digital Painting · Fantasy · Legends" />{" "}
       <div className="flex w-full flex-col px-2 md:flex-row lg:min-h-[650px] lg:px-24">
         <div className="w-full p-2 md:w-3/12 md:p-0 lg:w-2/12 ">
-          {/* FILTERS */}
-
           <div className="mb-5 md:sticky md:top-8">
             <h3 className="mb-4 font-fondamento text-lg font-semibold dark:text-ivory ">
               Categories
@@ -111,8 +103,6 @@ const ShopPage = () => {
             </RadioGroup.Root>
           </div>
         </div>
-
-        {/* PRODUCTS */}
         <div className="w-full md:w-9/12 lg:w-10/12">
           <ProductsGrid
             products={productsFiltered || products}

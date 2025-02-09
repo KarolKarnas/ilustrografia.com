@@ -1,6 +1,5 @@
 import { NEO_SLAVIC_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
-
 import { SearchListResponse } from "../types/Yt";
 
 export const ytApiSlice = apiSlice.injectEndpoints({

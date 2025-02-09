@@ -8,11 +8,8 @@ import Spinner from "../../components/Spinner";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 import YouTubeEmbed from "../../components/YouTubeEmbed";
-
 import { Product } from "../../types/Product";
-
 import ProductGrid from "../../components/ProductGrid";
-
 import SectionMain from "../../components/SectionMain";
 import IllustrationsGrid from "../../components/IllustrationsGrid";
 import MainTitlesWrapper from "../../components/MainTitlesWrapper";
@@ -171,16 +168,6 @@ const IllustrationPage = () => {
         <SectionMain color="second">
           <MainStrongText>Creatures similar to {product.name}:</MainStrongText>
           <IllustrationsGrid products={categoryProducts} />
-
-          {/* <Button
-          text={`About ${
-            categoryProducts && categoryProducts[0]?.categories[0]?.name
-          }`}
-          color={"black"}
-          link={`/projects/${
-            categoryProducts && categoryProducts[0]?.categories[0]?.slug
-          }`}
-        /> */}
         </SectionMain>
       </div>
     </>

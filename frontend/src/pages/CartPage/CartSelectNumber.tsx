@@ -3,7 +3,7 @@ import React from "react";
 import { FaChevronDown, FaCheck } from "react-icons/fa6";
 import { VariationCart } from "../../types/Product";
 
-type Props = {
+type SelectNumberProps = {
   selectNumber: number;
   onChange: (variation: VariationCart, qty: number) => Promise<void>;
   variation: VariationCart;
@@ -15,20 +15,19 @@ const SelectNumber = ({
   onChange,
   variation,
   defaultValue,
-}: Props) => {
+}: SelectNumberProps) => {
   return (
     <Select.Root
       defaultValue={defaultValue}
       disabled={selectNumber <= 0}
       onValueChange={(value) => onChange(variation, Number(value))}
     >
-      <Select.Trigger className="inline-flex h-7 md:h-10 items-center  justify-center gap-[5px] rounded-md bg-white px-2 md:px-4 text-2xs md:text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5">
+      <Select.Trigger className="inline-flex h-7 items-center justify-center  gap-[5px] rounded-md bg-white px-2 text-2xs leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5 md:h-10 md:px-4 md:text-[13px]">
         <Select.Value placeholder="Select Rating" />
         <Select.Icon>
           <FaChevronDown />
         </Select.Icon>
       </Select.Trigger>
-
       <Select.Portal>
         <Select.Content className="">
           <Select.Viewport className=" w-20 rounded-md border border-red-magic/50 bg-white text-black-magic shadow-lg dark:bg-black-magic">

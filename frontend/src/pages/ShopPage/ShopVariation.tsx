@@ -1,12 +1,12 @@
 import { TitleImages, Variation } from "../../types/Product";
 
-interface Props {
+interface ShopVariationProps {
   variation: Variation;
   images: string[];
   variationImage: TitleImages;
 }
 
-const ShopVariation = ({ variation, variationImage }: Props) => {
+const ShopVariation = ({ variation, variationImage }: ShopVariationProps) => {
   return (
     <>
       {" "}

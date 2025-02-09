@@ -1,4 +1,3 @@
-// import { useAppSelector } from '../../slices/reduxHooks';
 import {
   PayPalButtons,
   PayPalButtonsComponentProps,
@@ -26,11 +25,9 @@ import Meta from "../../components/Meta";
 
 const OrderDetailsPage = () => {
   const { id: orderId } = useParams();
-
   if (!orderId) {
     return <div>No orderId provided</div>;
   }
-
   const {
     data: order,
     refetch,

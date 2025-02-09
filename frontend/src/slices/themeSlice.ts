@@ -34,5 +34,4 @@ const authSlice = createSlice({
 });
 
 export const { setTheme } = authSlice.actions;
-
 export default authSlice.reducer;
