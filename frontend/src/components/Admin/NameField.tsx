@@ -3,14 +3,14 @@ import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 import _ from "lodash";
 
-type Props = {
+type NameFieldProps = {
   updateError: FetchBaseQueryError | SerializedError | undefined;
   name: string;
   setName: React.Dispatch<React.SetStateAction<string>>;
   setSlug: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const NameField = ({ name, setName, setSlug }: Props) => {
+const NameField = ({ name, setName, setSlug }: NameFieldProps) => {
   return (
     <Form.Field className="flex flex-col" name="name">
       <div className="flex items-baseline justify-between">

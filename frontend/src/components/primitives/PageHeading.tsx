@@ -1,18 +1,18 @@
 import { ReactNode } from "react";
 
-type Props = {
+type PageHeadingProps = {
   children: ReactNode;
   alwaysLight?: boolean;
 };
 
-const PageHeading = ({ children, alwaysLight }: Props) => {
+const PageHeading = ({ children, alwaysLight }: PageHeadingProps) => {
   return (
     <h1
       className={` ${
         alwaysLight
           ? "text-ivory drop-shadow-xl"
           : "text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl"
-      } text-center font-cormorant-infant  text-5xl font-semibold italic mb-2 `}
+      } mb-2 text-center  font-cormorant-infant text-5xl font-semibold italic `}
     >
       {children}
     </h1>

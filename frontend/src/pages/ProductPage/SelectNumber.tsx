@@ -2,13 +2,17 @@ import * as Select from "@radix-ui/react-select";
 import React from "react";
 import { FaChevronDown, FaCheck } from "react-icons/fa6";
 
-type Props = {
+type SelectNumberProps = {
   selectNumber: number;
   onChange: (value: React.SetStateAction<number>) => void;
   defaultValue: string;
 };
 
-const SelectNumber = ({ selectNumber, onChange, defaultValue }: Props) => {
+const SelectNumber = ({
+  selectNumber,
+  onChange,
+  defaultValue,
+}: SelectNumberProps) => {
   return (
     <Select.Root
       defaultValue={defaultValue}

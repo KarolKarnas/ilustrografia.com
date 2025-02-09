@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 
-type Props = {
+type IconDividerProps = {
   children: ReactNode;
 };
 
-const IconDivider = ({ children }: Props) => {
+const IconDivider = ({ children }: IconDividerProps) => {
   return (
     <div className="flex items-center py-3">
       <div className="my-auto h-px w-24 self-stretch bg-gradient-to-tr from-transparent via-red-magic to-transparent opacity-80 dark:opacity-100 sm:w-64"></div>

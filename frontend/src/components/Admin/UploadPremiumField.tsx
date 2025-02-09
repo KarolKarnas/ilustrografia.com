@@ -6,14 +6,16 @@ import { toast } from "react-toastify";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 
-type Props = {
+type UploadPremiumFieldProps = {
   options: ProductOptions;
   setOptions: React.Dispatch<React.SetStateAction<ProductOptions>>;
 };
 
-const UploadPremiumField = ({ options, setOptions }: Props) => {
-  const [uploadProductImage] =
-    useUploadProductImageMutation();
+const UploadPremiumField = ({
+  options,
+  setOptions,
+}: UploadPremiumFieldProps) => {
+  const [uploadProductImage] = useUploadProductImageMutation();
 
   const uploadPremiumFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files === null) {
@@ -94,7 +96,7 @@ const UploadPremiumField = ({ options, setOptions }: Props) => {
         </div>
         <Form.Control asChild>
           <input
-            className="py-3 rounded-md bg-white px-4 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5 "
+            className="rounded-md bg-white px-4 py-3 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5 "
             type="file"
             onChange={uploadPremiumFileHandler}
           />

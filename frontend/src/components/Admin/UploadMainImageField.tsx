@@ -5,11 +5,11 @@ import { toast } from "react-toastify";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 
-type Props = {
+type UploadMainImageFieldProps = {
   images: string[];
   setImages: React.Dispatch<React.SetStateAction<string[]>>;
 };
-const UploadMainImageField = ({ images, setImages }: Props) => {
+const UploadMainImageField = ({ images, setImages }: UploadMainImageFieldProps) => {
   const [uploadProductImage] =
     useUploadProductImageMutation();
 

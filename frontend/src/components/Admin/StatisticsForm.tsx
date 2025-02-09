@@ -5,29 +5,32 @@ import { toast } from "react-toastify";
 import InputTextField from "./InputTextField";
 import _ from "lodash";
 
-type Props = {
+type StatisticsFormProps = {
   statistics: string[];
   setStatistics: React.Dispatch<React.SetStateAction<string[]>>;
 };
-const StatisticsForm = ({ statistics, setStatistics }: Props) => {
+const StatisticsForm = ({ statistics, setStatistics }: StatisticsFormProps) => {
   const [newStatistic, setNewStatistic] = useState("");
-  // Statistic
   const handleSubmitStatistic = (e: SyntheticEvent) => {
     e.preventDefault();
     if (newStatistic.trim() === "") {
       setNewStatistic("");
       return toast.error("Just empty spaces here...");
     }
-
-    if (_.find(statistics, function(statistic)  {return statistic === newStatistic})) {
+    if (
+      _.find(statistics, function (statistic) {
+        return statistic === newStatistic;
+      })
+    ) {
       setNewStatistic("");
       return toast.error(`We already have '${newStatistic}' in Statistics`);
-
     }
 
     setStatistics([...statistics, newStatistic]);
-    setNewStatistic("")
-    return toast.success("Statistic added successfully, remember to save changes");
+    setNewStatistic("");
+    return toast.success(
+      "Statistic added successfully, remember to save changes",
+    );
   };
 
   const handleDeleteStatistic = (index: number) => {
@@ -35,7 +38,7 @@ const StatisticsForm = ({ statistics, setStatistics }: Props) => {
     setStatistics(updatedStatistics);
   };
   return (
-    <div className="rounded-xl bg-angel-dust p-4 md:p-8 shadow-xl dark:bg-angel-space">
+    <div className="rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8">
       <div className="flex flex-col">
         <h4 className=" mb-2 font-montserrat text-base font-semibold text-black-magic dark:text-ivory">
           Statistics list

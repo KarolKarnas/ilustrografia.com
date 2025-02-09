@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { getError } from "../utils/utils";
 import { ApiError } from "../types/ApiError";
 
-type Props = {
+type ProductVariationsProps = {
   product: Product;
   variationNum?: number;
   material?: string;
@@ -27,7 +27,7 @@ const ProductVariations = ({
   material,
   size,
   hideVariations,
-}: Props) => {
+}: ProductVariationsProps) => {
   const dispatch = useAppDispatch();
   const [url, setUrl] = useState<string>(`/shop/${product.slug}`);
   const qty = 1;
@@ -99,7 +99,6 @@ const ProductVariations = ({
   const materialTitle = materialValues.map(
     (name) => product.options.material[name as MaterialOptionNoNameKeys].title,
   );
-  //TITLE_TO_NAME_MATERIAL
   const titleToNameMaterial: { [key: string]: string } = {};
 
   materialTitle.forEach(
@@ -110,7 +109,6 @@ const ProductVariations = ({
     (name) => product.options.size[name as SizeOptionNoNameKeys].title,
   );
 
-  //TITLE_TO_NAME_SIZE
   const titleToNameSize: { [key: string]: string } = {};
 
   sizeTitle.forEach(
@@ -135,7 +133,6 @@ const ProductVariations = ({
     const targetMaterial = e.currentTarget.textContent;
     if (targetMaterial) {
       const shortMaterialName = titleToNameMaterial[targetMaterial];
-      // if same size exist
 
       if (variation) {
         const theSame = getVariation(
@@ -159,8 +156,6 @@ const ProductVariations = ({
   const addToCartHandler = () => {
     try {
       if (variation) {
-        // const pathnameWithQuery =
-        //   window.location.pathname + window.location.search;
         const variationName = `${product.name} ${
           product.options.material[
             variation.options.material as MaterialOptionNoNameKeys
@@ -184,7 +179,6 @@ const ProductVariations = ({
           }),
         );
         toast.success(<ToastLink product={variationName} />);
-        // navigate('/cart');
       }
     } catch (err) {
       toast.warning(getError(err as ApiError));

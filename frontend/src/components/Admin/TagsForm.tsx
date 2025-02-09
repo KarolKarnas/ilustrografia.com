@@ -1,22 +1,19 @@
 import * as Form from "@radix-ui/react-form";
 import { SyntheticEvent, useState } from "react";
 import _ from "lodash";
-// import * as Select from '@radix-ui/react-select';
-
 import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { Tag } from "../../types/Product";
 import InputTextField from "./InputTextField";
 
-type Props = {
+type TagsFormProps = {
   tags: Tag[];
   setTags: React.Dispatch<React.SetStateAction<Tag[]>>;
 };
 
-const TagsForm = ({ tags, setTags }: Props) => {
+const TagsForm = ({ tags, setTags }: TagsFormProps) => {
   const [tagName, setTagName] = useState("");
 
-  //Tag
   const handleSubmitTag = (e: SyntheticEvent) => {
     e.preventDefault();
     if (tagName.trim() === "") {
@@ -24,8 +21,6 @@ const TagsForm = ({ tags, setTags }: Props) => {
       return toast.error("Just empty spaces here...");
     }
     const tagSlug = _.kebabCase(tagName);
-    //duplicate Category
-
     if (
       _.find(tags, function (tag) {
         return tag.slug === tagSlug;
@@ -35,11 +30,8 @@ const TagsForm = ({ tags, setTags }: Props) => {
       return toast.error(`We already have '${tagName}' in Tags`);
     }
     setTags([...tags, { name: tagName, slug: tagSlug }]);
-    setTagName("")
-    return toast.success(
-      "Tag added successfully, remember to save changes",
-    );
-
+    setTagName("");
+    return toast.success("Tag added successfully, remember to save changes");
   };
 
   const handleDeleteTag = (index: number) => {
@@ -48,7 +40,7 @@ const TagsForm = ({ tags, setTags }: Props) => {
   };
 
   return (
-    <div className="rounded-xl bg-angel-dust p-4 md:p-8 shadow-xl dark:bg-angel-space">
+    <div className="rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8">
       <div className="flex flex-col">
         <h4 className=" mb-2 font-montserrat text-base font-semibold text-black-magic dark:text-ivory">
           Tag list

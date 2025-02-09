@@ -6,7 +6,7 @@ import { Product } from "../types/Product";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 import { SerializedError } from "@reduxjs/toolkit";
 
-type Props = {
+type IllustrationsGridProps = {
   products: Product[] | undefined;
   isLoading?: boolean;
   error?: FetchBaseQueryError | SerializedError;
@@ -20,7 +20,7 @@ const IllustrationsGrid = ({
   error,
   colNum,
   aspectRatio,
-}: Props) => {
+}: IllustrationsGridProps) => {
   return (
     <div
       role="group"

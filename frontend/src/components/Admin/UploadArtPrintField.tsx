@@ -6,12 +6,15 @@ import { toast } from "react-toastify";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 
-type Props = {
+type UploadArtPrintFieldProps = {
   options: ProductOptions;
   setOptions: React.Dispatch<React.SetStateAction<ProductOptions>>;
 };
 
-const UploadArtPrintField = ({ options, setOptions }: Props) => {
+const UploadArtPrintField = ({
+  options,
+  setOptions,
+}: UploadArtPrintFieldProps) => {
   const [uploadProductImage] = useUploadProductImageMutation();
 
   const uploadArtPrintFileHandler = async (
@@ -73,7 +76,6 @@ const UploadArtPrintField = ({ options, setOptions }: Props) => {
                   },
                 },
               };
-              // Set the updated options object in the state
               setOptions(updatedOptions);
             }}
           />

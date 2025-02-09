@@ -6,7 +6,7 @@ import * as Select from "@radix-ui/react-select";
 import React from "react";
 import { FaChevronDown, FaCheck } from "react-icons/fa6";
 
-type Props = {
+type ReviewEditFormProps = {
   createdAt: string;
   user: string;
   name: string;
@@ -24,7 +24,7 @@ const ReviewEditForm = ({
   index,
   reviews,
   setReviews,
-}: Props) => {
+}: ReviewEditFormProps) => {
   const [newRating, setNewRating] = useState<number>(rating);
   const [newComment, setNewComment] = useState<string>(comment);
   const [newUserName, setNewUserName] = useState<string>(name);

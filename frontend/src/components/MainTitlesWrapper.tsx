@@ -1,14 +1,14 @@
 import { ReactNode } from "react";
 
-type Props = {
+type MainTitlesWrapperProps = {
   children: ReactNode;
-}
+};
 
-const MainTitlesWrapper = ({children}: Props) => {
+const MainTitlesWrapper = ({ children }: MainTitlesWrapperProps) => {
   return (
-    <div className="flex w-full md:w-2/3 p-2 md:p-0 flex-col items-center">
+    <div className="flex w-full flex-col items-center p-2 md:w-2/3 md:p-0">
       {children}
     </div>
-  )
-}
-export default MainTitlesWrapper
+  );
+};
+export default MainTitlesWrapper;

@@ -6,12 +6,12 @@ import { toast } from "react-toastify";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 
-type Props = {
+type UploadCanvasFieldProps = {
   options: ProductOptions;
   setOptions: React.Dispatch<React.SetStateAction<ProductOptions>>;
 };
 
-const UploadCanvasField = ({ options, setOptions }: Props) => {
+const UploadCanvasField = ({ options, setOptions }: UploadCanvasFieldProps) => {
   const [uploadProductImage] =
     useUploadProductImageMutation();
 

@@ -1,11 +1,15 @@
-type Props = {
+type SectionMainTitlesProps = {
   heading: string | undefined;
   main: string;
   strong: string;
   icon?: "dragon" | "brush" | "basket";
 };
 
-const SectionMainTitles = ({ heading, main, strong }: Props) => {
+const SectionMainTitles = ({
+  heading,
+  main,
+  strong,
+}: SectionMainTitlesProps) => {
   return (
     <div className="mb-8 flex w-full flex-col items-center p-2 md:w-2/3">
       <span className=" md:text-md mb-4  text-center font-montserrat text-xs font-semibold uppercase tracking-hero  text-red-magic drop-shadow-lg">

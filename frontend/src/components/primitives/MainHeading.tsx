@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 
-type Props = {
+type MainHeadingProps = {
   children: ReactNode;
   alwaysLight?: boolean;
 };
 
-const MainHeading = ({ children, alwaysLight }: Props) => {
+const MainHeading = ({ children, alwaysLight }: MainHeadingProps) => {
   return (
     <h3
       className={` ${

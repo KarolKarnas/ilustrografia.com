@@ -1,21 +1,17 @@
 import { SearchResult } from "../types/Yt";
 import YouTubeEmbed from "./YouTubeEmbed";
 
-export type Props = {
+export type LatestVideosProps = {
   youtubeItems: SearchResult[];
 };
 
-const LatestVideos = ({ youtubeItems }: Props) => {
-  // console.log(youtubeItems);
+const LatestVideos = ({ youtubeItems }: LatestVideosProps) => {
   return (
-    // <div className="w-full min-w-full">
-
-    <div className=" grid md:grid-cols-2 xl:grid-cols-3 min-w-full gap-y-10 z-10 ">
+    <div className=" z-10 grid min-w-full gap-y-10 md:grid-cols-2 xl:grid-cols-3 ">
       {youtubeItems.map((item, index) => (
         <YouTubeEmbed center key={index} embedId={item.id.videoId} />
       ))}
     </div>
-    // </div>
   );
 };
 export default LatestVideos;
