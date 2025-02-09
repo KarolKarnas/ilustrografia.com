@@ -4,17 +4,21 @@ import { toast } from "react-toastify";
 import { Product, VariationOptionalId } from "../../types/Product";
 import SelectString from "./SelectString";
 
-type Props = {
+type VariationCreateFormProps = {
   variations: VariationOptionalId[];
   setVariations: React.Dispatch<React.SetStateAction<VariationOptionalId[]>>;
   slug: string;
   product: Product;
 };
 
-const VariationCreateForm = ({ variations, setVariations, slug, product }: Props) => {
+const VariationCreateForm = ({
+  variations,
+  setVariations,
+  slug,
+  product,
+}: VariationCreateFormProps) => {
   const [optionsMaterial, setOptionsMaterial] = useState("");
   const [optionsSize, setOptionsSize] = useState("");
-
   const [countInStock, setCountInStock] = useState(1);
   const [price, setPrice] = useState(100);
 
@@ -43,29 +47,33 @@ const VariationCreateForm = ({ variations, setVariations, slug, product }: Props
         },
       ]);
 
-      return toast.success("Variation added successfully, remember to save changes");
+      return toast.success(
+        "Variation added successfully, remember to save changes",
+      );
     }
   };
 
-  const productMaterials = Object.keys(product.options.material).filter((key) => key !== "optionName")
+  const productMaterials = Object.keys(product.options.material).filter(
+    (key) => key !== "optionName",
+  );
 
-  const productSizes = Object.keys(product.options.size).filter((key) => key !== "optionName")
-
-
+  const productSizes = Object.keys(product.options.size).filter(
+    (key) => key !== "optionName",
+  );
 
   return (
-    <div className="rounded-xl bg-angel-dust dark:bg-angel-space p-4 md:p-8 shadow-xl">
-      <h3 className="mb-2 font-montserrat text-base font-semibold text-black-magic dark:text-ivory">Create Variation</h3>
-      <Form.Root className="flex w-full flex-col gap-5" onSubmit={(e) => handleSubmitVariation(e)}>
+    <div className="rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8">
+      <h3 className="mb-2 font-montserrat text-base font-semibold text-black-magic dark:text-ivory">
+        Create Variation
+      </h3>
+      <Form.Root
+        className="flex w-full flex-col gap-5"
+        onSubmit={(e) => handleSubmitVariation(e)}
+      >
         <Form.Field className="flex flex-col" name="price">
           <div className="flex items-baseline justify-between">
-            <Form.Label className="form-label">
-              Price
-            </Form.Label>
-            <Form.Message
-              className="form-message"
-              match="valueMissing"
-            >
+            <Form.Label className="form-label">Price</Form.Label>
+            <Form.Message className="form-message" match="valueMissing">
               Please write price of variation
             </Form.Message>
             <Form.Message
@@ -86,16 +94,10 @@ const VariationCreateForm = ({ variations, setVariations, slug, product }: Props
             />
           </Form.Control>
         </Form.Field>
-        {/* count in stock */}
         <Form.Field className="flex flex-col" name="countInStock">
           <div className="flex items-baseline justify-between">
-            <Form.Label className=" form-label">
-              Count In Stock
-            </Form.Label>
-            <Form.Message
-              className="form-message"
-              match="valueMissing"
-            >
+            <Form.Label className=" form-label">Count In Stock</Form.Label>
+            <Form.Message className="form-message" match="valueMissing">
               Please provide Count in Stock
             </Form.Message>
             <Form.Message
@@ -116,20 +118,19 @@ const VariationCreateForm = ({ variations, setVariations, slug, product }: Props
             />
           </Form.Control>
         </Form.Field>
-        {/* options */}
+        <SelectString
+          onChange={setOptionsMaterial}
+          options={productMaterials}
+          name="Material"
+        />
+        <SelectString
+          onChange={setOptionsSize}
+          options={productSizes}
+          name="Size"
+        />
 
-
-<SelectString  onChange={setOptionsMaterial} options={productMaterials}  name="Material"/>
-<SelectString  onChange={setOptionsSize} options={productSizes} name="Size" />
-
-        
-      
         <Form.Submit asChild>
-        <button
-            // add disabled styling
-            className="h-6 w-full border border-black-magic bg-black-magic dark:border-red-magic/50 dark:bg-red-magic/20   text-2xs font-semibold uppercase text-ivory  transition-colors duration-300 hover:bg-red-magic/80 hover:border-red-magic dark:hover:bg-red-magic/80 dark:hover:border-red-magic md:h-10 md:w-full md:text-xs"
-            // disabled={isLoading}
-          >
+          <button className="h-6 w-full border border-black-magic bg-black-magic text-2xs font-semibold   uppercase text-ivory transition-colors duration-300  hover:border-red-magic hover:bg-red-magic/80 dark:border-red-magic/50 dark:bg-red-magic/20 dark:hover:border-red-magic dark:hover:bg-red-magic/80 md:h-10 md:w-full md:text-xs">
             Add Variation
           </button>
         </Form.Submit>

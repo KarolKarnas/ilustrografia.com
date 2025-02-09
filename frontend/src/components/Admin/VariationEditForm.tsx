@@ -5,7 +5,7 @@ import { VariationOptionalId } from "../../types/Product";
 import InputNumberField from "./InputNumberField";
 import { FaTrash } from "react-icons/fa";
 
-type Props = {
+type VariationEditFormProps = {
   price: number;
   countInStock: number;
   index: number;
@@ -21,7 +21,7 @@ const VariationEditForm = ({
   setVariations,
   index,
   variations,
-}: Props) => {
+}: VariationEditFormProps) => {
   const [newPrice, setNewPrice] = useState<number>(price);
   const [newCountInStock, setNewCountInStock] = useState<number>(countInStock);
   const [newSku, setNewSku] = useState<string>(sku);
@@ -61,7 +61,6 @@ const VariationEditForm = ({
 
   return (
     <div>
-      {/* md:w-9/12 lg:w-6/12 2xl:w-1/3 */}
       <Form.Root className="flex w-full items-center gap-1 md:gap-5 ">
         <div
           onClick={() => handleDeleteVariation(index)}
@@ -72,7 +71,7 @@ const VariationEditForm = ({
 
         <div className="w-full">
           <InputTextField
-        minimal
+            minimal
             shortName={"sku"}
             name={"sku"}
             onChangeFun={(e) => handleSetSku(e.target.value)}
@@ -83,7 +82,7 @@ const VariationEditForm = ({
 
         <div className="w-36">
           <InputNumberField
-          minimal
+            minimal
             shortName={"price"}
             name={"price"}
             onChangeFun={(e) =>
@@ -97,7 +96,7 @@ const VariationEditForm = ({
         </div>
         <div className="w-36">
           <InputNumberField
-                 minimal
+            minimal
             shortName={"countInStock"}
             name={"Stock"}
             onChangeFun={(e) =>

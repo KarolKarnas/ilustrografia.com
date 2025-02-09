@@ -57,7 +57,6 @@ const FantasyIllustrations = () => {
               Illustrations
             </h2>
           </div>
-          {/* Gradient Background */}
           <div className="-z-20 flex  h-full flex-col items-center justify-start bg-fantasy-gradient dark:bg-black-slavic-gradient">
             <img
               className=" mt-16 w-11/12 rounded-full  shadow-hero md:w-auto"

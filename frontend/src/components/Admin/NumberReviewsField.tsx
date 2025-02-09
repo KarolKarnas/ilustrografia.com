@@ -1,21 +1,17 @@
 import * as Form from "@radix-ui/react-form";
 import { Rating } from "../../types/Product";
 
-type Props = {
+type NumberReviewsFieldProps = {
   rating: Rating;
   setRating: React.Dispatch<React.SetStateAction<Rating>>;
 };
 
-const NumberReviewsField = ({ rating, setRating }: Props) => {
+const NumberReviewsField = ({ rating, setRating }: NumberReviewsFieldProps) => {
   return (
     <>
-      {" "}
-      {/* Number of Reviews */}
       <Form.Field className="flex flex-col" name="RatingNumReviews">
         <div className="flex items-baseline justify-between">
-          <Form.Label className=" form-label">
-            Number of Reviews
-          </Form.Label>
+          <Form.Label className=" form-label">Number of Reviews</Form.Label>
           <Form.Message className="form-message" match="valueMissing">
             Please enter Number of Reviews
           </Form.Message>

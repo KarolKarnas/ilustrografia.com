@@ -92,7 +92,6 @@ const HomePage = () => {
             <ImageMouseMoving src={"/images/addons/brush.png"} reverse={true} />
           </div>
         </div>
-
         {/* Neo Slavic Project */}
         <SectionMain url="neo-slavic">
           <MainTitlesWrapper>

@@ -233,9 +233,7 @@ const ProductVariations = ({
           />
         </Link>
       </div>
-
-      {/* SIZES */}
-
+      {/* Sizes */}
       <div
         className={`${hideVariations ? "hidden" : "relative  h-full w-full"} `}
       >

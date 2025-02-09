@@ -50,9 +50,7 @@ const ProductPage = () => {
   } = useGetProductDetailsQuery(slug);
 
   const [createProductReview] = useCreateProductReviewMutation();
-
   const { userInfo } = useAppSelector((state) => state.auth);
-
   const getVariation = (material: string, size: string) => {
     return _.find(product?.variations, { options: { material, size } });
   };
@@ -72,7 +70,6 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (variation && product) {
-      // Check if variation and product are defined
       setSearchParams({
         material: variation.options.material,
         size: variation.options.size,

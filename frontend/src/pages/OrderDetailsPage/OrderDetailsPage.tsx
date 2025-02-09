@@ -151,7 +151,6 @@ const OrderDetailsPage = () => {
         </div>
 
         <div className="flex w-full flex-col-reverse items-center justify-center gap-10 md:flex-row md:items-start">
-          {/* col 1 */}
           <div className="w-full  md:w-7/12">
             <div className="mb-8">
               <MainStrongText>Order Number</MainStrongText>
@@ -264,8 +263,6 @@ const OrderDetailsPage = () => {
               </div>
             </div>
           </div>
-          {/* col 2  */}
-
           <div className="fixed bottom-0 z-10 flex w-screen flex-col bg-white px-4 pb-4 pt-1 shadow-hero dark:bg-angel-dark-dust md:sticky md:top-8 md:h-full md:w-3/12 md:rounded-lg md:p-8">
             <h2 className="text-center font-cormorant-infant  font-semibold italic text-eerie-black drop-shadow-red-heading  dark:text-ivory dark:drop-shadow-xl md:mb-8 md:mt-0 md:text-4xl">
               Order Summary

@@ -10,13 +10,11 @@ import ProductPage from "./ProductPage";
 import userEvent from "@testing-library/user-event";
 
 const basilisk = products[0];
-
 const handlers = [
   rest.get("/api/products/basilisk", (req, res, ctx) => {
     return res(ctx.json(basilisk));
   }),
 ];
-
 const server = setupServer(...handlers);
 
 beforeAll(() => {
@@ -37,9 +35,7 @@ const initialRender = () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={["/basilisk"]}>
           <Routes>
-            {/* <Route path="shop" element={<ShopPage />}> */}
             <Route path="/:slug" element={<ProductPage />} />
-            {/* </Route> */}
           </Routes>
         </MemoryRouter>
       </Provider>
@@ -53,7 +49,6 @@ test("Renders add to cart button", async () => {
   initialRender();
 
   await waitFor(() => {
-    // screen.logTestingPlaygroundURL();
     const title = screen.getByTestId("add-cart-btn");
     expect(title).toBeDefined();
   });
