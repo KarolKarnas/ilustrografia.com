@@ -6,14 +6,13 @@ import { toast } from "react-toastify";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 
-type Props = {
+type UploadPosterFieldProps = {
   options: ProductOptions;
   setOptions: React.Dispatch<React.SetStateAction<ProductOptions>>;
 };
 
-const UploadPosterField = ({ options, setOptions }: Props) => {
-  const [uploadProductImage, { isLoading: loadingUpload }] =
-    useUploadProductImageMutation();
+const UploadPosterField = ({ options, setOptions }: UploadPosterFieldProps) => {
+  const [uploadProductImage] = useUploadProductImageMutation();
 
   const uploadPosterFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files === null) {
@@ -23,7 +22,6 @@ const UploadPosterField = ({ options, setOptions }: Props) => {
       formData.append("image", e.target.files[0]);
       try {
         const res = await uploadProductImage(formData).unwrap();
-        // console.log(res);
         toast.success(res.message);
 
         const updatedOptions = {
@@ -47,9 +45,7 @@ const UploadPosterField = ({ options, setOptions }: Props) => {
     <>
       <Form.Field className="flex flex-col" name="posterImageUrl">
         <div className="flex items-baseline justify-between">
-          <Form.Label className=" form-label">
-            Poster Image URL
-          </Form.Label>
+          <Form.Label className=" form-label">Poster Image URL</Form.Label>
           <Form.Message className="form-message" match="valueMissing">
             Poster Please enter Image URL
           </Form.Message>
@@ -75,7 +71,6 @@ const UploadPosterField = ({ options, setOptions }: Props) => {
                   },
                 },
               };
-              // Set the updated options object in the state
               setOptions(updatedOptions);
             }}
           />
@@ -96,11 +91,8 @@ const UploadPosterField = ({ options, setOptions }: Props) => {
         </div>
         <Form.Control asChild>
           <input
-            className="py-3 rounded-md bg-white px-4 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5 "
+            className="rounded-md bg-white px-4 py-3 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5 "
             type="file"
-            // required
-            // placeholder='Enter Number of Reviews'
-            // value={rating?.numReviews}
             onChange={uploadPosterFileHandler}
           />
         </Form.Control>

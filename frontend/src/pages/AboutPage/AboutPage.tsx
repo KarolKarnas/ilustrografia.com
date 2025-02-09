@@ -50,7 +50,6 @@ const AboutPage = () => {
               alt=""
             />
             <MainStrongText>Karol Karnas</MainStrongText>
-
             <p className=" flex flex-col gap-2 text-center font-light text-eerie-black dark:text-ivory">
               <span className="italic">
                 {`Administration and accounting. Computer wizardry, photon soul theft and modern goetia.`}
@@ -61,8 +60,11 @@ const AboutPage = () => {
                 The transient yet timeless elegance of coding is encapsulated within the lines of a program like no other mortal can create. Once a renowned battlefield wizard, feared in every tavern between the San and the Vistula rivers. The modern wizard may have left the battlefield, but in the realm of coding, his magic lives on, shaping the very fabric of the virtual world. In his spells, only humor proves mightier...`}
               </span>
             </p>
-
-            <a target="_blank" rel="noreferrer" href="https://github.com/KarolKarnas">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/KarolKarnas"
+            >
               <button
                 className={` w-42 " flex items-center gap-3 border border-red-600 bg-red-magic bg-opacity-60 px-6  py-4 text-2xs font-semibold  uppercase  tracking-widest text-red-50 transition-colors duration-300 hover:bg-red-magic   hover:bg-opacity-80  md:px-8
             `}
@@ -79,7 +81,6 @@ const AboutPage = () => {
               alt=""
             />
             <MainStrongText>Małgorzata Motyka-Karnas</MainStrongText>
-
             <p className=" flex flex-col gap-2 text-center font-light text-eerie-black dark:text-ivory">
               <span className="italic">
                 {`Woodcuts, copper engravings, and digital designs. Corporate soothsayer and animal whisperer. Numerology of the company.`}
@@ -107,7 +108,6 @@ const AboutPage = () => {
               alt=""
             />
             <MainStrongText>Kamil Ulman</MainStrongText>
-
             <p className=" flex flex-col gap-2 text-center font-light text-eerie-black dark:text-ivory">
               <span className="italic">
                 {`Runic writing and scribe. Advanced graphomania. A cacophonous bard. Wandering, reading, and daring moonshining.`}

@@ -6,8 +6,6 @@ type YouTubeEmbedProps = {
 
 const YouTubeEmbed = ({ embedId, center, mobileCenter }: YouTubeEmbedProps) => {
   return (
-    // <div className="aspect-w-16 aspect-h-9">
-
     <div>
       <iframe
         className={`${
@@ -20,8 +18,6 @@ const YouTubeEmbed = ({ embedId, center, mobileCenter }: YouTubeEmbedProps) => {
         allowFullScreen
       ></iframe>
     </div>
-
-    // </div>
   );
 };
 

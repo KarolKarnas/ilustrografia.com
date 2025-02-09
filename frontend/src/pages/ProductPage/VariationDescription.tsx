@@ -1,8 +1,10 @@
-type Props = {
+type VariationDescriptionProps = {
   variationMaterial: string;
 };
 
-const VariationDescription = ({ variationMaterial }: Props) => {
+const VariationDescription = ({
+  variationMaterial,
+}: VariationDescriptionProps) => {
   if (variationMaterial === "art-print") {
     return (
       <div>

@@ -3,7 +3,6 @@ import { SyntheticEvent, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "../../slices/reduxHooks";
 import { setCredentials } from "../../slices/authSlice";
-
 import { useUpdateProfileMutation } from "../../slices/usersApiSlice";
 import { useGetMyOrdersQuery } from "../../slices/ordersApiSlice";
 import { Link } from "react-router-dom";
@@ -26,14 +25,10 @@ const ProfilePage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const dispatch = useAppDispatch();
-
   const { userInfo } = useAppSelector((state) => state.auth);
-
   const [updateProfile, { isLoading: loadingUpdateProfile, error }] =
     useUpdateProfileMutation();
-
   const { data: orders, isLoading, isError } = useGetMyOrdersQuery();
 
   useEffect(() => {
@@ -76,7 +71,6 @@ const ProfilePage = () => {
             alt=""
             className="hidden h-full w-full rounded-3xl  object-none dark:invert-90 sm:block"
           />
-
           <div className="absolute flex flex-col items-center justify-center">
             <HeadingAccent>· Ilustrografia ·</HeadingAccent>
             <PageHeading>Profile</PageHeading>
@@ -85,7 +79,6 @@ const ProfilePage = () => {
             </IconDivider>
           </div>
         </div>
-
         {isLoading ? (
           <div className="flex justify-center">
             <Spinner />
@@ -106,7 +99,6 @@ const ProfilePage = () => {
               <div className="mx-auto -mb-5">
                 <MainStrongText>Update Profile</MainStrongText>
               </div>
-
               <InputTextField
                 shortName={"name"}
                 name={"Name"}

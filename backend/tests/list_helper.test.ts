@@ -1,5 +1,4 @@
 import listHelper from '../utils/list_helper';
-// import { ProductNoId } from '../types/Product';
 import { products } from '../data/products';
 
 test('dummy return 1', () => {

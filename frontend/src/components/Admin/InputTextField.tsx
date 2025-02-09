@@ -1,6 +1,6 @@
 import * as Form from "@radix-ui/react-form";
 
-type Props = {
+type InputTextFieldProps = {
   shortName: string;
   name: string;
   value?: string;
@@ -18,11 +18,23 @@ const InputTextField = ({
   type,
   minimal,
   onChangeFun,
-}: Props) => {
+}: InputTextFieldProps) => {
   return (
     <Form.Field className="flex flex-col" name={shortName}>
-      <div className={`${minimal ? "relative" : null} flex items-baseline justify-between`}>
-        <Form.Label className={minimal ? ('opacity-30 text-2xs absolute bottom-0 text-center w-full uppercase') : `form-label`}>{name}</Form.Label>
+      <div
+        className={`${
+          minimal ? "relative" : null
+        } flex items-baseline justify-between`}
+      >
+        <Form.Label
+          className={
+            minimal
+              ? "absolute bottom-0 w-full text-center text-2xs uppercase opacity-30"
+              : `form-label`
+          }
+        >
+          {name}
+        </Form.Label>
         <Form.Message className="form-message" match="valueMissing">
           Please enter your {name}
         </Form.Message>

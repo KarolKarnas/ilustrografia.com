@@ -6,14 +6,13 @@ import { toast } from "react-toastify";
 import { Category } from "../../types/Product";
 import InputTextField from "./InputTextField";
 
-type Props = {
+type CategoriesFormProps = {
   categories: Category[];
   setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
 };
 
-const CategoriesForm = ({ categories, setCategories }: Props) => {
+const CategoriesForm = ({ categories, setCategories }: CategoriesFormProps) => {
   const [categoryName, setCategoryName] = useState("");
-  // Category
   const handleSubmitCategory = (e: SyntheticEvent) => {
     e.preventDefault();
     if (categoryName.trim() === "") {
@@ -22,7 +21,6 @@ const CategoriesForm = ({ categories, setCategories }: Props) => {
     }
 
     const categorySlug = _.kebabCase(categoryName.trim());
-    //duplicate Category
     if (
       _.find(categories, function (category) {
         return category.slug === categorySlug;
@@ -35,7 +33,7 @@ const CategoriesForm = ({ categories, setCategories }: Props) => {
       ...categories,
       { name: categoryName.trim(), slug: categorySlug },
     ]);
-    setCategoryName("")
+    setCategoryName("");
     return toast.success(
       "Category added successfully, remember to save changes",
     );
@@ -47,7 +45,7 @@ const CategoriesForm = ({ categories, setCategories }: Props) => {
   };
 
   return (
-    <div className="rounded-xl bg-angel-dust p-4 md:p-8 shadow-xl dark:bg-angel-space">
+    <div className="rounded-xl bg-angel-dust p-4 shadow-xl dark:bg-angel-space md:p-8">
       <div className="flex flex-col">
         <h4 className=" mb-2 font-montserrat text-base font-semibold text-black-magic dark:text-ivory">
           Category list

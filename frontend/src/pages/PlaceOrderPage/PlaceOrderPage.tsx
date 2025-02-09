@@ -24,8 +24,6 @@ const PlaceOrderPage = () => {
 
   const {
     data: products,
-    isLoading: isLoadingSlavic,
-    error: errorSlavic,
   } = useGetProductsByCategoryQuery("neo-slavic-census");
 
   const [createOrder, { isLoading, error }] = useCreateOrderMutation();
@@ -42,7 +40,7 @@ const PlaceOrderPage = () => {
         taxPrice: cart.taxPrice,
         totalPrice: cart.totalPrice,
       }).unwrap();
-      dispatch(clearCartItems({}));
+      dispatch(clearCartItems());
       navigate(`/order/${res._id}`);
     } catch (error) {
       toast.error(getError(error as ApiError));

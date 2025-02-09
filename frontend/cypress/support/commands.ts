@@ -1,6 +1,5 @@
 // load the global Cypress types
 /// <reference types="cypress" />
-// import { join } from "path";
 
 import "@testing-library/cypress/add-commands";
 
@@ -59,8 +58,3 @@ Cypress.Commands.add("loginNoSession", ({ email, password }) => {
 Cypress.Commands.add("logout", () => {
   return logout();
 });
-
-
-// const Commands = { login };
-
-// export default Commands;

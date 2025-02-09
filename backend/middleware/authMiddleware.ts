@@ -4,17 +4,14 @@ import asyncHandler from './asyncHandler';
 import UserModel from '../models/userModel';
 import { parseStringKey } from '../utils/typeUtils';
 import { Request, Response, NextFunction } from 'express';
-// import { toUserNoPassword } from '../types/utils';
 import { UserNoPassword } from '../types/User';
 
 interface CustomRequest extends Request {
-	user?: UserNoPassword; // Change UserModel to the actual type of user model
+	user?: UserNoPassword;
 }
 
 // Protect routes
 const protect = asyncHandler(async (req: CustomRequest, res, next) => {
-	// let token;
-
 	// Read JWT from the 'jwt' cookie
 	const token: string = parseStringKey('token', req.cookies.jwt);
 

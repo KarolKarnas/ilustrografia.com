@@ -69,7 +69,6 @@ describe("HomePage", () => {
       await waitFor(() => {
         const section = screen.getByTestId("neo-slavic-section");
         expect(section).toBeDefined();
-        // const { getByRole, findByText, findAllByRole } = within(section);
       });
     });
 

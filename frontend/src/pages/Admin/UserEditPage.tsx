@@ -9,7 +9,6 @@ import { useState, useEffect, SyntheticEvent } from "react";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 import Message from "../../components/Message";
-
 import { FaCheck, FaUserAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 import HeadingAccent from "../../components/primitives/HeadingAccent";
@@ -21,7 +20,6 @@ import Meta from "../../components/Meta";
 
 const UserEditPage = () => {
   const { id } = useParams();
-
   const [userId, setUserId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -51,7 +49,6 @@ const UserEditPage = () => {
       setName("");
       return toast.error("Just empty spaces here...");
     }
-
     try {
       await updateUser({ _id: userId, name, email, isAdmin }).unwrap();
       refetch();

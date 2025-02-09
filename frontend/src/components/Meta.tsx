@@ -1,12 +1,16 @@
 import { Helmet } from "react-helmet-async";
 
-type Props = {
+type MetaProps = {
   title?: string;
   description?: string;
   keywords?: string;
 };
 
-const Meta = ({ title="Ilustrografia · Illustration · Digital Painting · Fantasy · Legends ", description="Reality Full of Magic", keywords="Art-print, Painting on Canvas, Fantasy, Digital Painting, Prints, Poster" }: Props) => {
+const Meta = ({
+  title = "Ilustrografia · Illustration · Digital Painting · Fantasy · Legends ",
+  description = "Reality Full of Magic",
+  keywords = "Art-print, Painting on Canvas, Fantasy, Digital Painting, Prints, Poster",
+}: MetaProps) => {
   return (
     <Helmet>
       <title>{title}</title>

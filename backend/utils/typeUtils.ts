@@ -103,17 +103,17 @@ const isMongooseId = (value: unknown): value is mongoose.Types.ObjectId => {
 const parseMongooseObject = (objectId: unknown): mongoose.Types.ObjectId => {
 	console.log(objectId);
 	if (!objectId) {
-			throw new Error('Missing MongooseObject');
+		throw new Error('Missing MongooseObject');
 	}
 
 	if (!isMongooseId(objectId)) {
-			console.log('Not a Mongoose ObjectId:', objectId);
-			throw new Error('Incorrect MongooseObject');
+		console.log('Not a Mongoose ObjectId:', objectId);
+		throw new Error('Incorrect MongooseObject');
 	}
 
 	return objectId;
 };
-//begin
+
 export const isValidTag = (object: unknown): boolean => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data');
@@ -234,8 +234,6 @@ export const isValidVariationCart = (object: unknown): boolean => {
 	throw new Error('Incorrect data: some fields are missing in VariationCart');
 };
 
-//end
-
 const parseOrderItems = (orderItems: unknown): VariationCart[] => {
 	if (!orderItems || !isArray(orderItems)) {
 		throw new Error('Incorrect or missing orderItems');
@@ -273,15 +271,7 @@ const parseShippingAddress = (object: unknown): ShippingAddress => {
 	);
 };
 
-// const parseIsAdmin = (isAdmin: unknown): boolean => {
-// 	if (!isAdmin || !isBoolean(isAdmin)) {
-// 		throw new Error('Incorrect or missing isAdmin');
-// 	}
-// 	return isAdmin;
-// };
-
 // CHECKERS
-
 export const toCheckUser = (object: unknown): CheckUser => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data');
@@ -341,16 +331,12 @@ export const toCheckUserUpdate = (object: unknown): UserUpdate => {
 	return checkedUser;
 };
 
-//
 export const checkHaveUser = (object: unknown): RequestUser => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data');
 	}
-
 	const userObject = object as RequestUser;
-
 	if ('user' in userObject) {
-		// console.log(userObject);
 		return userObject;
 	}
 
@@ -361,9 +347,7 @@ export const checkHaveUserReview = (object: unknown): RequestUserReview => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data user review');
 	}
-
 	const userObject = object as RequestUserReview;
-
 	if (
 		'user' in userObject &&
 		'rating' in userObject &&
@@ -378,14 +362,10 @@ export const checkHaveUserReview = (object: unknown): RequestUserReview => {
 };
 
 // ORDER
-
 export const toCheckOrder = (object: unknown): Order => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data in order');
 	}
-
-	// console.log(object);
-
 	if (
 		'user' in object &&
 		'orderItems' in object &&
@@ -465,7 +445,6 @@ export const toReqOrderUpdate = (object: unknown): OrderUpdateReq => {
 };
 
 // PRODUCT
-
 export const parseRating = (object: unknown): Rating => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data in Rating');
@@ -550,7 +529,7 @@ export const isValidVariation = (object: unknown): boolean => {
 		throw new Error('Incorrect or missing data');
 	}
 
-	const variationObject = object as Variation; // Type assertion
+	const variationObject = object as Variation;
 
 	const requiredProperties = [
 		'productSlug',
@@ -559,7 +538,6 @@ export const isValidVariation = (object: unknown): boolean => {
 		'price',
 		'countInStock',
 		'tags',
-		// '_id',
 	];
 
 	const missingProperties = requiredProperties.filter(
@@ -573,7 +551,6 @@ export const isValidVariation = (object: unknown): boolean => {
 			parseNumberKey('price', variationObject.price) &&
 			parseNumberKey('countInStock', variationObject.countInStock) &&
 			parseTags(variationObject.tags)
-			// parseStringKey('_id', variationObject._id)
 		) {
 			return true;
 		}
@@ -604,11 +581,8 @@ const isValidReviewUser = (object: unknown): boolean => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data in Review');
 	}
-
-	const variationObject = object as ReviewUser; // Type assertion
-
+	const variationObject = object as ReviewUser; 
 	const requiredProperties = ['user', 'name', 'rating', 'comment'];
-
 	const missingProperties = requiredProperties.filter(
 		(prop) => !(prop in variationObject)
 	);
@@ -700,7 +674,6 @@ export const toCheckedReview = (object: unknown): Review => {
 };
 
 // USER ADMIN
-
 export const parseUserInfoOptions = (object: unknown): UserInfoOptions => {
 	if (!object || typeof object !== 'object') {
 		throw new Error('Incorrect or missing data');

@@ -23,11 +23,12 @@ const Header = () => {
         <div className="hidden items-center gap-x-4 lg:flex lg:gap-x-10">
           <MainLinks mobile={false} />
         </div>
-        <div data-testid='app-links-full' className="w-30 hidden gap-x-3 lg:flex lg:items-center">
+        <div
+          data-testid="app-links-full"
+          className="w-30 hidden gap-x-3 lg:flex lg:items-center"
+        >
           <AppLinks />
         </div>
-
-        {/* <div className="md:hidden"> */}
         <div className="flex w-full items-center justify-between px-3 lg:hidden">
           <button
             id="menu-btn"
@@ -44,13 +45,12 @@ const Header = () => {
             <span className="hamburger-bottom bg-eerie-black dark:bg-ivory "></span>
           </button>
 
-          <div className="w-30 flex items-center gap-x-3 mr-2 lg:hidden">
+          <div className="w-30 mr-2 flex items-center gap-x-3 lg:hidden">
             <AppLinks />
           </div>
         </div>
 
         {/* MOBILE MENU */}
-
         <div
           id="menu"
           className={
@@ -60,9 +60,6 @@ const Header = () => {
           }
           onClick={handleMobileClick}
         >
-          {/* <div className="w-30 flex items-center  gap-x-3">
-            <AppLinks />
-          </div> */}
           <MainLinks mobile={true} />
           <div className="w-30 flex items-center gap-x-3">
             <SocialLinks />
@@ -73,10 +70,3 @@ const Header = () => {
   );
 };
 export default Header;
-
-{
-  /* <Link to={'/profile'}>{userInfo.name}</Link>
-							<p className='hover:cursor-pointer' onClick={handleLogout}>
-								Logout
-							</p> */
-}

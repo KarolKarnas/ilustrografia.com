@@ -6,13 +6,13 @@ import { toast } from "react-toastify";
 import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 
-type Props = {
+type UploadCanvasFieldProps = {
   options: ProductOptions;
   setOptions: React.Dispatch<React.SetStateAction<ProductOptions>>;
 };
 
-const UploadCanvasField = ({ options, setOptions }: Props) => {
-  const [uploadProductImage, { isLoading: loadingUpload }] =
+const UploadCanvasField = ({ options, setOptions }: UploadCanvasFieldProps) => {
+  const [uploadProductImage] =
     useUploadProductImageMutation();
 
   const uploadCanvasFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +23,6 @@ const UploadCanvasField = ({ options, setOptions }: Props) => {
       formData.append("image", e.target.files[0]);
       try {
         const res = await uploadProductImage(formData).unwrap();
-        // console.log(res);
         toast.success(res.message);
 
         const updatedOptions = {
@@ -75,7 +74,6 @@ const UploadCanvasField = ({ options, setOptions }: Props) => {
                   },
                 },
               };
-              // Set the updated options object in the state
               setOptions(updatedOptions);
             }}
           />
@@ -98,9 +96,6 @@ const UploadCanvasField = ({ options, setOptions }: Props) => {
           <input
             className="py-3 rounded-md bg-white px-4 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5 "
             type="file"
-            // required
-            // placeholder='Enter Number of Reviews'
-            // value={rating?.numReviews}
             onChange={uploadCanvasFileHandler}
           />
         </Form.Control>

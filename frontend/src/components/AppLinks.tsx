@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { FaUserAltSlash } from "react-icons/fa";
-import { FaCartShopping, FaHeart } from "react-icons/fa6";
+import { FaCartShopping } from "react-icons/fa6";
 import { useAppDispatch, useAppSelector } from "../slices/reduxHooks";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
@@ -38,26 +38,19 @@ const AppLinks = () => {
     <>
       <ThemeSwitcher />
 
-
-        {userInfo ? (
-          <Dropdown userInfo={userInfo} handleLogout={handleLogout} />
-        ) : (
-          <Link to={"/login"} className="bg-red-magic cursor-pointer rounded-3xl p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110" id="login">
-            <FaUserAltSlash />
-          </Link>
-        )}
-
-
-      {/* <Link
-        to={"/favorite"}
-        className="bg-red-magic cursor-pointer rounded-3xl p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
-      >
-        <FaHeart />
-      </Link> */}
-
-      
+      {userInfo ? (
+        <Dropdown userInfo={userInfo} handleLogout={handleLogout} />
+      ) : (
+        <Link
+          to={"/login"}
+          className="cursor-pointer rounded-3xl bg-red-magic p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
+          id="login"
+        >
+          <FaUserAltSlash />
+        </Link>
+      )}
       <Link
-        className=" bg-red-magic relative rounded-3xl p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
+        className=" relative rounded-3xl bg-red-magic p-2 text-ivory transition duration-300 ease-in-out md:hover:-translate-y-1 md:hover:scale-110"
         to={"/cart"}
       >
         <FaCartShopping />

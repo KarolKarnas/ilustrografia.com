@@ -8,17 +8,13 @@ import {
 } from "../types/Product";
 import { Variation } from "../types/Product";
 import { addToCart } from "../slices/cartSlice";
-
 import { toast } from "react-toastify";
 import ToastLink from "../components/ToastLink";
-
-import Rating from "../components/Rating";
 import { Link } from "react-router-dom";
-import Spinner from "./Spinner";
 import { getError } from "../utils/utils";
 import { ApiError } from "../types/ApiError";
 
-type Props = {
+type ProductVariationsProps = {
   product: Product;
   variationNum?: number;
   material?: string;
@@ -28,18 +24,14 @@ type Props = {
 
 const ProductVariations = ({
   product,
-  variationNum,
   material,
   size,
   hideVariations,
-}: Props) => {
+}: ProductVariationsProps) => {
   const dispatch = useAppDispatch();
   const [url, setUrl] = useState<string>(`/shop/${product.slug}`);
-
-  const [qty, setQty] = useState(1);
+  const qty = 1;
   const [variation, setVariation] = useState<Variation>();
-
-  // console.log(variation);
 
   const getVariation = (material: string, size: string) => {
     return _.find(product?.variations, { options: { material, size } });
@@ -53,13 +45,7 @@ const ProductVariations = ({
 
   useEffect(() => {
     if (product) {
-      // if (variationNum) {
-      //   setVariation(product.variations[variationNum]);
-      // } else {
-
-      // }
       if (material && size) {
-        // console.log(material, size);
         const currentVariation = getVariation(material, size);
         setVariation(currentVariation);
       } else {
@@ -113,7 +99,6 @@ const ProductVariations = ({
   const materialTitle = materialValues.map(
     (name) => product.options.material[name as MaterialOptionNoNameKeys].title,
   );
-  //TITLE_TO_NAME_MATERIAL
   const titleToNameMaterial: { [key: string]: string } = {};
 
   materialTitle.forEach(
@@ -124,7 +109,6 @@ const ProductVariations = ({
     (name) => product.options.size[name as SizeOptionNoNameKeys].title,
   );
 
-  //TITLE_TO_NAME_SIZE
   const titleToNameSize: { [key: string]: string } = {};
 
   sizeTitle.forEach(
@@ -149,7 +133,6 @@ const ProductVariations = ({
     const targetMaterial = e.currentTarget.textContent;
     if (targetMaterial) {
       const shortMaterialName = titleToNameMaterial[targetMaterial];
-      // if same size exist
 
       if (variation) {
         const theSame = getVariation(
@@ -173,8 +156,6 @@ const ProductVariations = ({
   const addToCartHandler = () => {
     try {
       if (variation) {
-        // const pathnameWithQuery =
-        //   window.location.pathname + window.location.search;
         const variationName = `${product.name} ${
           product.options.material[
             variation.options.material as MaterialOptionNoNameKeys
@@ -186,6 +167,7 @@ const ProductVariations = ({
         dispatch(
           addToCart({
             ...variation,
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             _id: variation._id!,
             qty,
             image:
@@ -197,7 +179,6 @@ const ProductVariations = ({
           }),
         );
         toast.success(<ToastLink product={variationName} />);
-        // navigate('/cart');
       }
     } catch (err) {
       toast.warning(getError(err as ApiError));
@@ -229,11 +210,6 @@ const ProductVariations = ({
               }
             </span>
           </h3>
-          {/* RATING */}
-          {/* <Rating
-              rating={product.rating.rating}
-              numReviews={product.rating.numReviews}
-            /> */}
         </div>
       </div>
 
@@ -251,9 +227,7 @@ const ProductVariations = ({
           />
         </Link>
       </div>
-
-      {/* SIZES */}
-
+      {/* Sizes */}
       <div
         className={`${hideVariations ? "hidden" : "relative  h-full w-full"} `}
       >

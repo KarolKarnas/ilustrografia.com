@@ -3,7 +3,6 @@ import * as RadioGroup from "@radix-ui/react-radio-group";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../slices/reduxHooks";
 import { useNavigate } from "react-router-dom";
-
 import { addPaymentMethod } from "../../slices/cartSlice";
 import CheckoutSteps from "../../components/CheckoutSteps";
 import PageHeading from "../../components/primitives/PageHeading";
@@ -16,17 +15,14 @@ import Meta from "../../components/Meta";
 const PaymentPage = () => {
   const { shippingAddress, paymentMethod: currentPaymentMethod } =
     useAppSelector((state) => state.cart);
-
-  //set current payment
   const [paymentMethod, setPaymentMethod] = useState(
     currentPaymentMethod || "PayPal",
   );
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    //redirect if no shipping address
+    //redirect if no shipping address provided
     if (shippingAddress && Object.keys(shippingAddress).length === 0) {
       navigate("/shipping");
     }

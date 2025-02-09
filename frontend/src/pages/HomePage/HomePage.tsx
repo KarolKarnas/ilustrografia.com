@@ -2,14 +2,12 @@ import { getError } from "../../utils/utils";
 import { ApiError } from "../../types/ApiError";
 import { useGetProductsByCategoryQuery } from "../../slices/productsApiSlice";
 import Meta from "../../components/Meta";
-
 import Spinner from "../../components/Spinner";
 import SocialLinks from "../../components/SocialLinks";
 import Button from "../../components/Button";
 import { useGetNeoSlavicQuery } from "../../slices/ytApiSlice";
 import LatestVideos from "../../components/LatestVideos";
 import Message from "../../components/Message";
-
 import SectionMain from "../../components/SectionMain";
 import MainTitlesWrapper from "../../components/MainTitlesWrapper";
 import IllustrationsGrid from "../../components/IllustrationsGrid";
@@ -33,7 +31,6 @@ const HomePage = () => {
     isLoading: isLoadingFantasy,
     error: errorFantasy,
   } = useGetProductsByCategoryQuery("fantasy-illustrations");
-
   const {
     data: ytSearch,
     isLoading: ytSearchLoading,
@@ -53,7 +50,7 @@ const HomePage = () => {
               · Ilustrografia ·
             </span>
             <h1 className="  my-2 text-center font-cormorant-infant text-5xl font-semibold italic text-white drop-shadow-hero md:text-8xl">
-              Reality Full of Magic
+              Reality Full Of Magic
             </h1>
             <div className="my-8 flex gap-8">
               <Button text={"shop"} color={"red"} link={"/shop"} />
@@ -64,7 +61,6 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-
         <div className="flex">
           <div className="hidden w-1/4 md:flex md:items-center md:justify-center">
             <ImageMouseMoving src={"/images/addons/magic.png"} />
@@ -96,9 +92,7 @@ const HomePage = () => {
             <ImageMouseMoving src={"/images/addons/brush.png"} reverse={true} />
           </div>
         </div>
-
         {/* Neo Slavic Project */}
-
         <SectionMain url="neo-slavic">
           <MainTitlesWrapper>
             <HeadingAccent>· Ilustrografia ·</HeadingAccent>
@@ -136,15 +130,12 @@ const HomePage = () => {
             isLoading={isLoadingNeoSlavic}
             error={errorNeoSlavic}
           />
-
           <IconDivider>
             <FaPaintbrush />
           </IconDivider>
-
           <MainStrongText
             alwaysLight
           >{`Explore our Neo-Slavic prints today:`}</MainStrongText>
-
           <ProductsGrid
             products={neoSlavicProducts}
             hideVariations={false}
@@ -152,7 +143,6 @@ const HomePage = () => {
             error={errorNeoSlavic}
           />
         </SectionMain>
-
         <div className="mt-5 flex md:my-16">
           <div className="hidden w-1/4 md:flex md:items-center md:justify-center">
             <ImageMouseMoving src={"/images/addons/quotation-mark-1.png"} />
@@ -161,7 +151,6 @@ const HomePage = () => {
             <p className=" my-2  mb-4 text-center font-cormorant-infant  font-semibold italic text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-xl md:text-3xl ">
               {`  It is important that we have some secret, some mysteries, some personal and unrecognizable element in our lives. If anyone has not experienced that, he really hasn't experienced anything essential. For me, the world has always been infinite and ungraspable from the very beginning`}
             </p>
-
             <strong className="text-center font-cormorant-infant text-xl font-light italic  text-eerie-black drop-shadow-red-heading dark:text-ivory dark:drop-shadow-lg">
               Carl Gustav Jung
             </strong>
@@ -179,9 +168,7 @@ const HomePage = () => {
           <MainTitlesWrapper>
             <HeadingAccent>· Ilustrografia ·</HeadingAccent>
             <MainHeading alwaysLight>
-              {`${
-                fantasyProducts && fantasyProducts[0].categories[0].name
-              }`}
+              {`${fantasyProducts && fantasyProducts[0].categories[0].name}`}
             </MainHeading>
             <IconDivider>
               <FaDragon />
@@ -214,7 +201,6 @@ const HomePage = () => {
           <IconDivider>
             <FaPaintbrush />
           </IconDivider>
-
           <MainStrongText alwaysLight>{`Unveil the magic:`}</MainStrongText>
 
           <ProductsGrid
@@ -227,7 +213,6 @@ const HomePage = () => {
         </SectionMain>
 
         {/* Latest animations */}
-
         <SectionMain>
           <MainTitlesWrapper>
             <HeadingAccent>· Ilustrografia ·</HeadingAccent>
@@ -253,7 +238,6 @@ const HomePage = () => {
             <Message
               variant="bad"
               message={getError(ytSearchError as ApiError)}
-              // message={ytSearchError.data.message}
             />
           ) : (
             ytSearch && <LatestVideos youtubeItems={ytSearch.items} />

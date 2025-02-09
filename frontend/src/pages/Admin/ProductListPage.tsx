@@ -19,13 +19,10 @@ import Meta from "../../components/Meta";
 
 const ProductListPage = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
-
   const [createProduct, { isLoading: loadingCreate }] =
     useCreateProductMutation();
-
   const [deleteProduct, { isLoading: loadingDelete }] =
     useDeleteProductMutation();
-
   const createProductHandler = async () => {
     if (window.confirm("Are you sure you want to create a new product?")) {
       try {
@@ -38,15 +35,10 @@ const ProductListPage = () => {
     }
   };
 
-  // const createVariationHandler = async (slug: string) => {
-  // 	await console.log(slug);
-  // };
-
   const handleDeleteProduct = async (slug: string) => {
     if (window.confirm(`Are you sure you want to delete ${slug}?`)) {
       try {
-        const res = await deleteProduct(slug);
-        // console.log(res);
+        await deleteProduct(slug);
         refetch();
         toast.success(`Product ${slug} deleted successfully`);
       } catch (error) {
@@ -69,7 +61,6 @@ const ProductListPage = () => {
             <span className="text-xs uppercase">Add new Product</span>
           </button>
         </div>
-
         <div
           className="relative mb-8 flex
      h-48 w-full flex-col items-center justify-center rounded-3xl bg-angel-dust shadow-hero dark:bg-angel-dark-dust sm:bg-inherit md:mb-20 md:h-[330px] "
@@ -88,7 +79,6 @@ const ProductListPage = () => {
             </IconDivider>
           </div>
         </div>
-
         {isLoading ? (
           <div className="flex w-full justify-center">
             <Spinner></Spinner>

@@ -1,4 +1,4 @@
-type Props = {
+type VariationCharacteristicsProps = {
   variationMaterial: string;
 };
 
@@ -9,9 +9,7 @@ interface Char {
 const characteristics: Char = {
   "art-print": [
     "Elegant, thick, matte paper with a noticeable texture, 270g",
-
     "Paper meets archival paper standards",
-
     "12-pigment print in highest quality mode",
     "Each print has classic white margins all around",
     "Print is sold without a frame",
@@ -37,13 +35,13 @@ const characteristics: Char = {
   ],
 };
 
-const VariationCharacteristics = ({ variationMaterial }: Props) => {
+const VariationCharacteristics = ({
+  variationMaterial,
+}: VariationCharacteristicsProps) => {
   return (
     <ul className="list-disc pl-8 text-sm">
       {characteristics[variationMaterial].map((char, index) => (
-        <li key={index}>
-          {char}
-        </li>
+        <li key={index}>{char}</li>
       ))}
     </ul>
   );

@@ -1,6 +1,6 @@
 import * as Form from "@radix-ui/react-form";
 
-type Props = {
+type InputNumberFieldProps = {
   shortName: string;
   name: string;
   value: number;
@@ -18,7 +18,7 @@ const InputNumberField = ({
   minValue,
   minimal,
   onChangeFun,
-}: Props) => {
+}: InputNumberFieldProps) => {
   return (
     <Form.Field className="flex flex-col" name={shortName}>
       <div className={`${minimal ? "relative" : null} flex items-baseline justify-between`}>

@@ -37,7 +37,6 @@ export interface Variation {
 	price: number;
 	countInStock: number;
 	tags: Tag[];
-	// images: string[]
 	_id: string;
 }
 export interface VariationOptionalId {
@@ -47,12 +46,10 @@ export interface VariationOptionalId {
 	price: number;
 	countInStock: number;
 	tags: Tag[];
-	// images: string[]
 	_id?: string;
 }
 
 export interface VariationCart extends Variation {
-	// _id: string;
 	qty: number;
 	image: string;
 	variationName: string;

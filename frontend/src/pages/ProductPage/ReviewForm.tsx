@@ -3,7 +3,7 @@ import { SyntheticEvent } from "react";
 import SelectNumber from "./SelectNumber";
 import ButtonSubmit from "../../components/primitives/ButtonSubmit";
 
-type Props = {
+type ReviewFormProps = {
   handleSubmitReview: (e: SyntheticEvent) => Promise<void>;
   setReviewRating: (value: React.SetStateAction<number>) => void;
   reviewComment: string;
@@ -15,20 +15,11 @@ const ReviewForm = ({
   setReviewRating,
   reviewComment,
   setReviewComment,
-}: Props) => {
+}: ReviewFormProps) => {
   return (
     <Form.Root
       className="flex w-full flex-col gap-5"
       onSubmit={(e) => handleSubmitReview(e)}
-
-      // onSubmit={(e) => {
-      //   e.preventDefault()
-      //   if (reviewComment.trim() === "") {
-      //     setReviewComment('')
-      //     return toast.error("Just empty spaces here...");
-      //   }
-      //   return handleSubmitReview(e);
-      // }}
     >
       <Form.Field className="flex flex-col" name="review rating">
         <div className="flex items-baseline justify-between">
@@ -45,7 +36,6 @@ const ReviewForm = ({
             Please provide a valid Rating
           </Form.Message>
         </div>
-
         <SelectNumber
           selectNumber={5}
           onChange={setReviewRating}

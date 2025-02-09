@@ -45,9 +45,6 @@ router.post('/', (req, res) => {
 
 		if (req.file) {
 			const uploadedFile: Express.Multer.File = req.file;
-
-			// console.log(uploadedFile);
-
 			res.status(200).send({
 				message: 'Image uploaded successfully',
 				image: `/uploads/${uploadedFile.filename}`,

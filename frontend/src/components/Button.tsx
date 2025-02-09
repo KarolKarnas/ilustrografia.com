@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { FaAngleDoubleRight } from "react-icons/fa";
 
-type Props = {
+type ButtonProps = {
   text: string;
   color: string;
   link: string;
 };
-const Button = ({ text, color, link }: Props) => {
+const Button = ({ text, color, link }: ButtonProps) => {
   return (
     <Link to={link}>
       {" "}

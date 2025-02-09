@@ -62,7 +62,7 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
 	});
 
 	if (user) {
-		const userId = user._id.toString(); // Convert ObjectId to string
+		const userId = user._id.toString();
 		generateToken(res, userId);
 		res.status(201).json({
 			_id: user._id,
@@ -91,7 +91,6 @@ const logoutUser = (_req: Request, res: Response) => {
 // @route   GET /api/users/profile
 // @access  Private
 const getUserProfile = asyncHandler(async (req, res) => {
-	//check req have user
 	const reqWithUser: RequestUser = checkHaveUser(req);
 	const user: UserId | null = await UserModel.findById(reqWithUser.user._id);
 
@@ -111,20 +110,13 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @desc    Update user profile
 // @route   PUT /api/users/profile
 // @access  Private
-
 const updateUserProfile = asyncHandler(async (req: Request, res: Response) => {
 	const reqWithUser = checkHaveUser(req);
 	const user = await UserModel.findById(reqWithUser.user._id);
-	// console.log(user);
-	// console.log(req.body);
 	if (user) {
-		//HERE
-		const bodyData: UserUpdate = toCheckUserUpdate(req.body); // Type assertion
+		const bodyData: UserUpdate = toCheckUserUpdate(req.body);
 		user.name = bodyData.name || user.name;
 		user.email = bodyData.email || user.email;
-
-		// console.log(bodyData);
-
 		if (bodyData.password) {
 			user.password = bodyData.password;
 		}
@@ -192,7 +184,6 @@ const getUserById = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const updateUser = asyncHandler(async (req, res) => {
 	const user = await UserModel.findById(req.params.id);
-
 	const typedReqUser = parseUserInfoOptions(req.body);
 
 	if (user) {

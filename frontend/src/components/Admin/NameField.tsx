@@ -1,20 +1,16 @@
 import * as Form from "@radix-ui/react-form";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
-import { getError } from "../../utils/utils";
 import _ from "lodash";
-import { ApiError } from "../../types/ApiError";
 
-type Props = {
+type NameFieldProps = {
   updateError: FetchBaseQueryError | SerializedError | undefined;
   name: string;
   setName: React.Dispatch<React.SetStateAction<string>>;
   setSlug: React.Dispatch<React.SetStateAction<string>>;
 };
 
-// toast.error(getError(error as ApiError));
-
-const NameField = ({ updateError, name, setName, setSlug }: Props) => {
+const NameField = ({ name, setName, setSlug }: NameFieldProps) => {
   return (
     <Form.Field className="flex flex-col" name="name">
       <div className="flex items-baseline justify-between">
@@ -22,16 +18,6 @@ const NameField = ({ updateError, name, setName, setSlug }: Props) => {
         <Form.Message className="text-md text-red-magic" match="valueMissing">
           Please enter your name
         </Form.Message>
-        {/* {updateError && (
-          <Form.Message
-            className="form-message"
-            match="typeMismatch"
-            forceMatch={Boolean(updateError)}
-          >
-            {getError(updateError as ApiError)}
-          </Form.Message>
-        )} */}
-
         {name !== "" ? (
           <Form.Message
             className="form-message"

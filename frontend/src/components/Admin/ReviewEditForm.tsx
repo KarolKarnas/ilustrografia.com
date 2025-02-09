@@ -5,10 +5,8 @@ import { FaTrash } from "react-icons/fa";
 import * as Select from "@radix-ui/react-select";
 import React from "react";
 import { FaChevronDown, FaCheck } from "react-icons/fa6";
-import SelectNumber from "../../pages/ProductPage/SelectNumber";
-import InputNumberField from "./InputNumberField";
 
-type Props = {
+type ReviewEditFormProps = {
   createdAt: string;
   user: string;
   name: string;
@@ -20,15 +18,13 @@ type Props = {
 };
 
 const ReviewEditForm = ({
-  createdAt,
-  user,
   name,
   rating,
   comment,
   index,
   reviews,
   setReviews,
-}: Props) => {
+}: ReviewEditFormProps) => {
   const [newRating, setNewRating] = useState<number>(rating);
   const [newComment, setNewComment] = useState<string>(comment);
   const [newUserName, setNewUserName] = useState<string>(name);
@@ -36,7 +32,6 @@ const ReviewEditForm = ({
   const handleDeleteReview = (index: number) => {
     const updatedReviews = reviews?.filter((_review, i) => i !== index);
     setReviews(updatedReviews);
-    // console.log("done");
   };
 
   const handleSetComment = (comment: string) => {
@@ -76,7 +71,6 @@ const ReviewEditForm = ({
 
   return (
     <div className="rounded-lg bg-ivory p-4 shadow-md dark:bg-eerie-black md:p-8">
-      {/* md:w-9/12 lg:w-6/12 2xl:w-1/3 */}
       <Form.Root className="flex w-full flex-col items-center gap-1 md:gap-5 lg:flex-row ">
         <div
           onClick={() => handleDeleteReview(index)}
@@ -117,7 +111,6 @@ const ReviewEditForm = ({
           <Form.Control asChild>
             <Select.Root
               defaultValue={newRating.toString()}
-              // disabled={selectNumber <= 0}
               onValueChange={(value) => handleSetRating(Number(value))}
             >
               <Select.Trigger className="inline-flex h-10 items-center  justify-center gap-[5px] rounded-md bg-white px-4 text-[13px] leading-none text-black-magic shadow-md outline-none focus:outline-1 focus:outline-fair-space/60 dark:bg-black-magic dark:text-ivory dark:focus:outline-fair-space/5">
@@ -194,32 +187,3 @@ const ReviewEditForm = ({
   );
 };
 export default ReviewEditForm;
-
-{
-  /* <div className=" w-36">
-          <Form.Field className="flex flex-col" name={"newRating"}>
-            <div className={`flex items-baseline justify-between`}>
-              <Form.Label className={`form-label`}>New Rating</Form.Label>
-              <Form.Message className="form-message" match="valueMissing">
-                Please enter your New Rating
-              </Form.Message>
-              <Form.Message className="form-message" match="typeMismatch">
-                Please provide a valid New Rating
-              </Form.Message>
-            </div>
-
-            <Form.Control asChild>
-              <input
-                className="form-input"
-                type="number"
-                placeholder={`Enter ${name}`}
-                value={newRating}
-                onChange={(e) => {
-                  handleSetRating(Number(e.target.value));
-                }}
-                required
-              />
-            </Form.Control>
-          </Form.Field>
-        </div> */
-}

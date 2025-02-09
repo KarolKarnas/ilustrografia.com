@@ -26,11 +26,6 @@ app.use(express.urlencoded({ extended: true }));
 // Cookie parser middleware
 app.use(cookieParser());
 
-// app.get('/ping', (_req, res) => {
-// 	console.log('someone pinged here');
-// 	res.send('pong');
-// });
-
 app.use(cors());
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
@@ -58,9 +53,6 @@ if (process.env.NODE_ENV === 'production') {
 		res.send('API is running....');
 	});
 }
-
-// const __dirname = path.resolve();
-// app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 app.use(notFound);
 app.use(errorHandler);

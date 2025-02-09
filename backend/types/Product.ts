@@ -32,7 +32,6 @@ export interface Variation {
 	price: number;
 	countInStock: number;
 	tags: Tag[];
-	// _id ???
 }
 
 export interface VariationCart extends Variation {
@@ -119,7 +118,5 @@ export interface Product {
 	variations: Variation[];
 	statistics: string[];
 }
-
-// ----
 
 export type ProductNoId = Omit<Product, '_id'>;

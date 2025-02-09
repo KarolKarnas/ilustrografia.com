@@ -10,13 +10,10 @@ import {
 import App from "./App";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
-
 import HomePage from "./pages/HomePage/HomePage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import CartPage from "./pages/CartPage/CartPage";
-
 import { HelmetProvider } from 'react-helmet-async';
-
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { Provider } from "react-redux";
 import store from "./slices/store";
@@ -28,7 +25,6 @@ import PlaceOrderPage from "./pages/PlaceOrderPage/PlaceOrderPage";
 import OrderDetailsPage from "./pages/OrderDetailsPage/OrderDetailsPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import AboutPage from "./pages/AboutPage/AboutPage";
-
 import OrderListPage from "./pages/Admin/OrderListPage";
 import ProductListPage from "./pages/Admin/ProductListPage";
 import ProductEditScreen from "./pages/Admin/ProductEditPage";

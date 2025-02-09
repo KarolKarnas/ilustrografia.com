@@ -5,10 +5,8 @@ import IconDivider from "../../components/primitives/IconDivider";
 import MainHeading from "../../components/primitives/MainHeading";
 import MainStrongText from "../../components/primitives/MainStrongText";
 import { useGetProductsByCategoryQuery } from "../../slices/productsApiSlice";
-
 import SectionMain from "../../components/SectionMain";
 import MainTitlesWrapper from "../../components/MainTitlesWrapper";
-
 import ProductsGrid from "../../components/ProductsGrid";
 import IllustrationsGrid from "../../components/IllustrationsGrid";
 import Meta from "../../components/Meta";
@@ -37,7 +35,6 @@ const PolishLegendsCharacters = () => {
               reverse={false}
             />
           </div>
-
           <div className="fixed  -right-[7rem] top-[4rem] -z-10 hidden w-1/3 md:flex md:items-center md:justify-center ">
             <ImageMouseMoving src={"/images/polish-legends-about/crown.png"} />
           </div>
@@ -56,7 +53,6 @@ const PolishLegendsCharacters = () => {
               Characters
             </h2>
           </div>
-          {/* Gradient Background */}
           <div className="-z-20 flex  h-full flex-col items-center justify-start bg-polish-gradient dark:bg-black-slavic-gradient">
             <img
               className=" mt-16 w-11/12 rounded-full  shadow-hero md:w-auto"
@@ -88,10 +84,6 @@ const PolishLegendsCharacters = () => {
 
         <div className="my-6 flex w-full flex-col items-center justify-center font-light md:my-16 md:w-7/12 xl:w-6/12">
           <MainHeading>Polish Legends Characters</MainHeading>
-          {/* <MainStrongText>
-          {" "}
-          How many millennia have these Slavic lands borne!
-        </MainStrongText> */}
           <div className="py-4">
             <IconDivider>
               <FaDragon />
@@ -123,11 +115,6 @@ const PolishLegendsCharacters = () => {
               link={"/illustrations"}
             />
           </div>
-          {/* <img
-          className=" my-8 rounded-full shadow-hero md:my-16  md:w-auto"
-          src="/images/neo-slavic-census-about/neo-slavic-census-book.jpg"
-          alt=""
-        /> */}
         </div>
 
         <div className="z-10 flex flex-col items-center justify-center gap-[5rem] md:gap-[8rem]">
@@ -144,7 +131,6 @@ const PolishLegendsCharacters = () => {
               aspectRatio="4/5"
             />
           </SectionMain>
-
           <SectionMain color="second">
             <MainTitlesWrapper>
               <MainStrongText>

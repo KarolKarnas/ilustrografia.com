@@ -12,7 +12,6 @@ const getNeoSlavicVideos = asyncHandler(async (req, res) => {
 		const apiRes = await axios.get(
 			`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${process.env.CHANNEL_API}&maxResults=${qtyYtMovies}&order=date&type=video&key=${process.env.YOUTUBE_API}`
 		);
-
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
 		const youtube = apiRes.data;
 

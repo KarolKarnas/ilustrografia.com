@@ -7,25 +7,21 @@ import CheckoutSteps from "../../components/CheckoutSteps";
 import PageHeading from "../../components/primitives/PageHeading";
 import ButtonSubmit from "../../components/primitives/ButtonSubmit";
 import InputTextField from "../../components/Admin/InputTextField";
-import ImageMouseMoving from "../../components/ImageMouseMoving";
 import HeadingAccent from "../../components/primitives/HeadingAccent";
 import IconDivider from "../../components/primitives/IconDivider";
-import { FaBasketShopping, FaCar, FaHouse } from "react-icons/fa6";
+import { FaHouse } from "react-icons/fa6";
 import Meta from "../../components/Meta";
 
 const ShippingPage = () => {
   const { shippingAddress } = useAppSelector((state) => state.cart);
-
   const [address, setAddress] = useState(shippingAddress?.address || "");
   const [city, setCity] = useState(shippingAddress?.city || "");
   const [postalCode, setPostalCode] = useState(
     shippingAddress?.postalCode || "",
   );
   const [country, setCountry] = useState(shippingAddress?.country || "");
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(addShippingAddress({ address, city, postalCode, country }));
@@ -57,8 +53,6 @@ const ShippingPage = () => {
         </div>
 
         <CheckoutSteps step1={true} step2={true} step3={false} step4={false} />
-
-        {/* <PageHeading>Shipping</PageHeading> */}
         <Form.Root
           className="flex w-full flex-col gap-5 md:w-9/12 lg:w-6/12 2xl:w-1/3"
           onSubmit={(e) => handleSubmit(e)}

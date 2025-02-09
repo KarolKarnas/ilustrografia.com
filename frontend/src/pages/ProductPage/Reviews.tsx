@@ -1,10 +1,10 @@
 import Rating from "../../components/Rating";
 import { ReviewUser } from "../../types/Product";
 
-type Props = {
+type ReviewsProps = {
   reviews: ReviewUser[];
 };
-const Reviews = ({ reviews }: Props) => {
+const Reviews = ({ reviews }: ReviewsProps) => {
   return (
     <div className="my-2 flex flex-col gap-4 md:my-6">
       {reviews.map((review, index) => (
@@ -17,7 +17,6 @@ const Reviews = ({ reviews }: Props) => {
               <span className="font-semibold ">{review.name}</span>
               <Rating rating={review.rating} />
             </div>
-
             <span className=" text-xs font-semibold">
               {review.createdAt.substring(0, 10)}
             </span>

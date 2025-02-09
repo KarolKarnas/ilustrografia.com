@@ -29,10 +29,6 @@ The legend of Anna Bronkiewicz-Faltz, the last basilisk of Warsaw, endures—a t
         name: "Neo-Slavic Census",
         slug: "neo-slavic-census",
       },
-      // {
-      // 	name: 'Basilisks of Warsaw',
-      // 	slug: 'basilisks-of-warsaw',
-      // },
     ],
     tags: [{ name: "", slug: "" }],
     images: ["/images/neo-slavic-census/basilisk-1.jpg"],

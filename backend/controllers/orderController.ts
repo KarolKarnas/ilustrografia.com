@@ -16,8 +16,6 @@ const addOrderItems = asyncHandler(async (req, res) => {
 	await OrderModel.find({});
 
 	const reqWithUser: RequestUser = checkHaveUser(req);
-	// console.log(reqWithUser.user);
-
 	const checkedOrder: OrderData = toCheckOrderData(req.body);
 	const {
 		orderItems,
@@ -39,7 +37,6 @@ const addOrderItems = asyncHandler(async (req, res) => {
 				product: x._id,
 				_id: undefined,
 			})),
-			//here user
 			user: reqWithUser.user._id,
 			shippingAddress,
 			paymentMethod,
@@ -89,7 +86,6 @@ const getOrderById = asyncHandler(async (req, res) => {
 // @access  Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
 	const order = await OrderModel.findById(req.params.id);
-	// const reqOrderUpdate = req.body as OrderUpdateReq
 	const reqOrderUpdate: OrderUpdateReq = toReqOrderUpdate(req.body);
 
 	if (order) {
@@ -103,7 +99,6 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 		};
 
 		const updatedOrder = await order.save();
-		// console.log(updatedOrder)
 		res.json(updatedOrder);
 	} else {
 		res.status(404);

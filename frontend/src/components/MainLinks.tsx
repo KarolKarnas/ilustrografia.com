@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import DropdownProjects from "./DropdownProjects";
 
-type Props = {
+type MainLinksProps = {
   mobile: boolean;
 };
 
-const MainLinks = ({ mobile }: Props) => {
-
+const MainLinks = ({ mobile }: MainLinksProps) => {
   return (
     <>
       <Link
@@ -24,10 +23,7 @@ const MainLinks = ({ mobile }: Props) => {
         Illustrations
       </Link>
 
-        <DropdownProjects />
-
-
-
+      <DropdownProjects />
 
       <Link role="navigation" to="/" className={mobile ? "hidden" : ""}>
         <img

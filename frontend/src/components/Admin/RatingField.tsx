@@ -1,14 +1,13 @@
 import * as Form from "@radix-ui/react-form";
 import { Rating } from "../../types/Product";
 
-type Props = {
+type RatingFieldProps = {
   rating: Rating;
   setRating: React.Dispatch<React.SetStateAction<Rating>>;
 };
-const RatingField = ({ rating, setRating }: Props) => {
+const RatingField = ({ rating, setRating }: RatingFieldProps) => {
   return (
     <>
-      {/* rating */}
       <Form.Field className="flex flex-col" name="ratingRating">
         <div className="flex items-baseline justify-between">
           <Form.Label className=" form-label">
